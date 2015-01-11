@@ -36,12 +36,12 @@ and then derives attributes from the hash.
 
 #### TODO: [Official Docs] (http://www.ruby-doc.org/)
 
-#### Operator I keep forgetting to use
+##### Operator I keep forgetting to use
 
     @wheel ||= Wheel.new(rim, tire)
 
 
-#### specifying defaults using fetch (page 49)
+##### specifying defaults using fetch (page 49)
 
     def initialize(args)
       @chainring = args.fetch(:chainring, 40) 
@@ -78,7 +78,7 @@ My example
 
 
 
-#### specifying defaults by merging a defaults hash
+##### specifying defaults by merging a defaults hash
 
 	def initialize(args)
 	  args = defaults.merge(args) 

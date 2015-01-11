@@ -2,7 +2,7 @@
 
 -----
 
-## Practical Object-Oriented Design in Ruby
+## BOOK: Practical Object-Oriented Design in Ruby
 
 #### Writing Code That Embraces Change:
 
@@ -127,17 +127,18 @@ that they are not that thing. Nothing good can come of this.
 
 ##### Honor the Contract
 
-    Subclasses agree to a contract; they promise to be substitutable for their superclasses.
+Subclasses agree to a contract; they promise to be substitutable for their superclasses.
 
  ##### Use the Template Method Pattern
 
-    ???
+???
 
- ##### Preemptively Decouple Classes
 
-    Avoid writing code that requires its inheritors to send super; instead use hook
-    messages to allow subclasses to participate while absolving them of
-    responsibility for knowing the abstract algorithm.
+##### Preemptively Decouple Classes
+
+Avoid writing code that requires its inheritors to send super; instead use hook
+messages to allow subclasses to participate while absolving them of
+responsibility for knowing the abstract algorithm.
 
 
 TODO: [Forwardable]( http://www.ruby-doc.org/stdlib-2.0/libdoc/forwardable/rdoc/Forwardable.html)

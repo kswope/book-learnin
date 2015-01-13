@@ -211,13 +211,13 @@ up.
 
 String#slice and [] work the same
 
-If you pass indexes...
+If you pass indexes:
 
     s = 'My kingdom for a string!'
     puts s.slice(3,7) # => "kingdom"
     puts s[3,7]       # => "kingdom"
 
-If you pass a regex
+If you pass a regex:
 
     puts "abcd".slice(/../) # => 'ab'
     puts "abcd"[/../] # => 'ab'

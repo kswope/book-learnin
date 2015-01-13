@@ -4,7 +4,7 @@ require 'pp'
 
 
 def wrap(s, width=78)
-  s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
+  s.gsub(/(.{1,20})(\s+|\Z)/, "\\1\n")
 end
 
 

@@ -142,3 +142,25 @@ responsibility for knowing the abstract algorithm.
 
 
 TODO: [Forwardable]( http://www.ruby-doc.org/stdlib-2.0/libdoc/forwardable/rdoc/Forwardable.html)
+
+
+
+
+## BOOK: Ruby Cookbook
+
+A way strings are made that I keep forgetting: %Q and %q and matched chars
+
+    str = %q{This is a string}
+    w = 'nother'
+    str = %Q|This is a#{w} string|
+
+I also keep forgetting here doc syntax, this '-' lets you indent the end token
+
+    str = <<-EOS
+    Line one
+    Line two
+    line three
+    EOS
+
+
+

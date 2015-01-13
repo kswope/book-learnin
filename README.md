@@ -183,3 +183,19 @@ using () in regex in split()
     'one two three four five'.split(/\s+/) #=> ["one", "two", "three", "four", "five"]
     'one two three four five'.split(/(\s+)/) #=> ["one", " ", "two", " ", "three", " ", "four", " ", "five"]
 
+
+print smiley to terminal
+
+    puts "\xe2\x98\xBA"
+
+ring bell
+
+    puts "\a"
+
+
+String#each was removed in 1.9 and replaced with String#each_line and String#each_char
+
+String#scan (can also take a code block)
+
+    "one two three four".scan(/\w+/) #=>  ["one", "two", "three", "four"] 
+

@@ -162,5 +162,25 @@ I also keep forgetting here doc syntax, ('-' lets you indent the end token)
     line three
     EOS
 
+Printf style string formatting:
+
+    'this is a %s' % 'string'
+    
+ERB outside of rails
+
+    require 'erb'
+
+    template = %q{
+      Contents:
+        <% array.each do |element| -%>
+          <%= element %>
+        <% end -%>
+    }
+
+    template = ERB.new template, nil, '-'
+
+    array = %w{one two three four five}
+    puts template.run(binding)
+
 
 

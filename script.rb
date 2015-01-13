@@ -2,25 +2,19 @@
 
 require 'pp'
 
+require 'erb'
 
-def asdf1
-  <<-EOS
-  Line one
-  Line two
-  Line three
-  EOS
-end
 
-def asdf2
-  %Q{
-  Line one
-  Line two
-  Line three
-  }[/^\s(.*)/]
-end
+template = %q{
+  Contents:
+    <% array.each do |element| -%>
+      <%= element %>
+    <% end -%>
+}
 
-puts babf1
-puts bsapf2
+template = ERB.new template, nil, '-'
 
-var foo = "method(" + argument1 + "," + argument2 + ")";
+array = %w{one two three four five}
+puts template.run(binding)
+
 

@@ -96,11 +96,6 @@ My example
 >Using delegation to hide tight coupling is not the same as decoupling the code.
 
 
-> Duck types are public interfaces that are not tied to any specific class.
-
-
-
-
 #### Writing Inheritable Code
 
 ##### Recognize the Antipatterns

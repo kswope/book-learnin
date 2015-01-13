@@ -3,7 +3,8 @@
 require 'pp'
 
 
+String#slice and [] work the same
 
+puts "abcd".slice(/../) # => 'ab'
+puts "abcd"[/../] # => 'ab'
 
-
-pp "\x10\x11\xfe\xff"  

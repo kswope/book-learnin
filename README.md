@@ -209,7 +209,9 @@ preexisting class structure. All you have to do is make the method names match
 up.
 
 
-String#slice and [] work the same, if you pass indexes...
+String#slice and [] work the same
+
+If you pass indexes...
 
     s = 'My kingdom for a string!'
     puts s.slice(3,7) # => "kingdom"

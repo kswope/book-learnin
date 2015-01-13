@@ -183,7 +183,7 @@ ERB outside of rails
     puts template.run(binding)
 
 
-using remember () in regex in split()
+using () in regex in split()
 
     'one two three four five'.split(/\s+/) #=> ["one", "two", "three", "four", "five"]
     'one two three four five'.split(/(\s+)/) #=> ["one", " ", "two", " ", "three", " ", "four", " ", "five"]

@@ -229,4 +229,31 @@ Wrapping long lines
     end
 
 
+All ways to make regex
+
+    /something/
+    Regexp.new("something")
+    Regexp.compile("something")
+    %r{something}
+
+Things to do with a Regexp (not from book, my own musings)
+
+  re = /this/im
+
+  'this'.gsub(re, 'that')
+  'this'.gsub!(re, 'that')
+
+  'this' =~ re #=> 0
+  re =~ 'this' #=> 0
+
+
+Regexp::union (my really uncreative example)
+
+    victim = 'this is my string'
+    re = Regexp.union('this', 'string')
+    victim.gsub!(re, '_')
+    puts victim #=> "_ is my _"
+
+
+
 

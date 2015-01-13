@@ -3,9 +3,10 @@
 require 'pp'
 
 
-def wrap(s, width=78)
-  s.gsub(/(.{1,20})(\s+|\Z)/, "\\1\n")
-end
+Regexp::union (my really uncreative example)
 
+    victim = 'this is my string'
+    re = Regexp.union('this', 'string')
+    victim.gsub!(re, '_')
+    puts victim #=> "_ is my _"
 
-puts wrap("This text is not too short to be wrapped.", 20)

@@ -129,7 +129,7 @@ that they are not that thing. Nothing good can come of this.
 
 Subclasses agree to a contract; they promise to be substitutable for their superclasses.
 
- ##### Use the Template Method Pattern
+##### Use the Template Method Pattern
 
 ???
 

@@ -3,8 +3,9 @@
 require 'pp'
 
 
-String#slice and [] work the same
+def wrap(s, width=78)
+  s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
+end
 
-puts "abcd".slice(/../) # => 'ab'
-puts "abcd"[/../] # => 'ab'
 
+puts wrap("This text is not too short to be wrapped.", 20)

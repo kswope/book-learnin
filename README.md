@@ -222,4 +222,11 @@ If you pass a regex:
     puts "abcd".slice(/../) # => 'ab'
     puts "abcd"[/../] # => 'ab'
 
+Wrapping long lines
+
+    def wrap(s, width=78)
+      s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
+    end
+
+
 

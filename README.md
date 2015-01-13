@@ -230,6 +230,7 @@ Wrapping long lines
 
 
 All ways to make regex
+
     /something/
     Regexp.new("something")
     Regexp.compile("something")

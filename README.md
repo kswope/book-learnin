@@ -199,3 +199,9 @@ String#scan (can also take a code block)
 
     "one two three four".scan(/\w+/) #=>  ["one", "two", "three", "four"] 
 
+>The idea to take to heart here is the general rule of duck typing: to see
+whether provided data implements a certain method, use respond_to? instead of
+checking the class.This lets a future user (possibly yourself!) create new
+classes that offer the same capability, without being tied down to the
+preexisting class structure. All you have to do is make the method names match
+up.

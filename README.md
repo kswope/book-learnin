@@ -154,7 +154,7 @@ A way strings are made that I keep forgetting: %Q and %q and matched chars
     w = 'nother'
     str = %Q|This is a#{w} string|
 
-I also keep forgetting here doc syntax, '-' lets you indent the end token
+I also keep forgetting here doc syntax, ('-' lets you indent the end token)
 
     str = <<-EOS
     Line one

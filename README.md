@@ -230,7 +230,6 @@ Wrapping long lines
 
 
 All ways to make regex
-
     /something/
     Regexp.new("something")
     Regexp.compile("something")
@@ -238,13 +237,13 @@ All ways to make regex
 
 Things to do with a Regexp (not from book, my own musings)
 
-  re = /this/im
+    re = /this/im
 
-  'this'.gsub(re, 'that')
-  'this'.gsub!(re, 'that')
+    'this'.gsub(re, 'that')
+    'this'.gsub!(re, 'that')
 
-  'this' =~ re #=> 0
-  re =~ 'this' #=> 0
+    'this' =~ re #=> 0
+    re =~ 'this' #=> 0
 
 
 Regexp::union (my really uncreative example)

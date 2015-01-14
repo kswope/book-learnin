@@ -249,7 +249,7 @@ Things to do with a Regexp (not from book, my own musings)
     'this and that'.slice(/\s.*\s/) #=> ' and '
     'this and that'[/\s.*\s/] #=> ' and '
 
-    'this and that'[/\s(.*)\s/]
+    'this and that'[/\s(.*)\s/] # memory
     puts $1 #=> 'and'
 
 

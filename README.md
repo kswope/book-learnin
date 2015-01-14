@@ -313,3 +313,11 @@ You can even use the splat operator to extract items from the front of the array
     a # => 12
     b # => 14
     c # => [178, 89, 90]
+
+To ensure that duplicate values never get into your list, use a Set instead of
+an array. If you try to add a duplicate element to a Set, nothing will happen.
+
+    require 'set'
+    survey_results = [1, 2, 7, 1, 1, 5, 2, 5, 1]
+    distinct_answers = survey_results.to_set
+    # => #<Set: {5, 1, 7, 2}>

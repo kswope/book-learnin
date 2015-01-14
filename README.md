@@ -257,9 +257,12 @@ Things to do with a Regexp (not from book, my own musings)
 
     upcase_hash = ('a'..'e').to_a.inject({}) {|accum, x| accum[x]=x.upcase; accum }
     upcase_hash #=> {"a"=>"A", "b"=>"B", "c"=>"C", "d"=>"D", "e"=>"E"}
-
     str = 'here, there, everywhere'
     puts str.gsub(/e/, upcase_hash) #=> "hErE, thErE, EvErywhErE" 
+
+    str = 'here, there, everywhere'
+    puts str.gsub(/e/) {|m| m.upcase! } #=> hErE, thErE, EvErywhErE
+
 
 
 Regexp::union (my really uncreative example)

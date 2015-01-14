@@ -272,6 +272,18 @@ sub/gsub with block param
     str = 'here, there, everywhere'
     puts str.gsub(/e/) {|m| m.upcase! } #=> hErE, thErE, EvErywhErE
 
+case statement
+
+    string = '123abc'
+
+    case string
+    when /^[a..zA..Z]+$/
+      "All Letters"
+    when /^[0-9]+$/
+      "All Numbers"
+    else
+      'Mixed'
+    end #=> 'Mixed'
 
 
 Regexp::union (my really uncreative example)

@@ -236,9 +236,8 @@ All ways to make regex
     Regexp.compile("something")
     %r{something}
 
-##### Things to do with a Regexp (not from book, my own musings)
 
-sub and gsub
+(regex) sub and gsub
 
     re = /this/im
     'this'.sub(re, 'that')

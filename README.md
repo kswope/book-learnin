@@ -294,4 +294,22 @@ Regexp::union (my really uncreative example)
 
 
 
+Array operators
 
+    [1,2,3] << [4,5,6] #=> [1, 2, 3, [4, 5, 6]] 
+    [1,2,3] + [4,5,6] #=> [1, 2, 3, 4, 5, 6]
+
+You can split out an array into its components
+
+    array = [:red, :green, :blue]
+    c, a, b = array
+    a # => :green
+    b # => :blue
+    c # => :red
+
+You can even use the splat operator to extract items from the front of the array:
+
+    a, b, *c = [12, 14, 178, 89, 90]
+    a # => 12
+    b # => 14
+    c # => [178, 89, 90]

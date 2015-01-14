@@ -4,7 +4,8 @@ require 'pp'
 
 
 puts 'this and that'.slice(/\s.*\s/)
-puts 'this and that'[/\s(.*)\s/]
-puts $1
+
+'this and that'[/\s(.*)\s/]
+puts $1 #=> 'and'
 
 

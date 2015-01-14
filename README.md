@@ -249,6 +249,9 @@ Things to do with a Regexp (not from book, my own musings)
     'this and that'.slice(/\s.*\s/) #=> ' and '
     'this and that'[/\s.*\s/] #=> ' and '
 
+    'this and that'[/\s(.*)\s/]
+    puts $1 #=> 'and'
+
 
 Regexp::union (my really uncreative example)
 

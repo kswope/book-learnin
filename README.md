@@ -246,12 +246,12 @@ All ways to make regex
     'this'.gsub(re, 'that')
     'this'.gsub!(re, 'that')
 
-perlish match
+(regex) perlish match
 
     'this' =~ re #=> 0
     re =~ 'this' #=> 0
 
-slice and its other form (works with regex memory too)
+(regex) slice and its other form (works with regex memory too)
 
     'this and that'.slice(/\s.*\s/) #=> ' and '
     'this and that'[/\s.*\s/] #=> ' and '
@@ -259,19 +259,19 @@ slice and its other form (works with regex memory too)
     'this and that'[/\s(.*)\s/] # memory
     puts $1 #=> 'and'
 
-sub/gsub with hash param
+(regex) sub/gsub with hash param
 
     upcase_hash = ('a'..'e').to_a.inject({}) {|accum, x| accum[x]=x.upcase; accum }
     upcase_hash #=> {"a"=>"A", "b"=>"B", "c"=>"C", "d"=>"D", "e"=>"E"}
     str = 'here, there, everywhere'
     puts str.gsub(/e/, upcase_hash) #=> "hErE, thErE, EvErywhErE" 
 
-sub/gsub with block param
+(regex) sub/gsub with block param
 
     str = 'here, there, everywhere'
     puts str.gsub(/e/) {|m| m.upcase! } #=> hErE, thErE, EvErywhErE
 
-case statement
+(regex) case statement
 
     string = '123abc'
 

@@ -240,6 +240,9 @@ Things to do with a Regexp (not from book, my own musings)
 
     re = /this/im
 
+    'this'.sub(re, 'that')
+    'this'.sub!(re, 'that')
+
     'this'.gsub(re, 'that')
     'this'.gsub!(re, 'that')
 
@@ -251,6 +254,12 @@ Things to do with a Regexp (not from book, my own musings)
 
     'this and that'[/\s(.*)\s/] # memory
     puts $1 #=> 'and'
+
+    upcase_hash = ('a'..'e').to_a.inject({}) {|accum, x| accum[x]=x.upcase; accum }
+    upcase_hash #=> {"a"=>"A", "b"=>"B", "c"=>"C", "d"=>"D", "e"=>"E"}
+
+    str = 'here, there, everywhere'
+    puts str.gsub(/e/, upcase_hash) #=> "hErE, thErE, EvErywhErE" 
 
 
 Regexp::union (my really uncreative example)

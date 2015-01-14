@@ -236,7 +236,7 @@ All ways to make regex
     Regexp.compile("something")
     %r{something}
 
-Things to do with a Regexp (not from book, my own musings)
+##### Things to do with a Regexp (not from book, my own musings)
 
     re = /this/im
 

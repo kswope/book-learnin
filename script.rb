@@ -3,6 +3,8 @@
 require 'pp'
 
 
-'this and that'.slice(/\s.*\s/)
-'this and that'[/\s.*\s/]
+puts 'this and that'.slice(/\s.*\s/)
+puts 'this and that'[/\s(.*)\s/]
+puts $1
+
 

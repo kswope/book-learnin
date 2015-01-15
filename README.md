@@ -336,4 +336,10 @@ Using a hash with empty array default values
     pp hash #=> {:a=>[1], :b=>[2, 3]}
 
 
+Reverse lookup for hash
+
+    hash = {one:1, two:2, three:3}
+    pp hash.invert[1] #=> :one
+
+
 

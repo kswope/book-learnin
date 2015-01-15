@@ -6,13 +6,7 @@ require 'pp'
 
 # using a hash with empty array default values
 
-hash = Hash.new { |hash, key| hash[key] = [] }
-hash[:a] << 1
-hash[:b] << 2
-hash[:b] << 3
+Reverse lookup for hash
 
-pp hash #=> {:a=>[1], :b=>[2, 3]}
-
-hash.each do |k,v|
-  puts k,v
-end
+    hash = {one:1, two:2, three:3}
+    pp hash.invert[1] #=> :one

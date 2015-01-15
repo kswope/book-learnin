@@ -321,3 +321,20 @@ an array. If you try to add a duplicate element to a Set, nothing will happen.
     survey_results = [1, 2, 7, 1, 1, 5, 2, 5, 1]
     distinct_answers = survey_results.to_set
     # => #<Set: {5, 1, 7, 2}>
+
+Numeric#step
+
+    0.step(10, 2) {|x| print x, ' ' } #=> '0 2 4 6 8 10 '
+
+
+Using a hash with empty array default values
+
+    hash = Hash.new { |hash, key| hash[key] = [] }
+    hash[:a] << 1
+    hash[:b] << 2
+    hash[:b] << 3
+
+pp hash #=> {:a=>[1], :b=>[2, 3]}
+
+
+

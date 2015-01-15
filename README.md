@@ -333,8 +333,7 @@ Using a hash with empty array default values
     hash[:a] << 1
     hash[:b] << 2
     hash[:b] << 3
-
-pp hash #=> {:a=>[1], :b=>[2, 3]}
+    pp hash #=> {:a=>[1], :b=>[2, 3]}
 
 
 

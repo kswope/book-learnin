@@ -12,3 +12,7 @@ hash[:b] << 2
 hash[:b] << 3
 
 pp hash #=> {:a=>[1], :b=>[2, 3]}
+
+hash.each do |k,v|
+  puts k,v
+end

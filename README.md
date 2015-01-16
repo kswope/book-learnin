@@ -2,7 +2,7 @@
 
 -----
 
-## BOOK: Practical Object-Oriented Design in Ruby
+## [Book] Practical Object-Oriented Design in Ruby
 
 #### Writing Code That Embraces Change:
 
@@ -141,7 +141,7 @@ TODO: [Forwardable]( http://www.ruby-doc.org/stdlib-2.0/libdoc/forwardable/rdoc/
 
 
 
-## BOOK: Ruby Cookbook
+## [Book] Ruby Cookbook
 
 A way strings are made that I keep forgetting: %Q and %q and matched chars
 
@@ -343,3 +343,5 @@ Reverse lookup for hash
 
 
 
+
+## [Book] Rails 4 Test Prescriptions 

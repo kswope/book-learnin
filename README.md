@@ -394,3 +394,19 @@ be() is weird
     end
 
 
+## [Book] Effective Ruby
+
+
+### Item 1
+
+EVERY value is true except false and nil.
+
+If you need to differentiate between false and nil, either use the nil? method
+or use the “==” operator with false as the left operand.  If you use x on the
+left then there's a possiblity that x.== was messed with and you won't get what
+you expect.
+
+    if false == x
+      something
+    end
+

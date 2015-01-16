@@ -363,7 +363,7 @@ multiple specs with the same description string.
 For single-line tests in which a string description is unnecessary, we use
 specify to make the single line read more clearly, such as this:
 
-  specify { expect(user.name).to eq("fred") }
+    specify { expect(user.name).to eq("fred") }
 
 Why not just use it('') instead of specify() ???
 

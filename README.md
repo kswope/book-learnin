@@ -345,3 +345,12 @@ Reverse lookup for hash
 
 
 ## [Book] Rails 4 Test Prescriptions 
+
+Setting up RSpec (for minitesters)
+
+    group :development, :test do 
+      gem 'rspec-rails', '~> 3.1'
+    end
+
+    $ bundle install
+    $ rails generate rspec:install

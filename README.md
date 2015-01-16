@@ -471,4 +471,5 @@ didn't even know it existed outside perl, so no problem)
 * If a constant references a collection object such as an array or hash,
 freeze the collection and its elements.
 
-* To prevent assignment of new values to existing constants, freeze the module they’re defined in.
+* To prevent assignment of new values to existing constants, freeze the module
+they’re defined in.

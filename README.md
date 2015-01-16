@@ -438,7 +438,7 @@ use compact() to remove nils from arrays
 ### Item 3: Avoid Ruby’s Cryptic Perlisms
 
 
-Avoid using ~= and $1, $2, use match instead
+Avoid using ~= and $1, $2, use match() instead
 
     if m = 'ERROR: bad stuff'.match(/^ERROR:\s+(.+)$/)
       m[1] # 'bad stuff'
@@ -456,6 +456,19 @@ For other cryptic perlism
 
     require('English')
 
-Find them with
+Look them up
 
-    > ri English
+    $ ri English
+
+Avoid methods that implicitly read from, or write to, the $_ global variable (I
+didn't even know it existed outside perl, so no problem)
+
+
+### Item 4: Be Aware That Constants Are Mutable
+
+* Always freeze constants to prevent them from being mutated.
+
+* If a constant references a collection object such as an array or hash,
+freeze the collection and its elements.
+
+* To prevent assignment of new values to existing constants, freeze the module they’re defined in.

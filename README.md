@@ -397,7 +397,7 @@ be() is weird
 ## [Book] Effective Ruby
 
 
-### Item 1
+### Item 1: Understand What Ruby Considers to Be True
 
 EVERY value is true except false and nil.
 
@@ -410,3 +410,41 @@ you expect.
       something
     end
 
+### Item 2: Treat All Objects as If They Could Be nil
+
+There’s a surprisingly large number of ways nil can unexpectedly get introduced
+into your running program. The best defense is to assume that any object might
+actually be the nil object. This includes arguments passed to methods and
+return values from them.
+
+When appropriate, use conversion methods such as to_s and to_i to coerce nil
+objects into the expected type.  Make methods like the following more robust by
+using to_s instead of resorting to throwing "undefined method" exception
+
+    def fix_title (title)
+      title.to_s.capitalize
+    end
+
+    def add_ten(x)
+      x.to_i + 10
+    end
+
+
+use compact() to remove nils from arrays
+
+    name = [first, middle, last].compact.join(" ")
+
+
+### Item 3: Avoid Ruby’s Cryptic Perlisms
+
+
+Avoid using ~= and $1, $2, use match instead
+
+    if m = 'ERROR: bad stuff'.match(/^ERROR:\s+(.+)$/)
+      m[1] # 'bad stuff'
+    end
+
+Note: match() also works in reverse (its both a method of string and Regexp)
+
+    /find (me)/.match('find me')[1]  #=> 'me'
+    'find me'.match(/find (me)/)[1] #=> 'me'

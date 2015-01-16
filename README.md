@@ -352,5 +352,4 @@ Setting up RSpec (for minitesters)
       gem 'rspec-rails', '~> 3.1'
     end
 
-    $ bundle install
     $ rails generate rspec:install

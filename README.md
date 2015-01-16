@@ -367,3 +367,30 @@ specify to make the single line read more clearly, such as this:
 
 Why not just use it('') instead of specify() ???
 
+expect() takes any object as an argument and returns ExpectationTarget
+
+ExpectationTarget olds on to the object and itself responds to two messages,
+to() and not_to()
+
+Both to() and not_to() expect as an argument a RSpec matcher.
+
+RSpec matcher responds to a matches?() method.
+
+Look at some objects
+
+    RSpec.describe "Something" do
+        puts expect(true) #=> RSpec::Expectations::ExpectationTarget
+        puts eq(3) #=> RSpec::Matchers::BuiltIn::Eq
+        puts be_truthy #=> RSpec::Matchers::BuiltIn::BeTruthy
+        puts expect(3).to eq(3) #=> true
+        puts expect(3).to be_truthy #=> true
+    end
+
+be() is weird
+
+    RSpec.describe "Something" do
+      puts be #=> RSpec::Matchers::BuiltIn::Be
+      puts be(3) #=> RSpec::Matchers::BuiltIn::Equal
+    end
+
+

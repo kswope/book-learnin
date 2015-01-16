@@ -448,3 +448,10 @@ Note: match() also works in reverse (its both a method of string and Regexp)
 
     /find (me)/.match('find me')[1]  #=> 'me'
     'find me'.match(/find (me)/)[1]  #=> 'me'
+
+
+use $LOAD_PATH instead of $:
+
+For other cryptic perlism 
+
+    require('English')

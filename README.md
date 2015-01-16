@@ -353,3 +353,17 @@ Setting up RSpec (for minitesters)
     end
 
     $ rails generate rspec:install
+
+
+The actual spec is defined with it(), which takes an optional string argument
+that documents the spec, and then a block that is the body of the spec. The
+string argument is not used internally to identify the spec—you can have
+multiple specs with the same description string.
+
+For single-line tests in which a string description is unnecessary, we use
+specify to make the single line read more clearly, such as this:
+
+  specify { expect(user.name).to eq("fred") }
+
+Why not just use it('') instead of specify() ???
+

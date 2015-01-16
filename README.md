@@ -455,3 +455,7 @@ use $LOAD_PATH instead of $:
 For other cryptic perlism 
 
     require('English')
+
+Find them with
+
+    > ri English

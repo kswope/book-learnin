@@ -551,7 +551,7 @@ Struct can take a block for defining methods
 ### Item 11: Create Namespaces by Nesting Code in Modules
 
 
-Call to KEY fails
+Referring to KEY fails
 
     module SuperDumbCrypto
       KEY = "asf"
@@ -563,5 +563,22 @@ Call to KEY fails
     end
 
     SuperDumbCrypto::Encrypt.new #=> uninitialized constant SuperDumbCrypto::Encrypt::KEY
+
+
+Fully qualified referring to KEY works (no lexical because we closed the module first)
+
+    module SuperDumbCrypto
+      KEY = "asdf"
+    end
+
+    class SuperDumbCrypto::Encrypt
+      def initialize (key=SuperDumbCrypto::KEY)
+        puts key
+      end
+    end
+
+    SuperDumbCrypto::Encrypt.new #=> 'asdf'
+
+
 
 

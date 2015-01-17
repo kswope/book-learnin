@@ -565,7 +565,7 @@ Referring to KEY fails
     SuperDumbCrypto::Encrypt.new #=> uninitialized constant SuperDumbCrypto::Encrypt::KEY
 
 
-Fully qualified referring to KEY works (no lexical because we closed the module first)
+Fully qualified referring to KEY works (not lexical because we closed the module first)
 
     module SuperDumbCrypto
       KEY = "asdf"
@@ -581,4 +581,18 @@ Fully qualified referring to KEY works (no lexical because we closed the module 
 
 
 
+Lexically scoped call to KEY works (didn't close module)
+
+    module SuperDumbCrypto
+      KEY = "asdf"
+
+      class SuperDumbCrypto::Encrypt
+        def initialize (key=KEY)
+          puts key
+        end
+      end
+
+    end # module
+
+    SuperDumbCrypto::Encrypt.new  #=> 'asdf'
 

@@ -495,3 +495,51 @@ to find the method_missing method.
 
 * Singleton methods (class methods and per-object methods) are stored in
   singleton classes that are also inserted into the hierarchy.
+
+### Item 7: Be Aware of the Different Behaviors of super
+
+* When you override a method from the inheritance hierarchy the super keyword
+  can be used to call the overridden method.
+
+* Using super with no arguments and no parentheses is equivalent to passing it
+  all of the arguments that were given to the enclosing method.
+
+* If you want to use super without passing the overridden method any arguments,
+  you must use empty parentheses, i.e., super().
+
+* Defining a method_missing method will discard helpful information when a
+  super call fails. See Item 30 for alternatives to method_ missing.
+
+### Item 8: Invoke super When Initializing Subclasses
+
+* Ruby doesn’t automatically call the initialize method in a super- class when
+  creating objects from a subclass. Instead, normal method lookup rules apply
+to initialize and only the first matching copy is invoked.
+
+* When writing an initialize method for a class that explicitly uses
+  inheritance, use super to initialize the parent class. The same rule applies
+when you define an initialize_copy method.
+
+### Item 9: Be Alert for Ruby’s Most Vexing Parse
+
+* Setter methods can only be called with an explicit receiver. Without a
+* receiver they will be parsed as variable assignments.
+
+* When invoking a setter method from within an instance method use self as the
+* receiver.
+
+* You don’t need to use an explicit receiver when calling nonsetter methods. In
+* other words, don’t litter your code with self.
+
+
+### Item 10: Prefer Struct to Hash for Structured Data
+
+Struct can take a block for defining methods
+
+
+	Reading = Struct.new(:date, :high, :low) do def mean
+	(high + low) / 2.0 end
+	end
+
+
+

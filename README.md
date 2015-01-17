@@ -536,10 +536,9 @@ when you define an initialize_copy method.
 
 Struct can take a block for defining methods
 
-
-	Reading = Struct.new(:date, :high, :low) do def mean
-	(high + low) / 2.0 end
-	end
+		Reading = Struct.new(:date, :high, :low) do def mean
+		(high + low) / 2.0 end
+		end
 
 
 

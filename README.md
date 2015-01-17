@@ -473,3 +473,25 @@ freeze the collection and its elements.
 
 * To prevent assignment of new values to existing constants, freeze the module
 they’re defined in.
+
+### Item 5: Pay Attention to Run-Time Warnings
+
+* Use the “-w” command-line option to the Ruby interpreter to enable
+compile-time and run-time warnings. You can also set the RUBYOPT environment
+variable to “-w”.
+
+* If you must disable run-time warnings, do so by temporarily setting the
+$VERBOSE global variable to nil.
+
+
+### Item 6: Know How Ruby Builds Inheritance Hierarchies
+
+* To find a method, Ruby only has to search up the class hierarchy. If it
+  doesn’t find the method it’s looking for it starts the search again, trying
+to find the method_missing method.
+
+* Including modules silently creates singleton classes that are inserted into
+  the hierarchy above the including class.
+
+* Singleton methods (class methods and per-object methods) are stored in
+  singleton classes that are also inserted into the hierarchy.

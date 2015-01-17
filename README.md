@@ -542,5 +542,26 @@ Struct can take a block for defining methods
       end
     end
 
+* When dealing with structured data which doesn’t quite justify a new class
+  prefer using Struct to Hash.
+
+* Assign the return value of Struct::new to a constant and treat that constant
+  like a class.
+
+### Item 11: Create Namespaces by Nesting Code in Modules
+
+
+Call to KEY fails
+
+    module SuperDumbCrypto
+      KEY = "asf"
+    end
+
+    class SuperDumbCrypto::Encrypt
+      def initialize (key=KEY)
+      end
+    end
+
+    SuperDumbCrypto::Encrypt.new #=> uninitialized constant SuperDumbCrypto::Encrypt::KEY
 
 

@@ -661,3 +661,11 @@ use Module singleton if needed
     a,b  = Klass.instance, Klass.instance
     p a == b #=> true
 
+* Prefer class instance variables to class variables.
+
+* Classes are objects and so have their own private set of instance
+variables.
+
+
+
+

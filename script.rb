@@ -2,13 +2,30 @@
 
 require 'pp'
 
-require 'singleton'
+class MyClass
 
-class Klass
-  include Singleton
-  # ...
+  @var = :here_in_open
+
+  # class << self
+  #   attr_reader :var
+  # end
+
+  def self.var
+    @var
+  end
+
+  def self.instance
+    @var = :here_in_instance
+  end
+
+  def output
+    puts self.class.var
+  end
+
 end
 
-a,b  = Klass.instance, Klass.instance
-p a == b #=> true
+
+MyClass.instance
+myobj = MyClass.new
+myobj.output
 

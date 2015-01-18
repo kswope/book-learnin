@@ -843,3 +843,51 @@ make sure to call super, preferably with an error message.
 When setting an error message in initialize, keep in mind that setting
 an error message with raise will take precedence over the one
 in initialize.
+
+### Item 23: Rescue the Most Specific Exception Possible
+
+
+    begin
+     task.perform
+    rescue NetworkConnectionError => e
+     # Retry logic...
+    rescue InvalidRecordError => e
+     # Send record to support staff...
+    rescue => e # danger, could e not be original exception?
+     service.record(e)
+     raise
+    ensure
+     ...
+    end
+
+
+Store and reraise current exception if you are going to do something fancy with it so it
+doesn't get overritten by another execption.  Also note a def can have a rescue clause.
+
+    def send_to_support_staff (e)
+     ...
+    rescue
+     raise(e)
+    end
+
+
+* Rescue only those specific exceptions from which you know how to
+recover.
+
+* When rescuing an exception, handle the most specific type first.
+The higher a class is in the exception hierarchy the lower it should
+be in your chain of rescue clauses.
+
+* Avoid rescuing generic exception classes such as StandardError. If
+you find yourself doing this you should consider whether what you
+really want is an ensure clause instead.
+
+* Raising an exception from a rescue clause will replace the current
+exception and immediately leave the current scope, resuming
+exception processing.
+
+
+### Item 24: Manage Resources with Blocks and ensure
+
+
+

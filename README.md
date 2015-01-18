@@ -707,8 +707,8 @@ of nested arrays.
 Putting structs into a set example.  Use hash on date as the 'hash key' (set
 uses a object.hash to determine if element to be added is unique).
 
->From Set Docs: The equality of each couple of elements is determined according to Object#eql?
->and Object#hash, since Set uses Hash as storage.
+>From Set Docs: The equality of each couple of elements is determined according
+to Object#eql? and Object#hash, since Set uses Hash as storage.
 
     require('set')
 
@@ -733,3 +733,71 @@ uses a object.hash to determine if element to be added is unique).
     w.add(2001, 50, 40) #=> added
     w.add(2002, 55, 45) #=> added
     w.add(2002, 60, 50) # won't add to set because of eql?() and hash() on date
+
+
+* Consider Set for efficient element inclusion checking.
+
+* Objects inserted into a Set must also be usable as hash keys.
+
+* Require the “set” file before using Set.
+
+### Item 19: Know How to Fold Collections with reduce
+
+Examples:
+
+    (1..10).inject(0, :+) #=> 55
+
+    users.reduce([]) do |names, user| 
+      names << user.name if user.age >= 21 names
+    end 
+
+* Always use a starting value for the accumulator.
+
+* The block given to reduce should always return an accumulator. It’s fine to
+mutate the current accumulator, just remember to return it from the block.
+
+
+# Item 20: Consider Using a Default Hash Value
+
+
+With a default value to Hash.new() we dont need the ||= line
+
+    array.reduce(Hash.new(0)) do |hash, element|
+      # hash[element] ||= 0 # Make sure the key exists.
+      hash[element] += 1 # Increment the value.
+      hash # Return the hash to reduce. 
+    end
+
+Use of fetch as a default value
+
+    h = {}
+    h[:accum] = h.fetch(:accum, 0) + 1
+
+
+* Consider using a default Hash value.
+
+* Use has_key? or one of its aliases to check if a hash contains a key. That
+  is, don’t assume that accessing a nonexistent key will return nil.
+
+* Don’t use default values if you need to pass the hash to code that assumes
+invalid keys return nil.
+
+* Hash#fetch can sometimes be a safer alternative to default values.
+
+
+### Item 21: Prefer Delegation to Inheriting from Collection Classes
+
+Core classes can be spiteful
+
+    irb> class LikeArray < Array; end
+    irb> x = LikeArray.new([1, 2, 3]) ---> [1, 2, 3]
+    irb> y = x.reverse ---> [3, 2, 1]
+    irb> y.class ---> Array doh!
+
+* Prefer delegation to inheriting from collection classes.
+
+* Don’t forget to write an initialize_copy method that duplicates the
+  delegation target.
+
+* Write freeze, taint, and untaint methods that send the correspond- ing
+  message to the delegation target followed by a call to super.

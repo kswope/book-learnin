@@ -21,9 +21,9 @@ class AnnualWeather
 
 end
 
-
 w = AnnualWeather.new
 w.add(2001, 50, 40) #=> added
 w.add(2002, 55, 45) #=> added
-w.add(2002, 60, 50) # won't add to set because of Reading.hash on date
+w.add(2002, 60, 50) # won't add to set because of date.hash and eql?
 
+pp w

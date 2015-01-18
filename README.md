@@ -707,6 +707,9 @@ of nested arrays.
 Putting structs into a set example.  Use hash on date as the 'hash key' (set
 uses a object.hash to determine if element to be added is unique).
 
+>The equality of each couple of elements is determined according to Object#eql?
+>and Object#hash, since Set uses Hash as storage.
+
     require('set')
 
     class AnnualWeather
@@ -729,4 +732,4 @@ uses a object.hash to determine if element to be added is unique).
     w = AnnualWeather.new
     w.add(2001, 50, 40) #=> added
     w.add(2002, 55, 45) #=> added
-    w.add(2002, 60, 50) # won't add to set because of Reading.hash on date
+    w.add(2002, 60, 50) # won't add to set because of eql?() and hash() on date

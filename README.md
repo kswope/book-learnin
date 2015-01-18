@@ -809,3 +809,37 @@ Core classes can be spiteful
 same as
 
     raise(RuntimeError, "coffee machine low on water")
+
+>Another reason to inherit from StandardError comes from the default
+behavior of the rescue clause. As you know, you can omit the class
+name when handling exceptions with rescue. In this case, it will
+intercept any exception whose class (or superclass) is StandardError.
+(The same is true when you use rescue as a statement modifier.)
+
+Custom exception
+
+    class TemperatureError < StandardError
+      attr_reader(:temperature)
+      def initialize (temperature)
+        @temperature = temperature
+        super("invalid temperature: #@temperature")
+      end
+    end
+
+
+Avoid raising strings as exceptions; theyâre converted into generic
+RuntimeError objects. Create a custom exception class instead.
+
+Custom exception classes should inherit from StandardError and
+use the âErrorâ suffix in their class name.
+
+When creating more than one exception class for a project, start by
+creating a base class that inherits from StandardError. Other exception
+classes should inherit from this custom base class.
+
+If you write an initialize method for your custom exception class
+make sure to call super, preferably with an error message.
+
+When setting an error message in initialize, keep in mind that setting
+an error message with raise will take precedence over the one
+in initialize.

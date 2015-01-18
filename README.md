@@ -707,7 +707,7 @@ of nested arrays.
 Putting structs into a set example.  Use hash on date as the 'hash key' (set
 uses a object.hash to determine if element to be added is unique).
 
->The equality of each couple of elements is determined according to Object#eql?
+>From Set Docs: The equality of each couple of elements is determined according to Object#eql?
 >and Object#hash, since Set uses Hash as storage.
 
     require('set')

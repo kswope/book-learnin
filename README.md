@@ -827,11 +827,11 @@ Custom exception
     end
 
 
-Avoid raising strings as exceptions; theyâre converted into generic
+Avoid raising strings as exceptions; they're converted into generic
 RuntimeError objects. Create a custom exception class instead.
 
 Custom exception classes should inherit from StandardError and
-use the âErrorâ suffix in their class name.
+use the Error suffix in their class name.
 
 When creating more than one exception class for a project, start by
 creating a base class that inherits from StandardError. Other exception

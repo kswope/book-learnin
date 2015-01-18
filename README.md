@@ -596,3 +596,68 @@ Lexically scoped call to KEY works (didn't close module)
 
     SuperDumbCrypto::Encrypt.new  #=> 'asdf'
 
+### Item 12: Understand the Different Flavors of Equality
+
+* Never override the equal? method. It's expected to strictly compare
+objects and return true only if they're both pointers to the same
+object in memory (i.e., they both have the same object_id).
+
+* The Hash class uses the eql? method to compare objects used as
+keys during collisions. The default implementation probably doesn't do what you
+want. Follow the advice in Item 13 and then alias eql?  to == and write a
+sensible hash method. (is this a big deal?)
+
+* Use the == operator to test if two objects represent the same value.
+Some classes like those representing numbers have a sloppy equality operator
+that performs type conversion.
+
+* case expressions use the === operator to test each when clause.
+The left operand is the argument given to when and the right operand is the
+argument given to case.
+
+### Item 13: Implement Comparison via <=> and the Comparable Module
+
+  * Implement object ordering by defining a <=> operator and including
+the Comparable module.
+
+* The <=> operator should return nil if the left operand can't be
+compared with the right.
+
+* If you implement <=> for a class you should consider aliasing eql?
+to ==, especially if you want instances to be usable as hash keys, in which
+case you should also override the hash method.
+
+### Item 14 Share Private State Through Protected Methods
+
+* Share private state through protected methods.
+
+* Protected methods can only be called with an explicit receiver from
+objects of the same class or when they inherit the protected methods
+from a common superclass.
+
+### Item 15 Prefer Class Instance Variables to Class Variables
+
+@var is the same in both places
+
+    class MyClass
+
+      @var = :here_in_open
+
+      def self.instance
+        @var = :here_in_instance
+      end
+
+    end
+
+use Module singleton if needed
+
+    require 'singleton'
+
+    class Klass
+      include Singleton
+      # ...
+    end
+
+    a,b  = Klass.instance, Klass.instance
+    p a == b #=> true
+

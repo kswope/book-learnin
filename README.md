@@ -799,5 +799,13 @@ Core classes can be spiteful
 * Don’t forget to write an initialize_copy method that duplicates the
   delegation target.
 
-* Write freeze, taint, and untaint methods that send the correspond- ing
+* Write freeze, taint, and untaint methods that send the corresponding
   message to the delegation target followed by a call to super.
+
+### Item 22: Prefer Custom Exceptions to Raising Strings
+
+    raise("coffee machine low on water")
+
+same as
+
+    raise(RuntimeError, "coffee machine low on water")

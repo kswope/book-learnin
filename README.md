@@ -995,6 +995,48 @@ next and break can also silently discard exceptions in interators
 
 ### Item 26: Bound retry Attempts, Vary Their Frequency, and Keep an Audit Trail
 
+    retries = 0
+    begin
+      service.update(record)
+    rescue VendorDeadlockError => e
+      raise if retries >= 3
+      retries += 1
+      logger.warn("API failure: #{e}, retrying...")
+      sleep(5 ** retries)
+      retry
+    end
+
+* Never use retry unconditionally; treat it like an implicit loop in your code.
+  Create a variable outside the scope of a begin block and re-raise the
+exception if you’ve hit the upper bound on the retry limit.
+
+* Maintain an audit trail when using retry. If retrying problematic code
+  doesn’t go well you’ll want to know the chain of events that led up to the
+final error.
+
+* When using a delay before a retry, consider increasing it within each rescue
+  to avoid exacerbating the problem.
+
+### Item 27: Prefer throw to raise for Jumping Out of Scope
 
 
 
+
+    match = catch(:jump) do 
+      @characters.each do |character|
+        @colors.each do |color|
+        if player.valid?(character, color)
+          throw(:jump, [character, color]) end
+        end 
+      end
+    end
+
+> As you can see, catch takes a symbol to use as the label and a block to
+> execute. If throw is used in that block with the same label then catch will
+> terminate the block and return the value given to throw. You don’t have to
+> pass a value to throw either; it’s completely optional. If you omit the value
+> it will be nil, or if throw isn’t called during the execu- tion of the block
+> then catch will return the last value of its block. The only mandatory part
+> of the throw invocation is the label symbol. If the throw label doesn’t match
+> the catch label the stack will unwind look- ing for a matching catch,
+> eventually turning into a NameError excep- tion if one can’t be found.

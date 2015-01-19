@@ -1057,5 +1057,29 @@ jump out of scope.
 
 ### Item 28: Familiarize Yourself with Module and Class Hooks
 
-__My Note: I'll probably always regret using this stuff unless I'm writing something
-like rails or rspec.__
+__My Note: I'll probably always regret getting fancy with this stuff unless I'm
+writing something like rails or rspec.__
+
+* All of the hook methods should be defined as singleton methods.
+
+* The hooks that are called when a method is added, removed, or undefined only
+  receive the name of the method, not the class where the change occurred. Use
+the value of self if you need to know this.
+
+* Defining a singleton_method_added hook will trigger itself.
+
+* Don’t override the extend_object, append_features, or prepend_features
+  methods. Use the extended, included, or prepended hooks instead.
+
+
+### Item 29: Invoke super from within Class Hooks
+
+> Keep in mind that since modules can insert class hooks, it’s not always
+> obvious when the hook you’re writing might override another one higher up in
+> the inheritance hierarchy. Using super is good way to future-proof your
+> code, but ultimately, you’ll have to use your best judgment.
+
+ 
+### Item 30: Prefer define_method to method_missing
+
+

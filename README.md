@@ -1162,3 +1162,12 @@ Add logging to any method
 
     irb> %w(a b c).first_without_logging
     ---> "a"
+
+* When setting up an alias chain, make sure the aliased named is
+unique.
+
+* Consider providing a method that can undo the alias chaining.
+
+### Item 34: Consider supporting differences in Proc Arity
+
+

@@ -993,5 +993,8 @@ next and break can also silently discard exceptions in interators
   rescue clause instead. Your intent will be much clearer.
 
 
+### Item 26: Bound retry Attempts, Vary Their Frequency, and Keep an Audit Trail
+
+
 
 

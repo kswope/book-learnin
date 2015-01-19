@@ -889,7 +889,7 @@ exception processing.
 
 ### Item 24: Manage Resources with Blocks and ensure
 
-Example of made up Lock class
+Example of made up Lock class, not that only calling with block 'unlocks' the lock
 
     class Lock
       def self.acquire
@@ -898,9 +898,9 @@ Example of made up Lock class
         lock.exclusive_lock!
 
         if block_given? 
-          yield(lock)
+          yield(lock) # pass lock to block
         else
-          lock # Act more like Lock::new.
+          lock # Act more like Lock::new and return lock handle.
         end
 
       ensure
@@ -912,5 +912,45 @@ Example of made up Lock class
       end 
     end
 
+Idealized version of above with just method.
+
+    def get_resource
+
+      resource = Resource.get
+
+      if block_given?
+        yield(resource)
+      end
+
+    rescue
+      # nothing special
+    ensure
+
+      if block_given?
+        resource.release
+      end
+
+    end
 
 
+* Write an ensure clause to release any acquired resources.
+
+* Use the block and ensure pattern with a class method to abstract
+away resource management.
+
+* Make sure variables are initialized before using them in an ensure clause.
+
+
+### Item 25: Exit ensure Clauses by Flowing Off the End
+
+> Item 24 makes the point that using an ensure clause is the best way to manage
+ resources in the presence of exceptions. More generally, ensure can be used
+ to perform any sort of housekeeping before leaving the current scope. It’s
+ a fantastic, general-purpose cleaning product. But like any useful tool,
+ ensure comes with a warning label and some sharp edges.
+
+> One of the features that both rescue and ensure share is the ability to
+terminate exception processing. You already know that rescue catches
+exceptions. From within rescue you can choose to cancel propagation and deal
+with the error, resuming normal control flow. You can also restart exception
+processing by raising the original exception or by creating a new one.

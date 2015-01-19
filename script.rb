@@ -5,13 +5,22 @@ require 'pp'
 require('set')
 
 
-class MyError < StandardError
+def get_resource
 
-  def initialize(str)
-    super("str: #{str}")
+  resource = Resource.get
+
+  if block_given?
+    yield(resource)
+  end
+
+rescue
+  # nothing special
+ensure
+
+  if block_given?
+    resource.release
   end
 
 end
 
 
-raise MyError.new('passed in string')

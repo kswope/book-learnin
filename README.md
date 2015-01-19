@@ -1083,3 +1083,82 @@ the value of self if you need to know this.
 ### Item 30: Prefer define_method to method_missing
 
 
+Method missing screws up duct-typing and makes objects obscure.
+
+Following example: rather than inheriting from Hash, delegates to an internal hash instead (probably should use Forwardable)
+
+    class HashProxy
+      Hash.public_instance_methods(false).each do |name|
+        define_method(name) do |*args, &block|
+          @hash.send(name, *args, &block)
+        end
+      end
+      def initialize
+        @hash = {}
+      end
+    end
+
+* Prefer define_method to method_missing.
+
+* If you absolutely must use method_missing consider defining
+respond_to_missing?.
+
+
+### Item 31: Know the difference between the Variants of eval
+
+* Methods defined using instance_eval or instance_exec are singleton
+methods.
+
+* The class_eval, module_eval, class_exec, and module_exec methods
+can only be used with classes and modules. Methods defined with
+one of these become instance methods.
+
+### Item 32: Consider Alternatives to Monkey Patching
+
+* While refinements might not be experimental anymore, theyâre still
+subject to change as the feature matures.
+
+* A refinement must be activated in each lexical scope in which you
+want to use it.
+
+### Item 33: Invoking modified methods with alias chaining
+
+Add logging to any method
+
+    module LogMethod
+
+      def log_method (method)
+
+        # Choose a new, unique name for the method.
+        orig = "#{method}_without_logging".to_sym
+
+        # Make sure name is unique.
+        if instance_methods.include?(orig)
+          raise(NameError, "#{orig} isn't a unique name")
+        end
+
+        # Create a new name for the original method.
+        alias_method(orig, method)
+
+        # Replace original method.
+        define_method(method) do |*args, &block|
+          $stdout.puts("calling method '#{method}'")
+          result = send(orig, *args, &block)
+          $stdout.puts("'#{method}' returned #{result.inspect}")
+          result
+        end
+
+      end
+
+    end
+
+    irb> Array.extend(LogMethod)
+    irb> Array.log_method(:first)
+
+    irb> [1, 2, 3].first
+    calling method 'first'
+    'first' returned 1
+    ---> 1
+
+    irb> %w(a b c).first_without_logging
+    ---> "a"

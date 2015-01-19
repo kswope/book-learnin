@@ -1055,7 +1055,7 @@ the return value of catch.
 jump out of scope.
 
 
-Item 28: Familiarize Yourself with Module and Class Hooks
+### Item 28: Familiarize Yourself with Module and Class Hooks
 
 __My Note: I'll probably always regret using this stuff unless I'm writing something
 like rails or rspec.__

@@ -1044,3 +1044,18 @@ final error.
 > If you find yourself using exceptions purely for control flow you might want to
 consider using catch and throw instead. But if you find yourself using catch
 and throw too often, you’re probably doing something wrong.
+
+
+* Prefer using throw to raise when you need complicated control flow. An added
+  bonus with throw is that you can send an object up the stack, which becomes
+the return value of catch.
+
+* Use the simplest control structure possible. You can often rewrite a catch
+  and throw combination as a pair of method calls that simply use return to
+jump out of scope.
+
+
+Item 28: Familiarize Yourself with Module and Class Hooks
+
+__My Note: I'll probably always regret using this stuff unless I'm writing something
+like rails or rspec.__

@@ -889,5 +889,28 @@ exception processing.
 
 ### Item 24: Manage Resources with Blocks and ensure
 
+Example of made up Lock class
+
+    class Lock
+      def self.acquire
+
+        lock = new # Initialize the resource.
+        lock.exclusive_lock!
+
+        if block_given? 
+          yield(lock)
+        else
+          lock # Act more like Lock::new.
+        end
+
+      ensure
+
+        if block_given?
+          lock.unlock if lock # Make sure it gets unlocked.
+        end
+
+      end 
+    end
+
 
 

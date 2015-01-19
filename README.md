@@ -1040,3 +1040,7 @@ final error.
 > of the throw invocation is the label symbol. If the throw label doesn’t match
 > the catch label the stack will unwind look- ing for a matching catch,
 > eventually turning into a NameError excep- tion if one can’t be found.
+
+> If you find yourself using exceptions purely for control flow you might want to
+consider using catch and throw instead. But if you find yourself using catch
+and throw too often, you’re probably doing something wrong.

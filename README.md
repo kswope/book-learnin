@@ -954,3 +954,44 @@ terminate exception processing. You already know that rescue catches
 exceptions. From within rescue you can choose to cancel propagation and deal
 with the error, resuming normal control flow. You can also restart exception
 processing by raising the original exception or by creating a new one.
+
+> You probably don’t expect that an ensure clause can alter control flow and
+  swallow exceptions. That’s certainly not its primary purpose. Nevertheless,
+  it’s possible, fairly simple, and slightly subtle. ALL IT TAKES IS AN
+  EXPLICIT RETURN STATEMENT:
+
+The following return in ensure will eat exceptions if there are any and will
+always be the return value for tricky(), which is just dumb code
+
+    def tricky
+      return 'horses'
+    ensure
+      return 'ponies' 
+    end
+
+next and break can also silently discard exceptions in interators
+
+    items.each do |item|
+      begin
+        raise TooStrongError if item == 'lilac' 
+      ensure
+        next # Cancels exception, continues iteration.
+      end
+    end
+
+* Avoid using explicit return statements from within ensure clauses. This
+  suggests there’s something wrong with the logic in the method body.
+
+* Similarly, don’t use throw directly inside ensure. You probably meant to
+  place throw in the body of the method.
+
+* When iterating, never use next or break in an ensure clause. Ask yourself if
+  you actually need the begin block inside the iteration. It might make more
+  sense to invert the relationship, placing the itera- tion inside the begin.
+
+* More generally, don’t alter control flow in an ensure clause. Do that in a
+  rescue clause instead. Your intent will be much clearer.
+
+
+
+

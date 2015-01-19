@@ -4,23 +4,8 @@ require 'pp'
 
 require('set')
 
-
-def get_resource
-
-  resource = Resource.get
-
-  if block_given?
-    yield(resource)
-  end
-
-rescue
-  # nothing special
+def tricky
+  return 'horses'
 ensure
-
-  if block_given?
-    resource.release
-  end
-
+  return 'ponies' # <-- kills exceptions
 end
-
-

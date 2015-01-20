@@ -1,8 +1,10 @@
-# Ruby-Study Random Notes from Various Ruby Books
+# Ruby Book Notes 
 
 
 * [Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)
 * [Ruby Cookbook](#ruby-cookbook)
+* [Rails 4 Test Prescriptions](#rails-4-test-prescriptions)
+* [Effective Ruby](#effective-ruby)
 
 -----
 

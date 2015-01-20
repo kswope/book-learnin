@@ -2,7 +2,7 @@
 
 
 [Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)
-- Effective Ruby
+[Ruby Cookbook](#ruby-cookbook)
 
 -----
 

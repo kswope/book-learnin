@@ -1,11 +1,11 @@
 # Ruby-Study Random Notes from Various Ruby Books
 
-[Practical Object-Oriented Design in Ruby][]
+[Practical Object-Oriented Design in Ruby][asdf-asdf-asdf]
 - Effective Ruby
 
 -----
 
-## [Book] Practical Object-Oriented Design in Ruby
+## Practical Object-Oriented Design in Ruby
 
 #### Writing Code That Embraces Change:
 

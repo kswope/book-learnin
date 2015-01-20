@@ -5,7 +5,7 @@
 
 -----
 
-## Practical Object-Oriented Design in Ruby
+## [Book] Practical Object-Oriented Design in Ruby
 
 #### Writing Code That Embraces Change:
 

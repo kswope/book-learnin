@@ -1,8 +1,8 @@
 # Ruby-Study Random Notes from Various Ruby Books
 
 
-[Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)
-[Ruby Cookbook](#ruby-cookbook)
+* [Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)
+* [Ruby Cookbook](#ruby-cookbook)
 
 -----
 

@@ -1170,4 +1170,50 @@ unique.
 
 ### Item 34: Consider supporting differences in Proc Arity
 
+* Unlike weak Proc objects, their strong counterparts will raise an
+  ArgumentError exception if called with the wrong number of arguments.
 
+* You can use the Proc#arity method to find out how many arguments a Proc
+object expects. A positive number means it expects that exact number of
+arguments. A negative number, on the other hand, means there are optional
+arguments and it is the ones’ com- plement of the number of required arguments.
+
+
+### Item 35: Think Carefully Before Using Module Prepending
+
+    module MyModule
+      def say
+        print " MyModule "
+        super
+      end
+    end
+
+    class Parent
+      def say
+        print " Parent "
+      end
+    end
+
+    class Child < Parent
+      # include MyModule # <-----  include
+      prepend MyModule # <-----  prepend
+      def say
+        print " Child "
+        super
+        puts
+      end
+    end
+
+    # include MyModule
+    Child.new.say #=> " Child  MyModule  Parent "
+
+    # prepend MyModule, runs say() in MyModule first
+    Child.new.say #=> " MyModule  Child  Parent "
+
+
+* Using the prepend method inserts a module before the receiver in the class
+hierarchy, which is much different than include, which inserts a module
+between the receiver and its superclass.
+
+* Similar to the included and extended module hooks, prepending a module
+  triggers the prepended hook.

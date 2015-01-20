@@ -1,6 +1,6 @@
 # Ruby-Study Random Notes from Various Ruby Books
 
-- Practical Object-Oriented Design in Ruby
+- [Practical Object-Oriented Design in Ruby][]
 - Effective Ruby
 
 -----

@@ -145,7 +145,7 @@ TODO: [Forwardable]( http://www.ruby-doc.org/stdlib-2.0/libdoc/forwardable/rdoc/
 
 
 
-## [Book] Ruby Cookbook
+## Ruby Cookbook
 
 A way strings are made that I keep forgetting: %Q and %q and matched chars
 
@@ -348,7 +348,7 @@ Reverse lookup for hash
 
 
 
-## [Book] Rails 4 Test Prescriptions 
+## Rails 4 Test Prescriptions 
 
 Setting up RSpec (for minitesters)
 
@@ -398,7 +398,7 @@ be() is weird
     end
 
 
-## [Book] Effective Ruby
+## Effective Ruby
 
 
 ### Item 1: Understand What Ruby Considers to Be True

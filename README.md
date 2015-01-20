@@ -1241,5 +1241,36 @@ that fails because of it.
 
 * Automate your tests as much as possible.
 
+### Item 41: Be Aware of IRB's Advanced Features
+
+* Define custom IRB commands in the IRB::ExtendCommandBundle
+module or a module that is then included into IRB::ExtendCommand
+Bundle.
+
+* Use the underscore _ variable to access the result of the last
+expression.
+
+* The irb command can be used to start a new session and change
+the current evaluation context to an arbitrary object.
+
+* Consider the popular Pry gem as an alternative to IRB.
+
+
+### Item 42: Manage Gem Dependencies with Bundler  
+
+* In exchange for a little bit of flexibility you can load all of the gems
+specified in your Gemfile by using Bundler.require after loading
+Bundler.
+
+* When developing an application, list your gems in the Gemfile and
+add the Gemfile.lock file to your version-control system
+
+* When developing a RubyGem, list your gem dependencies in the
+gem-specification file and do not include the Gemfile.lock file in
+your version-control system.
+
+
+### Item 43: Specify an Upper Bounds for Gem Dependencies
+
 
 

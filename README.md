@@ -1,4 +1,7 @@
-# Ruby-Study Random Notes
+# Ruby-Study Random Notes from Various Ruby Books
+
+- Practical Object-Oriented Design in Ruby
+- Effective Ruby
 
 -----
 
@@ -1183,7 +1186,7 @@ arguments and it is the ones’ com- plement of the number of required arguments
 
     module MyModule
       def say
-        print " MyModule "
+        print " MyModule 1 "
         super
       end
     end
@@ -1217,3 +1220,6 @@ between the receiver and its superclass.
 
 * Similar to the included and extended module hooks, prepending a module
   triggers the prepended hook.
+
+
+### Item 38: Simulate Determinism with Mock Objects

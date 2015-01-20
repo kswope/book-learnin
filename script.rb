@@ -5,8 +5,9 @@ require 'pp'
 
 module MyModule
   def say
-    print " MyModule "
+    print " MyModule 1 "
     super
+    print " MyModule 2 "
   end
 end
 
@@ -27,7 +28,9 @@ class Child < Parent
 end
 
 # include MyModule
-Child.new.say #=> Child  MyModule  Parent
+# Child.new.say #=> Child  MyModule  Parent
 
 # prepend MyModule, runs say() in MyModule first
 Child.new.say #=> MyModule  Child  Parent
+
+

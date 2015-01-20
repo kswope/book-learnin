@@ -1,7 +1,7 @@
 # Ruby Book Notes 
 
-Just my notes from various books on ruby.  This is public only because I don't
-want to waste a github private slot, so don't look.
+* Just my notes from various books on ruby.  This is public only because I don't
+want to waste a github private slot, so don't look. *
 
 
 * [Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)

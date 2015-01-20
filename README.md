@@ -4,10 +4,10 @@
 want to waste a github private slot, so don't look. *
 
 
-* [Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)
-* [Ruby Cookbook](#ruby-cookbook)
-* [Rails 4 Test Prescriptions](#rails-4-test-prescriptions)
-* [Effective Ruby](#effective-ruby)
+- [Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)
+- [Ruby Cookbook](#ruby-cookbook)
+- [Rails 4 Test Prescriptions](#rails-4-test-prescriptions)
+- [Effective Ruby](#effective-ruby)
 
 -----
 

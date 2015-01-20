@@ -1,5 +1,8 @@
 # Ruby Book Notes 
 
+Just my notes from various books on ruby.  This is public only because I don't
+want to waste a github private slot, so don't look.
+
 
 * [Practical Object-Oriented Design in Ruby](#practical-object-oriented-design-in-ruby)
 * [Ruby Cookbook](#ruby-cookbook)
@@ -1225,4 +1228,18 @@ between the receiver and its superclass.
   triggers the prepended hook.
 
 
-### Item 38: Simulate Determinism with Mock Objects
+### Item 39: Strive for Effectively Tested Code
+
+* Use fuzzing and property-based testing tools to help exercise both the happy and exception paths of your code.
+
+* Test-code coverage can give you a false sense of security since exe- cuted code isn’t necessarily correct code.
+
+* It’s much easier to test a feature while you’re writing it.
+
+* Before you start to search for the root cause of a bug, write a test
+that fails because of it.
+
+* Automate your tests as much as possible.
+
+
+

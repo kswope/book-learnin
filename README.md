@@ -1273,4 +1273,12 @@ your version-control system.
 ### Item 43: Specify an Upper Bounds for Gem Dependencies
 
 
+    gem('money', '>= 5.1.0', '< 5.2.0')
+    gem('money', '~> 5.1.0') # same (somehow)
 
+> The pessimistic version operator creates a range of version numbers by
+  manipulating the version string to its right. In this example, the lower bound
+  of the range turns into “>= 5.1.0”. The upper bound is created in two steps.
+  First, the rightmost digit is removed from the version string, so 5.1.0
+  becomes 5.1. Next, the new rightmost digit is incremented, changing 5.1 into
+  5.2. The resulting number becomes the upper bound: “< 5.2.0”.

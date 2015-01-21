@@ -374,11 +374,11 @@ specify to make the single line read more clearly, such as this:
 
     specify { expect(user.name).to eq("fred") }
 
-Why not just use it('') instead of specify() ???
+Why not just use it('') instead of specify() , I'm confused
 
 expect() takes any object as an argument and returns ExpectationTarget
 
-ExpectationTarget olds on to the object and itself responds to two messages,
+ExpectationTarget holds on to the object and itself responds to two messages,
 to() and not_to()
 
 Both to() and not_to() expect as an argument a RSpec matcher.
@@ -1282,3 +1282,15 @@ your version-control system.
   First, the rightmost digit is removed from the version string, so 5.1.0
   becomes 5.1. Next, the new rightmost digit is incremented, changing 5.1 into
   5.2. The resulting number becomes the upper bound: “< 5.2.0”.
+
+* Omitting an upper bound on a version requirement is akin to say- ing that
+  your application or library supports all future versions of a dependency.
+
+* Prefer an explicit range of version numbers over the pessimistic ver- sion
+  operator.
+
+* When releasing a gem to the public, specify the dependency version
+  requirement as wide as you safely can with an upper bound that extends until
+the next potentially breaking release.
+
+

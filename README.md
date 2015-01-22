@@ -473,7 +473,10 @@ pending spec passes, you'll get an error that effectively means, "You said this
 was pending, but lo and behold, it works. Maybe it's not actually pending
 anymore; please remove the pending status."
 
-
+> If you want the spec to not run, and not test for whether it works, employ the
+preceding syntax but use skip instead of pending. Alternative, you can prefix
+the method name with x, as in xit or xdescribe. A skipped test will not run,
+meaning you wonât get any notification if the test suddenly starts to pass.
 
 
 

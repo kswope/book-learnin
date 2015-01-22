@@ -410,13 +410,12 @@ about an RSpec matcher; at base it's just an object that responds to a matches?
 method. There are several predefined matchers and you can write your own.
 
 
+    let(:project){ Project.new }
+    let(:task){ Task.new }
+
 > Using let, you can make a variable available within the current describe
 > without having to place it inside the before block and without having to make
 > it an instance variable.
-
-
-    let(:project){ Project.new }
-    let(:task){ Task.new }
 
 
 

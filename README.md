@@ -374,7 +374,7 @@ specify to make the single line read more clearly, such as this:
 
     specify { expect(user.name).to eq("fred") }
 
-Why not just use it('') instead of specify() , I'm confused
+Why not just use it('') instead of specify() , I'm confused, looks better?
 
 expect() takes any object as an argument and returns ExpectationTarget
 
@@ -409,6 +409,14 @@ methods that expect as an argument an RSpec matcher. There's nothing special
 about an RSpec matcher; at base it's just an object that responds to a matches?
 method. There are several predefined matchers and you can write your own.
 
+
+> Using let, you can make a variable available within the current describe
+> without having to place it inside the before block and without having to make
+> it an instance variable.
+
+
+    let(:project){ Project.new }
+    let(:task){ Task.new }
 
 
 

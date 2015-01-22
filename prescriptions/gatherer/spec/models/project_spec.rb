@@ -2,32 +2,24 @@ require 'rails_helper'
 
 require 'pp'
 
-RSpec.describe "Something" do
 
- describe Project, :type => :model do
 
-    it 'identity' do
+RSpec.describe Project do
 
-      puts expect(true)
-      puts eq(3)
-      puts be_truthy 
-      puts be
-      puts be(3)
+  
+  let(:project){ Project.new }
+  let(:task){ Task.new }
 
-      puts expect(3).to eq(3)
-      puts expect(3).to be_truthy
-      expect(3).to eq(3)
-    end
 
-    it('') do
-      project = Project.new
-      expect(project.done?).to be_truthy
-    end
+  it "considers a project with no tasks to be done" do
+    expect(project.done?).to be_truthy
+  end 
 
-    specify do
-      project = Project.new
-      expect(project.done?).to be_truthy
-    end
-
+  it "knows that a project with an incomplete task is not done" do 
+    project.tasks << task
+    expect(project.done?).to be_falsy
   end
+
+
+
 end

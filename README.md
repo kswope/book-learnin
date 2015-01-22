@@ -355,6 +355,28 @@ Reverse lookup for hash
 
 ## Rails 4 Test Prescriptions 
 
+
+Prescriptions
+
+* Use the TDD process to create and adjust your code’s design in small,
+  incremental steps.
+
+* In a test-driven process, if it is difficult to write tests for a feature,
+  strongly consider the possibility that the underlying code needs to be
+changed.
+
+* Initializing objects is a good starting place for a TDD process. Another good
+  approach is to use the test to design what you want a successful interaction
+of the feature to look like.
+
+* When possible, write your tests to describe your code’s behavior, not its
+  implementation.
+
+
+
+
+
+
 Setting up RSpec (for minitesters)
 
     group :development, :test do 
@@ -418,9 +440,18 @@ method. There are several predefined matchers and you can write your own.
 > it an instance variable.
 
 
+This version of let() will always run, its not lazy
+
+    let!(:project){ Project.new }
 
 
+> Any matcher of the form be_whatever or be_a_whatever assumes an associated
+> whatever? method—with a question mark—on the actual object and calls it.
 
+
+    expect(task).not_to be_complete
+    task.mark_completed
+    expect(task).to be_complete
 
 
 

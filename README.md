@@ -403,6 +403,26 @@ be() is weird
     end
 
 
+
+> Both to and not_to are ordinary Ruby
+methods that expect as an argument an RSpec matcher. There's nothing special
+about an RSpec matcher; at base it's just an object that responds to a matches?
+method. There are several predefined matchers and you can write your own.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Effective Ruby
 
 

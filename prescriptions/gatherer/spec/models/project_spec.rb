@@ -6,8 +6,6 @@ RSpec.describe "Something" do
 
  describe Project, :type => :model do
 
-
-
     it 'identity' do
 
       puts expect(true)
@@ -30,12 +28,6 @@ RSpec.describe "Something" do
       project = Project.new
       expect(project.done?).to be_truthy
     end
-
-
-
-
-
-
 
   end
 end

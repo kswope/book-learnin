@@ -455,6 +455,24 @@ This version of let() will always run, its not lazy
 
 
 
+All work as pending
+
+    it 'something'
+
+    it 'something', :pending do
+    end
+
+    it 'something' do
+      pending 'not ready'
+    end
+  
+> In RSpec 3 all pending specs are actually run if there is code in the block part
+of the spec. The code is executed, with any failure in the pending spec treated
+as a pending result, rather than a failure result. However, if the code in the
+pending spec passes, you'll get an error that effectively means, "You said this
+was pending, but lo and behold, it works. Maybe it's not actually pending
+anymore; please remove the pending status."
+
 
 
 
@@ -1182,7 +1200,7 @@ one of these become instance methods.
 
 ### Item 32: Consider Alternatives to Monkey Patching
 
-* While refinements might not be experimental anymore, theyâre still
+* While refinements might not be experimental anymore, they're still
 subject to change as the feature matures.
 
 * A refinement must be activated in each lexical scope in which you

@@ -4,7 +4,7 @@ require 'pp'
 
 
 
-RSpec.describe Project do
+describe Project do
   
   let(:project){ Project.new }
   let(:task){ Task.new }

@@ -372,6 +372,12 @@ of the feature to look like.
 * When possible, write your tests to describe your code’s behavior, not its
   implementation.
 
+* Keeping your code as simple as possible allows you to focus complexity on the
+  areas that really need complexity.
+
+* Choose your test data and test-variable names to make it easy to diagnose
+  failures when they happen. Meaningful names and data that doesn’t overlap are
+helpful.
 
 -------
 

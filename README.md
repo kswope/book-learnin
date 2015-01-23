@@ -461,7 +461,29 @@ This version of let() will always run, its not lazy
 
 
 
+All work as pending
 
+    it 'something'
+
+    it 'something', :pending do
+    end
+
+    it 'something' do
+      pending 'not ready'
+    end
+  
+> In RSpec 3 all pending specs are actually run if there is code in the block part
+of the spec. The code is executed, with any failure in the pending spec treated
+as a pending result, rather than a failure result. However, if the code in the
+pending spec passes, you'll get an error that effectively means, "You said this
+was pending, but lo and behold, it works. Maybe it's not actually pending
+anymore; please remove the pending status."
+
+( NOTE: This doesn't seem quite right )
+> If you want the spec to not run, and not test for whether it works, employ the
+preceding syntax but use skip instead of pending. Alternative, you can prefix
+the method name with x, as in xit or xdescribe. A skipped test will not run,
+meaning you won't get any notification if the test suddenly starts to pass.
 
 
 
@@ -1188,7 +1210,7 @@ one of these become instance methods.
 
 ### Item 32: Consider Alternatives to Monkey Patching
 
-* While refinements might not be experimental anymore, theyâre still
+* While refinements might not be experimental anymore, they're still
 subject to change as the feature matures.
 
 * A refinement must be activated in each lexical scope in which you

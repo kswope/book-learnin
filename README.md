@@ -558,7 +558,7 @@ test first, and a lot test after.
 
 
 When you break out related attributes into their own class, as in this Name
-example, you'll often find it's much easier to add complexity when you have a
+example (below), you'll often find it's much easier to add complexity when you have a
 dedicated place for that logic. When you need middle names or titles, it's
 easier to manage that in a separate class than it would be if you had a half
 implementation of names in multiple classes.  You'll also find that these small

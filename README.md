@@ -596,6 +596,34 @@ fast tests for name logic.
 
 
 
+Two styles writing tests with multiple assertions, in the latter version tests
+can fail independantly, but its more complicated.
+
+    it "marks a task complete" do
+      task = tasks(:incomplete)
+      task.mark_complete
+      expect(task).to be_complete
+      expect(task).to be_blocked
+      expect(task.end_date).to eq(Date.today.to_s(:db))
+      expect(task.most_recent_log.end_state).to eq("completed")
+    end
+
+    describe "task completion" do
+      let(:task) {tasks(:incomplete)}
+      before(:example) { task.mark_complete }
+      specify { expect(task).to be_complete }
+      specify { expect(task).to be_blocked }
+      specify { expect(task.end_date).to eq(Date.today.to_s(:db)) }
+      specify { expect(task.most_recent_log.end_state).to eq("completed") }
+    end
+
+
+
+
+
+
+
+
 
 
 

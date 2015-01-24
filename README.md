@@ -536,7 +536,8 @@ inside a CreatesProject factory:
    done.
 
 
-And here we have an inadvertent admission, TDD is bullshit
+And here we have an inadvertent admission, TDD is bullshit.  TDD is a little
+test first, and a lot test after.
 
 > When the main cases are done, you try to think of ways to break the existing
 > code. Sometimes you’ll notice something as you’re writing code to pass a

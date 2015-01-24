@@ -487,6 +487,29 @@ meaning you won't get any notification if the test suddenly starts to pass.
 
 
 
+Rationale for not putting business logic in controller (in this case its put
+inside a CreatesProject factory:
+
+> We’ve been able to cover the controller logic in just these two short tests
+> because we placed the business logic in the action object. If we hadn’t, all
+> those tests we wrote for CreatesProject would be part of the controller test
+> suite. As controller tests, they would run slower. More importantly, the
+> tests would potentially be separated from the code where the expected failure
+> would occur, making them less likely to drive design and less likely to be
+> useful in trou- bleshooting.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Effective Ruby

@@ -498,6 +498,13 @@ inside a CreatesProject factory:
 > would occur, making them less likely to drive design and less likely to be
 > useful in trou- bleshooting.
 
+> We want to make the controller test completely isolated from the action
+> object that it interacts with. The key insight is that the controller test
+> needs to test only the behavior of the controller itself—the fact that the
+> controller calls the action object with the correct parameters and uses the
+> values as expected. Whether the action object works correctly or even if it
+> exists is a problem for the action object test. When testing the controller,
+> the controller’s behavior is what’s important, not the action object.
 
 
 

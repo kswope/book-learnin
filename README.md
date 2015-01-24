@@ -385,6 +385,11 @@ helpful.
 8. Your tests are also code. Specifically, your tests are code that does not
    have tests.
 
+9. If you find yourself writing tests that already pass given the current state
+   of the code, that often means you’re writing too much code in each pass.
+
+
+
 -------
 
 
@@ -514,15 +519,35 @@ inside a CreatesProject factory:
 
 
 
-> Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
+> Debugging is twice as hard as writing the code in the first place. Therefore,
+> if you write the code as cleverly as possible, you are, by definition, not
+> smart enough to debug it.
 
 
+1. A test is straightforward if its purpose is immediately understandable.
+
+2. A test is well defined if running the same test repeatedly gives the same result.
+
+3. A test is independent if it does not depend on any other tests or external
+   data to run.
+
+4. A truthful test accurately reflects the underlying code—it passes when the
+   underlying code works, and fails when it does not. This is easier said than
+   done.
 
 
+And here we have an inadvertent admission, TDD is bullshit
 
-
-
-
+> When the main cases are done, you try to think of ways to break the existing
+> code. Sometimes you’ll notice something as you’re writing code to pass a
+> previous test, like, “Hey, I wonder what would happen if this argument were
+> nil?” Write a test that describes what the output should be and make it pass.
+> Refactoring gets increasingly important here because special cases and error
+> conditions tend to make code complex, and managing that complexity becomes
+> really important to future versions of the code. The advantage of waiting to
+> do special cases at the end is that you already have tests to cover the
+> normal cases, so you can use those to check your new code each step of the
+> way.
 
 
 ## Effective Ruby

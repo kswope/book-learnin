@@ -379,6 +379,12 @@ of the feature to look like.
   failures when they happen. Meaningful names and data that doesn’t overlap are
 helpful.
 
+7. Test isolation makes it easier to understand test failures by limiting the
+   scope of potential locations where the failure might have occurred.
+
+8. Your tests are also code. Specifically, your tests are code that does not
+   have tests.
+
 -------
 
 
@@ -508,7 +514,7 @@ inside a CreatesProject factory:
 
 
 
-
+> Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.
 
 
 

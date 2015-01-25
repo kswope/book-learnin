@@ -1530,4 +1530,11 @@ the next potentially breaking release.
 
 ## RSpec Docs
 
-Describe
+
+### Basic Structure
+
+#### Describe methods creates an ExampleGroup
+
+    RSpec.describe Object do
+      #...
+    end

@@ -47,7 +47,8 @@ RSpec.describe Calculator do
 
 
   example 'example test' do
-    expect(2).to eq(2)  
+    pending
+    expect(1).to eq(2)  
   end
 
 

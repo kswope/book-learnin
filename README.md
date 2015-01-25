@@ -1543,7 +1543,7 @@ Alais for describe is context
     RSpec.context Object do
     end
 
-Examples are inside ExampleGroup
+Examples are placed inside ExampleGroup
 
     RSpec.describe Object do
 
@@ -1553,7 +1553,7 @@ Examples are inside ExampleGroup
     end
 
 
-Alternatives examples to 'it'
+Alternatives examples to 'it' or skip
 
       specify 'something' do
       end
@@ -1590,3 +1590,8 @@ Pending tests are expected to fail, if they don't fail its a failed test
       expect(2).to eq(2)  
     end
 
+
+Why are skipped tests displayed as 'pending', exactly same as pending tests???
+
+    Calculator
+      example test (PENDING: No reason given)

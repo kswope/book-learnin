@@ -1544,7 +1544,8 @@ Alais for describe is context
     end
 
 
-ExampleGroups can be nested with describe or context
+ExampleGroups can be nested with describe or context (the omit the RSpec
+receiver except in the outer example group)
 
     RSpec.describe Calculator do
 

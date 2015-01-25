@@ -9,6 +9,9 @@ want to waste a github private slot, so don't look._
 - [Rails 4 Test Prescriptions](#rails-4-test-prescriptions)
 - [Effective Ruby](#effective-ruby)
 - [RSpec Docs](#rspec-docs)
+- [AR Docs](#activerecord-docs)
+
+
 
 -----
 
@@ -600,8 +603,7 @@ fast tests for name logic.
 
 
 
-Two styles writing tests with multiple assertions, in the latter version tests
-can fail independantly, but its more complicated.
+Two styles writing tests with multiple assertions
 
     it "marks a task complete" do
       task = tasks(:incomplete)
@@ -622,13 +624,41 @@ can fail independantly, but its more complicated.
     end
 
 
+> The tradeoff is pretty plain: the one-assertion-per-test style has the
+advantage that each assertion can fail independently—when all the assertions
+are in a single test, the test bails on the first failure. In the all-in-one
+test, if expect(task).to be_complete fails, you won’t even get to the check for
+expect(task).to be_blocked. If all the assertions are in separate tests,
+everything runs indepen- dently but it’s harder to determine how tests are
+related. There are two signif- icant downsides to the one-assertion style:
+first, there can be a significant speed difference since the
+single-assertion-per-test version will run the com- mon setup multiple times,
+and second, the one-assertion style can become difficult to read, especially if
+the setup and test wind up with some distance between them.
+
+> Often I compromise by making my first pass at TDD in the one-assertion-per-
+test style, which forces me to work in baby steps and gives me a more accurate
+picture of what tests are failing. When I’m confident in the correctness of the
+code, I consolidate related assertions, giving me the speed benefit moving
+forward.
 
 
+About shoulda matchers (book discourages)
 
+    describe Task do
+    it { should belong_to(:project) }
+    it { should belong_to(:user) }
+    it { should ensure_length_of(:name) }
+    end
 
-
-
-
+> Tests like that are not particularly valuable for a TDD process because they
+are not about the design of new features. If you’re doing the TDD process, you
+shouldn’t start from the idea that your Task belongs to a Project. Rather, as
+you describe features the relationship is implied from the feature tests that
+you’re writing. More operationally, this means that in a good TDD process, any
+condition in the code that would cause a direct test like those Shoulda
+matchers to fail would also cause another test to fail. In which case, what’s
+the point of the Shoulda matcher?
 
 
 
@@ -1771,3 +1801,4 @@ Why are skipped tests displayed as 'pending', exactly same as pending tests???
 
 
 
+## ActiveRecord Docs

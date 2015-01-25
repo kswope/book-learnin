@@ -1538,3 +1538,11 @@ Describe methods creates an ExampleGroup
     RSpec.describe Object do
       #...
     end
+
+Alais for describe is context
+
+    RSpec.context Object do
+      #...
+    end
+
+

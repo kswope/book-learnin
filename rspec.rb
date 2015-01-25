@@ -19,7 +19,7 @@ end
 
 
 # it multi expectations style
-RSpec.describe Calculator do
+RSpec.context Calculator do
 
   before(:each) do
     @calc = Calculator.new

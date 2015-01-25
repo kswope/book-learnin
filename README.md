@@ -1802,3 +1802,11 @@ Why are skipped tests displayed as 'pending', exactly same as pending tests???
 
 
 ## ActiveRecord Docs
+
+TODO 
+http://guides.rubyonrails.org/active_record_basics.html
+http://guides.rubyonrails.org/active_record_migrations.html
+http://guides.rubyonrails.org/active_record_validations.html
+http://guides.rubyonrails.org/active_record_callbacks.html
+http://guides.rubyonrails.org/association_basics.html
+http://guides.rubyonrails.org/active_record_querying.html

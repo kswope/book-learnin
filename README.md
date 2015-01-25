@@ -395,7 +395,6 @@ helpful.
     inline comments.
 
 
-
 -------
 
 
@@ -555,6 +554,85 @@ test first, and a lot test after.
 > do special cases at the end is that you already have tests to cover the
 > normal cases, so you can use those to check your new code each step of the
 > way.
+
+
+
+
+
+
+When you break out related attributes into their own class, as in this Name
+example (below), you'll often find it's much easier to add complexity when you have a
+dedicated place for that logic. When you need middle names or titles, it's
+easier to manage that in a separate class than it would be if you had a half
+implementation of names in multiple classes.  You'll also find that these small
+classes are easy to test because Name no longer has a dependency on the
+database or any other code. Without dependencies, it's easy to set up and write
+fast tests for name logic.
+
+    class Name
+
+      attr_reader :first_name, :last_name
+
+      def initialize(first_name, last_name)
+        @first_name, @last_name = first_name, last_name
+      end
+
+      def full_name
+        "#{first_name} #{last_name}"
+      end
+
+      def sort_name
+      "#{last_name}, #{first_name}"
+      end
+
+    end
+
+    class User < ActiveRecord::Base
+
+      delegate :full_name, :sort_name, to: :name #<-- name
+
+      def name #<-- name
+        Name.new(first_name, last_name)
+      end
+
+    end
+
+
+
+Two styles writing tests with multiple assertions, in the latter version tests
+can fail independantly, but its more complicated.
+
+    it "marks a task complete" do
+      task = tasks(:incomplete)
+      task.mark_complete
+      expect(task).to be_complete
+      expect(task).to be_blocked
+      expect(task.end_date).to eq(Date.today.to_s(:db))
+      expect(task.most_recent_log.end_state).to eq("completed")
+    end
+
+    describe "task completion" do
+      let(:task) {tasks(:incomplete)}
+      before(:example) { task.mark_complete }
+      specify { expect(task).to be_complete }
+      specify { expect(task).to be_blocked }
+      specify { expect(task.end_date).to eq(Date.today.to_s(:db)) }
+      specify { expect(task.most_recent_log.end_state).to eq("completed") }
+    end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Effective Ruby

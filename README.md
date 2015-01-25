@@ -1553,3 +1553,40 @@ Examples are inside ExampleGroup
     end
 
 
+Alternatives examples to 'it'
+
+      specify 'something' do
+      end
+
+      it 'does something' do
+      end 
+
+      example 'does something' do
+      end
+
+
+Mark examples as skip with 'x'
+
+    xit 'something' do
+    end
+
+    xexample 'something' do
+    end
+
+    xspecify 'something' do
+    end
+
+Pending tests are expected to fail, if they don't fail its a failed test
+
+    # successful pending test
+    example 'example test' do
+      expect(2).to eq(2) #<-- good  
+      pending #<-- use before failing test
+      expect(2).to eq(1) #<-- bad 
+    end
+
+    # failing pending test
+    pending 'example test' do
+      expect(2).to eq(2)  
+    end
+

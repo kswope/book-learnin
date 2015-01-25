@@ -44,6 +44,16 @@ RSpec.describe Calculator do
 
   let(:calc){ Calculator.new }
 
+
+
+  pending 'example test' do
+    expect(2).to eq(2)  
+    # expect(2).to eq(1)  
+  end
+
+
+
+
   describe 'using add with 2 params' do
     specify { expect( calc.add(1,1) ).to eql(2) }
     specify { expect( calc.add(2,3) ).to eql(5) }

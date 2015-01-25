@@ -1638,10 +1638,34 @@ Why are skipped tests displayed as 'pending', exactly same as pending tests???
 
 ### Build in Matchers
 
-> Note: The new expect syntax no longer supports the == matcher.
 
 ##### Equivalence
 
     expect(actual).to eq(expected)  # passes if actual == expected
     expect(actual).to eql(expected) # passes if actual.eql?(expected)
     expect(actual).not_to eql(not_expected) # passes if not(actual.eql?(expected))
+
+> Note: The new expect syntax no longer supports the == matcher.
+
+##### Identity
+
+    expect(actual).to be(expected)    # passes if actual.equal?(expected)
+    expect(actual).to equal(expected) # passes if actual.equal?(expected)
+
+
+##### Comparisons
+
+    expect(actual).to be >  expected
+    expect(actual).to be >= expected
+    expect(actual).to be <= expected
+    expect(actual).to be <  expected
+    expect(actual).to be_within(delta).of(expected)
+
+##### Regular expressions
+
+    expect(actual).to match(/expression/)
+
+
+
+
+

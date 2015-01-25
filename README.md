@@ -716,6 +716,18 @@ it block.
 
 ##### Write Your Own RSpec Matchers
 
+    RSpec::Matchers.define :be_of_size do |expected|
+      match do |actual|
+        actual.total_size == expected
+      end
+    end
+
+Remember: the expected value is the value defined by the test, and the actual
+value is the value defined by the code. Here is the form in which the matcher
+gets called:
+
+    expect(actual_value).to be_of_size(expected_value)
+
 
 
 ## Effective Ruby

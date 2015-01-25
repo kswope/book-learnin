@@ -1635,3 +1635,7 @@ Why are skipped tests displayed as 'pending', exactly same as pending tests???
 
     Calculator
       example test (PENDING: No reason given)
+
+### Build in Matchers
+
+> Note: The new expect syntax no longer supports the == matcher.

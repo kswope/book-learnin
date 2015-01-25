@@ -1638,6 +1638,24 @@ Why are skipped tests displayed as 'pending', exactly same as pending tests???
 
 ### Build in Matchers
 
+##### My assumed MVP matchers
+
+    expect(actual).to eq(expected)  # passes if actual == expected
+    expect(actual).to match(/expression/)
+    expect(actual).to be_truthy   # passes if actual is truthy (not nil or false)
+    expect(actual).to be true     # passes if actual == true
+    expect(actual).to be_falsy    # passes if actual is falsy (nil or false)
+    expect(actual).to be_nil      # passes if actual is nil
+    expect { ... }.to raise_error(ErrorClass)
+
+    expect(actual).to be_xxx         # passes if actual.xxx?
+    expect(obj).to be_completed # if obj.completed?
+
+    expect(actual).to have_xxx(:arg) # passes if actual.has_xxx?(:arg)
+    expect(obj).to have_xxx(:children) # passes if obj.has_children?
+
+
+
 
 ##### Equivalence
 
@@ -1719,13 +1737,13 @@ Why are skipped tests displayed as 'pending', exactly same as pending tests???
 
 ##### Collection membership
 
-  expect(actual).to include(expected)
-  expect(actual).to start_with(expected)
-  expect(actual).to end_with(expected)
+    expect(actual).to include(expected)
+    expect(actual).to start_with(expected)
+    expect(actual).to end_with(expected)
 
-  expect(actual).to contain_exactly(individual, items)
-  # ...which is the same as:
-  expect(actual).to match_array(expected_array)
+    expect(actual).to contain_exactly(individual, items)
+    # ...which is the same as:
+    expect(actual).to match_array(expected_array)
 
 ##### Should syntax (old deprecated style)
 

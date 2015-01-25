@@ -1536,13 +1536,20 @@ the next potentially breaking release.
 Describe methods creates an ExampleGroup
 
     RSpec.describe Object do
-      #...
     end
 
 Alais for describe is context
 
     RSpec.context Object do
-      #...
+    end
+
+Examples are inside ExampleGroup
+
+    RSpec.describe Object do
+
+      it 'does something' do
+      end
+
     end
 
 

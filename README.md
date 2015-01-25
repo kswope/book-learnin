@@ -9,7 +9,7 @@ want to waste a github private slot, so don't look._
 - [Rails 4 Test Prescriptions](#rails-4-test-prescriptions)
 - [Effective Ruby](#effective-ruby)
 - [RSpec Docs](#rspec-docs)
-- [AR Docs](#activerecord-docs)
+- [ActiveRecord Official Docs](#activerecord-official-docs)
 
 
 

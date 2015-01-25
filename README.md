@@ -661,6 +661,49 @@ matchers to fail would also cause another test to fail. In which case, what’s
 the point of the Shoulda matcher?
 
 
+##### Testing ActiveRecord Finders
+
+> Be aggressive about extracting compound finder statements to their own
+method, in much the same way and for much the same reason as I recommended
+for compound Boolean logic. The methods are easier to understand
+and reuse if they are bound together behind a method name that defines the
+intent of the method. When we talk about mock objects you'll also see that
+having finders called behind other methods makes it much easier to avoid
+touching the database when you don't need to.
+
+
+
+##### Shared example
+
+Directory spec/support is loaded by default rails_helper.rb before specs are
+run.  Put shared example definitions in there.
+
+    RSpec.shared_examples "sizeable" do
+      let(:instance) { described_class.new } #<--- notice described_class.new
+
+      it "knows a one-point story is small" do
+        allow(instance).to receive(:size).and_return(1)
+        expect(instance).to be_small
+      end
+
+      it "knows a five-point story is epic" do
+        allow(instance).to receive(:size).and_return(5)
+        expect(instance).to be_epic
+      end
+    end
+
+Note be_epic and be_small are predicate matchers for the methods small?() and epic?()
+
+In spec files
+
+
+    RSpec.describe Task do
+      it_should_behave_like "sizeable"
+    end
+
+
+
+
 
 
 

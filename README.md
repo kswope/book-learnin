@@ -1,6 +1,6 @@
 # Ruby Book Notes 
 
-_Just my notes from various books on ruby.  This is public only because I don't
+_Just my notes from various books/docs on ruby.  This is public only because I don't
 want to waste a github private slot, so don't look._
 
 

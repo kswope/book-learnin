@@ -8,6 +8,7 @@ want to waste a github private slot, so don't look._
 - [Ruby Cookbook](#ruby-cookbook)
 - [Rails 4 Test Prescriptions](#rails-4-test-prescriptions)
 - [Effective Ruby](#effective-ruby)
+- [RSpec Docs](#rspec-docs)
 
 -----
 
@@ -1526,3 +1527,7 @@ your version-control system.
 the next potentially breaking release.
 
 
+
+## RSpec Docs
+
+Describe

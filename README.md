@@ -1652,7 +1652,7 @@ Why are skipped tests displayed as 'pending', exactly same as pending tests???
     expect(obj).to be_completed # if obj.completed?
 
     expect(actual).to have_xxx(:arg) # passes if actual.has_xxx?(:arg)
-    expect(obj).to have_xxx(:children) # passes if obj.has_children?
+    expect(obj).to have_member(:one) # passes if obj.has_member?(:one)
 
     expect(actual).to include(expected)
 

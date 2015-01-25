@@ -388,6 +388,12 @@ helpful.
 9. If you find yourself writing tests that already pass given the current state
    of the code, that often means you’re writing too much code in each pass.
 
+10. Refactoring is where a lot of design happens in TDD, and it’s easiest to do
+    in small steps. Skip it at your peril.
+
+11. Try to extract methods when you see compound Booleans, local variables, or
+    inline comments.
+
 
 
 -------

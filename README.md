@@ -1533,7 +1533,7 @@ the next potentially breaking release.
 
 ### Basic Structure
 
-#### Describe methods creates an ExampleGroup
+Describe methods creates an ExampleGroup
 
     RSpec.describe Object do
       #...

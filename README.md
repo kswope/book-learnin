@@ -702,10 +702,18 @@ In spec files
     end
 
 
+> There are a couple of other ways to invoke a shared example group - RSpec
+defines synonymous methods include_examples and it_behaves_like.
 
 
+> When invoking the group, you can also have the it_should_behave_like method
+take a block argument. Inside that block, you can use let statements to define
+variables, which are then visible to the shared example specs. In other words,
+an alternative to creating an instance with described_class is to place the burden
+on the calling spec to create a variable and give it an appropriate name in the
+it block.
 
-
+##### Write Your Own RSpec Matchers
 
 
 

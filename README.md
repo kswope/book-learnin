@@ -1543,6 +1543,45 @@ Alais for describe is context
     RSpec.context Object do
     end
 
+
+ExampleGroups can be nested with describe or context
+
+    RSpec.describe Calculator do
+
+      describe :another_describe do
+        example 'example test' do
+          expect(2).to eq(2)  
+        end
+      end
+
+      context :another_context do
+        example 'example test' do
+          expect(2).to eq(2)  
+        end
+      end
+
+    end
+
+
+You can skip an entire example group by putting an 'x' before describe or context
+
+    RSpec.describe Calculator do
+
+      xdescribe :another_describe do
+        example 'example test' do
+          expect(2).to eq(2)  
+        end
+      end
+
+      xcontext :another_context do
+        example 'example test' do
+          expect(2).to eq(2)  
+        end
+      end
+
+    end
+
+
 Examples are placed inside ExampleGroup
 
     RSpec.describe Object do

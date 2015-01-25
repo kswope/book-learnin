@@ -45,12 +45,17 @@ RSpec.describe Calculator do
   let(:calc){ Calculator.new }
 
 
-
-  p example 'example test' do
-    pending
-    expect(1).to eq(2)  
+  xdescribe :another_describe do
+    example 'example test' do
+      expect(2).to eq(2)  
+    end
   end
 
+  xcontext :another_context do
+    example 'example test' do
+      expect(2).to eq(2)  
+    end
+  end
 
 
 

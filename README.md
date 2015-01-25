@@ -360,7 +360,7 @@ Reverse lookup for hash
 ## Rails 4 Test Prescriptions 
 
 
-Prescriptions
+##### Prescriptions
 
 1. Use the TDD process to create and adjust your code’s design in small,
   incremental steps.
@@ -403,7 +403,7 @@ helpful.
 
 
 
-Setting up RSpec (for minitesters)
+##### Setting up RSpec (for minitesters)
 
     group :development, :test do 
       gem 'rspec-rails', '~> 3.1'

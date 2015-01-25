@@ -411,7 +411,7 @@ helpful.
 
     $ rails generate rspec:install
 
-##### Details (better details in [doc notes](#activerecord-official-docs)
+##### Details (better details in [doc notes](#rspec-docs))
 
 The actual spec is defined with it(), which takes an optional string argument
 that documents the spec, and then a block that is the body of the spec. The

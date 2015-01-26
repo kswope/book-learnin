@@ -9,8 +9,8 @@ want to waste a github private slot, so don't look._
 - [Rails 4 Test Prescriptions](#rails-4-test-prescriptions)
 - [Effective Ruby](#effective-ruby)
 - [RSpec Docs](#rspec-docs)
-- [ActiveRecord Official Docs](#activerecord-official-docs)
-
+- [ActiveRecord Docs](#activerecord-official-docs)
+- [FactoryGirl Docs](#factorygirl-docs)
 
 
 -----
@@ -829,7 +829,7 @@ tests nudges me in the direction of code that can be tested without
 associations.
 
 _I'm not sure about this advice, what if you have lots of foreign key
-constraints, or a few models that are closely tied together_
+constraints, or models that are closely tied together_
 
 
 
@@ -1989,3 +1989,9 @@ http://guides.rubyonrails.org/association_basics.html
 
 ### Querying (TODO)
 http://guides.rubyonrails.org/active_record_querying.html
+
+
+## FactoryGirl Docs
+http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md
+
+

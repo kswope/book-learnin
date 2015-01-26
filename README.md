@@ -401,6 +401,11 @@ helpful.
 12. Fixtures are particularly useful for global semi-static data stored in the
 database.
 
+13. Your go-to build strategy for factory_girl should be build_stubbed unless
+there is a need for the object to be in the database during the test.
+
+
+
 -------
 
 
@@ -740,6 +745,87 @@ Why Fixtures Are a Pain
 * Fixtures are spread out
 * Fixtures are distant
 * Fixtures are brittle
+
+
+##### FactoryGirl basic factory creation
+
+* build(:project, ...) returns model instance without saving to database
+
+* create(:project, ...) returns model instance and saves to database
+
+* attributes_for(:project) returns a hash of all the attributes in the factory
+that are suitable for passing to AR#new or AR#create.  Used most often for creating
+hash that will be sent as params to a controller test.
+
+* build_stubbed(:project), which is almost magical. Like build, it returns an
+unsaved model object. Unlike build, it assigns a fake ActiveRecord ID to the
+model and stubs out database-interaction methods (like save) such that the test
+raises an exception if they are called.
+
+This is the strategy by which I determine which of these methods to use:
+
+* Use create only if the object absolutely must be in the database. Typically,
+this is because the test code must be able to access it via an ActiveRecord
+finder. However, create is much slower than any of the other methods, so it’s
+also worth thinking about whether there’s a way to structure the code so that
+persistent data is not needed for the test.
+
+* In all other cases, use build_stubbed, which does everything build does, plus
+more. Because a build_stubbed object has a Rails ID, you can build up real
+Rails associations and still not have to take the speed hit of saving to the
+database.
+
+##### Associations and Factories
+
+Create a project instance to go with factory, (weird syntax) (and arent those
+supposed to be methods, why are there colons in there?)
+
+    FactoryGirl.define do 
+      factory :task do
+        title: "To Something" 
+        size: 3
+        project
+      end 
+    end
+    task = FactoryGirl.create(:task)
+
+Creates a factory for both task and project.
+
+> By default, however, even if you call the parent factory with build, the
+subordinate factory is still called with create. This is a side effect of how
+Rails manages associations. The associated object needs an ID so that the
+parent object can link to it, and in Rails you get an ActiveRecord ID only when
+an ActiveRecord instance is saved to the database.
+
+> As a result, even if you use the build strategy specifically to avoid slow
+and unnecessary database interaction, if the factory has associations you will
+still save objects to the database. Since those associated factories may
+themselves have associations, if you aren’t careful you can end up saving a lot
+of objects to the database, resulting in prohibitively slow tests.
+
+> It’s exactly this characteristic of factory_girl that has made it unwelcome
+in some circles, particularly if the people in those circles have to maintain
+large, unwieldy test suites. Factory-association misuse can be a big cause of a
+slow test suite, as tests create many more objects than they need to because of
+factory_girl associations.
+
+
+
+> Since the build_stubbed strategy assigns an ID to the objects being created,
+using build_stubbed sidesteps the whole issue. If a factory with associations
+is instantiated using build_stubbed, then by default all the associations are
+also invoked using build_stubbed. That solves the problem as long as you always
+use build_stubbed.
+
+> My preferred strategy is to not specify attributes in factories at all, and if I need associated objects in a specific test, I explicitly add them to the test at the point they’re needed.
+Why?
+
+> * The surest way to keep factory_girl from creating large object trees is to not define large object trees.
+
+> * Tests that require multiple degrees of associated objects often indicate
+improperly factored code. Making it a little harder to write associations in
+tests nudges me in the direction of code that can be tested without
+associations.
 
 
 

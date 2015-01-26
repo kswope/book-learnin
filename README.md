@@ -1996,7 +1996,7 @@ http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md
 
 
 
-## Design Patterns In Ruby (TODO)
+## Design Patterns In Ruby
 
 
 

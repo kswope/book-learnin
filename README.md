@@ -404,7 +404,8 @@ database.
 13. Your go-to build strategy for factory_girl should be build_stubbed unless
 there is a need for the object to be in the database during the test.
 
-
+14. Avoid defining associations automatically in factory_girl definitions. Set
+them test by test, as needed. You’ll wind up with more manageable test data.
 
 -------
 
@@ -827,7 +828,7 @@ improperly factored code. Making it a little harder to write associations in
 tests nudges me in the direction of code that can be tested without
 associations.
 
-
+_I'm not sure about this advice, what if you have lots of foreign key constraints_
 
 
 

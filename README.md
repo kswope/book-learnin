@@ -11,7 +11,7 @@ want to waste a github private slot, so don't look._
 - [RSpec Docs](#rspec-docs)
 - [ActiveRecord Docs](#activerecord-official-docs)
 - [FactoryGirl Docs](#factorygirl-docs)
-
+- [Design Patterns In Ruby](#design-patterns-in-ruby)
 
 -----
 
@@ -1993,5 +1993,10 @@ http://guides.rubyonrails.org/active_record_querying.html
 
 ## FactoryGirl Docs
 http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md
+
+
+
+## Design Patterns In Ruby (TODO)
+
 
 

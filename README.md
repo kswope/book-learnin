@@ -828,7 +828,8 @@ improperly factored code. Making it a little harder to write associations in
 tests nudges me in the direction of code that can be tested without
 associations.
 
-_I'm not sure about this advice, what if you have lots of foreign key constraints_
+_I'm not sure about this advice, what if you have lots of foreign key
+constraints, or a few models that are closely tied together_
 
 
 

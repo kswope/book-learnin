@@ -398,6 +398,8 @@ helpful.
 11. Try to extract methods when you see compound Booleans, local variables, or
     inline comments.
 
+12. Fixtures are particularly useful for global semi-static data stored in the
+database.
 
 -------
 
@@ -727,6 +729,20 @@ value is the value defined by the code. Here is the form in which the matcher
 gets called:
 
     expect(actual_value).to be_of_size(expected_value)
+
+
+
+#### Adding Data to Tests
+
+Why Fixtures Are a Pain
+
+* Fixtures are global
+* Fixtures are spread out
+* Fixtures are distant
+* Fixtures are brittle
+
+
+
 
 
 

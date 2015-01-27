@@ -2140,14 +2140,14 @@ if you are building a simple observer, code blocks work well.
 
 >
 Composite should be used when clients ignore the difference between
-compositions of objects and individual objects.[1] If programmers find that
-they are using multiple objects in the same way, and often have nearly
-identical code to handle each of them, then composite is a good choice; it is
-less complex in this situation to treat primitives and composites as
-homogeneous.
+compositions of objects and individual objects. If programmers find that they
+are using multiple objects in the same way, and often have nearly identical
+code to handle each of them, then composite is a good choice; it is less
+complex in this situation to treat primitives and composites as homogeneous.
 
 Three parts
 
 1. _component_ - Common interface or base class for all of your objects.
 2. _leaf_ - Implements all Component methods
-3. _composit_ - The composite is a component, but it is also a higher-level object that is built from subcomponents.
+3. _composit_ - The composite is a component, but it is also a higher-level
+   object that is built from subcomponents.

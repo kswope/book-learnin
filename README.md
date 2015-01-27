@@ -2016,8 +2016,7 @@ either.
 
 _I think this is everthing like RoR, EventMachine, or a lot of other frameworks._
 
->In this chapter we looked in detail at our first pattern, the Template Method
-pattern. The Template Method pattern is simply a fancy way of saying that if
+> The Template Method pattern is simply a fancy way of saying that if
 you want to vary an algorithm, one way to do so is to code the invariant part
 in a base class and to encapsulate the variable parts in methods that are
 defined by a number of subclasses. The base class can simply leave the methods

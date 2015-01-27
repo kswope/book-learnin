@@ -2023,3 +2023,13 @@ defined by a number of subclasses. The base class can simply leave the methods
 completely undefined—in that case, the subclasses must supply the methods.
 Alternatively, the base class can provide a default implementation for the
 methods that the subclasses can override if they want.
+
+
+##### [Strategy Pattern](http://en.wikipedia.org/wiki/Strategy_pattern)
+
+Also known as the *policy pattern*
+
+> * defines a family of algorithms
+  * encapsulate each algorithms
+  * makes the algorithms interchangeable within that family
+

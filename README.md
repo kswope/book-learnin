@@ -2012,7 +2012,7 @@ need right now. Why? Because chances are, you ain’t gonna need it later,
 either.
 
 
-##### Template Method Pattern
+##### [Template Method Pattern](http://en.wikipedia.org/wiki/Template_method_pattern)
 
 _I think this is everthing like RoR, EventMachine, or a lot of other frameworks._
 
@@ -2076,3 +2076,11 @@ reference to the whole context object to the strategy. (dont forget code blocks)
 The motive behind the Strategy pattern is to supply the context with an object
 that knows how to perform some variation on an algorithm.
 
+
+##### [Observer pattern](http://en.wikipedia.org/wiki/Observer_pattern)
+
+>
+The observer pattern is a software design pattern in which an object, called
+the subject, maintains a list of its dependents, called observers, and notifies
+them automatically of any state changes, usually by calling one of their
+methods.

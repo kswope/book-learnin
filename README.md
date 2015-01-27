@@ -2094,3 +2094,13 @@ Code block as an observer
       puts(“Cut a new check for #{changed_employee.name}!”) 
       puts(“His salary is now #{changed_employee.salary}!”)
     end
+
+>
+The key decisions that you need to make when implementing the Observer pattern
+all center on the interface between the subject and the observer. At the simple
+end of the spectrum, you might do what we did in the example above: Just have a
+single method in the observer whose only argument is the subject. The GoF term
+for this strategy is the pull method, because the observers have to pull
+whatever details about the change that they need out of the subject. The other
+possibility—logically enough termed the push method—has the subject send the
+observers a lot of details about the change.

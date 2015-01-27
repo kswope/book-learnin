@@ -2084,3 +2084,7 @@ The observer pattern is a software design pattern in which an object, called
 the subject, maintains a list of its dependents, called observers, and notifies
 them automatically of any state changes, usually by calling one of their
 methods.
+
+(Observable In ruby stdlib)[http://ruby-doc.org/stdlib-2.0.0/libdoc/observer/rdoc/Observable.html]
+
+

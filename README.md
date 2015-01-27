@@ -2029,7 +2029,8 @@ methods that the subclasses can override if they want.
 
 Also known as the *policy pattern*
 
-> * defines a family of algorithms
+>
+* defines a family of algorithms
 * encapsulate each algorithms
 * makes the algorithms interchangeable within that family
 

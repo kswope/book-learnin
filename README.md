@@ -1998,5 +1998,23 @@ http://www.rubydoc.info/gems/factory_girl/file/GETTING_STARTED.md
 
 ## Design Patterns In Ruby
 
+> It’s commonly agreed that the most useful thing about patterns is the way in
+which they form a vocabulary for articulating design decisions during the
+normal course of development conversations among programmers.
 
+> So much for the principles originally cited by the GoF in 1995. To this
+formidable set, I would like to add one more principle that I think is critical
+to building, and actually finishing, real systems. This design principle comes
+out of the Extreme Programming world and is elegantly summed up by the phrase
+You Ain’t Gonna Need It (YAGNI for short). The YAGNI principle says simply that
+you should not implement features, or design in flexibility, that you don’t
+need right now. Why? Because chances are, you ain’t gonna need it later,
+either.
 
+##### Template Method Pattern
+
+http://www.blackwasp.co.uk/TemplateMethod.aspx
+> The template method pattern is a design pattern that allows a group of
+interchangeable, similarly structured, multi-step algorithms to be defined.
+Each algorithm follows the same series of actions but provides a different
+implementation of the steps.

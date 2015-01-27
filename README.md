@@ -2072,6 +2072,7 @@ context object over to the strategy object. We can pass all of the data as
 parameters as we call methods on the strategy object, or we can simply pass a
 reference to the whole context object to the strategy. (dont forget code blocks)
 
+>
 The motive behind the Strategy pattern is to supply the context with an object
 that knows how to perform some variation on an algorithm.
 

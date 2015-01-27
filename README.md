@@ -2011,9 +2011,8 @@ you should not implement features, or design in flexibility, that you don’t
 need right now. Why? Because chances are, you ain’t gonna need it later,
 either.
 
-##### Template Method Pattern
+##### [Template Method Pattern]( http://www.blackwasp.co.uk/TemplateMethod.aspx )
 
-http://www.blackwasp.co.uk/TemplateMethod.aspx
 > The template method pattern is a design pattern that allows a group of
 interchangeable, similarly structured, multi-step algorithms to be defined.
 Each algorithm follows the same series of actions but provides a different

@@ -2039,3 +2039,26 @@ Also known as the *policy pattern*
 With the Template Method pattern, we make our decision when we pick our
 concrete subclass. In the Strategy pattern, we make our decision by selecting a
 strategy class at runtime.
+
+Simple strategy pattern can be implemented with a passed in code block.
+
+    general.execute do |specific|
+      ...
+      specific.execute
+      ...
+    end
+
+>
+The easiest way to go wrong with the Strategy pattern is to get the interface
+between the context and the strategy object wrong. Bear in mind that you are
+trying to tease an entire, consistent, and more or less self-contained job out
+of the context object and delegate it to the strategy. You need to pay
+particular attention to the details of the interface between the context and
+the strategy as well as to the coupling between them. Remember, the Strategy
+pattern will do you little good if you couple the con- text and your first
+strategy so tightly together that you cannot wedge a second or a third strategy
+into the design.
+
+
+
+

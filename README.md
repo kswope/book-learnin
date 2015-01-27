@@ -2059,6 +2059,19 @@ pattern will do you little good if you couple the con- text and your first
 strategy so tightly together that you cannot wedge a second or a third strategy
 into the design.
 
+>
+The Strategy pattern is a delegation-based approach to solving the same problem
+as the Template Method pattern. Instead of teasing out the variable parts of
+your algo- rithm and pushing them down into subclasses, you simply implement
+each version of your algorithm as a separate object. You can then vary the
+algorithm by supplying dif- ferent strategy objects to the context
 
+>
+We have a couple of choices regarding how we get the appropriate data from the
+context object over to the strategy object. We can pass all of the data as
+parameters as we call methods on the strategy object, or we can simply pass a
+reference to the whole context object to the strategy. (dont forget code blocks)
 
+The motive behind the Strategy pattern is to supply the context with an object
+that knows how to perform some variation on an algorithm.
 

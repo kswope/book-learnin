@@ -2087,4 +2087,10 @@ methods.
 
 [Observable in ruby stdlib](http://ruby-doc.org/stdlib-2.0.0/libdoc/observer/rdoc/Observable.html)
 
+Code block as an observer
 
+    fred = Employee.new('Fred', 'Crane Operator', 30000)
+    fred.add_observer do |changed_employee|
+      puts(“Cut a new check for #{changed_employee.name}!”) 
+      puts(“His salary is now #{changed_employee.salary}!”)
+    end

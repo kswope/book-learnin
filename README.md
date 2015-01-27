@@ -2124,10 +2124,30 @@ In a nice example of the Convention Over Configuration pattern, ActiveRecord
 does not require you to register your observer: It just figures out that
 EmployeeObserver is there to observe Employees, based on the class name.
 
-
+>
 The Observer pattern allows you to build components that know about the
 activities of other components without having to tightly couple everything
 together in an unmanageable mess of code-flavored spaghetti. By creating a
 clean interface between the source of the news (the observable object) and the
 consumer of that news (the observers), the Observer pattern moves the news
 without tangling things up.
+
+>
+The interface between observer and observable can be a complex as you like, but
+if you are building a simple observer, code blocks work well.
+
+##### [Composite pattern](http://en.wikipedia.org/wiki/Composite_pattern)
+
+>
+Composite should be used when clients ignore the difference between
+compositions of objects and individual objects.[1] If programmers find that
+they are using multiple objects in the same way, and often have nearly
+identical code to handle each of them, then composite is a good choice; it is
+less complex in this situation to treat primitives and composites as
+homogeneous.
+
+Three parts
+
+1. _component_ - Common interface or base class for all of your objects.
+2. _leaf_ - Implements all Component methods
+3. _composit_ - The composite is a component, but it is also a higher-level object that is built from subcomponents.

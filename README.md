@@ -2035,3 +2035,7 @@ Also known as the *policy pattern*
 * encapsulate each algorithms
 * makes the algorithms interchangeable within that family
 
+>
+With the Template Method pattern, we make our decision when we pick our
+concrete subclass. In the Strategy pattern, we make our decision by selecting a
+strategy class at runtime.

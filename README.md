@@ -2104,3 +2104,30 @@ for this strategy is the pull method, because the observers have to pull
 whatever details about the change that they need out of the subject. The other
 possibility—logically enough termed the push method—has the subject send the
 observers a lot of details about the change.
+
+Example in AR (this might be a little too magical for me)
+
+    class EmployeeObserver < ActiveRecord::Observer
+      def after_create(employee)
+        # New employee record created
+      end
+      def after_update(employee)
+        # Employee record updated
+      end
+      def after_destroy(employee)
+        # Employee record deleted
+      end 
+    end
+
+> 
+In a nice example of the Convention Over Configuration pattern, ActiveRecord
+does not require you to register your observer: It just figures out that
+EmployeeObserver is there to observe Employees, based on the class name.
+
+
+The Observer pattern allows you to build components that know about the
+activities of other components without having to tightly couple everything
+together in an unmanageable mess of code-flavored spaghetti. By creating a
+clean interface between the source of the news (the observable object) and the
+consumer of that news (the observers), the Observer pattern moves the news
+without tangling things up.

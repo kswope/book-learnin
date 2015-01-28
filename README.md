@@ -2151,3 +2151,47 @@ Three parts
 2. _leaf_ - Implements all Component methods
 3. _composit_ - The composite is a component, but it is also a higher-level
    object that is built from subcomponents.
+
+>
+...there is one unavoidable difference between a composite and a leaf: The
+composite has to manage its children, which probably means that it needs to
+have a method to get at the children and possibly methods to add and remove
+child objects. The leaf classes, of course, really do not have any children to
+manage; that is the nature of leafyness.
+
+>
+Problem: Application needs to manipulate a hierarchical collection of
+"primitive" and "composite" objects. Processing of a primitive object is
+handled one way, and processing of a composite object is handled differently.
+Having to query the "type" of each object before attempting to process it is
+not desirable.
+
+##### [Iterator Pattern](http://en.wikipedia.org/wiki/Iterator_pattern)
+
+>
+Provide a way to access the elements of an aggregate object sequentially
+without exposing its underlying representation
+
+>
+In other words, an Iterator provides the outside world with a sort of movable
+pointer into the objects stored inside an otherwise opaque aggregate object.
+
+>
+To mix in Enumerable, you need only make sure that your internal iterator
+method is named each and that the individual elements that you are going to
+iterate over have a rea- sonable implementation of the <=> comparison operator.
+
+    class Account
+      def <=>(other)
+        balance <=> other.balance
+      end
+      ...
+    end
+
+    class Portfolio
+      include Enumerable
+      def each(&block)
+        @accounts.each(&block)
+      end
+      ...
+    end

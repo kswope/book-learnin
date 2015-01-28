@@ -34,3 +34,15 @@ end
 Child.new.say #=> MyModule  Child  Parent
 
 
+RSpec.describe do
+
+  let(:child){ Child.new }
+
+  it 'works' do
+
+    expect(child).not_to be_truthy
+
+  end
+
+
+end

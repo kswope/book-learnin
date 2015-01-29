@@ -2296,3 +2296,60 @@ Make writing wrappers easier for all the simple pass through methods by using Fo
 
     end
 
+
+>
+The forwardable module is more of a precision weapon than the method_missing
+technique. With forwardable, you have control over which methods you delegate.
+Although you could certainly put logic in method_missing to pick and choose
+which methods to delegate, the method_missing technique really shines when you
+want to delegate large numbers of calls.
+
+
+Wrapping methods
+
+    w = SimpleWriter.new('out')
+
+    class << w #<-- use this instead of def w.write_line
+      alias old_write_line write_line #<-- because of this
+      def write_line(line)
+        old_write_line("#{Time.new}: #{line}")
+      end
+    end
+
+
+
+##### [Singleton](http://en.wikipedia.org/wiki/Singleton_pattern)
+
+
+Just use the module
+
+    require 'singleton'
+
+    class SimpleLogger
+      include Singleton
+      # Lots of code deleted...
+    end
+
+    SimpleLogger.instance
+
+
+
+>
+Properly applied, singletons are not global variables. Rather, they are meant
+to model things that occur exactly once. Yes, because it occurs only once, you
+can use a singleton as a unique communications conduit between bits of your
+program. But don't do that.
+
+Isn't every class and module a singleton? Its an actual object, and there's only one.
+
+
+##### [Factory](http://en.wikipedia.org/wiki/Factory_method_pattern)
+
+>
+Factory method pattern is a creational pattern which uses factory methods to
+deal with the problem of creating objects without specifying the exact class of
+object that will be created.
+
+Does "creating objects without specifying the exact class of object" mean that
+every factory is capable of creating multiple types of objects, or that the
+factory name doesn't specify the class type of the object returned?

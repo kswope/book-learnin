@@ -3,13 +3,17 @@
 require 'pp'
 
 
-def one(x,y)
+
+class MyClass
+  def self.hello
+    puts :hello
+  end
+end
+
+def MyClass.goodbye
+  puts :goodbye
 end
 
 
-def two(x,y)
-  one
-end
-
-
-two(:a, :b)
+MyClass.hello
+MyClass.goodbye

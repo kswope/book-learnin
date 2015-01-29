@@ -2268,4 +2268,31 @@ Use method_missing for easy proxies:
     end
 
 
+##### [Decorator Pattern](http://en.wikipedia.org/wiki/Decorator_pattern)
+
+a.k.a Wrapper
+
+
+>
+A design pattern that allows behavior to be added to an individual object,
+either statically or dynamically, without affecting the behavior of other
+objects from the same class (only objects?)
+
+    writer = CheckSummingWriter.new(TimeStampingWriter.new( NumberingWriter.new(SimpleWriter.new('final.txt'))))
+
+Make writing wrappers easier for all the simple pass through methods by using Forwardable.
+
+    require 'forwardable'
+
+    class WriterDecorator
+
+      extend Forwardable
+
+      def_delegators :@real_writer, :write_line, :rewind, :pos, :close
+
+      def initialize(real_writer)
+        @real_writer = real_writer
+      end
+
+    end
 

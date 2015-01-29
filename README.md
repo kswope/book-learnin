@@ -2195,3 +2195,13 @@ iterate over have a rea- sonable implementation of the <=> comparison operator.
       end
       ...
     end
+
+
+##### [Command Pattern](http://en.wikipedia.org/wiki/Command_pattern) 
+
+Gang of four says:
+
+>
+Commands are an object-oriented replacement for callbacks.
+
+What more is there to say?

@@ -2238,3 +2238,17 @@ A proxy, in its most general form, is a class functioning as an interface to
 something else. The proxy could interface to anything: a network connection, a
 large object in memory, a file, or some other resource that is expensive or
 impossible to duplicate.
+
+>
+The Proxy pattern is essentially built around a little white lie. When the
+client asks us for an object - perhaps the bank account object mentioned
+earlier - we do indeed give the client back an object. However, the object that
+we give back is not quite the object that the client expected. What we hand to
+the client is an object that looks and acts like the object the client
+expected, but is actually an imposter.
+
+* Protection Proxy - proxy that controls access to an object
+* Remote Proxy - local access to remote service/object
+* Virtual Proxy - It pretends to be the real object, but it does not even have a reference to the real object until the client code calls a method
+
+

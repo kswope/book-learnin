@@ -2249,6 +2249,23 @@ expected, but is actually an imposter.
 
 * Protection Proxy - proxy that controls access to an object
 * Remote Proxy - local access to remote service/object
-* Virtual Proxy - It pretends to be the real object, but it does not even have a reference to the real object until the client code calls a method
+* Virtual Proxy - It pretends to be the real object, but it does not even have
+a reference to the real object until the client code calls a method
+
+Use method_missing for easy proxies:
+
+    class AccountProxy
+
+      def initialize(real_account)
+        @subject = real_account
+      end
+
+      def method_missing(name, *args)
+        puts("Delegating #{name} message to subject.")
+        @subject.send(name, *args)
+      end
+
+    end
+
 
 

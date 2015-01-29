@@ -2205,3 +2205,30 @@ Gang of four says:
 Commands are an object-oriented replacement for callbacks.
 
 What more is there to say?
+
+
+##### [Adapter Pattern](http://en.wikipedia.org/wiki/Adapter_pattern)
+
+Modify existing object dynamically to avoid an adapter (not sure why its here)
+
+    bto = BritishTextObject.new('hello', 50.8, :blue)
+    class << bto
+      def color
+        colour
+      end
+    end
+
+same as but doesn't look as cool
+
+    bto = BritishTextObject.new('hello', 50.8, :blue)
+    def bto.color
+      colour
+    end
+
+>
+An adapter is an adapter only if you are stuck with objects that have the wrong
+interface and you are trying to keep the pain of dealing with these ill-fitting
+interfaces from spreading throughout your system.
+
+
+#####[Proxy Pattern](http://en.wikipedia.org/wiki/Proxy_pattern)

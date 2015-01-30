@@ -2353,3 +2353,51 @@ object that will be created.
 Does "creating objects without specifying the exact class of object" mean that
 every factory is capable of creating multiple types of objects, or that the
 factory name doesn't specify the class type of the object returned?
+
+>
+The key thing that we discovered in this chapter is how both of these patterns
+morphed in Ruby’s dynamic environment—specifically, how they became much sim-
+pler. While the GoF concentrated on inheritance-based implementations of their
+factories, we can get the same results with much less code by taking
+advantage of the fact that in Ruby, classes are just objects. In Ruby we can
+look up classes by name, pass them around, and store them away for future use.
+
+
+##### [Builder](http://en.wikipedia.org/wiki/Builder_pattern)
+
+>
+The builder pattern is an object creation software design pattern. Unlike the
+abstract factory pattern and the factory method pattern whose intention is to
+enable polymorphism, the intention of the builder pattern is to find a solution
+to the telescoping constructor anti-pattern. The telescoping constructor
+anti-pattern occurs when the increase of object constructor parameter
+combination leads to an exponential list of constructors. Instead of using
+numerous constructors, the builder pattern uses another object, a builder, that
+receives each initialization parameter step by step and then returns the
+resulting constructed object at once.
+
+Builder pattern is like a wind-up constructor
+
+    class Computer
+
+      def initialize(drive_size, cd, memory)
+        @drive_size, @cd, @memory = drive_size, cd, memory
+      end
+
+    end
+
+    class ComputerBuilder
+
+      attr_accessor :drive_size, :cd, :memory
+
+      def build
+        Computer.new(self.drive_size, self.cd, self.memory)
+      end
+
+    end
+
+    builder = ComputerBuilder.new
+    builder.drive_size = 700
+    builder.cd = false
+    builder.memory = 1000
+    computer = builder.build

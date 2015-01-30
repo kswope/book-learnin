@@ -832,6 +832,20 @@ _I'm not sure about this advice, what if you have lots of foreign key
 constraints, or models that are closely tied together_
 
 
+__Left off, Using test doubles as mocks and stubs__
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Effective Ruby

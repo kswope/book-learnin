@@ -2445,7 +2445,8 @@ program text and produces a data structure, called an abstract syntax tree
 (AST). 
 
 __I'm skipping most of this because I think ruby DSL's are a better option for
-the rare occasion that the Interpreter Pattern would be applicable.__
+the rare occasion that the Interpreter Pattern would be applicable.  And this
+stuff is so challanging that I'll forget it by tomorrow anyway.__
 
 
 

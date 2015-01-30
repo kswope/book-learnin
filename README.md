@@ -2518,7 +2518,6 @@ this means that the methods of a class are the instance methods of Class:
     # The "false" argument here means: ignore inherited methods
     Class.instance_methods(false) # => [:allocate, :new, :superclass]
 
-
 >
 
     Array.superclass # => Object

@@ -2414,3 +2414,38 @@ contain flat data (html code, SQL query, X.509 certificate...), that is to say,
 data that can't be easily edited. This type of data cannot be edited step by
 step and must be edited at once. The best way to construct such an object is to
 use a builder class.
+
+>
+The idea behind the Builder pattern is that if your object is hard to build, if
+you have to write a lot of code to configure each object, then you should
+factor all of that creation code into a separate class, the builder.
+
+>
+Builders, because they are in control of configuring your object, can also
+prevent you from constructing an invalid object.
+
+
+##### [Interpreter Pattern](http://en.wikipedia.org/wiki/Interpreter_pattern)
+
+>
+The Interpreter pattern is built around a very simple idea: Some programming
+problems are best solved by creating a specialized language and expressing
+the solution in that language.
+
+>
+Another clue that your problem might be right for the Interpreter pattern is
+that you find yourself creating lots of discrete chunks of code, chunks that
+seem easy enough to write in themselves, but which you find yourself combining
+in an ever expanding array of combinations. Perhaps a simple interpreter could
+do all of the combining work for you.
+
+>
+Interpreters typically work in two phases. First, the parser reads in the
+program text and produces a data structure, called an abstract syntax tree
+(AST). 
+
+__I'm skipping most of this because I think ruby DSL's are a better option for
+the rare occasion that the Interpreter Pattern would be applicable.__
+
+
+

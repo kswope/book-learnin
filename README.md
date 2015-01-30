@@ -2449,4 +2449,16 @@ the rare occasion that the Interpreter Pattern would be applicable.  And this
 stuff is so challanging that I'll forget it by tomorrow anyway.__
 
 
+##### Domain Specific Languages Chapter
 
+Mostly skipping for now, maybe go back to it later.  I've delt with DSL often.
+
+
+##### Meta-programming Chapter
+
+Skipping.  Will do more with meta-programming with more indepth sources.
+
+
+##### Convention Over Configuration Chapter
+
+I'm a rails developer.  This stuff looks too familiar. 

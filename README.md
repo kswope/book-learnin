@@ -2495,4 +2495,35 @@ I'm a rails developer.  This stuff looks too familiar.
     my_object.instance_variables # => [:@text]
 
 
+You can do this if you want:
+
+    3.times do
+      class C
+        puts "Hello"
+      end
+    end
+
+
+>
+In a sense, the class keyword in Ruby is more like a scope operator than a
+class declaration. Yes, it creates classes that don't yet exist, but you might
+argue that it does this as a pleasant side effect. For class, the core job is
+to move you in the context of the class, where you can define methods.
+
+
+>
+The methods of an object are also the instance methods of its class. In turn,
+this means that the methods of a class are the instance methods of Class:
+
+    # The "false" argument here means: ignore inherited methods
+    Class.instance_methods(false) # => [:allocate, :new, :superclass]
+
+
+
+    Array.superclass # => Object
+    Object.superclass # => BasicObject
+    BasicObject.superclass # => nil
+
+
+
 

@@ -2376,7 +2376,10 @@ numerous constructors, the builder pattern uses another object, a builder, that
 receives each initialization parameter step by step and then returns the
 resulting constructed object at once.
 
-Builder pattern is like a wind-up constructor
+Builder pattern is like a wind-up constructor.  I'm not sure how the following
+code solves the "telescoping constructor anti-pattern" mentioned above.  I'm
+not sure how the following code solves anything at all.  Why not just allow the
+Computer class itself to build its object step by step?
 
     class Computer
 
@@ -2401,3 +2404,13 @@ Builder pattern is like a wind-up constructor
     builder.cd = false
     builder.memory = 1000
     computer = builder.build
+
+
+Good rationale for Builder Pattern from wikipedia
+
+>
+The builder pattern has another benefit. It can be used for objects that
+contain flat data (html code, SQL query, X.509 certificate...), that is to say,
+data that can't be easily edited. This type of data cannot be edited step by
+step and must be edited at once. The best way to construct such an object is to
+use a builder class.

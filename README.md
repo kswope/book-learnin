@@ -12,6 +12,7 @@ want to waste a github private slot, so don't look._
 - [ActiveRecord Docs](#activerecord-official-docs)
 - [FactoryGirl Docs](#factorygirl-docs)
 - [Design Patterns In Ruby](#design-patterns-in-ruby)
+- [Metaprogramming Ruby](#metaprogramming-ruby)
 
 -----
 
@@ -2353,3 +2354,9 @@ object that will be created.
 Does "creating objects without specifying the exact class of object" mean that
 every factory is capable of creating multiple types of objects, or that the
 factory name doesn't specify the class type of the object returned?
+
+
+## Metaprogramming Ruby
+
+
+Start here

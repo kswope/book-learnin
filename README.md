@@ -2518,12 +2518,31 @@ this means that the methods of a class are the instance methods of Class:
     # The "false" argument here means: ignore inherited methods
     Class.instance_methods(false) # => [:allocate, :new, :superclass]
 
->
-
     Array.superclass # => Object
     Object.superclass # => BasicObject
     BasicObject.superclass # => nil
 
+
+
+>
+The superclass of Class is Module - which is to say, every class is also a
+module.  To be precise, a class is a module with three additional instance
+methods (new, allocate, and superclass) that allow you to create objects or
+arrange classes into hierarchies.
+
+    Class.superclass # => Module
+
+
+
+>
+What's an object? It's a bunch of instance variables, plus a link to a class.
+The object's methods don't live in the object - they live in the object's class,
+where they're called the instance methods of the class.
+
+>
+What's a class? It's an object (an instance of Class), plus a list of instance
+methods and a link to a superclass. Class is a subclass of Module, so a class is
+also a module.
 
 
 

@@ -833,6 +833,20 @@ _I'm not sure about this advice, what if you have lots of foreign key
 constraints, or models that are closely tied together_
 
 
+__Left off, Using test doubles as mocks and stubs__
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Effective Ruby
@@ -2355,8 +2369,116 @@ Does "creating objects without specifying the exact class of object" mean that
 every factory is capable of creating multiple types of objects, or that the
 factory name doesn't specify the class type of the object returned?
 
+>
+The key thing that we discovered in this chapter is how both of these patterns
+morphed in Ruby’s dynamic environment—specifically, how they became much sim-
+pler. While the GoF concentrated on inheritance-based implementations of their
+factories, we can get the same results with much less code by taking
+advantage of the fact that in Ruby, classes are just objects. In Ruby we can
+look up classes by name, pass them around, and store them away for future use.
+
+
+##### [Builder](http://en.wikipedia.org/wiki/Builder_pattern)
+
+>
+The builder pattern is an object creation software design pattern. Unlike the
+abstract factory pattern and the factory method pattern whose intention is to
+enable polymorphism, the intention of the builder pattern is to find a solution
+to the telescoping constructor anti-pattern. The telescoping constructor
+anti-pattern occurs when the increase of object constructor parameter
+combination leads to an exponential list of constructors. Instead of using
+numerous constructors, the builder pattern uses another object, a builder, that
+receives each initialization parameter step by step and then returns the
+resulting constructed object at once.
+
+Builder pattern is like a wind-up constructor.  I'm not sure how the following
+code solves the "telescoping constructor anti-pattern" mentioned above.  I'm
+not sure how the following code solves anything at all.  Why not just allow the
+Computer class itself to build its object step by step?
+
+    class Computer
+
+      def initialize(drive_size, cd, memory)
+        @drive_size, @cd, @memory = drive_size, cd, memory
+      end
+
+    end
+
+    class ComputerBuilder
+
+      attr_accessor :drive_size, :cd, :memory
+
+      def build
+        Computer.new(self.drive_size, self.cd, self.memory)
+      end
+
+    end
+
+    builder = ComputerBuilder.new
+    builder.drive_size = 700
+    builder.cd = false
+    builder.memory = 1000
+    computer = builder.build
+
+
+Good rationale for Builder Pattern from wikipedia
+
+>
+The builder pattern has another benefit. It can be used for objects that
+contain flat data (html code, SQL query, X.509 certificate...), that is to say,
+data that can't be easily edited. This type of data cannot be edited step by
+step and must be edited at once. The best way to construct such an object is to
+use a builder class.
+
+>
+The idea behind the Builder pattern is that if your object is hard to build, if
+you have to write a lot of code to configure each object, then you should
+factor all of that creation code into a separate class, the builder.
+
+>
+Builders, because they are in control of configuring your object, can also
+prevent you from constructing an invalid object.
+
+
+##### [Interpreter Pattern](http://en.wikipedia.org/wiki/Interpreter_pattern)
+
+>
+The Interpreter pattern is built around a very simple idea: Some programming
+problems are best solved by creating a specialized language and expressing
+the solution in that language.
+
+>
+Another clue that your problem might be right for the Interpreter pattern is
+that you find yourself creating lots of discrete chunks of code, chunks that
+seem easy enough to write in themselves, but which you find yourself combining
+in an ever expanding array of combinations. Perhaps a simple interpreter could
+do all of the combining work for you.
+
+>
+Interpreters typically work in two phases. First, the parser reads in the
+program text and produces a data structure, called an abstract syntax tree
+(AST). 
+
+__I'm skipping most of this because I think ruby DSL's are a better option for
+the rare occasion that the Interpreter Pattern would be applicable.  And this
+stuff is so challanging that I'll forget it by tomorrow anyway.__
+
+
+##### Domain Specific Languages Chapter
+
+Mostly skipping for now, maybe go back to it later.  I've delt with DSL often.
+
+
+##### Meta-programming Chapter
+
+Skipping.  Will do more with meta-programming with more indepth sources.
+
+
+##### Convention Over Configuration Chapter
+
+I'm a rails developer.  This stuff looks too familiar. 
+
 
 ## Metaprogramming Ruby
-
 
 Start here

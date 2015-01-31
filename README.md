@@ -879,7 +879,6 @@ Three types here:
 
 
 >
-
 Using spies mitigates a common criticism of mock-object testing, which is that
 it can be difficult to look at a mock test and see exactly what behavior is
 being tested for. (I don't see how this is more clear that an ordinary mock,
@@ -887,7 +886,6 @@ doesn't a spy just break up a partial mock into two parts?)
 
 
 >
-
 In RSpec, as in many Ruby double libraries, there are two kinds of fake
 objects. You can create entire objects that exist only to be stubs, which we'll
 call full doubles, or you can stub specific methods of existing objects, which
@@ -895,7 +893,6 @@ we'll call partial doubles.
 
 
 >
-
 A partial double is useful when you want to use a "real" ActiveRecord object
 but you have one or two dangerous or expensive methods you want to bypass.  A
 full double is useful when you're testing that your code works with a specific

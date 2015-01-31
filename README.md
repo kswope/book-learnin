@@ -408,6 +408,9 @@ there is a need for the object to be in the database during the test.
 14. Avoid defining associations automatically in factory_girl definitions. Set
 them test by test, as needed. You’ll wind up with more manageable test data.
 
+15. Use partial doubles when you want to ensure most of your real object
+behavior. Use full doubles when the behavior of the stubbed object doesn't
+matter - only its public interface does.
 
 
 -------
@@ -853,6 +856,85 @@ method call instead of a stub, using expect instead of allow:
     expect(thing).to receive(:name).and_return("Fred")
 
 
+>
+There is a third test-double pattern, called a spy. A spy is often declared like
+a stub, but allows you to specify a testable expectation later in the test. Typically,
+we would place the body of the test in between.
+
+    allow(thing).to receive(:name).and_return("Fred")
+    # body of test
+    expect(thing).to have_received(:name)
+
+Three types here:
+
+  allow(thing).to receive(:name).and_return("Fred")
+
+
+  expect(thing).to receive(:name).and_return("Fred")
+
+
+  allow(thing).to receive(:name).and_return("Fred")
+  ...
+  expect(thing).to have_received(:name)
+
+
+>
+
+Using spies mitigates a common criticism of mock-object testing, which is that
+it can be difficult to look at a mock test and see exactly what behavior is
+being tested for. (I don't see how this is more clear that an ordinary mock,
+doesn't a spy just break up a partial mock into two parts?)
+
+
+>
+In RSpec, as in many Ruby double libraries, there are two kinds of fake
+objects. You can create entire objects that exist only to be stubs, which we'll
+call full doubles, or you can stub specific methods of existing objects, which
+we'll call partial doubles.
+
+
+>
+A partial double is useful when you want to use a "real" ActiveRecord object
+but you have one or two dangerous or expensive methods you want to bypass.  A
+full double is useful when you're testing that your code works with a specific
+API rather than a specific object - by passing in a generic object that
+responds to only certain methods, you make it hard for the code to assume
+anything about the structure of the objects being coordinated with.
+
+
+
+Creating full double
+
+    twin = double(first_name: "Paul", weight: 100)
+
+
+For when you know your double needs to mimic a specific object, RSpec provides
+the concept of a verifying double. A verifying double checks to see whether
+messages passed to the double are actually real methods in the application.
+RSpec has a few methods to allow you to declare what to verify the double
+against:
+
+    instance_twin = instance_double("User")
+    instance_twin = instance_double(User)
+    class_twin = class_double("User")
+    class_twin = class_double(User)
+    object_twin = object_double(User.new)
+
+_instance_double will not recognize methods defined via method_missing, object_double will_
+
+instance_double uses method_defined? and class_double uses responds_to?
+
+
+In addition to verifying the existence of the method, RSpec double verification
+ensures that the arguments passed to the method are valid. The doubled
+method will also have the same public/protected/private visibility as the
+original method.  _(How does it do this?)_
+
+
+>
+You might use a full double object to stand in for an entire object that is
+unavailable or prohibitively expensive to create or call in the test
+environment.
 
 
 
@@ -860,6 +942,11 @@ method call instead of a stub, using expect instead of allow:
 
 
 
+
+
+
+
+<!-- END PRESCRIPTIONS -->
 
 
 ## Effective Ruby

@@ -2544,5 +2544,9 @@ What's a class? It's an object (an instance of Class), plus a list of instance
 methods and a link to a superclass. Class is a subclass of Module, so a class is
 also a module.
 
+ancestors looks helpful
+
+    one = Class.new
+    one.class.ancestors => [Class, Module, Object, PP::ObjectMixin, Kernel, BasicObject]
 
 

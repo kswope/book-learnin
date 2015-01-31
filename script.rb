@@ -2,5 +2,24 @@
 
 require 'pp'
 
+# One = Class.new # implicit
+class One
+ 
+ def _superclass
+  superclass
+ end 
 
-puts '#3, the *Magic, Number*?'.gsub(/[^\w\s]/, '')
+
+end
+
+class Two < One
+end
+
+
+
+pp One.class # => Class
+pp One.superclass # => Class
+pp One.new.class # => One
+pp Two.superclass # => Object
+
+

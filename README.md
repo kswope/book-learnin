@@ -834,6 +834,7 @@ associations.
 _I'm not sure about this advice, what if you have lots of foreign key
 constraints, or models that are closely tied together_
 
+#### Stubs, Mocks, Spies
 
 
 >

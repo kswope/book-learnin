@@ -412,6 +412,13 @@ them test by test, as needed. You’ll wind up with more manageable test data.
 behavior. Use full doubles when the behavior of the stubbed object doesn't
 matter - only its public interface does.
 
+16. The use of the allow_any_instance_of stub modifier often means the
+underlying code being tested could be refactored with a more useful method to
+stub.
+
+17. If you're stubbing methods that do not belong to your program, think about
+whether the code would be better if restructured to wrap the external behavior.
+
 
 -------
 
@@ -882,7 +889,7 @@ Three types here:
 Using spies mitigates a common criticism of mock-object testing, which is that
 it can be difficult to look at a mock test and see exactly what behavior is
 being tested for. (I don't see how this is more clear that an ordinary mock,
-doesn't a spy just break up a partial mock into two parts?)
+doesn't a spy just turn a stub into a mock?)
 
 
 >
@@ -934,6 +941,40 @@ original method.  _(How does it do this?)_
 You might use a full double object to stand in for an entire object that is
 unavailable or prohibitively expensive to create or call in the test
 environment.
+
+
+Partial stub example (or is it a partial double spy?)
+
+    # this is a pointless test
+    it "stubs an object" do
+      project = Project.new(name: "Project Greenlight")
+      allow(project).to receive(:name) 
+      expect(project.name).to be_nil # <--- this is pointless, only testing rspec-mocks
+    end
+
+
+Stubbing instances of an Class
+
+    allow_any_instance_of(Project).to receive(:save).and_return(false)
+
+The RSpec docs explicitly recommend not using this feature if possible, since
+it is "the most complicated feature of rspec-mocks, and has historically
+received the most bug reports."
+
+
+A very common use of stub objects is to simulate exception conditions. If you
+want your stubbed method to raise an exception, you can use the and_raise
+method, which takes an exception class and an optional message:
+
+    allow(stubby).to receive(:user_count).and_raise(Exception, "oops")
+
+
+
+
+
+
+
+
 
 
 

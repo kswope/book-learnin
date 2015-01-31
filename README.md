@@ -2481,72 +2481,48 @@ I'm a rails developer.  This stuff looks too familiar.
 
 ## Metaprogramming Ruby
 
-    class Greeting
-      def initialize(text)
-        @text = text
-      end
-      def welcome
-        @text
-      end
-    end
-    my_object = Greeting.new("Hello")
-    my_object.class # => Greeting
-    my_object.class.instance_methods(false) # => [:welcome]
-    my_object.instance_variables # => [:@text]
+* An object is composed of a bunch of instance variables and a link to a class.
+
+* The methods of an object live in the object’s class. (From the point of view
+of the class, they’re called instance methods.)
+
+* The class itself is just an object of class Class. The name of the class is
+just a constant.
+
+* Class is a subclass of Module. A module is basically a package of methods.
+In addition to that, a class can also be instantiated (with new) or arranged in
+a hierarchy (through its superclass).
+
+* Constants are arranged in a tree similar to a file system, where the names
+of modules and classes play the part of directories and regular constants play
+the part of files.
+
+* Each class has an ancestors chain, beginning with the class itself and going
+up to BasicObject.
+
+* When you call a method, Ruby goes right into the class of the receiver and
+then up the ancestors chain, until it either finds the method or reaches the
+end of the chain.
+
+* When you include a module in a class, the module is inserted in the ancestors
+chain right above the class itself. When you prepend the module, it is inserted
+in the ancestors chain right below the class.
+
+* When you call a method, the receiver takes the role of self.
+
+* When you’re defining a module (or a class), the module takes the role of
+self.
+
+* Instance variables are always assumed to be instance variables of self.
+
+* Any method called without an explicit receiver is assumed to be a method of
+self.
+
+* Refinements are like pieces of code patched right over a class, and they
+override normal method lookup. On the other hand, a Refinement works in a
+limited area of the program: the lines of code between the call to using and
+the end of the file, or the end of the module definition.
 
 
-You can do this if you want:
-
-    3.times do
-      class C
-        puts "Hello"
-      end
-    end
-
-
->
-In a sense, the class keyword in Ruby is more like a scope operator than a
-class declaration. Yes, it creates classes that don't yet exist, but you might
-argue that it does this as a pleasant side effect. For class, the core job is
-to move you in the context of the class, where you can define methods.
-
-
->
-The methods of an object are also the instance methods of its class. In turn,
-this means that the methods of a class are the instance methods of Class:
-
-    # The "false" argument here means: ignore inherited methods
-    Class.instance_methods(false) # => [:allocate, :new, :superclass]
-
-    Array.superclass # => Object
-    Object.superclass # => BasicObject
-    BasicObject.superclass # => nil
-
-
-
->
-The superclass of Class is Module - which is to say, every class is also a
-module.  To be precise, a class is a module with three additional instance
-methods (new, allocate, and superclass) that allow you to create objects or
-arrange classes into hierarchies.
-
-    Class.superclass # => Module
-
-
-
->
-What's an object? It's a bunch of instance variables, plus a link to a class.
-The object's methods don't live in the object - they live in the object's class,
-where they're called the instance methods of the class.
-
->
-What's a class? It's an object (an instance of Class), plus a list of instance
-methods and a link to a superclass. Class is a subclass of Module, so a class is
-also a module.
-
-ancestors() looks helpful
-
-    one = Class.new
-    one.class.ancestors => [Class, Module, Object, PP::ObjectMixin, Kernel, BasicObject]
 
 

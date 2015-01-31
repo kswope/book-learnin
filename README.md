@@ -408,6 +408,8 @@ there is a need for the object to be in the database during the test.
 14. Avoid defining associations automatically in factory_girl definitions. Set
 them test by test, as needed. You’ll wind up with more manageable test data.
 
+
+
 -------
 
 
@@ -833,11 +835,21 @@ _I'm not sure about this advice, what if you have lots of foreign key
 constraints, or models that are closely tied together_
 
 
-__Left off, Using test doubles as mocks and stubs__
 
+>
+A __stub__ is a fake object that returns a predetermined value for a method call
+without calling the actual method on an actual object.
 
+    allow(thing).to receive(:name).and_return("Fred")
 
+>
+A __mock__ is similar to a stub, but in addition to returning the fake value, a
+mock object sets a testable expectation that the method being replaced will
+actually be called in the test. If the method is not called, the mock object
+triggers a test failure. You can write the following snippet to create a mocked
+method call instead of a stub, using expect instead of allow:
 
+    expect(thing).to receive(:name).and_return("Fred")
 
 
 

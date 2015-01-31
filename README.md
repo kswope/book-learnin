@@ -867,15 +867,15 @@ we would place the body of the test in between.
 
 Three types here:
 
-  allow(thing).to receive(:name).and_return("Fred")
+    allow(thing).to receive(:name).and_return("Fred")
 
 
-  expect(thing).to receive(:name).and_return("Fred")
+    expect(thing).to receive(:name).and_return("Fred")
 
 
-  allow(thing).to receive(:name).and_return("Fred")
-  ...
-  expect(thing).to have_received(:name)
+    allow(thing).to receive(:name).and_return("Fred")
+    ...
+    expect(thing).to have_received(:name)
 
 
 >

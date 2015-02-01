@@ -2681,3 +2681,22 @@ back to it later.__
 
 
 ## Pickaxe (Part III Ruby Crystalized)
+
+>
+Ruby expressions and statements are terminated at the end of a line unless the
+parser can determine that the statement is incomplete, such as if the last
+token on a line is an operator or comma.
+
+Must be why this works
+
+    mls = "line one\n" + 
+          "line two\n"
+
+And this is a syntax error
+
+    mls =   "line one\n"
+          + "line two\n"
+
+    
+
+

@@ -2,24 +2,10 @@
 
 require 'pp'
 
-# One = Class.new # implicit
-class One
- 
- def _superclass
-  superclass
- end 
 
 
-end
+mls = "line one\n" + 
+      "line two\n"
 
-class Two < One
-end
-
-
-
-pp One.class # => Class
-pp One.superclass # => Class
-pp One.new.class # => One
-pp Two.superclass # => Object
-
+puts mls
 

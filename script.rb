@@ -3,7 +3,8 @@
 
 require 'pp'
 
-p %w{one two three}
-p %i{one two three}
-p %I{one two three}
+
+p ARGV
+p ARGV[0]
+p ARGV.length
 

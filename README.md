@@ -2683,7 +2683,40 @@ back to it later.__
 
 ## Pickaxe Part I Ruby.new
 
+__skimming...__
 
+Default value of Hash
+
+    histogram = Hash.new(0) # The default value is zero
+
+Don't forget there's a sub() along with that gsub()
+
+    newline = line.sub(/Perl/, 'Ruby') # replace first 'Perl' with 'Ruby'
+    newerline = newline.gsub(/Python/, 'Ruby') # replace every 'Python' with 'Ruby'
+
+
+You have many ways to read input into your program. Probably the most traditional is to
+use the method gets, which returns the next line from your program's standard input stream:
+
+    line = gets
+    print line
+
+gets returns nil when done, so you can use this
+
+    while line = gets
+      print line
+    end
+
+ARGV contains each of the arguments passed to the running program
+
+    p ARGV #=> [arg1, arg2, arg3]
+    p ARGV[0] #=> arg1
+    p ARGV.length #=> 3
+
+
+
+
+<!-- END Pickaxe Part I -->
 
 
 

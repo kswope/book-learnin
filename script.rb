@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 
-p DATA.readline.map(&:chomp)
 
-__END__
-One
-Two
-Three
+require 'pp'
+
+p %w{one two three}
+p %i{one two three}
+p %I{one two three}
+

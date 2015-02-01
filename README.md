@@ -13,7 +13,7 @@ want to waste a github private slot, so don't look._
 - [FactoryGirl Docs](#factorygirl-docs)
 - [Design Patterns In Ruby](#design-patterns-in-ruby)
 - [Metaprogramming Ruby](#metaprogramming-ruby)
-- [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
+- [Pickaxe](#pickaxe)
 
 -----
 
@@ -2680,7 +2680,13 @@ new-to-me material is spread extra thin because of the plotting... might go
 back to it later.__
 
 
-## Pickaxe (Part III Ruby Crystalized)
+## Pickaxe
+
+
+
+
+
+### Part III Ruby Crystalized
 
 >
 Ruby expressions and statements are terminated at the end of a line unless the
@@ -2718,5 +2724,34 @@ prints
     
     ["One", "Two", "Three"]
 
+Every Ruby source file can declare blocks of code to be run as the file is
+being loaded (the BEGIN blocks) and after the program has finished executing
+(the END blocks):
+
+    BEGIN {
+
+    }
+
+    END {
+
+    }
+
+
+This I didn't know, you can drop the Q when %Q for a double quotes string
+    
+    var = 'here'
+    puts %Q{var = #{var}} #=> "var = here"
+    puts %{var = #{var}} #=> "var = here"
+
+
+Array of symbols in Ruby 2 is similar to array of strings
+
+    %w{one two three} #=> ["one", "two", "three"]
+    %i{one two three} #=> [:one, :two, :three]
+    %I{one two three} #=> [:one, :two, :three]
+
+Unlike their lowercase counterparts, %I, %Q, and %W will preform interpolation:
+
+    %I{ one digit#{1+1} three } # => [:one, :digit2, :three]
 
 

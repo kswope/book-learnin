@@ -2673,10 +2673,10 @@ define_method is private so you cant define method on another class unless
 you use the send() trick.  Same with method_missing.
 
 
-_Dropping this book for now.  Getting fatigued by the plot driven slow motion
+__Dropping this book for now.  Getting fatigued by the plot driven slow motion
 explainations, probably because I'm already familiar with the topic, so
 new-to-me material is spread extra thin because of the plotting... might go
-back to it later._
+back to it later.__
 
 
 ## Pickaxe (Part III Ruby Crystalized)

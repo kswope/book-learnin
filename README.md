@@ -2674,4 +2674,6 @@ you use the send() trick.  Same with method_missing.
 
 
 _Dropping this book for now.  Getting fatigued by the plot driven slow motion
-explainations, might go back to it later._
+explainations, probably because I'm already familiar with the topic, so
+new-to-me material is thread thin extra thin because of the plotting... might
+go back to it later._

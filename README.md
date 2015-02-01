@@ -2663,6 +2663,15 @@ override normal method lookup. On the other hand, a Refinement works in a
 limited area of the program: the lines of code between the call to using and
 the end of the file, or the end of the module definition.
 
+You can use public_send in place of send if you want to be careful.
+
+There is one important reason to use define_method over the more familiar def
+keyword: define_method allows you to decide the name of the defined method at
+runtime.
+
+define_method is private so you cant define method on another class unless
+you use the send() trick.  Same with method_missing.
 
 
-
+_Dropping this book for now.  Getting fatigued by the plot driven slow motion
+explainations, might go back to it later._

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-p DATA.readlines.map(&:chomp)
+p DATA.readline.map(&:chomp)
 
 __END__
 One

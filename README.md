@@ -13,8 +13,8 @@ want to waste a github private slot, so don't look._
 - [FactoryGirl Docs](#factorygirl-docs)
 - [Design Patterns In Ruby](#design-patterns-in-ruby)
 - [Metaprogramming Ruby](#metaprogramming-ruby)
-- [Pickaxe](#pickaxe-part-i-rubynew)
-- [Pickaxe](#pickaxe-part-iii-ruby-crystalized)
+- [Pickaxe Part I Ruby.new](#pickaxe-part-i-rubynew)
+- [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
 
 -----
 
@@ -2687,7 +2687,7 @@ back to it later.__
 
 
 
-## Part III Ruby Crystalized
+## Pickaxe Part III Ruby Crystalized
 
 >
 Ruby expressions and statements are terminated at the end of a line unless the

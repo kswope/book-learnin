@@ -1,11 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'pp'
+p DATA.readlines.map(&:chomp)
 
-
-
-mls = "line one\n" + 
-      "line two\n"
-
-puts mls
-
+__END__
+One
+Two
+Three

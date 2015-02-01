@@ -2697,6 +2697,26 @@ And this is a syntax error
     mls =   "line one\n"
           + "line two\n"
 
+>    
+If Ruby comes across a line anywhere in the source containing just __END__,
+with no leading or trailing whitespace, it treats that line as the end of the
+program—any subsequent lines will not be treated as program code.
+
+However, these lines can be read into the running pro- gram using the global IO
+object DATA
+
+    #!/usr/bin/env ruby
+
+    p DATA.readlines.map(&:chomp)
+
+    __END__
+    One
+    Two
+    Three
+
+prints
     
+    ["One", "Two", "Three"]
+
 
 

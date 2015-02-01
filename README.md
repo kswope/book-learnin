@@ -13,7 +13,8 @@ want to waste a github private slot, so don't look._
 - [FactoryGirl Docs](#factorygirl-docs)
 - [Design Patterns In Ruby](#design-patterns-in-ruby)
 - [Metaprogramming Ruby](#metaprogramming-ruby)
-- [Pickaxe](#pickaxe)
+- [Pickaxe](#pickaxe-part-i-rubynew)
+- [Pickaxe](#pickaxe-part-iii-ruby-crystalized)
 
 -----
 

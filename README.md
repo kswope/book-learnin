@@ -2680,13 +2680,13 @@ new-to-me material is spread extra thin because of the plotting... might go
 back to it later.__
 
 
-## Pickaxe
+## Pickaxe Part I Ruby.new
 
 
 
 
 
-### Part III Ruby Crystalized
+## Part III Ruby Crystalized
 
 >
 Ruby expressions and statements are terminated at the end of a line unless the

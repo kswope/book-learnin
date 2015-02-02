@@ -2742,7 +2742,7 @@ elements are removed.
 
 Word counter one liner I just made up
 
-  "one two two three three three".scan(/[\w']+/).inject(Hash.new(0)){|a,v| a[v] +=1; a }
+    "one two two three three three".scan(/[\w']+/).inject(Hash.new(0)){|a,v| a[v] +=1; a }
 
 
 

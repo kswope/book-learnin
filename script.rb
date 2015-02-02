@@ -4,7 +4,19 @@
 require 'pp'
 
 
-p ARGV
-p ARGV[0]
-p ARGV.length
+module MyModule
 
+  MyConst = :here
+
+  def mymeth
+    p 'in mymeth'
+  end
+
+end
+
+
+p MyModule::MyConst
+
+# include MyModule
+# mymeth
+p MyConst

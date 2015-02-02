@@ -2744,9 +2744,180 @@ Word counter one liner I just made up
 
     "one two two three three three".scan(/[\w']+/).inject(Hash.new(0)){|a,v| a[v] +=1; a }
 
+Block local variables (does anybody care?, maybe?, be more confident?)
+
+    square = "some shape"
+    sum = 0
+    [1, 2, 3, 4].each do |value; square| #<-- can't touch outer square now
+      square = value * value
+      sum += square
+    end
+
+Add a buncha numbers together
+
+    [1,3,5,7].inject(:+) # => 16
+
+
+#### Enumerators—External Iterators
+
+>
+It’s also worth spending another paragraph looking at why Ruby’s internal
+iterators aren’t always the best solution. One area where they fall down badly
+is where you need to treat an iterator as an object in its own right (for
+example, passing the iterator into a method that needs to access each of the
+values returned by that iterator). It’s also difficult to iterate over two
+collections in parallel using Ruby’s internal iterator scheme.  (When would
+anybody ever want to pass an external iterator to a method?)
+
+You can create an Enumerator object by calling the to_enum method (or its
+synonym, enum_for) on a collection such as an array or a hash:
+
+    a = [ 1, 3, "cat" ]
+    h = { dog: "canine", fox: "vulpine" }
+
+    # Create Enumerators
+    enum_a = a.to_enum
+    enum_h = h.to_enum
+    enum_a.peek # => 1
+    enum_a.entries # => [ 1, 3, "cat" ]
+    enum_a.next # => 1
+    enum_h.next # => [:dog, "canine"] enum_a.next # => 3
+    enum_h.next # => [:fox, "vulpine"]
+
+There's also peek, enteries
+
+
+Most of the internal iterator methods—the ones that normally yield successive
+values to a block—will also return an Enumerator object if called without a
+block:
+
+    e = [1,2,3].each_with_index
+    e.next #=> [1, 0]
+
+
+Ruby has a method called loop that does nothing but repeatedly invoke its
+block. Typically, your code in the block will break out of the loop when some
+condition occurs. But loop is also smart when you use an Enumerator—when an
+enumerator object runs out of values inside a loop, the loop will terminate
+cleanly. The following example shows this in action—the loop ends when the
+three-element enumerator runs out of values. _You can also handle this in your
+own iterator methods by rescuing the StopIteration exception, but because we
+haven’t talked about exceptions yet, we won’t go into details here._
+
+    short_enum = [1, 2, 3].to_enum 
+    long_enum = ('a'..'z').to_enum
+    loop do
+      puts "#{short_enum.next} - #{long_enum.next}"
+    end
+
+Note from http://www.ruby-doc.org/core-2.2.0/Enumerator.html
+Chaining enumerators lets you chain them together to create
+new possiblities.
+
+Enumerator mixes in Enumerable, and has these methods
+
+    each
+    each_with_index
+    with_index # shorter version
+    next
+    peek
+    rewind
+    each_with_object
+    with_object
+
+Example
+
+    %w[foo bar baz].map.with_index { |w, i| "#{i}:#{w}" }
+
+
+#### Bocks for Transactions
+
+    # read the counter using read lock
+    File.open("counter", "r") {|f|
+      f.flock(File::LOCK_SH)
+      p f.read
+    }
+
+
+#### Blocks Can Be Objects
+
+Here’s an example where we create a Proc object in one instance method and
+store it in an instance variable. We then invoke the proc from a second
+instance method.
+
+    class ProcExample
+      def pass_in_block(&action)
+        @stored_proc = action
+      end
+      def use_proc(parameter)
+        @stored_proc.call(parameter)
+      end 
+    end
+
+    eg = ProcExample.new
+    eg.pass_in_block { |param| puts "The parameter is #{param}" } 
+    eg.use_proc(99)
+
+
+#### Blocks can be closures
+
+    def power_proc_generator
+      value = 1
+      lambda { value += value }
+    end
+
+    power_proc = power_proc_generator
+
+    puts power_proc.call #=> 2
+    puts power_proc.call #=> 4
+    puts power_proc.call #=> 8
+
+
+#### An Alternative Notation for lambda
+
+    lambda { |params| ... }
+
+    -> params { ... }
+    proc1 = -> arg { puts "In proc1 with #{arg}" }
+    proc2 = -> arg1, arg2 { puts "In proc2 with #{arg1} and #{arg2}" }
+    proc3 = ->(arg1, arg2) { puts "In proc3 with #{arg1} and #{arg2}" }
+
+    def my_while(cond, &body)
+      while cond.call
+        body.call
+      end 
+    end
+
+    a = 0
+
+    my_while ->{ a<3} do
+      puts a
+      a += 1
+    end
+
+
+Oh shit, procs can take blocks
+
+    proc1 = lambda do |a, *b, &block|
+      puts "a = #{a.inspect}"
+      puts "b = #{b.inspect}" 
+      block.call
+    end
+
+    proc1.call(1, 2, 3, 4) { puts "in block1" }
+
+    # new syntax
+    proc2 = -> a, *b, &block do 
+      puts "a = #{a.inspect}"
+      puts "b = #{b.inspect}" 
+      block.call
+    end
+
+#### Sharing Functionality, Inheritance, Modules, and Mixins
 
 
 
+page 76
 
 <!-- END Pickaxe Part I -->
 

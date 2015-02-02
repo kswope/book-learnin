@@ -975,20 +975,14 @@ method, which takes an exception class and an optional message:
 
 
 
+page 128
 
 
 
 
 
 
-
-
-
-
-
-
-
-<!-- END PRESCRIPTIONS -->
+<!-- END Prescriptions -->
 
 
 ## Effective Ruby
@@ -2715,7 +2709,39 @@ ARGV contains each of the arguments passed to the running program
 
 
 
-page 37
+Don't forget slicing an array
+
+    a = [ 1, 3, 5, 7, 9 ] 
+    a[1,3] #=>[3,5,7] 
+    a[3, 1] # => [7] 
+    a[-3,2] #=>[5,7]
+
+Same as string, but doesn't accept regex
+
+    s = '12345'
+    s[0,2] #=> '12'
+    s[/../] #=> '12' #<-- won't work with an array (don't know how it could)
+
+Splat seems to work, makes sense, Array.[] is just a method
+
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10][ *[0,3] ]
+
+Select non-adjacent values in array with value_at
+
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].values_at(1,3,5) #=> [1, 3, 5]
+
+Ruby version of perl's splice - If the index to [ ]= is two numbers (a __start__
+and a __length__) or a range, then those elements in the original array are
+replaced by whatever is on the right side of the assignment. If the length is
+zero, the right side is inserted into the array before the start position; no
+elements are removed.
+
+    a = [0, 1, 2, 3, 4, 5]
+    a[2,4] = :cat
+    a # => [0, 1, :cat] 
+
+
+
 
 
 <!-- END Pickaxe Part I -->

@@ -3009,9 +3009,63 @@ Do the same thing but with Forwardable
     end
 
 
+A mixin’s instance variables can clash with those of the host class or with
+those of other mixins.
+
+For the most part, mixin modules don’t use instance variables directly—they use
+accessors to retrieve data from the client object. But if you need to create a
+mixin that has to have its own state, ensure that the instance variables have
+unique names to distinguish them from any other mixins in the system (perhaps
+by using the module’s name as part of the variable name).
+
+In general, a mixin that requires its own state is not a mixin—it should be
+written as a class.
+
+Liskov Substitution Principle: What this means is that you should be able to
+substitute an object of a child class wher- ever you use an object of the
+parent class—the child should honor the parent’s contract.
+
+In the real world, there really aren’t that many true is a relationships.
+Instead, it’s far more common to have has a or uses a relationships between
+things. The real world is built using composition, not strict hierarchies.
 
 
 
+Finally, we’ll offer a warning for Perl users. Strings that contain just digits
+are not automatically converted into numbers when used in expressions.  Use the
+Integer() *method* to convert the strings to integers.  Why not to_i ?
+
+3.times { print "X " }
+1.upto(5).to_a #=> [1, 2, 3, 4, 5] 
+99.downto(95).to_a #=> [99, 98, 97, 96, 95]
+50.step(80, 5).to_a # => [50, 55, 60, 65, 70, 75, 80]
+
+10.downto(7).with_index.to_a #=> [[10, 0], [9, 1], [8, 2], [7, 3]]
+
+
+Ranges and enumerators
+
+e = (1..10).to_enum
+e.next #=> 1
+e.next #=> 2
+e.next #=> 3
+
+Ranges as Conditions  (I don't understand this at all, maybe more to come)
+
+As well as representing sequences, ranges can also be used as conditional
+expressions. Here, they act as a kind of toggle switch—they turn on when the
+condition in the first part of the range becomes true, and they turn off when
+the condition in the second part becomes true. For example, the following code
+fragment prints sets of lines from standard input, where the first line in each
+set contains the word start and the last line contains the word end:
+
+    while line = gets
+      puts line if line =~ /start/ .. line =~ /end/
+    end
+
+
+
+p. 92
 
 
 <!-- END Pickaxe Part I -->

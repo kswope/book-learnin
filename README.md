@@ -2915,9 +2915,45 @@ Oh shit, procs can take blocks
 
 #### Sharing Functionality, Inheritance, Modules, and Mixins
 
+The Comparable mixin adds the comparison operators (<, <=, ==, >=, and >), as
+well as the method between?, to a class.  You must define <=> 'method', which
+will also work for sort.
+
+    class Pair
+
+      include Comparable
+      attr_accessor :data
+
+      def initialize(letter, number)
+        @data = [letter, number]
+      end
+
+      def <=>(other)
+        @data[1] <=> other.data[1]
+      end
+
+      def inspect
+        "[#{data[0]},#{data[1]}]"
+      end
+
+    end
+
+a = Pair.new('a', 2)
+b = Pair.new('b', 3)
+c = Pair.new('c', 1)
+[a,b,c].sort #=> [[c,1], [a,2], [b,3]]
+a > c #=> true
+b > a #=> true
+c < b #=> true
 
 
-page 76
+
+
+
+
+
+
+
 
 <!-- END Pickaxe Part I -->
 

@@ -3,21 +3,11 @@
 
 require 'pp'
 
-class VowelFinder
-  include Enumerable
+m = 'abcdef'.match(/(cd)/)
 
-  def initialize(string)
-    @string = string
-  end
-
-  def each
-    @string.scan(/[aeiou]/) do |vowel|
-      yield vowel
-    end
-  end
-end
-
-vf = VowelFinder.new('the quick brown fox jumped over the lazy dog')
-p vf.inject(:+)
-p vf.each(&:upcase)
-p vf.map(&:upcase)
+p m.captures[0] #=> "cd"
+p m[0] #=> "cd"
+p m.captures[1] #=> nil
+p m[1] #=> "cd"
+p m.captures[2] #=> nil
+p m[2] #=> nil

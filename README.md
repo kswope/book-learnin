@@ -3064,8 +3064,93 @@ set contains the word start and the last line contains the word end:
     end
 
 
+Ranges as intervals
 
-p. 92
+    (1..10) === 5 # => true
+    (1..10) === 15 # => false
+
+    case car_age
+    when 0..0
+      puts "Mmm.. new car smell"
+    when 1..2
+      puts "Nice and new"
+    when 3..9
+      puts "Reliable but slightly dinged"
+    when 10..29
+      puts "Clunker"
+    else
+      puts "Vintage gem"
+    end
+
+
+Don't forget there's also a !~ along with =~
+
+    File.foreach("testfile").with_index do |line, index|
+      puts "#{index}: #{line}" if line !~ /on/
+    end
+
+
+Unlike sub and gsub, sub! and gsub! return the string only if the pattern was
+matched. If no match for the pattern is found in the string, they return nil
+instead. This means it can make sense (depending on your need) to use the !
+forms in conditions.
+
+
+
+The match operators are defined for both String and Regexp objects.
+
+    /abc/.match "abc" #=> MatchData
+    "abc".match(/abc/) #=> MatchData
+
+Various methods of MatchData
+
+    m = 'abcdef'.match(/(cd)/)
+    m.begin(0) #=> 2
+    m.captures #=> ["cd"]
+    m.regexp #=> /(cd)/
+    m.values_at(0,2,4) #=> ['cd', nil, nil]
+    m.pre_match #=> "ab"
+    m.post_match #=> "ef"
+    m.captures[0] #=> ["cd"]
+    m[0] #=> ["cd"]
+
+MatchData#[] and MatchData.captures are not the same:
+
+    m = 'abcdef'.match(/(cd)/)
+    m.captures[0] #=> "cd"
+    m[0] #=> "cd" (part of string that was matched)
+    m.captures[1] #=> nil
+    m[1] #=> "cd" #=> first memory
+    m.captures[2] #=> nil
+    m[2] #=> nil
+
+    m[0] #=> "cd" (part of string that was matched)
+    m[1] #=> "cd" #=> first memory
+
+
+Earlier we noted that the sequences \1, \2, and so on, are available in the
+pattern, standing for the nth group matched so far. The same sequences can be
+used in the second argument of sub and gsub.
+
+
+    "fred:smith".sub(/(\w+):(\w+)/, '\2, \1') #=> smith, fred
+    "nercpyitno".gsub(/(.)(.)/, '\2\1') #=> encryption
+
+
+_Good section on regexen, but I'll probably forget it all.  I'll remember its
+here in case I need to reference it._
+
+
+
+
+
+page 115 more about methods
+
+
+
+
+
+
 
 
 <!-- END Pickaxe Part I -->

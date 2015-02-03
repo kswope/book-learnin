@@ -24,16 +24,16 @@ class DominantPair
 
 end
 
+require 'forwardable'
 class DominantPairCollection
 
   include Enumerable
 
+  extend Forwardable
+  def_delegators :@pairs, :each
+
   def initialize(pairs)
     @pairs = pairs
-  end
-
-  def each
-    @pairs.each
   end
 
 end
@@ -42,7 +42,9 @@ a = DominantPair.new('a', 2)
 b = DominantPair.new('b', 3)
 c = DominantPair.new('c', 1)
 
-collection = DominantPairCollection([a,b,c])
+collection = DominantPairCollection.new([a,b,c])
 
-p collection
+collection.each do |pair|
+  p pair
+end
 

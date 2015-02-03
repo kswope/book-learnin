@@ -2955,8 +2955,58 @@ implement a meaningful <=> operator, as these methods rely on an ordering
 between members of the collection.
 
 
+    class DominantPairCollection
+
+      include Enumerable
+
+      def initialize(pairs)
+        @pairs = pairs
+      end
+
+      def each
+        @pairs.each do |pair|
+          yield pair
+        end
+      end
+
+    end
+
+    a = DominantPair.new('a', 2)
+    b = DominantPair.new('b', 3)
+    c = DominantPair.new('c', 1)
+
+    collection = DominantPairCollection.new([a,b,c])
+
+    collection.each do |pair|
+      p pair
+    end
 
 
+Do the same thing but with Forwardable
+
+    require 'forwardable'
+    class DominantPairCollection
+
+      include Enumerable
+
+      extend Forwardable
+      def_delegators :@pairs, :each
+
+      def initialize(pairs)
+        @pairs = pairs
+      end
+
+    end
+
+    a = DominantPair.new('a', 2)
+    b = DominantPair.new('b', 3)
+    c = DominantPair.new('c', 1)
+
+    collection = DominantPairCollection.new([a,b,c])
+
+    collection.each do |pair|
+      p pair
+    end
 
 
 

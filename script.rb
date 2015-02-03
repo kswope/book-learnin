@@ -4,9 +4,10 @@
 require 'pp'
 
 
-class Pair
+class DominantPair
 
   include Comparable
+
   attr_accessor :data
 
   def initialize(letter, number)
@@ -23,12 +24,25 @@ class Pair
 
 end
 
-a = Pair.new('a', 2)
-b = Pair.new('b', 3)
-c = Pair.new('c', 1)
-[a,b,c].sort #=> [[c,1], [a,2], [b,3]]
-a > c #=> true
-b > a #=> true
-c < b #=> true
+class DominantPairCollection
 
+  include Enumerable
+
+  def initialize(pairs)
+    @pairs = pairs
+  end
+
+  def each
+    @pairs.each
+  end
+
+end
+
+a = DominantPair.new('a', 2)
+b = DominantPair.new('b', 3)
+c = DominantPair.new('c', 1)
+
+collection = DominantPairCollection([a,b,c])
+
+p collection
 

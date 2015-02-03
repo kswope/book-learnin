@@ -2919,7 +2919,7 @@ The Comparable mixin adds the comparison operators (<, <=, ==, >=, and >), as
 well as the method between?, to a class.  You must define <=> 'method', which
 will also work allow sort.
 
-    class Pair
+    class DominantPair
 
       include Comparable
       attr_accessor :data
@@ -2938,13 +2938,22 @@ will also work allow sort.
 
     end
 
-    a = Pair.new('a', 2)
-    b = Pair.new('b', 3)
-    c = Pair.new('c', 1)
+    a = DominantPair.new('a', 2)
+    b = DominantPair.new('b', 3)
+    c = DominantPair.new('c', 1)
     [a,b,c].sort #=> [[c,1], [a,2], [b,3]]
     a > c #=> true
     b > a #=> true
     c < b #=> true
+
+
+The Enumerable mixin provides collection classes with several traversal and
+searching methods, and with the ability to sort. The class must provide a
+method each, which yields successive members of the collection. If
+Enumerable#max, #min, or #sort is used, the objects in the collection must also
+implement a meaningful <=> operator, as these methods rely on an ordering
+between members of the collection.
+
 
 
 

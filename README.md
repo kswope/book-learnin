@@ -2917,7 +2917,7 @@ Oh shit, procs can take blocks
 
 The Comparable mixin adds the comparison operators (<, <=, ==, >=, and >), as
 well as the method between?, to a class.  You must define <=> 'method', which
-will also work for sort.
+will also work allow sort.
 
     class Pair
 
@@ -2938,13 +2938,13 @@ will also work for sort.
 
     end
 
-a = Pair.new('a', 2)
-b = Pair.new('b', 3)
-c = Pair.new('c', 1)
-[a,b,c].sort #=> [[c,1], [a,2], [b,3]]
-a > c #=> true
-b > a #=> true
-c < b #=> true
+    a = Pair.new('a', 2)
+    b = Pair.new('b', 3)
+    c = Pair.new('c', 1)
+    [a,b,c].sort #=> [[c,1], [a,2], [b,3]]
+    a > c #=> true
+    b > a #=> true
+    c < b #=> true
 
 
 

@@ -21,8 +21,6 @@ end
 
 appender = Appender.new
 
-appender << 'a'
-appender << 'b'
-appender << 'c'
+appender << 'a' << 'b' << 'c'
 
-p appender.data
+p appender.data #=> 'abc'

@@ -3,11 +3,26 @@
 
 require 'pp'
 
-m = 'abcdef'.match(/(cd)/)
 
-p m.captures[0] #=> "cd"
-p m[0] #=> "cd"
-p m.captures[1] #=> nil
-p m[1] #=> "cd"
-p m.captures[2] #=> nil
-p m[2] #=> nil
+class Appender
+
+  attr_accessor :data
+
+  def initialize
+    @data = ''
+  end
+
+  def <<(x)
+    @data += x
+  end
+
+end
+
+
+appender = Appender.new
+
+appender << 'a'
+appender << 'b'
+appender << 'c'
+
+p appender.data

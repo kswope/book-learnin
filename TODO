@@ -5,9 +5,12 @@ AR syntax
 
 hash, array, enumeration: common methods
 
+find other useful stuff in docs
+
 rspec: common assertions
 
 Look into forwardable and delegate
 
 decorators
 http://robots.thoughtbot.com/evaluating-alternative-decorator-implementations-in
+

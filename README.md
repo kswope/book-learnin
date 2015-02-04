@@ -3142,14 +3142,142 @@ here in case I need to reference it._
 
 
 
+You won’t get an immediate error if you start a method name with an uppercase
+letter, but when Ruby sees you calling the method, it might guess that it is a
+constant, not a method invocation, and as a result it may parse the call
+incorrectly.
+
+By convention, methods names starting with an uppercase letter are used for
+type conversion. The Integer method, for example, converts its parameter to an
+integer.
+
+Default arguments values can reference previous arguments.
+
+    def surround(word, pad_width=word.length/2)
+      "[" * pad_width + word + "]" * pad_width
+    end
+
+I know from experience that a argument can be a instance variable
+
+    def my_meth(@my_var)
+      ...
+    end
 
 
-page 115 more about methods
+You can use split to indicate a method that doesn't use any arguments but that
+are perhaps used by a method in a superclass
+
+    class Child < Parent
+      def do_something(*not_used)
+          # our processing
+          super 
+      end
+    end
+
+You can put the splat argument anywhere in a method’s parameter list, allowing
+you to write this:
+
+    def split_apart(first, *splat, last)
+
+If you cared only about the first and last parameters, you could define this
+method using this:
+
+    def split_apart(first, *, last)
+
+Private methods may not be called with a receiver, so they must be methods
+available in the current object. 
+
+As of Ruby 1.9, splat arguments can appear anywhere in the parameter list, and
+you can intermix splat and regular arguments.
+
+Didn't think of it before but a block param is a possible way to interject some
+variable code into a chain 
+
+    if operator =~ /^t/
+      calc = lambda {|n| n*number }
+    else
+      calc = lambda {|n| n+number }
+    end
+    (1..10).collect(&calc).join(", ")
 
 
 
+(This is just wrong)
+If the last argument to a method is preceded by an ampersand, Ruby assumes that
+it is a Proc object. It removes it from the parameter list, converts the Proc
+object into a block, and associates it with the method.
+
+Proof:
+
+    procinator = Object.new
+
+    def procinator.to_proc
+      puts "called to_proc"
+      Proc.new {|x| x}
+    end
 
 
+    p (1..3).map(&procinator) 
+
+    outputs:
+    called to_proc
+    [1, 2, 3]
+
+
+
+Ruby keyword arguments in 2.0!
+
+    def search(field, genre: nil, duration: 120) 
+      p [field, genre, duration ]
+    end
+
+    search(:title)
+    search(:title, duration: 432)
+    search(:title, duration: 432, genre: "jazz")
+
+
+You can collect these extra hash arguments as a hash parameter—just prefix one
+element of your argument list with two asterisks (a double splat).
+
+    def search(field, genre: nil, duration: 120, **rest) 
+      p [field, genre, duration, rest ]
+    end
+
+
+
+### Expressions
+
+
+    a * b + c # => 5
+
+Same as
+
+    (a.*(b)).+(c) # => 5
+
+Define operators like <<
+
+    class Appender
+
+      attr_accessor :data
+
+      def initialize
+        @data = ''
+      end
+
+      def <<(x)
+        @data += x
+      end
+
+    end
+
+
+    appender = Appender.new
+
+    appender << 'a'
+    appender << 'b'
+    appender << 'c'
+
+    p appender.data #=> 'abc'
 
 
 

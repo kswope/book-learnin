@@ -3415,21 +3415,84 @@ case also supports 'then formatting'
            end
 
 
-page 137
+
+Don't forget the statment modifier form of while loop
+
+    x = 0
+    x += 1 while x < 100
+    puts x #=> 100
+
+
+The ruby do-while construct
+
+    print "Hello\n" while false
+    begin
+      print "Goodbye\n"
+    end while false
+
+
+- break: terminates the immediately enclosing loop; control resumes at the
+  statement following the block. 
+
+- redo: repeats the current iteration of the loop from the start but
+  withoutreevaluating the condition or fetching the next element (in an
+iterator). 
+
+- next: skips to the end of the loop, effectively starting the next iteration:
+
+- retry: was removed in 1.9
+
+
+break can return a value
+
+    x = 0
+    y = loop do
+      break(x) if x > 50
+      x += 1
+    end
+
+    p y #=> 51
+
+
+### Exceptions
+
+    raise # <--- reraises current exception
+    raise "My stupid exception" #<---  raises RuntimeError with message
+
+
+Raise a particular exception, using caller to automatically remove the current routine from the stack backtrace (useful for modules)
+
+    raise InterfaceException, "Keyboard failure", caller #<-- particular exception with stacktrace
+
+Remove more from backtrace
+
+    caller[1..-2]
+
+Creating custom exception
+
+    class RetryException < RuntimeError
+      attr :ok_to_retry
+      def initialize(ok_to_retry)
+        @ok_to_retry = ok_to_retry
+      end
+    end
+
+
+Will I ever use catch and throw???
+
+When Ruby encounters a throw, it zips back up the call stack looking for a
+catch block with a matching symbol.  If the throw is called with the optional
+second parameter, that value is returned as the value of the catch.
+
+    x = catch(:mycatch) do
+      throw(:mycatch, :hello)
+    end
+
+    p x #=> hello
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+page 153
 
 
 <!-- END Pickaxe Part I -->

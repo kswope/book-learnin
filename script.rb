@@ -4,17 +4,9 @@
 require 'pp'
 
 
-class MyClass
 
-  def val=(v)
-    @v = v
-    44
-  end
-
+x = catch(:mycatch) do
+  throw(:mycatch, :hello)
 end
 
-
-
-
-o = MyClass.new
-p o.val = 1 #=> 1 (not 44)
+p x #=> hello

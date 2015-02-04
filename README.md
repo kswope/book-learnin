@@ -3280,6 +3280,157 @@ Define operators like <<
     p appender.data #=> 'abc'
 
 
+Note: return self so we can chain
+
+    def <<(x)
+      @data += x
+      self
+    end
+
+    appender << 'a' << 'b' << 'c' << 'd'
+
+
+
+How to define [] and []= methods
+
+    obj = Object.new
+
+    def obj.[](*args)
+      p args
+    end
+
+    obj[1,2,3] #=> [1,2,3]
+
+
+    def obj.[]=(*args)
+      p args # last arg is value of assignment
+    end
+
+    obj[1,2,3] = 4 #=> [1, 2, 3, 4]
+
+
+Ruby is authoritarian about its assignment methods.  The value of an assignment
+is _always_ the value of the parameter, the return value of the method is
+discarded.
+
+    class MyClass
+      def val=(v)
+        @v = v
+        44
+      end
+    end
+
+    o = MyClass.new
+    p o.val = 1 #=> 1 (not 44)
+
+
+
+Assignment isn't so obvious
+
+    a=1,2,3,4   # a=[1,2,3,4] # WTH?  I've been wasting so much time typing brackets
+    b=[1,2,3,4] # b=[1,2,3,4]
+
+    a,b=1,2,3,4    # a=1, b=2 
+    c,=1,2,3,4     # c=1
+
+    # look again
+    c = 1,2,3,4
+    p c #=> [1,2,3,4]
+    c, = 1,2,3,4 #=> value of assignment is [1,2,3,4]
+    p c #=> 1  but c is only 1
+
+Splat works on rvalues
+
+    a, b, c, d, e = *(1..2), 3, *[4, 5] # a=1, b=2, c=3, d=4, e=5
+
+Seems to do something with ranges too
+
+    a = *(1..6)
+    a #=> [1, 2, 3, 4, 5, 6]
+
+Splat can be applied to lvalues too (exactly one - works like a sponge)
+
+    a,*b=1,2,3 # a=1, b=[2,3] 
+    a,*b=1 # a=1, b=[]
+
+    *a,b=1,2,3,4         # a=[1,2,3], b=4
+    c,*d,e=1,2,3,4       # c=1, d=[2,3], e=4
+    f,*g,h,i,j=1,2,3,4   # f=1, g=[], h=2, i=3, j=4
+
+I always forget this thing
+
+    var ||= "default value"
+
+defined? returns useful values too
+
+    defined? 1           #=> "expression"
+    defined? dummy       #=> nil
+    defined? printf      #=> method
+    defined? String      #=> 'constant'
+    defined? $_          #=> 'global-variable'
+    defined? Math::PI    #=> "constant"
+    defined? a = 1       #=>  "assignment"
+    defined? 42.abs      #=> "method"
+    defined? nil         #=> "nil"
+
+In addition to the boolean operators, Ruby objects support comparison using the
+methods ==, ===, <=>, =~, eql?, and equal?  All but <=> are defined in class
+Object but are often overridden by descendants to provide appropriate
+semantics.
+
+Both == and =~ have negated forms, != and !~. Ruby first looks for methods
+called != or !~, calling them if found. If not, it will then invoke either ==
+or =~, negating the result.
+
+
+ruby has a if/then/else control structure? (the then is optional if formatted like below)
+
+    if x == 1 then 
+      do_1
+    elsif x == 2 then 
+      do_2
+    else
+      do_else
+    end
+
+then required for this formatting
+
+    if artist == "Gillespie" then handle = "Dizzy" 
+    elsif artist == "Parker" then handle = "Bird" 
+    else handle = "unknown"
+    end
+
+
+The unless statement does support else, but most people seem to agree that it’s
+clearer to switch to an if statement in these cases.
+
+case also supports 'then formatting'
+
+    kind = case year
+           when 1850..1889 then "Blues"
+           when 1890..1909 then "Ragtime"
+           when 1910..1929 then "New Orleans Jazz" 
+           when 1930..1939 then "Swing"
+           else                 "Jazz"
+           end
+
+
+page 137
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- END Pickaxe Part I -->
 

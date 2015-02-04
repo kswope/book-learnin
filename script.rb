@@ -4,23 +4,17 @@
 require 'pp'
 
 
-class Appender
+class MyClass
 
-  attr_accessor :data
-
-  def initialize
-    @data = ''
-  end
-
-  def <<(x)
-    @data += x
+  def val=(v)
+    @v = v
+    44
   end
 
 end
 
 
-appender = Appender.new
 
-appender << 'a' << 'b' << 'c'
 
-p appender.data #=> 'abc'
+o = MyClass.new
+p o.val = 1 #=> 1 (not 44)

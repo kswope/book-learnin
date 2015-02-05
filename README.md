@@ -421,7 +421,11 @@ stub.
 17. If you're stubbing methods that do not belong to your program, think about
 whether the code would be better if restructured to wrap the external behavior.
 
+18. A stubbed method that returns a stub is usually okay. A stubbed method that
+returns a stub that itself contains a stub probably means your code is too
+dependent on the internals of other objects.
 
+19. Don't mock what you don't own. (Not convinced by this one at all)
 -------
 
 
@@ -959,11 +963,12 @@ Stubbing instances of an Class
 
     allow_any_instance_of(Project).to receive(:save).and_return(false)
 
+
 The RSpec docs explicitly recommend not using this feature if possible, since
 it is "the most complicated feature of rspec-mocks, and has historically
 received the most bug reports."
 
-
+>
 A very common use of stub objects is to simulate exception conditions. If you
 want your stubbed method to raise an exception, you can use the and_raise
 method, which takes an exception class and an optional message:
@@ -971,11 +976,56 @@ method, which takes an exception class and an optional message:
     allow(stubby).to receive(:user_count).and_raise(Exception, "oops")
 
 
+>
+The return values of the stubbed method walk through the values passed to
+and_return. Note that the values don't cycle; the last value is repeated over
+and over again.
+
+    allow(project).to receive(:user_count).and_return(1, 2)
+
+
+>
+The expectation is that some method takes a block argument, and we want to pass
+through method and send arg to the block.
+
+    allow(project).to receive(:method).and_yield("arg")
+
+_Prescription 19. Don't mock what you don't own._
+
+>
+One reason to mock only methods you control is, well, that you control them.
+One danger in mocking methods is that your mock either doesn't receive or
+doesn't return a reasonable value from the method being replaced. If the method
+in question belongs to a third-party framework, the chance that it will change
+without you knowing increases and thus the test becomes more brittle.
+
+I'm not sure about the above paragraph.  If a third party lib changes, your
+stuff is going to break (or fail?) anyway.  Is it the difference between
+failing and being brittle?
+
+>
+More importantly, mocking a method you don't own couples your test to the
+internal details of the third-party framework. By implication, this means the
+method being tested is also coupled to those internal details. That is bad, not
+just if the third-party tool changes, but also if you want to refactor your
+code; the dependency will make that change more complicated.
+
+>
+The solution, in most cases, is to create a method or class in your application
+that calls the third-party tool and stubs that method (while also writing tests
+to ensure that the wrapper does the right thing). 
+
+Is the above overkill?
 
 
 
 
-page 128
+page 137
+
+
+
+
+
 
 
 

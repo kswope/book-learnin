@@ -3492,7 +3492,114 @@ second parameter, that value is returned as the value of the catch.
 
 
 
-page 153
+Diversion with scan, match and captures.  Conclusions: Don't use scan for single
+captures, use match.  Use named captures, so much better.
+
+    str = 'this is a string right here'
+
+    p str.scan(/\w+/) #=> ["this", "is", "a", "string", "right", "here"]
+    p str.scan(/(\w+)/) #=> [["this"], ["is"], ["a"], ["string"], ["right"], ["here"]] 
+
+    str = 'find me in all this stuff'
+    p str.scan(/me/) #=> ["me"]
+
+    # scan version
+    str = 'first: Larry last:Wall'
+    p str.scan(/first:\s*(.*)\s*last:\s*(.*)\s*/) #=> [["Larry ", "Wall"]]
+    p str.scan(/first:\s*(.*)\s*last:\s*(.*)\s*/)[0][0] #=> Larry
+    p str.scan(/first:\s*(.*)\s*last:\s*(.*)\s*/)[0][1] #=> Wall
+
+    # match version
+    match = str.match(/first:\s*(.*)\s*last:\s*(.*)\s*/)
+    p match[0]
+    p match[1] #=> "Larry" # index at 1 because 0 is whole matched string
+    p match[2] #=> "Wall"
+    p match.captures #=> ["Larry ", "Wall"], same as equivalent to mtch.to_a[1..-1].
+    p match.captures[0] #=> "Larry" # lowers index to 0
+    p match.captures[1] #=> "Wall"
+
+    # matched with named captures (So much better!)
+    match = str.match(/first:\s*(?<first>.*)\s*last:\s*(?<last>.*)\s*/)
+    p match[:first]
+    p match[:last]
+
+Use %r{} regex form for HTML
+
+    if page =~ %r{<title>(.*?)</title>}m
+      puts "Title is #{$1.inspect}"
+    end
+
+Previous code from the book, this is my improved example
+
+    if match = page.match(%r{<title>(?<title>.*?)</title>}m)
+      puts "Title is #{match[:title].inspect}"
+    end
+
+
+Block comments in ruby
+
+    =begin
+    ...
+    =end
+
+
+
+### Fibers, Threads, and Processes
+
+Fibers are often used to generate values from infinite sequences on demand.
+Here’s a fiber that returns successive integers divisible by 2 and not
+divisible by 3:
+
+    twos = Fiber.new do 
+      num = 2
+      loop do
+        Fiber.yield(num) unless num % 3 == 0 
+        num += 2
+      end 
+    end
+    10.times { print twos.resume, " " }
+
+Because fibers are just objects, you can pass them around, store them in
+variables, and so on. 
+
+Fibers can be resumed only in the thread that created them. (unless you
+require the fiber lib)
+
+
+A related but more general mechanism is the continuation. A continuation is a
+way of recording the state of your running program (where it is, the current
+binding, and so on) and then resuming from that state at some point in the
+future. You can use continuations to implement coroutines (and other new
+control structures). Continuations have also been used to store the state of a
+running web application between requests—a continuation is created when the
+application sends a response to the browser; then, when the next request
+arrives from that browser, the continuation is invoked, and the application
+continues from where it left off. You enable continuations in Ruby by requiring
+the continuation library.
+
+
+
+### Running multiple processes
+
+The method Object#system executes the given command in a subprocess; it returns
+true if the command was found and executed properly. It raises an exception if
+the command cannot be found. It returns false if the command ran but returned
+an error. In case of failure, you’ll find the subprocess’s exit code in the
+global variable $?.
+
+One problem with system is that the command’s output will simply go to the same
+destination as your program’s output, which may not be what you want. To
+capture the standard output of a subprocess, you can use the backquote
+characters, as with `date` in the previous example. Remember that you may need
+to use String#chomp to remove the line-ending characters from the result.
+
+
+
+
+
+
+
+
 
 
 <!-- END Pickaxe Part I -->
@@ -3567,4 +3674,13 @@ Unlike their lowercase counterparts, %I, %Q, and %W will preform interpolation:
 
     %I{ one digit#{1+1} three } # => [:one, :digit2, :three]
 
+
+Regex in sub/gsub using named captures (note that substitution must be in
+single quotes or every backslash must be escaped)
+
+    'this that'.sub(/^(?<first>.+)\s(?<second>.+)$/, '\k<second> \k<first>')
+    'this that'.sub(/^(?<first>.+)\s(?<second>.+)$/, "\\k<second> \\k<first>")
+
+    # without named captures
+    'this that'.sub(/^(.+)\s(.+)$/, '\2 \1')
 

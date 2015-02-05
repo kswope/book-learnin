@@ -3,10 +3,6 @@
 
 require 'pp'
 
+file = "grimm.txt"
 
-
-x = catch(:mycatch) do
-  throw(:mycatch, :hello)
-end
-
-p x #=> hello
+p $params

@@ -3,10 +3,9 @@
 
 require 'pp'
 
-
-
-def regular(x: :x, **args)
-  p args
+def mymeth(a:, b:, c:, **splat)
+  [a,b,c,splat]
 end
 
-regular(x: :a, y: :b)
+
+p mymeth(x:100,y:101,z:102,a:1,b:2,c:3)

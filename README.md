@@ -4022,6 +4022,28 @@ populate the array.
     mixed(1, 2, 3)    #=> [1, 2, [3]]
     mixed(1, 2, 3, 4) # => [1, 2, [3, 4]]
 
+>
+Any parameter may be a prefixed with an asterisk. If a starred parameter
+supports the to_a method, that method is called, and the resulting array is
+expanded inline to provide parameters to the method call. If a starred argument
+does not support to_a, it is simply passed through unaltered.
+
+    class MyClass
+      def to_a;
+        [1,2,3]
+      end
+    end
+
+    def my_method(*x)
+      x.class
+    end
+
+    my_method( MyClass.new ) #=> Array
+
+The above paragraph is not quite right.  If the argument doesn't support to_a,
+it is not passed through unaltered, but rather in a single element array.
+
+
 
 #### Keyword arguments
 
@@ -4048,35 +4070,77 @@ keyword parameters passed to the method.
     my_method(1,2, one: :ONE, two: :b) #=> [1, 2, :a, :b, :three]
 
 
-Undefining a method, not sure why, maybe debugging?
-
-    undef my_method
-    undef :my_method
-
 >
-Any parameter may be a prefixed with an asterisk. If a starred parameter
-supports the to_a method, that method is called, and the resulting array is
-expanded inline to provide parameters to the method call. If a starred argument
-does not support to_a, it is simply passed through unaltered.
-
-    class MyClass
-      def to_a;
-        [1,2,3]
-      end
-    end
-
-    def my_method(*x)
-      x.class
-    end
-
-    my_method( MyClass.new ) #=> Array
-
-The above paragraph is not quite right.  If the argument doesn't support to_a,
-it is not passed through unaltered, but rather in a single element array.
-
-
 Any parameter may be prefixed with two asterisks (a double splat). Such
 parameters are treated as hashes, and their key-value pairs are added as
 additional parameters to the method call.
+
+>
+Ruby 2 methods may declare keyword arguments using the syntax name:
+default_value for each. These arguments must follow any regular arguments in
+the list.
+
+
+keyword arguments with defaults (not required because they have defaults, duh)
+
+    def mymeth1(a:1, b:2, c:3)
+    end
+
+    mymeth1(a: 1)
+
+
+required keyword arguments
+
+    def mymeth2(a:, b:, c:)
+    end
+
+    mymeth2(a: 1) rescue puts $! #=> missing keywords: b, c
+    mymeth2(a: 1, b: 2, c: 3)
+
+
+old school default hash for comparison
+
+    def oldmeth(options = {})
+      bar = options.fetch(:bar, 'default')
+      puts bar
+    end
+
+    oldmeth #=> default
+
+old school hash passing, but not so old we needed =>
+
+    oldmeth(bar: 'not_default') #=> not_default
+
+
+blocks can now how keyword arguments
+
+    define_method(:foo) do |bar: 'default'|
+      puts bar
+    end
+
+    foo #=> default
+    foo(bar: 'baz') # => 'baz'
+
+
+    define_method(:foo) do |bar:| #<-- required
+      puts bar
+    end
+
+    foo #=> missing keyword: bar
+
+
+>
+If you call a method that has keyword arguments and do not provide
+corresponding values in the method call’s parameter list, the default values
+will be used. If you pass keyword parameters that are not defined as arguments,
+an error will be raised unless you also define a double splat argument, **arg.
+The double splat argument will be set up as a hash containing any uncollected
+keyword parameters passed to the method.
+
+    def mymeth(a:, b:, c:, **splat)
+      [a,b,c,splat]
+    end
+
+    mymeth(x:100,y:101,z:102,a:1,b:2,c:3) #=> [1, 2, 3, {:x=>100, :y=>101, :z=>102}]
 
 

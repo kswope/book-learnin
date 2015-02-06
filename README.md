@@ -4235,11 +4235,14 @@ the original method is subsequently redefined, the aliased name will still invok
 implementation.
 
 
-Singleton form of class definition:
+Singleton form of class definition, this extends the eigenclass:
 
     class << obj
       body
     end
+
+
+_extends method definition: adds to obj the __instance__ methods from each module given as a paremeter_
 
 >
 A Ruby class definition creates or __extends__ an object of class Class by executing the code in
@@ -4248,6 +4251,7 @@ body.
 
 ##### Playing with singleton form of extending class
 
+extending singleton of 'main' object
 
     class << self
       def my_method
@@ -4257,6 +4261,7 @@ body.
 
     my_method #=> "in my_method"
 
+extending some normal object
 
     obj = Object.new
 
@@ -4268,6 +4273,7 @@ body.
 
     obj.my_method # "in obj my_method"
 
+extending a class, this proves that class methods are instance methods of a classes eigenclass
 
     class MyClass
       class << self

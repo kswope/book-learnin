@@ -18,6 +18,6 @@ end
 
 p MyClass.new.my_meth  #=> :hello
 p MyClass.new::my_meth #=> :hello
-p MyClass::MyConst #=> 1
-p MyClass.new.My_Meth #=> :goodbye
-p MyClass.new::My_Meth #=> :goodbye
+p MyClass.new.My_Meth  #=> :goodbye
+p MyClass.new::My_Meth rescue puts $! #=> #<MyClass:0x00000101915be8> is not a class/module
+

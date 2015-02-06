@@ -4246,14 +4246,13 @@ A Ruby class definition creates or __extends__ an object of class Class by execu
 body.
 
 
-Playing with singleton form of extending class
+##### Playing with singleton form of extending class
+
 
     class << self
-
       def my_method
         puts "in my_method"
       end
-
     end
 
     my_method #=> "in my_method"

@@ -4,38 +4,21 @@
 require 'pp'
 
 
-class << self
 
-  def my_method
-    puts "in my_method"
+
+module MyModule
+  # module_function
+  def say_hello
+    puts :hello
   end
-
-end
-
-my_method #=> "in my_method"
-
-
-obj = Object.new
-
-class << obj
-  def my_method
-    puts 'in obj my_method'
+  def say_goodbye
+    puts :goodbye
   end
 end
 
-obj.my_method # "in obj my_method"
+include MyModule # The only way to access MyModule.say_hello
+# say_hello   #=> hello
+# say_goodbye #=> hello
 
-
-class MyClass
-  class << self
-    def my_method
-      puts "in MyClass my_method"
-    end
-  end
-end
-
-
-MyClass.my_method #=> "in MyClass my_method"
-
-
-
+MyModule.say_hello   #=> hello
+MyModule.say_goodbye #=> goodbye

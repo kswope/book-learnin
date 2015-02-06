@@ -4249,7 +4249,7 @@ A Ruby class definition creates or __extends__ an object of class Class by execu
 body.
 
 
-##### Playing with singleton form of extending class
+##### Playing with extending eigenclass
 
 extending singleton of 'main' object
 
@@ -4261,7 +4261,7 @@ extending singleton of 'main' object
 
     my_method #=> "in my_method"
 
-extending some normal object
+extending some object
 
     obj = Object.new
 
@@ -4273,6 +4273,8 @@ extending some normal object
 
     obj.my_method # "in obj my_method"
 
+
+
 extending a class, this proves that class methods are instance methods of a classes eigenclass
 
     class MyClass
@@ -4283,8 +4285,138 @@ extending a class, this proves that class methods are instance methods of a clas
       end
     end
 
-
     MyClass.my_method #=> "in MyClass my_method"
 
 
+>
+Remember that a class definition is executable code. Many of the directives
+used in class definitions (such as attr and include) are actually simply
+private instance methods of class Module. (note: doesn't have to be private,
+see below)
 
+
+Writing class macro
+
+    class MyBase
+
+      def self.my_macro
+        puts :my_macro
+      end
+
+    end
+
+    class MyClass < MyBase
+      my_macro
+    end
+
+    MyClass.new #=> "my_macro"
+
+
+
+Overriding class allocation for finer control or to take control over object
+initialization. This follows the principal of __most__ surprise, so try to not
+do this.
+
+    # normal class definition
+    class MyClass
+      def self.new
+        obj = allocate
+        obj.send(:initialize, :hello)
+      end
+    end
+
+    class MyClass
+      def initialize(x)
+        puts x
+      end
+    end
+
+    # class can-opener
+    class << MyClass
+      def new
+        obj = allocate
+        obj.send(:initialize, :goodbye)
+      end
+    end
+
+    MyClass.new #=> "goodbye"
+
+
+>
+A module is basically a class that cannot be instantiated.
+
+>
+A module may define an initialize method, which will be called upon the
+creation of an object of a class that mixes in the module if either the class
+does not define its own initialize method or the class's initialize method
+invokes super.
+
+    module MyModule
+      def initialize(greeting: 'hello')
+        puts greeting
+      end
+    end
+
+    class MyClass
+      include MyModule
+    end
+
+    MyClass.new #=> 'hello'
+    MyClass.new(greeting:'goodbye') #=> 'goodbye'
+
+
+>
+A module may also be included at the top level, in which case the module's
+constants, class variables, and instance methods become available at the top
+level.
+
+>
+Instance methods defined in modules can be mixed-in to a class using include.
+But what if you want to call the instance methods in a module directly?
+
+    module MyModule
+      def say_hello()
+        puts :hello
+      end
+    end
+    include MyModule # The only way to access MyModule.say_hello
+    say_hello #=> hello
+
+
+    module MyModule
+      def say_hello()
+        puts :hello
+      end
+      module_function :say_hello #<-- improvement over include MyModule
+    end
+
+    MyModule.say_hello #=> hello
+
+
+>
+module_function: Creates module functions for the named methods. These
+functions may be called with the module as a receiver, and also become
+available as instance methods to classes that mix in the module. Module
+functions are copies of the original, and so may be changed independently. The
+instance-method versions are made private. __If used with no arguments,
+subsequently defined methods become module functions.__
+
+    module MyModule
+
+      module_function #<-- applies to everything that follows if no arguments
+
+      def say_hello
+        puts :hello
+      end
+      def say_goodbye
+        puts :goodbye
+      end
+    end
+
+
+    MyModule.say_hello   #=> hello
+    MyModule.say_goodbye #=> goodbye
+
+Rationale for module functions: so you can write a module that have methods
+that can both be called Module.method and can be included into classes. Why its
+called module_function and not module_method I have no idea.

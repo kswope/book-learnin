@@ -4048,5 +4048,35 @@ keyword parameters passed to the method.
     my_method(1,2, one: :ONE, two: :b) #=> [1, 2, :a, :b, :three]
 
 
-page 326
+Undefining a method, not sure why, maybe debugging?
+
+    undef my_method
+    undef :my_method
+
+>
+Any parameter may be a prefixed with an asterisk. If a starred parameter
+supports the to_a method, that method is called, and the resulting array is
+expanded inline to provide parameters to the method call. If a starred argument
+does not support to_a, it is simply passed through unaltered.
+
+    class MyClass
+      def to_a;
+        [1,2,3]
+      end
+    end
+
+    def my_method(*x)
+      x.class
+    end
+
+    my_method( MyClass.new ) #=> Array
+
+The above paragraph is not quite right.  If the argument doesn't support to_a,
+it is not passed through unaltered, but rather in a single element array.
+
+
+Any parameter may be prefixed with two asterisks (a double splat). Such
+parameters are treated as hashes, and their key-value pairs are added as
+additional parameters to the method call.
+
 

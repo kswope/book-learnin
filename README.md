@@ -3832,6 +3832,7 @@ __I've never ever seen this used!__
 
 #### case Expressions
 
+>
 Ruby has two forms of case statement. The first allows a series of conditions
 to be evaluated, executing code corresponding to the first condition that is
 true:
@@ -3888,7 +3889,7 @@ loopy enough)
     expression while boolean-expression
     expression until boolean-expression
 
-
+>
 break and next may optionally take one or more arguments. If used within a
 block, the given argument(s) are returned as the value of the yield. If used
 within a while, until, or for loop, the value given to break is returned as the
@@ -3919,8 +3920,122 @@ confirmed:
     p var #=> :there
 
 
+>
+Outside a class or module definition, a definition with an unadorned method
+name is added as a private method to class Object. It may be called in any
+context without an explicit receiver.
+
+Confirmed:
+
+    def my_method
+    end
+
+    p Object.private_instance_methods.grep /my/ #=> [:my_method]
+
+>
+A definition using a method name of the form expr.methodname creates a method
+associated with the object that is the value of the expression; the method will
+be callable only by sup- plying the object referenced by the expression as a
+receiver. This style of definition creates per-object or singleton methods.
+You’ll find it most often inside class or module definitions, where the expr is
+either self or the name of the class/module. This effectively creates a class
+or module method (as opposed to an instance method).
+
+Even works on the default 'main' object
+
+    def self.my_method
+    end
+
+    p self.methods.grep /my/ #=> [:my_method]
+
+>
+Method definitions may not contain class or module definitions. They may
+contain nested instance or singleton method definitions. The internal method is
+defined when the enclosing method is executed. The internal method does not act
+as a closure in the context of the nested method—it is self-contained.
+
+nested methods aren't scoped to the outer method - use a proc for that
+
+    def my_method
+      def my_other_method
+        :here
+      end
+    end
+
+    my_other_method rescue puts $! #=> undefined local variable or method `my_other_method' for main:Object
+    my_method
+    my_other_method rescue puts $! #=> :here
 
 
+This is an interesting use of nested methods:
+
+    def clock
+      def clock
+        puts :tock
+      end
+      puts :tick
+    end
+
+    clock #=> tick
+    clock #=> tock
+
+>
+A method definition may have zero or more regular arguments, zero or more
+keyword arguments, a optional splat argument, an optional double splat
+argument, and an optional block argument. Arguments are separated by commas,
+and the argument list may be enclosed in parentheses.
+
+This is a little confusing, I wouldn't push my luck with this stuff:
+
+    def mixed(a, b=50, c=b+10, d)
+      [ a, b, c, d ]
+      end
+
+    p mixed(1, 2)       #=> [1, 50, 60, 2]
+    p mixed(1, 2, 3)    #=> [1, 2, 12, 3]
+    p mixed(1, 2, 3, 4) #=> [1, 2, 3, 4]
+
+
+Splats can be in the middle.  This is probably a bad idea
+
+    def splat(first, *middle, last) 
+      [ first, middle, last ]
+    end
+    splat(1, 2)       # => [1, [], 2] 
+    splat(1, 2, 3)    # => [1, [2], 3] 
+    splat(1, 2, 3, 4) # => [1, [2, 3], 4]
+
+
+This might be useful
+
+>
+If an array argument follows arguments with default values, parameters will
+first be used to override the defaults. The remainder will then be used to
+populate the array.
+
+    def mixed(a, b=99, *c) 
+      [ a, b, c]
+    end
+
+    mixed(1)          #=> [1, 99, []]
+    mixed(1, 2)       #=> [1, 2, []]
+    mixed(1, 2, 3)    #=> [1, 2, [3]]
+    mixed(1, 2, 3, 4) # => [1, 2, [3, 4]]
+
+
+#### Keyword arguments
+
+>
+Ruby 2 methods may declare keyword arguments using the syntax name:
+default_value for each. These arguments must follow any regular arguments in
+the list.
+
+If you call a method that has keyword arguments and do not provide
+corresponding values in the method call’s parameter list, the default values
+will be used. If you pass keyword parameters that are not defined as arguments,
+an error will be raised unless you also define a double splat argument, **arg.
+The double splat argument will be set up as a hash containing any uncollected
+keyword parameters passed to the method.
 
 
 

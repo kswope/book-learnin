@@ -4223,3 +4223,63 @@ Confirmed;
     p MyClass.new.My_Meth  #=> :goodbye
     p MyClass.new::My_Meth rescue puts $! #=> #<MyClass:0x00000101915be8> is not a class/module
 
+
+In method aliasing the first param is the _new_ name
+
+    alias new_name name
+
+
+>
+When a method is aliased, the new name refers to a copy of the original method's body. If
+the original method is subsequently redefined, the aliased name will still invoke the original
+implementation.
+
+
+Singleton form of class definition:
+
+    class << obj
+      body
+    end
+
+>
+A Ruby class definition creates or __extends__ an object of class Class by executing the code in
+body.
+
+
+Playing with singleton form of extending class
+
+    class << self
+
+      def my_method
+        puts "in my_method"
+      end
+
+    end
+
+    my_method #=> "in my_method"
+
+
+    obj = Object.new
+
+    class << obj
+      def my_method
+        puts 'in obj my_method'
+      end
+    end
+
+    obj.my_method # "in obj my_method"
+
+
+    class MyClass
+      class << self
+        def my_method
+          puts "in MyClass my_method"
+        end
+      end
+    end
+
+
+    MyClass.my_method #=> "in MyClass my_method"
+
+
+

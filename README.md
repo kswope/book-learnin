@@ -4242,7 +4242,7 @@ Singleton form of class definition, this extends the eigenclass:
     end
 
 
-_extends() method definition: adds to obj the *instance* methods from each module given as a paremeter_
+_extends() method definition: adds to obj the **instance** methods from each module given as a paremeter_
 
 >
 A Ruby class definition creates or __extends__ an object of class Class by executing the code in

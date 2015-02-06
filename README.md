@@ -3865,3 +3865,63 @@ when <test1> then ...
 when <test2> then ...
 else ...
 end
+
+
+while and until statements can have a "do"?
+
+until something do
+    ...
+end
+
+while something do
+    ...
+end
+
+>
+loop, which iterates its associated block, is not a language construct—it is a
+method in module Kernel.
+
+
+while and until modifiers: (not sure if these are a good idea, doesn't look
+loopy enough)
+
+    expression while boolean-expression
+    expression until boolean-expression
+
+
+break and next may optionally take one or more arguments. If used within a
+block, the given argument(s) are returned as the value of the yield. If used
+within a while, until, or for loop, the value given to break is returned as the
+value of the statement. If break is never called or if it is called with no
+value, the loop returns nil. (stop abusing the word yield!, its losing all meaning)
+
+    var = [1,2,3].each do |x|
+      break :hello
+    end
+    var #=> hello
+
+    var = [1,2,3].each do |x|
+      break
+    end
+    var #=> nil
+
+confirmed:
+
+    def my_method 
+      yield
+    end
+
+    var = my_method do 
+      break :there
+      :here
+    end
+
+    p var #=> :there
+
+
+
+
+
+
+
+

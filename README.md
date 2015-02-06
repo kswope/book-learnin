@@ -4144,3 +4144,20 @@ keyword parameters passed to the method.
     mymeth(x:100,y:101,z:102,a:1,b:2,c:3) #=> [1, 2, 3, {:x=>100, :y=>101, :z=>102}]
 
 
+undefine methods with undef (not quite sure why)
+
+    undef mymethod
+    undef :mymethod
+
+The below paragraph indicates its even more useless.
+
+>
+An undefined method still exists; it is simply marked as being undefined. If
+you undefine a method in a child class and then call that method on an instance
+of that child class, Ruby will immediately raise a NoMethodError—it will not
+look for the method in the child’s parents.
+
+
+
+
+

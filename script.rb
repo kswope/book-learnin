@@ -3,9 +3,11 @@
 
 require 'pp'
 
-def mymeth(a:, b:, c:, **splat)
-  [a,b,c,splat]
+
+def my_meth(&block)
+  block.call
 end
 
 
-p mymeth(x:100,y:101,z:102,a:1,b:2,c:3)
+
+my_meth { puts :hello }

@@ -4,10 +4,20 @@
 require 'pp'
 
 
-def my_meth(&block)
-  block.call
+class MyClass
+
+  def my_meth
+    :hello
+  end
+
+  def My_Meth
+    :goodbye
+  end
+
 end
 
-
-
-my_meth { puts :hello }
+p MyClass.new.my_meth  #=> :hello
+p MyClass.new::my_meth #=> :hello
+p MyClass::MyConst #=> 1
+p MyClass.new.My_Meth #=> :goodbye
+p MyClass.new::My_Meth #=> :goodbye

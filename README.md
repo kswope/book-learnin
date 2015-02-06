@@ -4158,6 +4158,49 @@ of that child class, Ruby will immediately raise a NoMethodError—it will not
 look for the method in the child’s parents.
 
 
+Not quite sure why the following happens, but it could be useful if the
+passed in method returns a proc
+
+    def my_meth(&block)
+    end
+
+    def hello
+      puts :hello
+    end
+
+    my_meth(&hello) #=> hello
 
 
+This is a more normal procedure
 
+    def my_meth(&block)
+      block.call
+    end
+
+    hello = ->{ puts :hello }
+    my_meth(&hello) #=> hello
+
+
+block_given? seems to work also for parameter blocks
+
+    def my_meth(&block)
+      block.call if block_given?
+    end
+
+    my_meth() #=> no error
+
+>
+
+When a receiver is explicitly specified in a method invocation, it may be
+separated from the method name using either a period (.) or two colons (::).
+The only difference between these two forms occurs if the method name starts
+with an uppercase letter. In this case, Ruby will assume that receiver::Thing
+is actually an attempt to access a constant called Thing in the receiver unless
+the method invocation has a parameter list between parentheses. Using :: to
+indicate a method call is mildly deprecated.
+
+
+Foo.Bar()  # method call
+Foo.Bar    # method call
+Foo::Bar() # method call
+Foo::Bar   # constant access

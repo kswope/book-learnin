@@ -3684,3 +3684,134 @@ single quotes or every backslash must be escaped)
     # without named captures
     'this that'.sub(/^(.+)\s(.+)$/, '\2 \1')
 
+
+Class variables belong to the innermost enclosing class or module. Class
+variables used at the top level are defined in Object and behave like global
+variables. In Ruby 1.9, class variables are supposed to be private to the
+defining class, although as the following example shows, there seems to be some
+leakage.
+
+    class BugVar
+      @@var = 99
+      def var
+        @@var
+      end
+    end
+
+    @@var = 100 #=> warning: class variable access from toplevel
+    p BugVar.new.var #=> 100
+
+
+Class variables are inherited by children but propagate upward if first defined
+in a child, this is messy.
+
+Pickaxe recommends avoiding class variables.
+
+I'm going to try to avoid class variables now, maybe just use class instance
+variables and instance variables.
+
+    class BetterVar
+
+      @var = 99 #<-- class instance var
+
+      class << self         #<-- secret sauce
+        attr_accessor :var  #<-- secret sauce
+      end
+
+      def var
+        self.class.var      #<-- secret sauce
+      end
+
+      def var=(x)
+        self.class.var = x
+      end
+
+    end
+
+    p BetterVar.var #=> 99
+    bv = BetterVar.new
+    bv.var=200
+    p BetterVar.new.var #=> 200
+    p BetterVar.var #=> 200
+
+
+run if the current file is the script being run, can put tests here
+
+    if __FILE__ == $0 
+      # tests...
+    end
+
+
+
+Element reference vs actual method call
+
+    var[] = "one"                   var.[ ]=("one")
+    var[1] = "two"                  var.[ ]=(1, "two")
+    var["a", /^cat/ ] = "three"     var.[ ]=("a", /^cat/, "three")
+
+
+If you are writing an [ ]= method that accepts a variable number of indices, it
+might be con- venient to define it using this:
+
+    def []=(*indices, value) 
+      # ...
+    end
+
+
+#### Ranges in Boolean Expressions (I don't think anybody uses these, and they would baffle anybody reading my code)
+
+    if expr1 .. expr2
+    while expr1 .. expr2
+
+A range used in a boolean expression acts as a flip-flop. It has two states,
+set and unset, and is initially unset.
+
+1. For the three-dot form of a range, if the flip-flop is unset and expr1 is
+   true, the flip-flop becomes set and the the flip-flop returns true.
+
+2. If the flip-flop is set, it will return true. However, if expr2 is not true,
+   the flip-flop becomes unset.
+
+3. If the flip-flop is unset, it returns false.
+
+The first step differs for the two-dot form of a range. If the flip-flop is unset and expr1 is true,
+then Ruby only sets the flip-flop if expr2 is not also true.
+
+__I've never ever seen this used!__
+
+
+#### case Expressions
+
+Ruby has two forms of case statement. The first allows a series of conditions
+to be evaluated, executing code corresponding to the first condition that is
+true:
+
+    case
+    when something
+    ...
+    when something_else
+    ...
+    when yet_something_else
+    ...
+    else
+    ...
+    end
+
+Second form takes a target
+
+    case target
+    when <test against target>
+    ...
+    when <test against target>
+    ...
+    else
+    ...
+    end
+
+then is optional but good for scrunching down the statement
+
+case target
+when <test1> then ...
+when <test2> then ...
+else ...
+end

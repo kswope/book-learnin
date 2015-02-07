@@ -4438,3 +4438,71 @@ The return value of a yield is the value of the last expression evaluated in
 the block or the value passed to a next statement executed in the block.
 
 
+#### Bock Arguments
+
+- You can specify default values
+- You can specify splat arguments
+- The last argument can be prefixed with & for a block
+- Block local variables are declared after a semi
+
+
+This gets kinda crazy, not sure if I'd ever use this
+
+    def gimme_a_proc(&block)
+      block.call(&->{ puts :here })
+    end
+
+    gimme_a_proc() do |&proc|
+      proc.call
+    end #=> here
+
+#### Proc objects
+
+Four ways to create a proc object
+
+* By passing a block to a method whose last parameter is prefixed with an
+ampersand. That parameter will receive the block as a Proc object.
+
+    def meth1(p1, p2, &block) #<-- will run to_proc on block
+      puts block.inspect
+    end
+
+* By calling Proc.new {}
+
+    block = Proc.new { :hello }
+
+* By calling Object#lambda
+
+    block = lambda { :hello }
+
+* lambda syntax
+
+    block = ->{ :hello }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

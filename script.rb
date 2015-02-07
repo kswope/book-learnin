@@ -5,9 +5,11 @@ require 'pp'
 
 
 
-val = 1.upto(10).map do |x|
-  return :bing if x == 5
-  x
+def time_proc(&block)
+  block.call(&->{ puts :here })
 end
 
-p val
+time_proc() do |&proc|
+  proc.call
+end #=> here
+

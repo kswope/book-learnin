@@ -4,11 +4,10 @@
 require 'pp'
 
 
-def greeter(name)
-  yield name if block_given?
+
+val = 1.upto(10).map do |x|
+  return :bing if x == 5
+  x
 end
 
-
-
-p greeter(:fred)
-p greeter(:fred) {|name| "hello #{name}"}
+p val

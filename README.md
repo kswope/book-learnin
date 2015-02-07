@@ -4473,7 +4473,7 @@ ampersand. That parameter will receive the block as a Proc object.
 
 * By calling Object#lambda
 
-      block = lambda { :hello }
+        block = lambda { :hello }
 
 * lambda syntax
 

@@ -4463,13 +4463,13 @@ Four ways to create a proc object
 * By passing a block to a method whose last parameter is prefixed with an
 ampersand. That parameter will receive the block as a Proc object.
 
-    def meth1(p1, p2, &block) #<-- will run to_proc on block
-      puts block.inspect
-    end
+        def meth1(p1, p2, &block) #<-- will run to_proc on block
+          puts block.inspect
+        end
 
 * By calling Proc.new {}
 
-    block = Proc.new { :hello }
+        block = Proc.new { :hello }
 
 * By calling Object#lambda
 
@@ -4477,7 +4477,7 @@ ampersand. That parameter will receive the block as a Proc object.
 
 * lambda syntax
 
-    block = ->{ :hello }
+        block = ->{ :hello }
 
 
 

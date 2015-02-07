@@ -4433,4 +4433,8 @@ Access control
 - private: Can be called only in functional form (with implicit receiver of self)
 
 
+>
+The return value of a yield is the value of the last expression evaluated in
+the block or the value passed to a next statement executed in the block.
+
 

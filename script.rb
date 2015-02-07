@@ -4,21 +4,11 @@
 require 'pp'
 
 
-
-
-module MyModule
-  # module_function
-  def say_hello
-    puts :hello
-  end
-  def say_goodbye
-    puts :goodbye
-  end
+def greeter(name)
+  yield name if block_given?
 end
 
-include MyModule # The only way to access MyModule.say_hello
-# say_hello   #=> hello
-# say_goodbye #=> hello
 
-MyModule.say_hello   #=> hello
-MyModule.say_goodbye #=> goodbye
+
+p greeter(:fred)
+p greeter(:fred) {|name| "hello #{name}"}

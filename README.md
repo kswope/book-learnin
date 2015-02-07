@@ -4627,6 +4627,71 @@ String.  But 3.to_s does have a stringy conversion.
 
 I guess this is called a protocal because its not really a set of strict rules.
 
-page 352
+
+
+#### The symbol.to_proc trick
+
+
+    names = %w{ant bee cat}
+    result = names.map(&:upcase)
+
+
+
+Closer look:
+
+    class MyData
+
+      def initialize(data)
+        @data = data
+      end
+
+      def yo
+        "yo #{@data}"
+      end
+
+    end
+      
+    a = [MyData.new(1), MyData.new(2), MyData.new(3)]
+    p a.map(&:yo) #=> ["yo 1", "yo 2", "yo 3"]
+
+    yoproc = :yo.to_proc
+    p yoproc.call(MyData.new(1))  #=> "yo 1"
+
+
+Even closer look, defining our own Symbol#to_proc (this stuff is deep)
+
+    class MyData
+
+      def initialize(data)
+        @data = data
+      end
+
+      def yo
+        "yo #{@data}"
+      end
+
+    end
+      
+    class Symbol
+      def to_proc
+        print "HERE! "
+        proc { |obj, *args| obj.send(self, *args) } #<--- self is :yo
+      end
+    end
+
+    a = [MyData.new(1), MyData.new(2), MyData.new(3)]
+    p a.map(&:yo) #=> HERE! ["yo 1", "yo 2", "yo 3"]
+
+    yoproc = :yo.to_proc
+    p yoproc.call(MyData.new(1))  #=> HERE! "yo 1"
+
+
+Note: inject doesn't seem to need the &
+
+    [1,2,3].inject(&:+) #=> 6
+    [1,2,3].inject(:+)  #=> 6
+
+
+#### Metaprogramming
 
 

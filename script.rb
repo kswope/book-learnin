@@ -4,12 +4,6 @@
 require 'pp'
 
 
-val = catch(:outer) do
-  catch(:inner) do
-    5.times do |x|
-      throw(:outer, x) if x==3
-    end
-  end
-end
+p [1,2,3].inject(&:+) #=> 6
+p [1,2,3].inject(:+)  #=> 6
 
-p val #=> 3

@@ -4417,6 +4417,20 @@ subsequently defined methods become module functions.__
     MyModule.say_hello   #=> hello
     MyModule.say_goodbye #=> goodbye
 
+>
+The instance method and module method are two different methods: the method
+definition is copied by module_function, not aliased.
+
 Rationale for module functions: so you can write a module that have methods
 that can both be called Module.method and can be included into classes. Why its
 called module_function and not module_method I have no idea.
+
+
+Access control
+
+- public: accessible to anyone
+- protected: Can be invoked only by objects of the defining class and its subs
+- private: Can be called only in functional form (with implicit receiver of self)
+
+
+

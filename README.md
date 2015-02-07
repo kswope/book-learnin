@@ -4477,8 +4477,56 @@ ampersand. That parameter will receive the block as a Proc object.
 
 * lambda syntax
 
-        block = ->{ :hello }
+        lam = ->{ :hello }
+        lam = ->(x,y){ puts x,y }
 
+Note that there cannot be a space between -> and the opening parenthesis.
+
+
+>
+Here’s the big thing to remember: raw procs are basically designed to work as
+the bodies of control structures such as loops. Lambdas are intended to act
+like methods. So, lambdas are stricter when checking the parameters passed to
+them, and a return in a lambda exits much as it would from a method.
+
+Calling a proc
+
+    proc = Proc.new {}
+    proc.call
+    proc.()  #<--- cool?
+    proc[]
+    yield
+
+Within both raw procs and lambdas, executing next causes the block to exit back
+to the caller of the block. The return value is the value (or values) passed to
+next, or nil if no values are passed.    
+
+
+Dont use - deprecated
+
+    proc = proc {}
+
+
+
+#### Exeptions
+
+When an exception is raised, Ruby places a reference to the Exception object in
+the global variable $!.
+
+
+Exceptions may be handled in the following ways:
+
+* Within the scope of a begin/end block
+
+        begin
+          ..
+        rescue
+          ..
+        else
+          ..
+        ensure
+          ..
+        end
 
 
 

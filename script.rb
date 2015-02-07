@@ -4,7 +4,12 @@
 require 'pp'
 
 
-proc = Proc.new { puts :hello }
+val = catch(:outer) do
+  catch(:inner) do
+    5.times do |x|
+      throw(:outer, x) if x==3
+    end
+  end
+end
 
-proc.()
-
+p val #=> 3

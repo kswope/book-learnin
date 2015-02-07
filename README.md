@@ -4480,6 +4480,7 @@ ampersand. That parameter will receive the block as a Proc object.
         lam = ->{ :hello }
         lam = ->(x,y){ puts x,y }
 
+>
 Note that there cannot be a space between -> and the opening parenthesis.
 
 
@@ -4497,6 +4498,7 @@ Calling a proc
     proc[]
     yield
 
+>
 Within both raw procs and lambdas, executing next causes the block to exit back
 to the caller of the block. The return value is the value (or values) passed to
 next, or nil if no values are passed.    
@@ -4510,13 +4512,14 @@ Dont use - deprecated
 
 #### Exeptions
 
+>
 When an exception is raised, Ruby places a reference to the Exception object in
 the global variable $!.
 
 
 Exceptions may be handled in the following ways:
 
-* Within the scope of a begin/end block
+* Within the scope of a begin/end block:
 
         begin
           ..
@@ -4529,28 +4532,101 @@ Exceptions may be handled in the following ways:
         end
 
 
+* Within the body of a method:
+
+        begin
+          # something which might raise an exception
+        rescue SomeExceptionClass => some_variable
+          # code that deals with some exception
+        rescue SomeOtherException => some_other_variable
+          # code that deals with some other exception
+        else
+          # code that runs only if *no* exception was raised
+        ensure
+          # ensure that this code always runs, no matter what
+        end
+
+* After the execution of a single statement:
+
+        x/y rescue puts $!
+
+>
+A rescue clause with no parameter is treated as if it had a parameter of
+StandardError
+
+
+>
+If you want to rescue every exception, use this: (note: re-raise this dammit)
+
+    rescue Exception => e
 
 
 
+>
+The rescue modifier takes no exception parameter and rescues StandardError and
+its children.
+
+    values = [ "1", "2.3", /pattern/ ]
+    result = values.map {|v| Integer(v) rescue Float(v) rescue String(v) }
+    result # => [1, 2.3, "(?-mix:pattern)"]
+
+>
+The method Object#catch executes its associated block:
+
+    catch ( object ) do 
+      code...
+    end
+
+>
+The method Object#throw interrupts the normal processing of statements:
+
+    throw( object ‹ , obj › )
 
 
+My pointless example (not sure if its actually showing throw working)
+
+    val = catch(:outer) do
+      catch(:inner) do
+        5.times do |x|
+          throw(:outer, x) if x==3
+        end
+      end
+    end
+
+    p val #=> 3
 
 
+>
+If the throw is passed a second parameter, that value is returned as the value
+of the catch.
 
+>
+Ruby honors the ensure clauses of any block expressions it traverses while
+looking for a corresponding catch.
 
+>
+If no catch block matches the throw, Ruby raises an ArgumentError exception at
+the location of the throw.
 
+#### Standard Protocols and Coercions
 
+_from stackoverflow_
 
+* call to_s to get a string that describes the object.
+* call to_str to verify that an object really acts like a string.
+* implement to_s when you can build a string that describes your object.
+* implement to_str when your object can fully behave like a string.
 
+>
+As we can see, to_s is happy to turn any object into a string. On the other
+hand, to_str raises an error when its parameter does not look like a string.
+ 
+Array#join calls to_str on its param.  If you try a.join(3) it will try to_str
+on 3 and raise and exception TypeError: no implicit conversion of Fixnum into
+String.  But 3.to_s does have a stringy conversion.  
 
+I guess this is called a protocal because its not really a set of strict rules.
 
-
-
-
-
-
-
-
-
+page 352
 
 

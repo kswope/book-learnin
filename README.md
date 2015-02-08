@@ -4798,3 +4798,112 @@ to its eigenclass.
     obj.extend MyModule
 
     p obj.hello #=> :hello
+
+
+simple macro mechanism:
+
+    class MyClass
+
+      def self.my_macro
+        def say_hello
+          puts :hello
+        end
+      end
+
+      my_macro
+
+    end
+
+    MyClass.new.say_hello #=> hello
+
+more dynamic macro
+
+    class MySuperClass
+      def self.say_macro(word)
+        define_method(:say) do
+          puts word
+        end
+      end
+    end
+
+    class MyClass < MySuperClass
+      say_macro(:goodbye)
+    end
+
+    MyClass.new.say #=> goodbye
+
+
+macro from a module:
+
+    module MyModule
+      def say_macro(word) #<-- now a instance method
+        define_method(:say) do
+          puts word
+        end
+      end
+    end
+
+    class MyClass
+      extend MyModule #<-- extend, not include
+      say_macro(:goodbye)
+    end
+
+    MyClass.new.say #=> goodbye
+
+
+If you want to add both class and instance methods into a class at once
+you can use the __included__ hook:
+
+    module MyModule
+
+      def say_this(this) #<-- instance method
+        puts this
+      end
+
+      module ClassMethods
+        def say_macro(word)
+          define_method(:say) do
+            puts word
+          end
+        end
+      end
+
+      def self.included(host_class) #<--- hook
+        host_class.extend(ClassMethods)
+      end
+
+    end
+
+    class MyClass
+      include MyModule #<-- include
+      say_macro(:goodbye)
+    end
+
+    MyClass.new.say_this(:hello) #=> hello
+    MyClass.new.say #=> goodbye
+
+
+#####Subclassing Expressions
+
+
+The return value of a Struct is a class. which you ordinarily would
+use to make objects.
+
+    Person = Struct.new(:name, :address, :likes) #=> Person
+    kevin = Person.new('kevin', 'ma') #=> #<struct Person name="kevin", address="ma", likes=nil>
+
+in the class defintion MySuperClass can be any class object
+
+    class MyClass < MySuperClass
+    end
+
+    class MyClass < Struct.new(:name, :address, :likes)
+      def to_s
+        ...
+      end
+    end
+
+
+page 378
+
+

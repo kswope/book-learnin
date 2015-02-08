@@ -4694,4 +4694,107 @@ Note: inject doesn't seem to need the &
 
 #### Metaprogramming
 
+Accessing class instance variables
 
+    class Test
+      @var = 99 
+      class << self
+        attr_accessor :var
+      end 
+    end
+
+
+Object is the superclass of our custom classes.  That's where the free
+class methods come from.  Its also where "class macros" come from.  Class
+macros and class methods are the same if they are defined one class up.
+
+    class Object
+      def hello
+        :hello
+      end
+      def goodbye
+        :goodbye
+      end
+    end
+
+    class MyClass
+      print hello
+    end
+
+    p MyClass.goodbye #=> hello:goodbye
+
+Access eigenclass of object (not sure why)
+
+animal = 'dog'
+singleton = class << animal 
+  self 
+end
+p singleton #=> #<Class:#<String:0x0000010118bcb0>>
+
+
+>
+When you include a module you are effectively adding it as a new superclass.
+
+>
+Ruby 2 introduced the __prepend__ method. Logically, this behaves just like
+include, but the methods in the prepended module take precedence over those in
+the host class. Ruby pulls off this magic by inserting a dummy class in place
+of the original host class2 and then inserting the prepended module between the
+two.
+
+>
+If a method inside a prepended module has the same name as one in the original
+class, it will be invoked instead of the original. The prepended method can
+then call the original using super.
+
+>
+The __include__ method effectively adds a module as a superclass of self. It is
+used inside a class definition to make the instance methods in the module
+available to instances of the class.  However, it is sometimes useful to add
+the instance methods to a particular object. You do this using __extend__
+
+Extending a class is the same as adding instance methods to its eigenclass,
+which end up being class methods because instance methods of a classes
+eigenclass are that classes class methods.
+
+    module MyModule
+      def hello
+        :hello
+      end
+    end
+
+    class MyClass
+      include MyModule #<----- include
+    end
+
+    p MyClass.new.hello #=> :hello
+
+    Object.send(:remove_const, :MyModule)
+    Object.send(:remove_const, :MyClass)
+
+    module MyModule
+      def hello
+        :hello
+      end
+    end
+
+    class MyClass
+      extend MyModule #<----- extend
+    end
+
+    p MyClass.hello #=> :hello
+
+
+extending an object is the same as extending a class - adding instance methods
+to its eigenclass.
+
+    module MyModule
+      def hello
+        :hello
+      end
+    end
+
+    obj = Object.new
+    obj.extend MyModule
+
+    p obj.hello #=> :hello

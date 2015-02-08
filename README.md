@@ -4904,6 +4904,129 @@ in the class defintion MySuperClass can be any class object
     end
 
 
-page 378
+
+##### Creating single classes
+
+    myclass = Class.new do
+      def hello
+        :hello
+      end
+    end
+
+    myclass.new.hello #=> hello
 
 
+passing argument to Class.new
+
+    myclass = Class.new()
+    p myclass.superclass #=> Object
+
+    myclass = Class.new(String)
+    p myclass.superclass #=> String
+
+    class MyClass < String
+    end
+    p MyClass.superclass #=> String
+
+
+You may have noticed that the classes created by Class.new have no name.
+However, if you assign the class object for a class with no name to a constant,
+Ruby automatically names the class afterthe constant:
+
+    MyClass = Class.new()
+    p MyClass #=> MyClass
+
+We can use these dynamically constructed classes to extend Ruby in interesting
+ways. For example, here's a simple reimplementation of the Ruby Struct class:
+
+    def MyStruct(*keys)
+    Class.new do
+      attr_accessor *keys
+        def initialize(hash)
+          hash.each do |key, value|
+            instance_variable_set("@#{key}", value)
+          end
+        end
+      end
+    end
+
+    Person = MyStruct :name, :address, :likes
+    dave = Person.new(name: "dave", address: "TX", likes: "Stilton")
+
+The methods Object#__instance_eval__, Module#__class_eval__, and
+Module#__module_eval__ let you set self to be some arbitrary object, evaluate
+the code in a block with, and then reset self:
+
+    'dog'.instance_eval do
+      puts self.upcase #=> DOG
+      puts upcase      #=> DOG
+    end
+
+    class MyClass
+      def self.hello
+        puts :hello
+      end
+    end
+
+    MyClass.class_eval do
+      hello
+    end
+
+>
+Both forms also take a string, but this is considered a little dangerous.
+
+
+> 
+__class_eval__ and __instance_eval__ both set self for the duration of the
+block. However, they differ in the way they set up the environment for method
+definition. __class_eval__ sets things up as if you were in the body of a class
+definition, so method definitions will define instance methods.  In contrast,
+calling __instance_eval__ on a class acts as if you were working inside the
+singleton class of self. Therefore, any methods you define will become class
+methods.
+
+
+    MyClass = Class.new
+
+    MyClass.class_eval do
+      def hello
+        puts :hello
+      end
+    end
+
+    MyClass.new.hello #=> hello
+
+    MyClass.instance_eval do
+      def goodbye
+        puts :goodbye
+      end
+    end
+
+    MyClass.goodbye #=> goodbye
+
+> 
+Ruby has variants of these methods. Object#__instance_exec__,
+Module#__class_exec__, and Module#__module_exec__ behave identically to their
+_eval counterparts but take only a block (that is, they do not take a string).
+Any arguments given to the methods are passed in as block parameters.  This is
+an important feature.  Previously it was impossible to pass an instance
+variable into a block given to one of the _eval methods - because self is
+changed by the call, these variables go out of scope.
+
+    'cat'.instance_exec('dog') do |animal|
+      puts upcase         #=> CAT
+      puts animal.upcase  #=> DOG
+    end
+
+__Yikes__
+
+>
+Ruby 1.9 changed the way Ruby looks up constants when executing a block using
+__instance_eval__ and __class_eval__. Ruby 1.9.2 then reverted the change. In
+Ruby 1.8 and Ruby 1.9.2, constants are looked up in the lexical scope in which
+they were referenced. In Ruby 1.9.0, they are looked up in the scope in which
+instance_eval is called. This (artificial) example shows the behavior at the
+time I last built this book - it may well have changed again by the time you
+run it....
+
+page 381

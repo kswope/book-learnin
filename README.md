@@ -1092,13 +1092,10 @@ and a particular controller action.
 >
 These things, generally speaking, are not integration tests. Use unit tests
 instead:
-
 * Special cases of business logic, such as what happens if data is nil or has
 an unexpected value
-
 * Error cases, unless an error case genuinely results in a unique user
 experience
-
 * Internal implementation details of business logic
 
 

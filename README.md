@@ -5051,3 +5051,46 @@ run it....
       hello   #=> hello
       goodbye #=> goodbye
     end 
+
+
+>
+There’s a drawback, though. Inside the block, scope isn’t what you think it is,
+so this code wouldn’t work:
+
+    @size = 4 
+    turtle.walk do
+      4.times do 
+        turtle.forward(@size) 
+        turtle.left
+      end 
+    end
+
+>
+Instance variables are looked up in self, and self in the block isn’t the same
+as self in the code that sets the instance variable @size. Because of this,
+most people are moving away from this style of instance_evaled block.
+
+
+##### Hook methods
+
+Method related
+
+    method_added 
+    method_missing 
+    method_removed
+    method_undefined
+    singleton_method_added 
+    singleton_method_removed
+    singleton_method_undefined
+
+Class and module related
+
+    append_features 
+    const_missing 
+    extend_object 
+    extended 
+    included 
+    inherited 
+    initialize_clone 
+    initialize_copy 
+    initialize_dup

@@ -430,6 +430,16 @@ dependent on the internals of other objects.
 20. A controller test should test controller behavior. A controller test should
 not fail because of problems in the model.
 
+21. When testing for view elements, try to test for DOM classes that you
+control rather than text or element names that might be subject to design
+changes.
+
+22. When testing a Boolean condition, make sure to write a test for both halves
+of the condition.
+
+23. By far the biggest and easiest trap you can fall into when dealing with
+integration tests is the temptation to use them like unit tests.
+
 
 
 
@@ -1041,8 +1051,60 @@ Here we have the __render_template__ and __redirect_to__ matchers.
 * Did it set the values that the view will expect? For this we have the special
 hash objects __assigns__, __cookies__, __flash__, and __session__.
 
+>
+Rails controller tests do not - I repeat, do not - follow the redirect.
+
+Example of a controller test
+
+    it "shows a task" do
+      task = Task.create!
+      get :show, id: task.id
+      expect(response).to have_http_status(:success)
+      expect(assigns(:task).id).to eq(task.id)
+      expect(session[:previous_page]).to eq("task/show")
+    end
 
 
+
+>
+I'm aggressive about moving controller logic that interacts with the model to
+some kind of action object that doesn't have Rails dependencies. The controller
+logic and controller testing then tends to be limited to correctly dispatching
+successful and failed actions. That said, many Rails developers, notably
+including David Heinemeier Hansson, find adding an extra layer of objects to be
+overkill and think that worry about slow tests is misplaced. I recommend you
+try both ways and see which one best suits you.
+
+### Integration testing
+
+
+>
+don't use integration tests to specify logic that consists largely
+of internal details of your codebase.
+
+>
+In a Rails context, the following are fodder for integration tests:
+
+* The interaction between a controller and the model or other objects that
+provide data
+
+* The interaction between multiple controller actions that comprise a common
+work flow.
+
+* Certain security issues that involve the interaction between a user state
+and a particular controller action.
+
+
+These things, generally speaking, are not integration tests. Use unit tests
+instead:
+
+* Special cases of business logic, such as what happens if data is nil or has
+an unexpected value
+
+* Error cases, unless an error case genuinely results in a unique user
+experience
+
+* Internal implementation details of business logic
 
 
 

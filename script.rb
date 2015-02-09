@@ -4,20 +4,23 @@
 require 'pp'
 
 
-module One
-  CONST = "Defined in One"
-  def self.eval_block(&block)
-    instance_eval(&block)
+class Conversation
+
+  def start(&b)
+    instance_eval(&b) #<-- sauce
   end
+
+  def hello
+    puts :hello
+  end
+
+  def goodbye
+    puts :goodbye
+  end
+
 end
 
-module Two
-  CONST = "Defined in Two"
-  def self.call_eval_block
-    One.eval_block do
-      CONST
-    end
-  end
-end
-
-p Two.call_eval_block
+Conversation.new.start do
+  hello   #=> hello
+  goodbye #=> goodbye
+end 

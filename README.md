@@ -1080,8 +1080,6 @@ try both ways and see which one best suits you.
 
 >
 In a Rails context, the following are fodder for integration tests:
-
->
 * The interaction between a controller and the model or other objects that
 provide data
 * The interaction between multiple controller actions that comprise a common

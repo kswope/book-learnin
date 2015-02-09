@@ -4,23 +4,11 @@
 require 'pp'
 
 
-class Conversation
-
-  def start(&b)
-    instance_eval(&b) #<-- sauce
-  end
-
-  def hello
-    puts :hello
-  end
-
-  def goodbye
-    puts :goodbye
-  end
-
+class MyClassA #<--- default 'Object'
 end
 
-Conversation.new.start do
-  hello   #=> hello
-  goodbye #=> goodbye
-end 
+class MyClassB < Object
+end
+
+p MyClassA.superclass
+p MyClassB.superclass

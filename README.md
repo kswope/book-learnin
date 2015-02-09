@@ -5094,3 +5094,62 @@ Class and module related
     initialize_clone 
     initialize_copy 
     initialize_dup
+
+#### inherited hook
+
+    class MyClassBase
+      def self.inherited(child)
+        p child
+      end
+    end
+
+    class MyClassA < MyClassBase
+    end #=> MyClassA
+
+    MyClassC = Class.new(MyClassBase) #=> #<Class:0x0000010118b260>
+
+
+#### method_missing Hook
+
+>
+The built-in method_missing basically raises an exception (either a
+NoMethodError or a NameError depending on the circumstances).  The key here is
+that method_missing is simply a Ruby method. We can override it in our own
+classes to handle calls to otherwise undefined methods in an
+application-specific way.
+
+>
+method_missing has a simple signature, but many people get it wrong:
+
+    def method_missing(name, *args, &block)
+
+>
+Before we get too deep into the details, I’ll offer a tip about etiquette.
+There are two main ways that people use method_missing. The first intercepts
+every use of an undefined method and handles it. The second is more subtle; it
+intercepts all calls but handles only some of them. In the latter case, it is
+important to forward on the call to a superclass if you decide not to handle it
+in your method_missing implementation:
+
+    class MyClass < OtherClass
+      def method_missing(name, *args, &block)
+        if <some condition> # handle call
+        else
+          super # otherwise pass it on
+        end 
+      end
+    end
+
+
+Object is the superclass of normal class defintion
+
+    class MyClassA #<--- default 'Object'
+    end
+
+    class MyClassB < Object
+    end
+
+    p MyClassA.superclass
+    p MyClassB.superclass
+
+

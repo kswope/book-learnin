@@ -5205,3 +5205,5 @@ methods (of class UnboundMethod) and then subsequently bind them to one or more
 objects. The binding creates a new Method object. As with aliases, unbound
 methods are references to the definition of the method at the time they are
 created:
+
+page 398

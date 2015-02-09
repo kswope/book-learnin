@@ -4,13 +4,5 @@
 require 'pp'
 
 
-def plus1(x)
-  x += 1
-end
+plus1 = ->(x) { x += 1 }
 
-meth = self.class.instance_method(:plus1)
-p meth #=> #<UnboundMethod: Object#plus1>
-
-meth.bind(Fixnum)
-
-p [1,2,3].map(&:meth) #=> [2,3,4]

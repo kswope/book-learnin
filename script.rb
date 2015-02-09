@@ -4,11 +4,13 @@
 require 'pp'
 
 
-class MyClassA #<--- default 'Object'
+def plus1(x)
+  x += 1
 end
 
-class MyClassB < Object
-end
+meth = self.class.instance_method(:plus1)
+p meth #=> #<UnboundMethod: Object#plus1>
 
-p MyClassA.superclass
-p MyClassB.superclass
+meth.bind(Fixnum)
+
+p [1,2,3].map(&:meth) #=> [2,3,4]

@@ -5153,3 +5153,55 @@ Object is the superclass of normal class defintion
     p MyClassB.superclass
 
 
+#### Looking Inside Classes
+
+false argument in the following classes will prevent recurse into parent
+classes
+
+    Demo = Class.new
+    Demo.private_instance_methods(false)
+    Demo.protected_instance_methods(false)
+    Demo.public_instance_methods(false)
+    Demo.singleton_methods(false)
+    Demo.class_variables
+    Demo.constants(false)
+
+    demo = Demo.new
+    demo.instance_variables
+    demo.public_method
+
+#### Calling methods dynamically
+
+
+Object#send:
+
+    'cat'.send(:length) #=> 3
+    'cat'.send(:upcase) #=> CAT
+
+Method Objects
+
+    cl = 'cat'.method(:length)
+    p cl #=> #<Method: String#length>
+    p cl.call #=>3
+
+    cl = 'cat'.method(:[])
+    p cl #=> #<Method: String#[]> 
+    p cl[1] #=> a
+
+
+    def plus1(x)
+      x += 1
+    end
+
+    meth_obj = method(:plus1)
+
+    p meth_obj.to_proc #=> #<Proc:0x0000010190fbf8 (lambda)> lambda!
+
+    p [1,2,3].map(&meth_obj) #=> [2,3,4]
+
+
+Method objects are bound to one particular object. You can create unbound
+methods (of class UnboundMethod) and then subsequently bind them to one or more
+objects. The binding creates a new Method object. As with aliases, unbound
+methods are references to the definition of the method at the time they are
+created:

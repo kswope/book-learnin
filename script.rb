@@ -1,8 +1,16 @@
-#!/usr/bin/env ruby
 
 
-require 'pp'
 
 
-plus1 = ->(x) { x += 1 }
+module MyStuff
+  def puts(*args)
+    print "... "
+    super
+  end
+end
 
+class Object
+  prepend MyStuff
+end
+
+puts :hello

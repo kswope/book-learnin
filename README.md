@@ -5188,6 +5188,7 @@ Method Objects
     p cl #=> #<Method: String#[]> 
     p cl[1] #=> a
 
+Another example
 
     def plus1(x)
       x += 1
@@ -5204,6 +5205,48 @@ Method objects are bound to one particular object. You can create unbound
 methods (of class UnboundMethod) and then subsequently bind them to one or more
 objects. The binding creates a new Method object. As with aliases, unbound
 methods are references to the definition of the method at the time they are
-created:
+created.  (Note: this seems very restrictive and useless)
 
-page 398
+    class MyClass
+      def hello; p hello end
+    end
+
+    meth = MyClass.instance_method(:hello)
+    some_random_obj = Object.new
+    meth.bind(some_random_obj)
+    some_random_obj.hello #=> bind argument must be an instance of MyClass
+
+
+#### Hooking method calls
+
+Old method with alias_method
+
+    class Object
+
+      alias_method :old_puts, :puts
+
+      def puts(*args)
+        old_puts "About to puts something..."
+        old_puts(*args)
+      end
+
+    end
+
+    puts :hello
+
+New method with __prepend__
+
+    module MyStuff
+      def puts(*args)
+        print "... "
+        super
+      end
+    end
+
+    class Object
+      prepend MyStuff
+    end
+
+    puts :hello #=> "... hello"
+
+

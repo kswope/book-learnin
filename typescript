@@ -1,0 +1,12 @@
+Script started on Sun Feb  8 21:15:38 2015
+[?1034hkevin@walnut ruby-study $ one [K[K[K[Kecho one
+one
+kevin@walnut ruby-study $ echo two
+two
+kevin@walnut ruby-study $ echo three
+three
+kevin@walnut ruby-study $ end
+bash: end: command not found
+kevin@walnut ruby-study $ exit
+
+Script done on Sun Feb  8 21:16:22 2015

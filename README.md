@@ -5044,4 +5044,252 @@ instance_eval is called. This (artificial) example shows the behavior at the
 time I last built this book - it may well have changed again by the time you
 run it....
 
-page 381
+#### instance_eval and domain-specfic languages
+
+    class Conversation
+
+      def start(&b)
+        instance_eval(&b) #<-- secret sauce
+      end
+
+      def hello
+        puts :hello
+      end
+
+      def goodbye
+        puts :goodbye
+      end
+
+    end
+
+    Conversation.new.start do
+      hello   #=> hello
+      goodbye #=> goodbye
+    end 
+
+
+>
+There’s a drawback, though. Inside the block, scope isn’t what you think it is,
+so this code wouldn’t work:
+
+    @size = 4 
+    turtle.walk do
+      4.times do 
+        turtle.forward(@size) 
+        turtle.left
+      end 
+    end
+
+>
+Instance variables are looked up in self, and self in the block isn’t the same
+as self in the code that sets the instance variable @size. Because of this,
+most people are moving away from this style of instance_evaled block.
+
+
+##### Hook methods
+
+Method related
+
+    method_added 
+    method_missing 
+    method_removed
+    method_undefined
+    singleton_method_added 
+    singleton_method_removed
+    singleton_method_undefined
+
+Class and module related
+
+    append_features 
+    const_missing 
+    extend_object 
+    extended 
+    included 
+    inherited 
+    initialize_clone 
+    initialize_copy 
+    initialize_dup
+
+#### inherited hook
+
+    class MyClassBase
+      def self.inherited(child)
+        p child
+      end
+    end
+
+    class MyClassA < MyClassBase
+    end #=> MyClassA
+
+    MyClassC = Class.new(MyClassBase) #=> #<Class:0x0000010118b260>
+
+
+#### method_missing Hook
+
+>
+The built-in method_missing basically raises an exception (either a
+NoMethodError or a NameError depending on the circumstances).  The key here is
+that method_missing is simply a Ruby method. We can override it in our own
+classes to handle calls to otherwise undefined methods in an
+application-specific way.
+
+>
+method_missing has a simple signature, but many people get it wrong:
+
+    def method_missing(name, *args, &block)
+
+>
+Before we get too deep into the details, I’ll offer a tip about etiquette.
+There are two main ways that people use method_missing. The first intercepts
+every use of an undefined method and handles it. The second is more subtle; it
+intercepts all calls but handles only some of them. In the latter case, it is
+important to forward on the call to a superclass if you decide not to handle it
+in your method_missing implementation:
+
+    class MyClass < OtherClass
+      def method_missing(name, *args, &block)
+        if <some condition> # handle call
+        else
+          super # otherwise pass it on
+        end 
+      end
+    end
+
+
+Object is the superclass of normal class defintion
+
+    class MyClassA #<--- default 'Object'
+    end
+
+    class MyClassB < Object
+    end
+
+    p MyClassA.superclass
+    p MyClassB.superclass
+
+
+#### Looking Inside Classes
+
+false argument in the following classes will prevent recurse into parent
+classes
+
+    Demo = Class.new
+    Demo.private_instance_methods(false)
+    Demo.protected_instance_methods(false)
+    Demo.public_instance_methods(false)
+    Demo.singleton_methods(false)
+    Demo.class_variables
+    Demo.constants(false)
+
+    demo = Demo.new
+    demo.instance_variables
+    demo.public_method
+
+#### Calling methods dynamically
+
+
+Object#send:
+
+    'cat'.send(:length) #=> 3
+    'cat'.send(:upcase) #=> CAT
+
+Method Objects
+
+    cl = 'cat'.method(:length)
+    p cl #=> #<Method: String#length>
+    p cl.call #=>3
+
+    cl = 'cat'.method(:[])
+    p cl #=> #<Method: String#[]> 
+    p cl[1] #=> a
+
+Another example
+
+    def plus1(x)
+      x += 1
+    end
+
+    meth_obj = method(:plus1)
+
+    p meth_obj.to_proc #=> #<Proc:0x0000010190fbf8 (lambda)> lambda!
+
+    p [1,2,3].map(&meth_obj) #=> [2,3,4]
+
+
+Method objects are bound to one particular object. You can create unbound
+methods (of class UnboundMethod) and then subsequently bind them to one or more
+objects. The binding creates a new Method object. As with aliases, unbound
+methods are references to the definition of the method at the time they are
+created.  (Note: this seems very restrictive and useless)
+
+    class MyClass
+      def hello; p hello end
+    end
+
+    meth = MyClass.instance_method(:hello)
+    some_random_obj = Object.new
+    meth.bind(some_random_obj)
+    some_random_obj.hello #=> bind argument must be an instance of MyClass
+
+
+#### Hooking method calls
+
+Old method with alias_method
+
+    class Object
+
+      alias_method :old_puts, :puts
+
+      def puts(*args)
+        old_puts "About to puts something..."
+        old_puts(*args)
+      end
+
+    end
+
+    puts :hello
+
+New method with __prepend__
+
+    module MyStuff
+      def puts(*args)
+        print "... "
+        super
+      end
+    end
+
+    class Object
+      prepend MyStuff
+    end
+
+    puts :hello #=> "... hello"
+
+Another (ridiculous) way to hook a method - using unbound methods of course
+
+    class MyClass
+      def goodbye
+        puts :goodbye
+      end
+    end
+
+    class MyClass
+
+      old_method = instance_method :goodbye
+
+      # redefine goodbye to say hello first
+      define_method :goodbye do
+        print 'hello '
+        old_method.bind(self).call
+      end
+
+    end
+
+    MyClass.new.goodbye #=> hello goodbye
+
+
+Print current file:
+
+    print File.read(__FILE__)
+
+
+Finished -  now I'm going to forget all the above.

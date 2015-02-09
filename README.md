@@ -1083,14 +1083,12 @@ In a Rails context, the following are fodder for integration tests:
 
 * The interaction between a controller and the model or other objects that
 provide data
-
 * The interaction between multiple controller actions that comprise a common
 work flow.
-
 * Certain security issues that involve the interaction between a user state
 and a particular controller action.
 
-
+>
 These things, generally speaking, are not integration tests. Use unit tests
 instead:
 

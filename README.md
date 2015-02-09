@@ -426,6 +426,14 @@ returns a stub that itself contains a stub probably means your code is too
 dependent on the internals of other objects.
 
 19. Don't mock what you don't own. (Not convinced by this one at all)
+
+20. A controller test should test controller behavior. A controller test should
+not fail because of problems in the model.
+
+
+
+
+
 -------
 
 
@@ -1015,16 +1023,23 @@ The solution, in most cases, is to create a method or class in your application
 that calls the third-party tool and stubs that method (while also writing tests
 to ensure that the wrapper does the right thing). 
 
-Is the above overkill?
+_Is the above overkill?_
 
 
+### Testing Controllers and Views
 
+_controller testing doesn't test routes_
 
-page 137
+Evaluating Controller Results
 
+* Did it return the expected HTTP status code? RSpec provides the
+__response.status__ object and the have _http_status_ matcher for this purpose.
 
+* Did it pass control to the expected template or redirected controller action?
+Here we have the __render_template__ and __redirect_to__ matchers.
 
-
+* Did it set the values that the view will expect? For this we have the special
+hash objects __assigns__, __cookies__, __flash__, and __session__.
 
 
 

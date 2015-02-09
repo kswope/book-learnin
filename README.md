@@ -1028,7 +1028,7 @@ _Is the above overkill?_
 
 ### Testing Controllers and Views
 
-_controller testing doesn't test routes_
+_Note: controller testing doesn't test routes_
 
 Evaluating Controller Results
 

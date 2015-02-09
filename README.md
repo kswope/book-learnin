@@ -1079,10 +1079,6 @@ try both ways and see which one best suits you.
 
 
 >
-don't use integration tests to specify logic that consists largely
-of internal details of your codebase.
-
->
 In a Rails context, the following are fodder for integration tests:
 
 * The interaction between a controller and the model or other objects that

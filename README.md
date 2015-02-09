@@ -5249,4 +5249,32 @@ New method with __prepend__
 
     puts :hello #=> "... hello"
 
+Another (ridiculous) way to hook a method - using unbound methods of course
 
+    class MyClass
+      def goodbye
+        puts :goodbye
+      end
+    end
+
+    class MyClass
+
+      old_method = instance_method :goodbye
+
+      # redefine goodbye to say hello first
+      define_method :goodbye do
+        print 'hello '
+        old_method.bind(self).call
+      end
+
+    end
+
+    MyClass.new.goodbye #=> hello goodbye
+
+
+Print current file:
+
+    print File.read(__FILE__)
+
+
+Finished -  now I'm going to forget all the above.

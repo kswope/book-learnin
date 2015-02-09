@@ -5029,4 +5029,6 @@ instance_eval is called. This (artificial) example shows the behavior at the
 time I last built this book - it may well have changed again by the time you
 run it....
 
-page 381
+#### instance_eval and domain-specfic languages
+
+

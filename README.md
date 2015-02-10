@@ -15,16 +15,16 @@ want to waste a github private slot, so don't look._
 - [Metaprogramming Ruby](#metaprogramming-ruby)
 - [Pickaxe Part I Ruby.new](#pickaxe-part-i-rubynew)
 - [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
-- [Crafting Rails 4 Applications](#crafting-rails-4-applications)
+
 
 TODO
 
-- Practical Vim
-- Eloquent Ruby
 - Well Grounded Rubyist
+- Eloquent Ruby
 - Exceptional Ruby
-- Code Complete
 - Algorithms in a Nutshell
+- Practical Vim
+- Code Complete
 - Cracking the Coding Interview
 - Elements of Programming Interviews
 - Programming Interviews Exposed
@@ -5363,4 +5363,6 @@ Finished -  now I'm going to forget all the above.
 
 
 
-## Crafting Rails 4 Applications
+
+
+

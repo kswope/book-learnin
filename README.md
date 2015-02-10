@@ -16,6 +16,19 @@ want to waste a github private slot, so don't look._
 - [Pickaxe Part I Ruby.new](#pickaxe-part-i-rubynew)
 - [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
 
+TODO
+
+- Crafting Rails 4 Applications
+- Practical Vim
+- Eloquent Ruby
+- Well Grounded Rubyist
+- Exceptional Ruby
+- Code Complete
+- Algorithms in a Nutshell
+- Cracking the Coding Interview
+- Elements of Programming Interviews
+- Programming Interviews Exposed
+
 -----
 
 ## Practical Object-Oriented Design in Ruby
@@ -1075,7 +1088,7 @@ including David Heinemeier Hansson, find adding an extra layer of objects to be
 overkill and think that worry about slow tests is misplaced. I recommend you
 try both ways and see which one best suits you.
 
-### Integration testing
+### Integration testing with Capybara
 
 
 >
@@ -1095,6 +1108,8 @@ an unexpected value
 * Error cases, unless an error case genuinely results in a unique user
 experience
 * Internal implementation details of business logic
+
+OMG THIS BOOK IS SO BORING.
 
 
 

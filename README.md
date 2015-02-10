@@ -15,7 +15,7 @@ want to waste a github private slot, so don't look._
 - [Metaprogramming Ruby](#metaprogramming-ruby)
 - [Pickaxe Part I Ruby.new](#pickaxe-part-i-rubynew)
 - [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
-- [Eloquent Ruby]()
+- [Eloquent Ruby](#eloquent-ruby)
 
 
 TODO

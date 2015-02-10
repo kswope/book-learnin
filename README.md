@@ -5360,3 +5360,7 @@ Print current file:
 
 
 Finished -  now I'm going to forget all the above.
+
+
+
+## Crafting Rails 4 Applications

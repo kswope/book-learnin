@@ -5425,3 +5425,11 @@ Regex ^ and \A
     ^ matches beginning of string or beginning of any line within string
     $ matches end of string or end of any line within string
     . By default, the dot will match any character except the newline character
+
+>
+Every class — except one — has a superclass, someplace that the class can turn to
+when someone calls a method that the class doesn’t recognize.
+
+>
+If you don’t specify a superclass when you are defining a new class, the new
+class automatically becomes a direct subclass of Object.

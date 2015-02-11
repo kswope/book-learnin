@@ -5446,3 +5446,16 @@ rarely spotted cousin **&&=** , both of which provide the same kind of shortcut
 as the pseudooperator methods but are based on operators, namely **||** and
 **&&** , which you can't override.
 
+
+Rare &&= : assigns value only if target is 'true'
+
+    var = 1
+    var &&= 2 # same as next line
+    # var = var && 2 
+    p var #=> 2
+
+    var = nil
+    var &&= 2 # same as next line
+    # var = var && 2
+    p var #=> nil
+

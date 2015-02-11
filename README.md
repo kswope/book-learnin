@@ -5395,6 +5395,30 @@ call to new, to create a new object of that class.
     Proc         ->(x,y){ x * y }
 
 
+
+By defining + you get += for free
+
+    class MyInt
+
+      def initialize(int)
+        @int = int
+      end
+
+      def +(other)
+        @int + other
+      end
+
+    end
+
+    int = MyInt.new(1)
+
+    p int + 1 #=> 2
+
+    int += 1
+    p int     #=> 2
+
+
+
 _Section is about defining sugar, but don't forget Forwardable can make this easier:_
 
     require 'forwardable'
@@ -5414,3 +5438,11 @@ _Section is about defining sugar, but don't forget Forwardable can make this eas
     p int
     p int.to_s #=> "1"
     p int + 1 #=> 2
+
+
+
+Don't forget, too, the conditional assignment operator **||=**, as well as its
+rarelyspotted cousin &&=, both of which provide the same kind of shortcut as
+the pseudooperator methods but are based on operators, namely || and &&, which
+you can't override.
+

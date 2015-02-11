@@ -1,12 +1,13 @@
 
 
 
-first_name = 'Bono'
-last_name = false
+class Integer
 
-first_name ||= 'John'
-last_name  ||= 'Doe'
+  def to_int
+    puts :here
+    super
+  end
 
-puts "#{first_name} #{last_name}" #=> "Bono Doe"
+end
 
-
+1 == 1

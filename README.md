@@ -5395,4 +5395,22 @@ call to new, to create a new object of that class.
     Proc         ->(x,y){ x * y }
 
 
-page 187
+_Section is about defining sugar, but forwardable can make this easier:_
+
+    require 'forwardable'
+    class MyInt
+
+      extend Forwardable
+      def_delegators :@int, :to_s, :+
+
+      def initialize(str)
+        @int = str
+      end
+
+    end
+
+    int = MyInt.new(1)
+
+    p int
+    p int.to_s #=> "1"
+    p int + 1 #=> 2

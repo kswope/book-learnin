@@ -1,40 +1,19 @@
 require 'pp'
 
+require 'forwardable'
+class MyInt
 
-class MyInteger
+  extend Forwardable
+  def_delegators :@int, :to_s, :+
 
-  def to_int
-    puts :to_int
-    1
-  end
-
-  def to_i
-    puts :to_i
-    1
-  end
-
-  def to_fixnum
-    puts :to_fixnum
-    1
-  end
-
-  def coerce
-    puts :coerce
-    1
-  end
-
-  def what
-    self
-  end
-
-  def to_s
-    puts :there
-    super
+  def initialize(str)
+    @int = str
   end
 
 end
 
-i = MyInteger.new
-1 == i
-i == 1
-# 1 + Integer(i)
+int = MyInt.new(1)
+
+p int
+p int.to_s #=> "1"
+p int + 1 #=> 2

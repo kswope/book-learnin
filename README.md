@@ -5496,3 +5496,14 @@ There's an overridable ! method, huh
     p !o #=> 'calling !'
     p (not o) #=> 'calling !' 
 
+
+I wonder how the following happens
+
+>
+When it comes to generating string representations of their instances, some
+built-in classes do things a little differently from the defaults. For example,
+if you call puts on an array, you get a cyclical representation based on
+calling to_s on each of the elements in the array and outputting one per line.
+That is a special behavior; it doesn't correspond to what you get when you call
+to_s on an array, namely a string representation of the array in square
+brackets, as an array literal. 

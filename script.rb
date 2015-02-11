@@ -2,15 +2,36 @@ require 'pp'
 
 
 
-class MyClass
+Person = Struct.new(:first, :last)
 
-  def !
-    'calling !'
+
+person = Person.new
+
+p person
+
+
+class MyActions
+
+  def index(in, out)
+
+    out.vars.name = 'asfd'
+    out.render = '404'
+
   end
 
 end
 
-o = MyClass.new
-p !o #=> 'calling !'
-p (not o) #=> 'calling !' 
 
+# test actions in isolation
+
+describe index do
+
+  let(in){ {session:{}, params:{}}
+  let(out){ {session:{}}
+  let(index){MyActions.new(in, out))
+
+  it 'should return 404' do
+    expect(index.render).to eql '404'
+  end
+
+end

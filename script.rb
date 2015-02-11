@@ -3,17 +3,14 @@ require 'pp'
 
 
 class MyClass
-  def +@ # <--- weird but right
-    :+
+
+  def !
+    'calling !'
   end
 
-  def -@ # <--- weird but right
-    :-
-  end
 end
 
-a = MyClass.new
-p +a
+o = MyClass.new
+p !o #=> 'calling !'
+p (not o) #=> 'calling !' 
 
-b = MyClass.new
-p -b

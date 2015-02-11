@@ -5482,3 +5482,17 @@ Defining unary operator
     p -b #=> :-
 
 
+There's an overridable ! method, huh
+
+    class MyClass
+
+      def !
+        'calling !'
+      end
+
+    end
+
+    o = MyClass.new
+    p !o #=> 'calling !'
+    p (not o) #=> 'calling !' 
+

@@ -5381,3 +5381,16 @@ Ruby has a lot of built-in classes. Most of them can be instantiated using new:
 Some can’t; for example, you can’t create a new instance of the class
 __Integer__.  But for the most part, you can create new instances of the
 built-in classes.
+
+In addition, a lucky, select few built-in classes enjoy the privilege of having
+literal constructors. That means you can use special notation, instead of a
+call to new, to create a new object of that class.
+
+    String      'new string'
+    Symbol       :symbol
+    Array        [1,2,3]
+    Hash         {:one => 1}
+    Range        0..9 or 0...10
+    Regexp       /.*/
+    Proc         ->(x,y){ x * y }
+

@@ -5372,16 +5372,19 @@ _Moving on_
 
 ### Part 2 - Built-in classes and modules
 
+>
 Ruby has a lot of built-in classes. Most of them can be instantiated using new:
 
     str = String.new
     arr = Array.new
 
 
+>
 Some can’t; for example, you can’t create a new instance of the class
 __Integer__.  But for the most part, you can create new instances of the
 built-in classes.
 
+>
 In addition, a lucky, select few built-in classes enjoy the privilege of having
 __literal__ constructors. That means you can use special notation, instead of a
 call to new, to create a new object of that class.

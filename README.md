@@ -5366,6 +5366,11 @@ Finished -  now I'm going to forget all the above.
 
 ## The Well Grounded Rubyist
 
-### Ruby Foundations
+### Part 1 - Ruby Foundations
+
+_Moving on_
+
+### Part 2 - Ruilt-in classes and modules
+
 
 

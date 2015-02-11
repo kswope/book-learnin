@@ -5395,7 +5395,7 @@ call to new, to create a new object of that class.
     Proc         ->(x,y){ x * y }
 
 
-_Section is about defining sugar, but forwardable can make this easier:_
+_Section is about defining sugar, but don't forget Forwardable can make this easier:_
 
     require 'forwardable'
     class MyInt

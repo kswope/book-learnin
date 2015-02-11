@@ -5462,3 +5462,23 @@ Rare &&= : assigns value only if target is 'true'
     # var = var && 2
     p var #=> nil
 
+
+Defining unary operator
+
+    class MyClass
+      def +@ # <--- weird but right
+        :+
+      end
+
+      def -@ # <--- weird but right
+        :-
+      end
+    end
+
+    a = MyClass.new
+    p +a #=> :+
+
+    b = MyClass.new
+    p -b #=> :-
+
+

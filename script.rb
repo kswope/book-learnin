@@ -3,14 +3,17 @@ require 'pp'
 
 
 class MyClass
-  def +()
+  def +@ # <--- weird but right
     :+
   end
 
-  def -()
+  def -@ # <--- weird but right
     :-
   end
 end
 
-p MyClass.new +
-p MyClass.new -
+a = MyClass.new
+p +a
+
+b = MyClass.new
+p -b

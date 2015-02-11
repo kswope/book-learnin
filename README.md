@@ -5367,3 +5367,61 @@ Finished -  now I'm going to forget all the above.
 
 ## Eloquent Ruby
 
+
+Nice compact assignment with case: ( don't forget it uses === for comparisons )
+
+    author = case title
+             when 'War And Peace'    then 'Tolstoy'
+             when 'Romeo And Juliet' then 'Shakespeare'
+             end
+
+    author = case title
+             when /^War/  then 'Tolstoy'
+             when /Romeo/ then 'Shakespeare'
+             end
+
+Tricky defined? and testing for thuth example:
+
+    doc = Document.new( 'A Question', 'Shakespeare', 'To be...' )
+    flag = defined?( doc )
+    if flag == true # flat is not true but it is "true", which is what matters
+      do_something()
+    end
+
+
+
+Now get_next_object can't return false even if its a legit object
+
+    while next_object = get_next_object
+      # Do something with the object
+    end
+
+Better
+
+    until (next_object = get_next_object) == nil
+      # Do something with the object
+    end
+
+>
+If you are looking for nil and there is any possibility of false turning up,
+then look for nil explicitly.
+
+
+Be wary of ||= and its treatment of false
+
+    first_name = 'Bono'
+    last_name = false
+
+    first_name ||= 'John'
+    last_name  ||= 'Doe'
+
+    puts "#{first_name} #{last_name}" #=> "Bono Doe"
+
+Regex ^ and \A
+
+    \A matches beginning of string.
+    \z matches end of string
+    \Z matches end of string including newlines
+    ^ matches beginning of string or beginning of any line within string
+    $ matches end of string or end of any line within string
+    . By default, the dot will match any character except the newline character

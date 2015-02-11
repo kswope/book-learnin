@@ -5442,7 +5442,7 @@ _Section is about defining sugar, but don't forget Forwardable can make this eas
 
 
 Don't forget, too, the conditional assignment operator **||=**, as well as its
-rarelyspotted cousin **&&=** , both of which provide the same kind of shortcut
+rarely spotted cousin **&&=** , both of which provide the same kind of shortcut
 as the pseudooperator methods but are based on operators, namely **||** and
 **&&** , which you can't override.
 

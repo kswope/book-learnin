@@ -5394,3 +5394,5 @@ call to new, to create a new object of that class.
     Regexp       /.*/
     Proc         ->(x,y){ x * y }
 
+
+page 187

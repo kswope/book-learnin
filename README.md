@@ -5383,7 +5383,7 @@ __Integer__.  But for the most part, you can create new instances of the
 built-in classes.
 
 In addition, a lucky, select few built-in classes enjoy the privilege of having
-literal constructors. That means you can use special notation, instead of a
+__literal__ constructors. That means you can use special notation, instead of a
 call to new, to create a new object of that class.
 
     String      'new string'

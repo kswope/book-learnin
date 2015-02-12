@@ -5525,3 +5525,59 @@ can put a bare list inside the literal array constructor brackets:
 **It’s a subtle distinction, but the notation lying between the brackets isn’t,
 itself, an array; it’s a list, and the array is constructed from the list,
 thanks to the brackets.**
+
+
+All these work the same, assinging x=1, y=2, z=3
+
+    x,y,z = 1,2,3
+    puts x,y,z
+
+    x=y=z = nil
+
+    x,y,z = [1,2,3]
+    puts x,y,z
+
+    x=y=z = nil
+
+    x,y,z = *[1,2,3]
+    puts x,y,z
+
+>
+The star has a kind of bracket-removing or un-arraying effect. What starts as
+an array becomes a list.
+
+
+Use to_s for display purposes, use to_str if you want your object to be a
+string.
+
+    obj + "there." #=> "Hello there." (uses to_str)
+
+    obj << " that" #=> "this that" (uses to_str)
+
+
+to_str is required for the following to work (to_s) didn't do it
+
+    class MyClass
+
+      def initialize(data)
+        @data = data
+      end
+      
+      def to_str
+        @data.to_s 
+      end
+
+    end
+
+    p "my string " + MyClass.new([1,2,3]) #=> "my string [1, 2, 3]"
+
+
+>
+Objects can masquerade as arrays if they have a to_ary method. If such a method
+is present, it’s called on the object in cases where an array, and only an
+array, will do— for example, in an array-concatenation operation.
+
+    [1,2,3].concat(my_obj)
+
+
+

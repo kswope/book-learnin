@@ -5507,3 +5507,21 @@ calling to_s on each of the elements in the array and outputting one per line.
 That is a special behavior; it doesn't correspond to what you get when you call
 to_s on an array, namely a string representation of the array in square
 brackets, as an array literal. 
+
+>
+You’ve already seen the star operator used in method parameter lists, where it
+denotes a parameter that sponges up the optional arguments into an array. In
+the more general case, the star turns any array, or any object that responds to
+to_a, into the equivalent of a bare list.
+
+>
+The term bare list means several identifiers or literal objects separated by
+commas. Bare lists are valid syntax only in certain contexts. For example, you
+can put a bare list inside the literal array constructor brackets:
+
+  [1,2,3,4,5]
+
+>
+**It’s a subtle distinction, but the notation lying between the brackets isn’t,
+itself, an array; it’s a list, and the array is constructed from the list,
+thanks to the brackets.**

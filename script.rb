@@ -25,9 +25,8 @@ o = MyClass.new( %w{one two three} )
 # mymethod(*o)
 
 
-# a,b,c = *o
+a,b,c = *o
 
-a,b,c = [1,2,3]
 
 
 puts a,b,c

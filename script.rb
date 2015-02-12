@@ -2,36 +2,32 @@ require 'pp'
 
 
 
-Person = Struct.new(:first, :last)
+class MyClass
 
+  def initialize(data)
+    @data = data
+  end
 
-person = Person.new
-
-p person
-
-
-class MyActions
-
-  def index(in, out)
-
-    out.vars.name = 'asfd'
-    out.render = '404'
-
+  def to_a
+    puts "calling to_a"
+    @data.to_a
   end
 
 end
 
 
-# test actions in isolation
-
-describe index do
-
-  let(in){ {session:{}, params:{}}
-  let(out){ {session:{}}
-  let(index){MyActions.new(in, out))
-
-  it 'should return 404' do
-    expect(index.render).to eql '404'
-  end
-
+def mymethod(*args)
+  p args
 end
+
+
+o = MyClass.new( %w{one two three} )
+# mymethod(*o)
+
+
+# a,b,c = *o
+
+a,b,c = [1,2,3]
+
+
+puts a,b,c

@@ -5579,5 +5579,6 @@ array, will do— for example, in an array-concatenation operation.
 
     [1,2,3].concat(my_obj)
 
-
+>
+If you define ==, your objects will automatically have the != method.
 

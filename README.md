@@ -5628,7 +5628,7 @@ MyClass.
 
 method reflection method grouping (to help remembering)
 
-
+    MyClass.methods
     MyClass.instance_methods
     MyClass.private_instance_methods
     MyClass.protected_instance_methods

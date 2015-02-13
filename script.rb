@@ -1,14 +1,21 @@
 require 'pp'
 
+require 'ap'
 
 class MyInt
   class << self
-    def hello
-      puts :hi
+    def class_hello
+      ap :hi
     end
   end
+
+  def instance_hello
+    ap :hi
+  end
+
+
 end
 
 
-MyInt.hello
 
+ap MyInt.instance.methods

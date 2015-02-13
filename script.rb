@@ -10,5 +10,5 @@ p "my string"['no string'] #=> nil
 
 target = /str/
 if 'my string'[target]
-  puts "found target #{target}"
+  puts "found target #{target}" #+> found target (?-mix:str)
 end

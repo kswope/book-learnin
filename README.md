@@ -5660,3 +5660,10 @@ Test for substring without a regex
     if 'my string'[target]
       puts "found target #{target}"
     end
+
+The regex option
+
+    target = /str/
+    if 'my string'[target]
+      puts "found target #{target}" #+> found target (?-mix:str)
+    end

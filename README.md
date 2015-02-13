@@ -5667,3 +5667,10 @@ The regex option
     if 'my string'[target]
       puts "found target #{target}" #+> found target (?-mix:str)
     end
+
+Above look better than this?
+
+    target = /str/
+    if 'my string' =~ target
+      puts "found target #{target}" #+> found target (?-mix:str)
+    end

@@ -5668,7 +5668,7 @@ The regex option
       puts "found target #{target}" #+> found target (?-mix:str)
     end
 
-Above look better than this?
+Above better than this? (maybe because I always type =~ wrong)
 
     target = /str/
     if 'my string' =~ target

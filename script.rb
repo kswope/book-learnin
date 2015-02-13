@@ -14,6 +14,6 @@ if 'my string'[target]
 end
 
 target = /str/
-if 'my string' =~ target
+if 'my string'match target
   puts "found target #{target}" #+> found target (?-mix:str)
 end

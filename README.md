@@ -5624,3 +5624,16 @@ MyClass.
     two = MyInt.new 1
 
     p one == two #=> true
+
+
+method reflection method grouping (to help remembering)
+
+
+    MyClass.instance_methods
+    MyClass.private_instance_methods
+    MyClass.protected_instance_methods
+    MyClass.public_instance_methods
+
+    MyClass.private_instance_methods
+    MyClass.protected_instance_methods
+    MyClass.public_instance_methods

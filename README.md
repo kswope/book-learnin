@@ -5588,6 +5588,6 @@ convenient way to get it. If you want objects of class MyClass to have the full
 suite of comparison methods, all you have to do is the following:
 
 >
-1 Mix a module called Comparable (which comes with Ruby) into MyClass.
-2 Define a comparison method with the name <=> as an instance method in
+1. Mix a module called Comparable (which comes with Ruby) into MyClass.
+2. Define a comparison method with the name <=> as an instance method in
 MyClass.

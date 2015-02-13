@@ -5628,12 +5628,35 @@ MyClass.
 
 method reflection method grouping (to help remembering)
 
-    MyClass.methods
-    MyClass.instance_methods
-    MyClass.private_instance_methods
-    MyClass.protected_instance_methods
-    MyClass.public_instance_methods
+    MyClass.methods #<-- class methods
 
+    MyClass.instance_methods #<-- instance methods defined in class
+    MyClass.public_instance_methods
     MyClass.private_instance_methods
     MyClass.protected_instance_methods
-    MyClass.public_instance_methods
+
+
+    obj.methods #<-- instance methods
+    obj.private_methods    
+    obj.public_methods
+    obj.protected_methods
+    obj.singleton_methods
+
+    MyClass.new.methods == MyClass.instance_methods
+    MyClass.instance_methods == MyClass.public_instance_methods
+
+
+Extract a string
+
+    "my string"[3, 100] #=> "string" (second arg is length, not position)
+    "my string"[3..-1] #=> "string" use a range if you have two positions
+
+Test for substring without a regex 
+
+    p "my string"['string'] #=> 'string' # finds and returns a substring
+    p "my string"['no string'] #=> nil
+
+    target = 'str'
+    if 'my string'[target]
+      puts "found target #{target}"
+    end

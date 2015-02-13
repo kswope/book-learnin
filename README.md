@@ -5646,7 +5646,7 @@ method reflection method grouping (to help remembering)
     MyClass.instance_methods == MyClass.public_instance_methods
 
 
-Extract a string
+Extract a string with [] (also known as slice)
 
     "my string"[3, 100] #=> "string" (second arg is length, not position)
     "my string"[3..-1] #=> "string" use a range if you have two positions

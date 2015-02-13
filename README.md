@@ -5586,6 +5586,7 @@ If you define ==, your objects will automatically have the != method.
 But for classes that do need full comparison functionality, Ruby provides a
 convenient way to get it. If you want objects of class MyClass to have the full
 suite of comparison methods, all you have to do is the following:
+>
 
 >
 1. Mix a module called Comparable (which comes with Ruby) into MyClass.

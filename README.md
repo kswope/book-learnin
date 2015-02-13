@@ -5592,3 +5592,35 @@ suite of comparison methods, all you have to do is the following:
 1. Mix a module called Comparable (which comes with Ruby) into MyClass.
 2. Define a comparison method with the name <=> as an instance method in
 MyClass.
+
+    class MyInt
+
+      attr_accessor :int
+
+      def initialize(int)
+        self.int = int
+      end
+
+    end
+
+
+    one = MyInt.new 1
+    two = MyInt.new 1
+
+    p one == two #=> false
+
+    # reopen class
+    class MyInt
+
+      include Comparable
+
+      def <=>(other)
+        self.int <=> other.int
+      end
+
+    end
+
+    one = MyInt.new 1
+    two = MyInt.new 1
+
+    p one == two #=> true

@@ -5708,3 +5708,21 @@ sub!/gsub!
     str = 'my string'
     str.sub!('my', 'not my')
     p str #=> 'not my string'
+
+Count the letters in a string
+
+    'this is my string'.count('i') #=> 3
+    'this is my string'.count('a-z') #=> character range
+
+>
+Consider allowing symbols or strings as method arguments
+When you’re writing a method that will take an argument that could conceivably
+be a string or a symbol, it’s often nice to allow both. It’s not necessary in
+cases where you’re dealing with user-generated, arbitrary strings, or where
+text read in from a file is involved; those won’t be in symbol form anyway. But
+if you have a method that expects, say, a method name, or perhaps a value from
+a finite table of tags or labels, it’s polite to allow strings or symbols. That
+means avoiding doing anything to the object that requires it to be one or the
+other and that will cause an error if it’s the wrong one. You can normalize the
+argument with a call to to_sym (or to_s, if you want to normalize to strings)
+so that whatever gets passed in fits into the operations you need to perform.

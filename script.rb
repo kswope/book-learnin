@@ -2,8 +2,5 @@ require 'pp'
 require 'ap'
 
 
-target = 'str'
-if 'my string'.include? target
-  puts "found target #{target}"
-end
-
+p 'this is my string'.count('i') #=> 3
+p 'this is my string'.count('a-z') #=> character range

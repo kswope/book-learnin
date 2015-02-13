@@ -5726,3 +5726,113 @@ means avoiding doing anything to the object that requires it to be one or the
 other and that will cause an error if it’s the wrong one. You can normalize the
 argument with a call to to_sym (or to_s, if you want to normalize to strings)
 so that whatever gets passed in fits into the operations you need to perform.
+
+
+Weird parens when using hash.each_with_index
+
+    a.each_with_index {|(k,v), i| p k,v,i }
+
+Spliltting also works with procs but not lambdas because theres no || in lambdas
+
+    p = Proc.new {|(x,y)| puts "first:#{x} second:#{y}" }
+    p.call([1,2]) #=> first:1 second:2
+
+    l = lambda { |(a,b)| puts "first:#{a} second:#{b}" }
+    l.call([1,2])
+
+Doesn't work with arrow lambda syntax because there's no | |
+
+    l = ->(x){ puts "first:#{?} second:#{?}" }
+    l.call([1,2])
+
+_Hash to array intermission_
+
+    h = Hash[*[1,2,3,4]]  
+
+    # note, this is how you construct a hash with keys and values, not Hash.new(a:1, b:2)
+    h = Hash[a:1, b:2]
+
+    # new() is for defaults
+    h2 = Hash.new(99)
+    h2[:one] #=> 99
+
+Array constructor can take a block (note the 3)
+
+    x = 1
+    a = Array.new(3) do
+      x *= 10
+    end
+
+    p a #=> [10, 100, 1000]
+
+
+
+
+
+_hash intermission (note, Hash() is a method), Hash[] and Hash() are the same_
+
+    p Hash(a:1, b:2, c:3) #=> {:a=>1, :b=>2, :c=>3}
+    p Hash[a:1, b:2, c:3] #=> {:a=>1, :b=>2, :c=>3}
+
+
+[]= and Array() method
+
+    class Arrayish
+
+      def initialize(a)
+        @a = a
+      end
+
+      def []=(index, value)
+        @a[index] = value
+      end
+
+      def to_a
+        @a
+      end
+
+    end
+
+    a = Arrayish.new(%i{a b c})
+    a[3] = :d # because we implemented []=
+    p a.class #=> Arrayish
+    real_array = Array(a) # because we implemented to_a
+    p real_array.class #=> Array
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,4 +2,8 @@ require 'pp'
 require 'ap'
 
 
-'my string'.slice!('my ')
+target = 'str'
+if 'my string'.include? target
+  puts "found target #{target}"
+end
+

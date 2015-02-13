@@ -5682,3 +5682,29 @@ One more
       puts "found target #{target}" #+> found target (?-mix:str)
     end
 
+
+Found another one
+
+    target = 'str'
+    if 'my string'.include? target
+      puts "found target #{target}"
+    end
+
+
+slice has a bang!
+
+    str = 'my string'
+    p str.slice!('my ') #=> 'my '
+    p str #=> "string"
+
+>
+To set part of a string to a new value, you use the []= method. Or just use
+sub!/gsub!
+
+    str = 'my string'
+    str['my'] = 'not my'
+    p str #=> 'not my string'
+
+    str = 'my string'
+    str.sub!('my', 'not my')
+    p str #=> 'not my string'

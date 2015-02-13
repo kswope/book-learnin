@@ -5674,3 +5674,11 @@ Above better than this? (maybe because I always type =~ wrong)
     if 'my string' =~ target
       puts "found target #{target}" #+> found target (?-mix:str)
     end
+
+One more
+
+    target = /str/
+    if 'my string'.match(target)
+      puts "found target #{target}" #+> found target (?-mix:str)
+    end
+

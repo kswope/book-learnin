@@ -5868,7 +5868,7 @@ My attempt to sort hash by values
     h = h.sort { |a,b| a[1] <=> b[1] } #--> there is no Hash#sort!
     p Hash[*h.flatten] #=> {:a=>1, :d=>1, :b=>2, :e=>2, :c=>3} 
 
-    # breaking news... there's a __sort_by__ and a __to_h__, use _k for unused block param
+breaking news... there's a __sort_by__ and a __to_h__, use _k for unused block param
 
     hash = {a:1, b:2, c:3, d:1, e:2}
     hash = hash.sort_by { |_k,v| v }.to_h

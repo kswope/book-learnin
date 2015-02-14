@@ -5767,8 +5767,6 @@ Array constructor can take a block (note the 3)
 
 
 
-
-
 _hash intermission (note, Hash() is a method), Hash[] and Hash() are the same_
 
     p Hash(a:1, b:2, c:3) #=> {:a=>1, :b=>2, :c=>3}
@@ -5800,12 +5798,31 @@ _hash intermission (note, Hash() is a method), Hash[] and Hash() are the same_
     p real_array.class #=> Array
 
 
+To make slices work you need to build []= like this
 
+    def []=(*index, value)
+      @a[*index] = value
+    end
 
+    a = Arrayish.new(%i{a b c})
+    a[0,2]  = :x, :y
+    p a.to_a #=> [:x, :y, :c]
 
+Array#push can take multiple values, Array#<< can't
 
+    a = %i{ one two three}
+    a << [:four, :five]
+    p a #=> [:one, :two, :three, [:four], [:five]]
 
+    a = %i{ one two three}
+    a.push *[:four, :five] #=> note the splat
+    p a #=> [:one, :two, :three, :four, :five]
 
+Array#pop can take a number argument
+
+    a = %i{ one two three}
+    p a.pop(2) #=> [:two, :three]
+    p a        #=> :one
 
 
 

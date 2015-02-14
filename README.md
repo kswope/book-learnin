@@ -5824,6 +5824,58 @@ Array#pop can take a number argument
     p a.pop(2) #=> [:two, :three]
     p a        #=> :one
 
+Array#flatten can take level argument - there's also a flatten!
+
+    array = [1,2,[3,4,[5],[6,[7,8]]]]
+    array.flatten(2) #=> [1, 2, 3, 4, 5, 6, [7, 8]]      
+
+You can uniq arrays - also uniq!
+
+    [1,2,3,1,4,3,5,1].uniq #=> [1, 2, 3, 4, 5] 
+
+
+Array#compact removes nils from arrays (not false)
+
+    [1, nil, 2, nil, 3].compact #=> [1,2,3]
+
+
+Three ways to create a Hash
+
+    {one:1, two:2, three:3}
+    Hash.new(:default)
+    Hash[:one, 1, :two, 2, :three, 3] #<-- takes a 'list'
+
+
+Hash#store takes two arguments
+
+    hash = {}
+    hash.store(:one, 1) #<-- list
+    hash.store(*[:two, 2]) #<-- splat array
+    hash.store( *'three 3'.split ) #<-- really grasping
+    p hash #=> {:one=>1, :two=>2, "three"=>"3"}
+
+
+My attempt to unique values of hash elegantly
+
+    h = {a:1, b:2, c:3, d:1, e:2}
+    h = h.invert.invert
+    p h #=> {:d=>1, :e=>2, :c=>3}
+
+
+My attempt to sort hash by values
+
+    h = {a:1, b:2, c:3, d:1, e:2}
+    h = h.sort { |a,b| a[1] <=> b[1] } #--> there is no Hash#sort!
+    p Hash[*h.flatten] #=> {:a=>1, :d=>1, :b=>2, :e=>2, :c=>3} 
+
+    # breaking news... there's a __sort_by__ and a __to_h__, use _k for unused block param
+
+    hash = {a:1, b:2, c:3, d:1, e:2}
+    hash = hash.sort_by { |_k,v| v }.to_h
+    p hash #=> {:a=>1, :d=>1, :b=>2, :e=>2, :c=>3} 
+
+
+
 
 
 

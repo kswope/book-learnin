@@ -5874,6 +5874,52 @@ breaking news... there's a __sort_by__ and a __to_h__, use _k for unused block p
     hash = hash.sort_by { |_k,v| v }.to_h
     p hash #=> {:a=>1, :d=>1, :b=>2, :e=>2, :c=>3} 
 
+Waring Array#to_h is weird
+
+    [:one, 1, :two, 2, :three, 3].to_h #=> wrong element type Symbol at 0 (expected array) 
+
+    [[:one, 1], [:two, 2], [:three, 3]].to_h #=> {:one=>1, :two=>2, :three=>3}
+
+To change array into hash in one line, use each_slice, enumerator.to_a
+
+    [:one, 1, :two, 2, :three,3].each_slice(2).to_h
+
+
+Hash#fetch is versitile
+
+    h = {one: 1, two: 2, three: 3}
+
+    p h.fetch(:three) #=> 3
+    p h.fetch(:four, 4) #=> 4
+    h.fetch(:four) rescue p $! #=> key not found: :four (KeyError) 
+    h.fetch(:four) {|k| p "sorry no #{k}" } #=> sorry no four
+
+Hash#values_at is similar to Array#values_at
+
+    h = {one: 1, two: 2, three: 3}
+
+    p h.values_at(:one, :three) #=> [1,3]
+
+
+Hash constructor takes a default value
+
+    h = Hash.new(0)
+    h[:nope] #=> 0
+
+Hash constructor can autovivify
+
+    h = Hash.new {|hash,key| hash[key] = 0 }
+
+    h.store(:one,1)
+    p h #=> {:one => 1}
+
+    h[:two] #=> 0
+    p h #=> {:one => 1, :two => 2} 
+
+
+
+page 267
+
 
 
 

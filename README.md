@@ -6023,6 +6023,23 @@ multiple instances of it in order, you need to do the following:
   2. Place the multiple instances in a container, probably an array.
   3. Sort the container.
 
+    class MyClass
+
+      attr_accessor :var
+
+      def initialize(x)
+        self.var = x
+      end
+
+      def <=>(other)
+        self.var <=> other.var
+      end
+
+    end
+
+    collection = [5,1,3,4,2].map {|x| MyClass.new(x)}
+    p collection.sort!
+    p collection.map {|c| c.var}
 
 
 

@@ -6049,7 +6049,7 @@ an array or other enumerable for sorting.
   array and provide a code block telling the array how it should rank any two
 of the objects. 
 * If you define <=> and also include Comparable in your class, then you get
-   sort- ability inside an array and you can perform all the comparison
+   sortability inside an array and you can perform all the comparison
 operations between any two of your objects (>, <, and so on)
 
 

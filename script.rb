@@ -10,12 +10,8 @@ class MyClass
     self.var = x
   end
 
-  def <=>(other)
-    self.var <=> other.var
-  end
-
 end
 
 collection = [5,1,3,4,2].map {|x| MyClass.new(x)}
-p collection.sort.map {|c| c.var} #=> [1,2,3,4,5]
+p collection.sort{|a,b| a.var<=>b.var }.map {|c| c.var} #=> [1,2,3,4,5]
 

@@ -2,18 +2,30 @@ require 'pp'
 require 'ap'
 
 
-class MyClass
 
-  attr_accessor :var
+a = [1,2,3].to_enum
+b = [:a, :b, :c].to_enum
 
-  def initialize(x)
-    self.var = x
-  end
+loop do
+
+  puts "#{a.next} #{b.next}"
 
 end
 
-collection = [5,1,3,4,2].map {|x| MyClass.new(x)}
-p collection.sort_by{|x| x.var }.map {|c| c.var} #=> [1,2,3,4,5]
 
-# even shorter!
-p collection.sort_by(&:var).map {|c| c.var} #=> [1,2,3,4,5]
+delegate_actions all,    MyApp, 
+delegate_actions only,   MyApp, :index => :index, :welcome => :welcome
+delegate_actions except, MyApp, :index => :index, :welcome => :welcome
+
+class MyApp
+  def index(state)
+    state
+  end
+end
+
+let(app){ MyApp.new }
+let(state){ Hash.new[render:index] }
+
+expect(app.index(state).render).to == 'index'
+expect(app.index(state).vars.users).to == 
+

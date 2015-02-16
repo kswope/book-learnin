@@ -5953,16 +5953,89 @@ This doesn't because [nil].any? is false
 
     [1,2,3,nil,4,5,6].find_all {|n| n.nil? }.any?
 
-Array#grip operates on === and works like:
+Enumerable#grip operates on === and works like:
 
     enumerable.select {|element| expression === element }
 
-Array#group_by is cool
+Enumerable#group_by is cool
 
     colors = %w{ red orange yellow blue indigo violet }
 
     colors.group_by{|c| c[0]} #=> {"r"=>["red"], "o"=>["orange"], "y"=>["yellow"], "b"=>["blue"], "i"=>["indigo"], "v"=>["violet"]}
 
     colors.group_by{|c| c.size} #=> {3=>["red"], 6=>["orange", "yellow", "indigo", "violet"], 4=>["blue"]}
+
+Enumerable#partition is also cool
+
+    a = [1,2,3,4,5,6]
+    p a.partition {|x| (1..3).cover?(x)} #=> [[1, 2, 3], [4, 5, 6]] 
+
+Enumerable#take and Enumerable#drop are complementary (neither alters original array)
+drop is like an undestructive pop and take is like an undestructive shift
+
+    a = [1,2,3,4,5,6]
+    a.drop(2) #=> [3, 4, 5, 6]
+    a         #=> [1, 2, 3, 4, 5, 6]
+    a.pop(4)  #=> [3, 4, 5, 6]
+    a         #=> [1, 2]
+
+    a = [1,2,3,4,5,6]
+    a.take(2)  #=> [1,2]
+    a          #=> [1, 2, 3, 4, 5, 6]
+    a.shift(2) #=> [1,2]
+    a          #=> [3, 4, 5, 6]
+
+
+Constrain Enumerable#take and Enumerable#drop with take_while and drop_while
+
+    [1,2,3,4,5,6].take_while {|x| x < 4 } #=> [1,2,3]
+
+
+loop catches StopIteration exception, so yo can use it like this 
+
+    e = [1,2,3,4,5,6].each_slice(2)
+
+    loop do
+      p e.next
+    end
+
+
+which looks more pro?
+
+    e.inject([]){|acc, x| acc << x; acc} 
+    e.reduce([]){|acc, x| acc << x; acc} 
+
+fancy map in place
+
+    names = %w{ David Yukihiro Chad Amy }
+    names.map!(&:upcase)
+
+>
+Even though Ruby strings aren’t enumerable in the technical sense (String does
+not include Enumerable), the language thus provides you with the necessary
+tools to address them as character, byte, codepoint, and/or line collections
+when you need to.
+
+>
+Sorting enumerables: If you have a class, and you want to be able to arrange
+multiple instances of it in order, you need to do the following:
+1. Define a comparison method for the class (<=>).
+2. Place the multiple instances in a container, probably an array.
+3. Sort the container.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -6098,11 +6098,11 @@ inject, map, and friends—directly on top of its each.
 
 >
 An enumerator isn’t a container object. It has no “natural” basis for an each
-opera- tion, the way an array does (start at element 0; yield it; go to element
+operation, the way an array does (start at element 0; yield it; go to element
 1; yield it; and so on). The each iteration logic of every enumerator has to be
-explicitly specified. **After you’ve told it how to do each, the enumerator takes
-over from there and figures out how to do map, find, take, drop, and all the
-rest.**
+explicitly specified. **After you’ve told it how to do each, the enumerator
+takes over from there and figures out how to do map, find, take, drop, and all
+the rest.**
 
 
 

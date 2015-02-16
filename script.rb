@@ -17,6 +17,5 @@ class MyClass
 end
 
 collection = [5,1,3,4,2].map {|x| MyClass.new(x)}
-p collection.sort!
-p collection.map {|c| c.var}
+collection.sort.map {|c| c.var} #=> [1,2,3,4,5]
 

@@ -6038,8 +6038,6 @@ multiple instances of it in order, you need to do the following:
     end
 
     collection = [5,1,3,4,2].map {|x| MyClass.new(x)}
-    p collection.sort!
-    p collection.map {|c| c.var}
 
 
 

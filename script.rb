@@ -2,18 +2,10 @@ require 'pp'
 require 'ap'
 
 
+colors = %w{ red orange yellow blue indigo violet }
 
-p ('a'..'c').cover? 'abc' #=> true
-p ('a'..'c').include? 'abc' #=> false
+colors.group_by{|c| c[0]} #=> {"r"=>["red"], "o"=>["orange"], "y"=>["yellow"], "b"=>["blue"], "i"=>["indigo"], "v"=>["violet"]}
 
-p ('a'..'c').cover? 'bcd' #=> true
-p ('a'..'c').include? 'bcd' #=> false
-
-p ('a'..'c').cover? 'cde' #=> false
-p ('a'..'c').include? 'cde' #=> false
+colors.group_by{|c| c.size} #=> {3=>["red"], 6=>["orange", "yellow", "indigo", "violet"], 4=>["blue"]}
 
 
-p [1,2,3].include? 1 #=> true
-p [1,2,3].include? 2 #=> true
-p [1,2,3].include? 3 #=> true
-p [1,2,3].include? 4 #=> false

@@ -5940,3 +5940,29 @@ ranges
     p ('a'..'c').cover? 'cde' #=> false
     p ('a'..'c').include? 'cde' #=> false
 
+
+This test is useless
+
+    [1,2,3,nil,4,5,6].find {|n| n.nil? }
+
+This could work
+
+    [1,2,3,nil,4,5,6].find_all {|n| n.nil? }.count > 0
+
+This doesn't because [nil].any? is false
+
+    [1,2,3,nil,4,5,6].find_all {|n| n.nil? }.any?
+
+Array#grip operates on === and works like:
+
+    enumerable.select {|element| expression === element }
+
+Array#group_by is cool
+
+    colors = %w{ red orange yellow blue indigo violet }
+
+    colors.group_by{|c| c[0]} #=> {"r"=>["red"], "o"=>["orange"], "y"=>["yellow"], "b"=>["blue"], "i"=>["indigo"], "v"=>["violet"]}
+
+    colors.group_by{|c| c.size} #=> {3=>["red"], 6=>["orange", "yellow", "indigo", "violet"], 4=>["blue"]}
+
+

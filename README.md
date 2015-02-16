@@ -6054,6 +6054,56 @@ operations between any two of your objects (>, <, and so on)
 
 
 
+Poor mans sorting (class doesn't have <=> method)
+
+    class MyClass
+
+      attr_accessor :var
+
+      def initialize(x)
+        self.var = x
+      end
+
+    end
+
+    collection = [5,1,3,4,2].map {|x| MyClass.new(x)}
+    collection.sort{|a,b| a.var <=> b.var }.map {|c| c.var} #=> [1,2,3,4,5]
+
+
+Enumerable#sort_by makes it even cleaner
+
+    class MyClass
+
+      attr_accessor :var
+
+      def initialize(x)
+        self.var = x
+      end
+
+    end
+
+    collection = [5,1,3,4,2].map {|x| MyClass.new(x)}
+    collection.sort_by{|x| x.var }.map {|c| c.var} #=> [1,2,3,4,5]
+
+    # even shorter!
+    collection.sort_by(&:var).map {|c| c.var} #=> [1,2,3,4,5]
+
+>
+At heart, an enumerator is a simple enumerable object. It has an each method,
+and it **employs the Enumerable module** to define all the usual methods—select,
+inject, map, and friends—directly on top of its each.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

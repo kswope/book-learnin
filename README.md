@@ -5926,3 +5926,17 @@ Ranges are enclusive or exclusive
     (1...10).include? 10 #=> false
 
 _Think of ... as pushing the last value outside the range_
+
+Ranges and __include?__ and __cover?__, cover? is simplier and faster, won't
+use with strings because its confusing.  Note that cover? is exclusive to
+ranges 
+
+    p ('a'..'c').cover? 'abc' #=> true
+    p ('a'..'c').include? 'abc' #=> false
+
+    p ('a'..'c').cover? 'bcd' #=> true
+    p ('a'..'c').include? 'bcd' #=> false
+
+    p ('a'..'c').cover? 'cde' #=> false
+    p ('a'..'c').include? 'cde' #=> false
+

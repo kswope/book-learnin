@@ -5918,36 +5918,11 @@ Hash constructor can autovivify
 
 
 
-page 267
+#### Ranges
 
+Ranges are enclusive or exclusive
 
+    (1..10).include?  10 #=> true
+    (1...10).include? 10 #=> false
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+_Think of ... as pushing the last value outside the range_

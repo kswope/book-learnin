@@ -6019,10 +6019,9 @@ when you need to.
 >
 Sorting enumerables: If you have a class, and you want to be able to arrange
 multiple instances of it in order, you need to do the following:
-
-1. Define a comparison method for the class (<=>).
-2. Place the multiple instances in a container, probably an array.
-3. Sort the container.
+  1. Define a comparison method for the class (<=>).
+  2. Place the multiple instances in a container, probably an array.
+  3. Sort the container.
 
 
 

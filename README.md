@@ -6104,6 +6104,8 @@ explicitly specified. **After you’ve told it how to do each, the enumerator
 takes over from there and figures out how to do map, find, take, drop, and all
 the rest.**
 
+page 303
+
 
 
 

@@ -6042,14 +6042,14 @@ multiple instances of it in order, you need to do the following:
 
 
 >
-* If you define <=> for a class, then instances of that class can be put inside
-an array or other enumerable for sorting.
-* If you don’t define <=>, you can still sort objects if you put them inside an
-  array and provide a code block telling the array how it should rank any two
-of the objects. 
-* If you define <=> and also include Comparable in your class, then you get
-   sort- ability inside an array and you can perform all the comparison
-operations between any two of your objects (>, <, and so on)
+  * If you define <=> for a class, then instances of that class can be put inside
+  an array or other enumerable for sorting.
+  * If you don’t define <=>, you can still sort objects if you put them inside an
+    array and provide a code block telling the array how it should rank any two
+  of the objects. 
+  * If you define <=> and also include Comparable in your class, then you get
+     sort- ability inside an array and you can perform all the comparison
+  operations between any two of your objects (>, <, and so on)
 
 
 

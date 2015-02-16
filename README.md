@@ -6088,6 +6088,9 @@ Enumerable#sort_by makes it even cleaner
     # even shorter!
     collection.sort_by(&:var).map {|c| c.var} #=> [1,2,3,4,5]
 
+
+### Enumerators
+
 >
 At heart, an enumerator is a simple enumerable object. It has an each method,
 and it **employs the Enumerable module** to define all the usual methods—select,

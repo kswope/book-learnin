@@ -6104,6 +6104,53 @@ explicitly specified. **After you’ve told it how to do each, the enumerator
 takes over from there and figures out how to do map, find, take, drop, and all
 the rest.**
 
+
+
+Simple enumerator with new
+
+    e = Enumerator.new do |y|
+      y.yield :a
+      y.yield :b
+      y.yield :c
+    end
+
+
+    loop do
+      p e.next
+    end
+
+
+Same
+
+    Object#to_enum
+    Object#to_enum(:each)
+
+
+
+
+From a blog:  How to make your class return an enumerator instead of including Enumerable
+
+    class UsersWithGravatar
+      def each
+
+        return enum_for(:each) unless block_given? # Sparkling magic!
+
+        User.find_each do |user|
+          hash  = Digest::MD5.hexdigest(user.email)
+          image = "http://www.gravatar.com/avatar/#{hash}"
+          yield user unless Net::HTTP.get_response(URI.parse(image)).body == missing_avatar
+        end
+      end
+    end
+
+
+
+
+
+
+
+
+
 page 303
 
 

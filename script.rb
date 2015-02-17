@@ -3,29 +3,39 @@ require 'ap'
 
 
 
-a = [1,2,3].to_enum
-b = [:a, :b, :c].to_enum
-
-loop do
-
-  puts "#{a.next} #{b.next}"
-
-end
 
 
-delegate_actions all,    MyApp, 
-delegate_actions only,   MyApp, :index => :index, :welcome => :welcome
-delegate_actions except, MyApp, :index => :index, :welcome => :welcome
+class MyClass
 
-class MyApp
-  def index(state)
-    state
+  attr_accessor :data
+
+  def initialize(data)
+    self.data = data
   end
+
+  def to_enum
+    Enumerator.new do |y|
+      self.data.each do |x|
+        y << x
+      end
+    end
+  end
+
+  def each(&block)
+    return enum_for(:each) unless block_given?
+    puts "block_given"
+    for x in self.data
+      block.call(x)
+    end
+  end
+
 end
 
-let(app){ MyApp.new }
-let(state){ Hash.new[render:index] }
 
-expect(app.index(state).render).to == 'index'
-expect(app.index(state).vars.users).to == 
+o = MyClass.new([1,2,3,4,5])
+
+p o.each {}
+p o.each
+
+p o.each.map{|x| x+1 }
 

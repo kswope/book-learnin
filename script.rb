@@ -3,39 +3,13 @@ require 'ap'
 
 
 
-
-
-class MyClass
-
-  attr_accessor :data
-
-  def initialize(data)
-    self.data = data
+e = Enumerator.new do |y|
+  loop do
+    y << Time.now
   end
-
-  def to_enum
-    Enumerator.new do |y|
-      self.data.each do |x|
-        y << x
-      end
-    end
-  end
-
-  def each(&block)
-    return enum_for(:each) unless block_given?
-    puts "block_given"
-    for x in self.data
-      block.call(x)
-    end
-  end
-
 end
 
+p e.first(3) #=> [2015-02-19 18:51:13 -0500, 2015-02-19 18:51:13 -0500, 2015-02-19 18:51:13 -0500]
+ 
 
-o = MyClass.new([1,2,3,4,5])
-
-p o.each {}
-p o.each
-
-p o.each.map{|x| x+1 }
 

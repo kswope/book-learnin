@@ -6109,9 +6109,9 @@ the rest.**
 Simple enumerator with new
 
     e = Enumerator.new do |y|
-      y.yield :a
-      y.yield :b
-      y.yield :c
+      y.yield :a #<-- each call and stop
+      y.yield :b #<-- each call and stop
+      y.yield :c #<-- each call and stop
     end
 
 
@@ -6144,18 +6144,81 @@ From a blog:  How to make your class return an enumerator instead of including E
     end
 
 
+proof that to_enum hooks up to each
+
+    o = Object.new
+
+    def o.each
+      print 'running each '
+      yield 1
+      yield 2
+      yield 3
+    end
+
+e = o.to_enum
+p e.next #=> "running each 1"
 
 
 
+My example of implementing an enumerator for MyClass without cheating with an existing each()
+
+    class MyClass
+
+      attr_accessor :data
+
+      def initialize(data)
+        self.data = data
+      end
+
+      def each(&block)
+        for x in self.data #<-- no state needed here, uses fibers behind the scene
+          block.call(x) 
+        end
+      end
+
+      def to_enum
+        Enumerator.new do |y|
+          each do |x| #<-- our implemented each
+            y << x #<-- blocks after each next
+          end
+        end
+      end
+
+    end
+
+    o = MyClass.new([:a,:b,:c])
+    e = o.to_enum
+
+    p e.map.with_index {|x, i| [x,i]}.to_h #=> {:a=>0, :b=>1, :c=>2}
 
 
+Enumerators really aren't tied to each.  It just happens that the to_enum
+method of most classes will default to using each, enumerators aren't dependent
+on any particular method to work.
 
+    a = [1,2,3,4,5]
+    e = Enumerator.new do |y|
+      total = 0
+      until a.empty?
+        total += a.pop
+        y << total
+      end
+    end
 
-page 303
+    loop do 
+      print e.next #=> 5912141
+    end
 
+An enumerator just needs something to feed to <<
 
+    e = Enumerator.new do |y|
+      loop do
+        y << Time.now
+      end
+    end
 
-
+    e.first(3) #=> [2015-02-19 18:51:13 -0500, 2015-02-19 18:51:13 -0500, 2015-02-19 18:51:13 -0500]
+ 
 
 
 

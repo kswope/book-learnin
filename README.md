@@ -6220,7 +6220,44 @@ An enumerator just needs something to feed to <<
     e.first(3) #=> [2015-02-19 18:51:13 -0500, 2015-02-19 18:51:13 -0500, 2015-02-19 18:51:13 -0500]
  
 
+>
+An enumerator is an object, and can therefore maintain state. It remembers
+where it is in the enumeration. An iterator is a method. When you call it, the
+call is atomic; the entire call happens, and then it’s over.
 
+
+My example of how to implement to_enum that takes a method parameter
+
+    class MyClass
+
+      attr_accessor :data
+
+      def initialize(data)
+        self.data = data
+      end
+
+      def to_enum(method)
+        Enumerator.new do |y|
+          self.send(method) do |x| #<-- special sauce
+            y << x
+          end
+        end
+      end
+
+      def myeach(&b)
+        for i in data
+          b.call(i)
+        end
+      end
+
+    end
+
+    o = MyClass.new(%i{one two three four five})
+    e = o.to_enum(:myeach)
+
+    loop do
+      p e.next
+    end
 
 
 

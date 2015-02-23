@@ -6219,3 +6219,40 @@ scan also takes a block saving an each
     "first:Kevin last:Swope first:Bob last:Smith".scan(/first:(\w+) last:(\w+)/) do |(f,l)|
       p "#{f} => #{l}"
     end
+
+>
+Note that if you provide a block, scan doesn't store the results up in an array
+and return them; it sends each result to the block and then discards it. That
+way, you can scan through long strings, doing something with the results along
+the way, and avoid using up a lot of memory-saving substrings you've already
+seen and used. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

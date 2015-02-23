@@ -6243,7 +6243,7 @@ argument to grep is a regexp, the selection is based on pattern matches, as per
 the behavior of Regexp#===:
 
 
-### Ruby Dynamics
+### Part 3 - Ruby Dynamics
 
 
 

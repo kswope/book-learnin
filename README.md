@@ -6326,9 +6326,9 @@ the ways in which character data are represented.
 
 String#scan is great
 
- "testing 1 2 3 testing 4 5 6".scan(/\d/) #=> ["1", "2", "3", "4", "5", "6"]
+     "testing 1 2 3 testing 4 5 6".scan(/\d/) #=> ["1", "2", "3", "4", "5", "6"]
 
-'one two three'.scan(/\w+/) #=> ["one", "two", "three"]
+    'one two three'.scan(/\w+/) #=> ["one", "two", "three"]
 
 >
 If you use parenthetical groupings in the regexp you give to scan, the

@@ -6326,9 +6326,11 @@ the ways in which character data are represented.
 
 String#scan is great
 
-     "testing 1 2 3 testing 4 5 6".scan(/\d/) #=> ["1", "2", "3", "4", "5", "6"]
+     "testing 1 2 3 testing 4 5 6".scan(/\d/) 
+     #=> ["1", "2", "3", "4", "5", "6"]
 
-    'one two three'.scan(/\w+/) #=> ["one", "two", "three"]
+    'one two three'.scan(/\w+/) 
+    #=> ["one", "two", "three"]
 
 >
 If you use parenthetical groupings in the regexp you give to scan, the
@@ -6336,10 +6338,12 @@ operation returns an array of arrays. Each inner array contains the results of
 **one scan** through the string:
 
     # without
-    "first:Kevin last:Swope first:Bob last:Smith".scan(/first:\w+ last:\w+/) #=> ["first:Kevin last:Swope", "first:Bob last:Smith"]
+    "first:Kevin last:Swope first:Bob last:Smith".scan(/first:\w+ last:\w+/) 
+    #=> ["first:Kevin last:Swope", "first:Bob last:Smith"]
 
     # with
-    "first:Kevin last:Swope first:Bob last:Smith".scan(/first:(\w+) last:(\w+)/) #=> [["Kevin", "Swope"], ["Bob", "Smith"]]
+    "first:Kevin last:Swope first:Bob last:Smith".scan(/first:(\w+) last:(\w+)/) 
+    #=> [["Kevin", "Swope"], ["Bob", "Smith"]]
 
 
 

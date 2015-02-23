@@ -6351,8 +6351,8 @@ operation returns an array of arrays. Each inner array contains the results of
     end
     
     >
-    "Kevin => Swope"
-    "Bob => Smith"
+        "Kevin => Swope"
+        "Bob => Smith"
 
 
 

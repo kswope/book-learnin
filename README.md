@@ -6346,6 +6346,13 @@ operation returns an array of arrays. Each inner array contains the results of
     #=> [["Kevin", "Swope"], ["Bob", "Smith"]]
 
 
+    "first:Kevin last:Swope first:Bob last:Smith".scan(/first:(\w+) last:(\w+)/).each do |(f,l)|
+      p "#{f} => #{l}"
+    end
+    
+    >
+    "Kevin => Swope"
+    "Bob => Smith"
 
 
 

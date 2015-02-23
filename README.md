@@ -6271,7 +6271,26 @@ captures** - nobody cares about prematch or postmatch, etc._
     regex.match(string)
     string.match(regex)
 
+    str.match(/(my)/) #=> #<MatchData "my" 1:"my">
+    str.match(/not my/) #=> nil
+    str.match(/(my)/).begin(0) #=> 8
+    str.match(/(my)/).to_a #=> ['my', 'my'] [whole string, captures...]
+    str.match(/(my)/).pre_match #=> 'this is '
+    str.match(/(my)/).post_match #=> ' string'
 
+With captures
+
+    str.match(/my/)[0] #=> my
+    str.match(/my/)[1] #=> nil, whoops forgot to capture
+    str.match(/(my)/)[1] #=> my
+
+Two ways to get at captures.  I like the second if there's room because it doesn't have the indexing confusion
+
+    str.match(/(my)/)[1] #=> my
+    str.match(/(my)/).captures(0) #=> my
+
+    m[1] == m.captures[0]
+    m[2] == m.captures[1]
 
 
 

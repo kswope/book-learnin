@@ -6266,7 +6266,7 @@ My example of how to implement to_enum that takes a method parameter
 
 _I'm leaning to accept that the below are only good for their bool value (as a
 more rubyish replacement for =~) and are otherwise not very useful **without
-captures**, nobody cares about prematch or postmatch, etc._
+captures** - nobody cares about prematch or postmatch, etc._
 
     regex.match(string)
     string.match(regex)

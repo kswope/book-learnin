@@ -6228,9 +6228,22 @@ the way, and avoid using up a lot of memory-saving substrings you've already
 seen and used. 
 
 
+>
+Using the notion of a pointer into the string, StringScanner lets you traverse
+across the string as well as examine what's already been matched and what
+remains.  StringScanner is a useful complement to the built-in string scanning
+facilities. 
 
 
+>
+Enumerable#grep does a filtering operation from an enumerable object based on the case
+equality operator (===), returning all the elements in the enumerable that
+return a true value when threequaled against grep's argument. Thus if the
+argument to grep is a regexp, the selection is based on pattern matches, as per
+the behavior of Regexp#===:
 
+
+### Ruby Dynamics
 
 
 

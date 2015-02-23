@@ -6292,7 +6292,59 @@ Two ways to get at captures.  I like the second if there's room because it doesn
     m[1] == m.captures[0]
     m[2] == m.captures[1]
 
-page 239
+
+>
+Anything inside a (?:) grouping will be matched based on the grouping, but not
+saved to a capture. 
+
+Escaping regex
+
+    search_for = 'a.c'
+    re = /#{Regexp.escape(str)}/ #=>  /a\.c/
+    re.match("a.c") #=>  #<MatchData "a.c">
+    re.match("abc") #=> nil, because '.' is not /./
+
+
+'Zero or one' is slightly unintuitive to me when used like this
+
+    ''.match(/(.?)/)[1] #=> ""
+
+But I've often used it like this:
+
+    'name: kevin'.match(/name:? (.*)/)[1] #=> 'kevin'
+
+Don't forget ignores match (bad exaple)
+
+    'one two three'.match(/(\w*) (?:\w*) (\w*)/).captures
+
+>
+Regular expressions, it should be noted, can't do everything. In particular,
+it's a commonplace and correct observation that you can't parse arbitrary XML
+with regular expressions, for reasons having to do with nesting of elements and
+the ways in which character data are represented. 
+
+
+String#scan is great
+
+ "testing 1 2 3 testing 4 5 6".scan(/\d/) #=> ["1", "2", "3", "4", "5", "6"]
+
+'one two three'.scan(/\w+/) #=> ["one", "two", "three"]
+
+>
+If you use parenthetical groupings in the regexp you give to scan, the
+operation returns an array of arrays. Each inner array contains the results of
+**one scan** through the string:
+
+    # without
+    "first:Kevin last:Swope first:Bob last:Smith".scan(/first:\w+ last:\w+/) #=> ["first:Kevin last:Swope", "first:Bob last:Smith"]
+
+    # with
+    "first:Kevin last:Swope first:Bob last:Smith".scan(/first:(\w+) last:(\w+)/) #=> [["Kevin", "Swope"], ["Bob", "Smith"]]
+
+
+
+
+
 
 
 

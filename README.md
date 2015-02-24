@@ -6380,7 +6380,7 @@ operation returns an array of arrays. Each inner array contains the results of
     argument to grep is a regexp, the selection is based on pattern matches, as per
     the behavior of Regexp#===:
 
-    ### Part 3 - Ruby Dynamics
+### Part 3 - Ruby Dynamics
 
 
 

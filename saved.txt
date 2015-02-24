@@ -17,3 +17,48 @@ argument to grep is a regexp, the selection is based on pattern matches, as per
 the behavior of Regexp#===:
 
 Part 3 - Ruby Dynamics
+
+    MyClass = Class.new
+
+    # define class method "outside" class
+    def MyClass.hello
+      p :hello
+    end
+
+    # define class method "inside" class
+    class MyClass
+      def self.goodbye
+        p :goodbye
+      end
+    end
+
+    MyClass.hello   #=> :hello
+    MyClass.goodbye #=> :goodbye
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

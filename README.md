@@ -6381,6 +6381,51 @@ the behavior of Regexp#===:
 
 ### Part 3 - Ruby Dynamics
 
+Class methods are just instance methods defined on a classes eigenclass:
+
+    MyClass = Class.new
+
+    # define class method "outside" class
+    def MyClass.hello
+      p :hello
+    end
+
+    # define class method "inside" class
+    class MyClass
+      def self.goodbye
+        p :goodbye
+      end
+    end
+
+    MyClass.hello   #=> :hello
+    MyClass.goodbye #=> :goodbye
+
+But to get inside the definition body of a singleton class, you use a special notation:
+
+    class << object
+     # method and constant definitions here
+    end
+
+
+Example:
+
+    class MyClass
+      class << self
+
+        attr_accessor :var #<-- access to class instance var
+
+        def mymethod #<-- class method
+        end
+
+      end
+    end
+
+>
+The << object notation means the anonymous, singleton class of object. When
+you're inside the singleton class definition body, you can define methods - and
+these methods will be singleton methods of the object whose singleton class
+you're in. 
+
 
 
 

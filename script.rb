@@ -3,19 +3,14 @@ require 'ap'
 
 
 
-MyClass = Class.new
-
-# define class method "outside" class
-def MyClass.hello
-  p :hello
-end
-
-# define class method "inside" class
-class MyClass
-  def self.goodbye
-    p :goodbye
+class C
+  def self.hello
+    p :hello
   end
 end
 
-MyClass.hello
-MyClass.goodbye
+class D < C
+end
+
+D.hello #=> :hello
+

@@ -6427,8 +6427,101 @@ these methods will be singleton methods of the object whose singleton class
 you're in. 
 
 
+Comparing class and instance variables inside eigenclass
 
 
+    MyClass = Class.new
+
+    class << MyClass
+      def hello
+        p :hello
+      end
+    end
+
+    MyClass.hello #=> :hello
+
+
+    obj = Object.new
+
+    class << obj
+      def hello
+        p :hello
+      end
+    end
+
+    obj.hello #=> :hello
+
+
+
+class keyword either accepts a constant or a << object:
+
+    class MyClass
+      #...
+    end
+
+    class << myobj
+      #...
+    end
+
+Most common use of class << is to open a classes eigenclass to create class methods, for those
+too lazy to type def self.method
+
+    class MyClass
+      class << self
+        def mymethod
+      end
+    end
+
+
+Mixing a module into an objects eigenclass puts the modules method in front of
+the classes instance method, which seems to be the same effect as prepend()
+
+    class MyClass
+      def hello
+        p :hello
+      end
+    end
+
+    o = MyClass.new
+    o.hello #=> :hello
+
+    module MyModule
+      def hello
+        p :goodbye
+      end
+    end
+
+    class << o
+      include MyModule
+    end
+
+    o.hello #=> :goodbye
+
+>
+Almost every object in Ruby can have methods added to it. The exceptions are
+instances of certain Numeric subclasses, including integer classes and floats,
+and symbols. 
+
+
+Class methods are eigenclass methods but there's a lookup chain, unlike an
+objects eigenclass methods.
+
+    class C
+      def self.hello
+        p :hello
+      end
+    end
+
+    class D < C
+    end
+
+D.hello #=> :hello
+
+>
+Singleton classes of class objects are sometimes called metaclasses
+
+
+page 394
 
 
 

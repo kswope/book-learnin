@@ -28,6 +28,4 @@ class Fixnum
   end
 end
 
-
-
 [1,2,3].map(&:one) #=> 123

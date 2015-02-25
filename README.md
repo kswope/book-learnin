@@ -6619,6 +6619,39 @@ _Moving on_
     %i{a b c d e}.each(&myproc.to_proc.to_proc.to_proc) #=> abcde
 
 
+Symbol.to_proc trick useful for when a method doesn't take any arguments
+
+    class Symbol
+      def to_proc
+        Proc.new {|obj| obj.send(self) } #<-- note self is the method as a symbol, like :capitalize
+      end
+    end
+
+    class Fixnum
+      def one
+        puts self
+      end
+    end
+
+    [1,2,3].map(&:one) #=> 123
+
+
+
+Procs can accept a splat in the block argument list
+
+    pr = Proc.new {|*x| p x }
+    pr.call()
+    pr.call(1)
+    pr.call(2)
+
+
+
+#### instance_eval
+
+
+>
+__instance_eval__ is mostly useful for breaking in to what would normally be
+another object's private data - particularly instance variables.
 
 
 

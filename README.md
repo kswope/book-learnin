@@ -6678,10 +6678,35 @@ be passed, in turn, to the code block.  This enables you to do things like this:
 
 The most useful eval: **class_eval** (a.k.a. module_eval)
 
+Class eval puts you inside the class definition
+
+    class MyClass
+      attr_accessor :var
+      def initialize(data)
+        self.var = data
+      end
+    end
+
+    MyClass.class_eval do
+      def upcase
+        var.upcase
+      end
+    end
+
+    o = MyClass.new(:hello)
+
+    p o.upcase #=> :HELLO
 
 
+>
+But you can do some things with class_eval that you canât do with the
+regular class keyword:
 
+- Evaluate a string in a class-definition context
 
+- Open the class definition of any anonymous class (not just singleton classes)
+
+- Use existing local variables inside a class definition body
 
 
 

@@ -6,15 +6,17 @@ require 'ap'
 
 
 module HashWithLogging
-
   def []=(key, value)
     puts "Assigning #{value} to #{key}"
     super
   end
-
 end
 
 hash = {}
-hash.extend(HashWithLogging)
+
+class << hash
+  include HashWithLogging
+end
+
 hash[:one] = 1 #=> Assigning 1 to :one
 

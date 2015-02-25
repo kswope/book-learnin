@@ -6557,6 +6557,24 @@ Using extend to modify a single object in a convenient way
     hash.extend(HashWithLogging)
     hash[:one] = 1 #=> Assigning 1 to :one
 
+This does the same but looks terrible
+
+    module HashWithLogging
+      def []=(key, value)
+        puts "Assigning #{value} to #{key}"
+        super
+      end
+    end
+
+    hash = {}
+
+    class << hash
+      include HashWithLogging
+    end
+
+    hash[:one] = 1 #=> Assigning 1 to :one
+
+
 _Side note, I'm thinking that alias_method exists only to create decorators for
 methods.  Its a way to **redefine** a method (not override in a subclass)
 without losing it.  The only reason to do that is to impersonate the existing

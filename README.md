@@ -6676,7 +6676,7 @@ be passed, in turn, to the code block.  This enables you to do things like this:
     string = "A sample string"
     string.instance_exec("s") {|delim| self.split(delim) } #=> all this to use 'self'?
 
-##### The most useful eval: class_eval (a.k.a. module_eval)
+The most useful eval: **class_eval** (a.k.a. module_eval)
 
 
 

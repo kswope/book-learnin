@@ -6653,9 +6653,30 @@ Procs can accept a splat in the block argument list
 __instance_eval__ is mostly useful for breaking in to what would normally be
 another object's private data - particularly instance variables.
 
+    class MyClass
 
+      attr_accessor :var
 
+      def initialize(data)
+        self.var = data
+      end
 
+    end
+
+    o = MyClass.new(:hello)
+
+    o.instance_eval do
+      p self.var #=> hello
+    end
+
+instance_eval has a close cousin called __instance_exec__. The difference between
+the two is that __instance_exec__ can take arguments. Any arguments you pass it will
+be passed, in turn, to the code block.  This enables you to do things like this:
+
+    string = "A sample string"
+    string.instance_exec("s") {|delim| self.split(delim) } #=> all this to use 'self'?
+
+##### The most useful eval: class_eval (a.k.a. module_eval)
 
 
 

@@ -14,10 +14,8 @@ class MyClass
 
 end
 
-
 o = MyClass.new(:hello)
 
-
 o.instance_eval do
-  p self.var
+  p self.var #=> hello
 end

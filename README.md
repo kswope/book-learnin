@@ -6521,7 +6521,56 @@ D.hello #=> :hello
 Singleton classes of class objects are sometimes called metaclasses
 
 
-page 394
+>
+Kernel#extend - Adds to obj the instance methods from each module given as a
+parameter.
+
+    module MyModule
+      def hello
+        p :hello
+      end
+    end
+
+    class MyClass
+    end
+
+    MyClass.extend(MyModule) # adds to eigenclass of class
+    MyClass.hello #=> :hello
+
+    o = Object.new
+    o.extend(MyModule) # adds to eigenclass of object
+    o.hello #=> :hello
+
+_Looks like extend is include that targets the eigenclass_
+
+
+Using extend to modify a single object in a convenient way
+
+    module HashWithLogging
+      def []=(key, value)
+        puts "Assigning #{value} to #{key}"
+        super
+      end
+    end
+
+    hash = {}
+    hash.extend(HashWithLogging)
+    hash[:one] = 1 #=> Assigning 1 to :one
+
+_Side note, I'm thinking that alias_method exists only to create decorators for
+methods.  Its a way to __redefine__ a method (not override in a subclass)
+without losing it.  The only reason to do that is to impersonate the existing
+method and wrap it._
+
+
+
+
+
+
+
+
+
+
 
 
 

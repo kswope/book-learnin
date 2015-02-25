@@ -2,15 +2,19 @@ require 'pp'
 require 'ap'
 
 
+# using extend to modify a single object in a convenient way
 
-class C
-  def self.hello
-    p :hello
+
+module HashWithLogging
+
+  def []=(key, value)
+    puts "Assigning #{value} to #{key}"
+    super
   end
+
 end
 
-class D < C
-end
-
-D.hello #=> :hello
+hash = {}
+hash.extend(HashWithLogging)
+hash[:one] = 1 #=> Assigning 1 to :one
 

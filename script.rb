@@ -4,13 +4,20 @@ require 'ap'
 
 
 
-class Printer
+class MyClass
 
-  def self.to_proc
-    Proc.new {|x| print x}
+  attr_accessor :var
+
+  def initialize(data)
+    self.var = data
   end
 
 end
 
-myproc = Printer.to_proc
-%i{a b c d e}.each(&myproc.to_proc.to_proc.to_proc) #=> abcde
+
+o = MyClass.new(:hello)
+
+
+o.instance_eval do
+  p self.var
+end

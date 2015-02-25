@@ -6612,7 +6612,10 @@ Object.to_proc is same as
 
     %i{a b c d e}.each(&Printer) #=> abcde
 
+    # same as
 
+    myproc = Printer.to_proc
+    %i{a b c d e}.each(&myproc) #=> abcde
 
 
 

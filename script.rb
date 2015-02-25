@@ -2,6 +2,8 @@ require 'pp'
 require 'ap'
 
 
+
+
 class Printer
 
   def self.to_proc
@@ -10,4 +12,5 @@ class Printer
 
 end
 
-%i{a b c d e}.each(&Printer) #=> abcde
+myproc = Printer.to_proc
+%i{a b c d e}.each(&myproc) #=> abcde

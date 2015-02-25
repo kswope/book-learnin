@@ -6574,6 +6574,14 @@ This does the same but looks terrible
 
     hash[:one] = 1 #=> Assigning 1 to :one
 
+In other code, these two are the same
+
+    hash.extend(HashWithLogging)
+
+    class << hash
+      include HashWithLogging
+    end
+
 
 _Side note, I'm thinking that alias_method exists only to create decorators for
 methods.  Its a way to **redefine** a method (not override in a subclass)

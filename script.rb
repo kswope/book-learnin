@@ -2,7 +2,12 @@ require 'pp'
 require 'ap'
 
 
-# using extend to modify a single object in a convenient way
+class Printer
 
+  def self.to_proc
+    Proc.new {|x| print x}
+  end
 
+end
 
+%i{a b c d e}.each(&Printer) #=> abcde

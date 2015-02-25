@@ -6615,7 +6615,7 @@ Object.to_proc is same as
     # same as
 
     myproc = Printer.to_proc
-    %i{a b c d e}.each(&myproc) #=> abcde
+    %i{a b c d e}.each(&myproc.to_proc) #=> abcde
 
 
 

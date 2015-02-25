@@ -6701,11 +6701,8 @@ Class eval puts you inside the class definition
 >
 But you can do some things with class_eval that you canât do with the
 regular class keyword:
-
 - Evaluate a string in a class-definition context
-
 - Open the class definition of any anonymous class (not just singleton classes)
-
 - Use existing local variables inside a class definition body
 
 

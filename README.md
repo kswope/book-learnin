@@ -6589,6 +6589,13 @@ without losing it.  The only reason to do that is to impersonate the existing
 method and wrap it._
 
 
+#### BasicObject
+
+    obj.class.ancestors.last == BasicObject
+
+
+page 401
+
 
 
 

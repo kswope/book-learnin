@@ -6598,6 +6598,10 @@ _Moving on_
 
 #### Callable and Runnable Objects
 
+[1,2,3].each(&MyObj) is same as [1,2,3].each(MyObj.to_proc)
+
+Object.to_proc is same as 
+
     class Printer
 
       def self.to_proc

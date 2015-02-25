@@ -6593,8 +6593,8 @@ method and wrap it._
 
     obj.class.ancestors.last == BasicObject
 
+_Moving on_
 
-page 401
 
 
 

@@ -6558,7 +6558,7 @@ Using extend to modify a single object in a convenient way
     hash[:one] = 1 #=> Assigning 1 to :one
 
 _Side note, I'm thinking that alias_method exists only to create decorators for
-methods.  Its a way to __redefine__ a method (not override in a subclass)
+methods.  Its a way to *redefine* a method (not override in a subclass)
 without losing it.  The only reason to do that is to impersonate the existing
 method and wrap it._
 

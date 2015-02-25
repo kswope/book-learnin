@@ -13,4 +13,4 @@ class Printer
 end
 
 myproc = Printer.to_proc
-%i{a b c d e}.each(&myproc) #=> abcde
+%i{a b c d e}.each(&myproc.to_proc.to_proc.to_proc) #=> abcde

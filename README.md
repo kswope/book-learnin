@@ -6598,10 +6598,6 @@ _Moving on_
 
 #### Callable and Runnable Objects
 
-[1,2,3].each(&MyObj) is same as [1,2,3].each(MyObj.to_proc)
-
-Object.to_proc is same as 
-
     class Printer
 
       def self.to_proc
@@ -6615,8 +6611,12 @@ Object.to_proc is same as
     # same as
 
     myproc = Printer.to_proc
-    %i{a b c d e}.each(&myproc.to_proc) #=> abcde
+    %i{a b c d e}.each(&myproc) #=> abcde
 
+    # same as - because proc == proc.to_proc
+
+    myproc = Printer.to_proc
+    %i{a b c d e}.each(&myproc.to_proc.to_proc.to_proc) #=> abcde
 
 
 

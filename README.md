@@ -6705,6 +6705,23 @@ regular class keyword:
 - Open the class definition of any anonymous class (not just singleton classes)
 - Use existing local variables inside a class definition body
 
+Using local variable inside class definition, but you have to also use define method (flatten scopes)
+
+    C = Class.new
+
+    var = :hello
+
+    C.class_eval do
+
+      define_method(:return_var) do
+        var
+      end
+
+    end
+
+    p C.new.return_var #=> :hello
+
+
 
 
 

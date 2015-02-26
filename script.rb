@@ -3,20 +3,16 @@ require 'ap'
 
 
 
+C = Class.new
 
-class MyClass
-  attr_accessor :var
-  def initialize(data)
-    self.var = data
+var = :hello
+
+C.class_eval do
+
+  define_method(:return_var) do
+    var
   end
+
 end
 
-MyClass.class_eval do
-  def upcase
-    var.upcase
-  end
-end
-
-o = MyClass.new(:hello)
-
-p o.upcase #=> :HELLO
+p C.new.return_var #=> :hello

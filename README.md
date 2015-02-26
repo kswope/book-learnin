@@ -6804,7 +6804,7 @@ these methods:
     "J" + { toString: function() { return "S"; } }; //=> "JS"
     2 * { valueOf: function() { return 3; } }; //=> 6
 
-valueOf overrides toString
+valueOf overrides toString, so only use valueOf for numberish objects
 
     var obj = {
       toString: function() {
@@ -6817,7 +6817,21 @@ valueOf overrides toString
 
     "object: " + obj; //=> "object: 17"
 
+>
+Most JavaScript values are truthy, that is, implicitly coerced to true.  There
+are exactly seven falsy values: false, 0, -0, "", NaN, null, and undefined. All
+other values are truthy.
 
+* Type errors can be silently hidden by implicit coercions.
+* The + operator is overloaded to do addition or string concatenation
+  depending on its argument types.
+* Objects are coerced to numbers via valueOf and to strings via
+  toString.
+* Objects with valueOf methods should implement a toString method
+  that provides a string representation of the number produced by
+  valueOf.
+* Use typeof or comparison to undefined rather than truthiness to
+  test for undefined values.
 
 
 

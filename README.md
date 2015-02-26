@@ -6699,7 +6699,7 @@ Class eval puts you inside the class definition
 
 
 >
-But you can do some things with class_eval that you canât do with the
+But you can do some things with class_eval that you can't do with the
 regular class keyword:
 - Evaluate a string in a class-definition context
 - Open the class definition of any anonymous class (not just singleton classes)
@@ -6720,6 +6720,49 @@ Using local variable inside class definition, but you have to also use define me
     end
 
     p C.new.return_var #=> :hello
+
+
+
+
+
+def inside a instance_eval creates a method on the classes eigenclass, aka, class method
+
+    C = Class.new
+    C.instance_eval do
+      def hello
+        :hello_from_instance
+      end
+    end
+
+    p C.hello #=> :hello_from_instance (instance of Class, aka eigenclass)
+
+
+class_eval on a class just reopens the class, but its a way to dynamically define method with define_method(:method)
+
+    C = Class.new
+    C.class_eval do
+      def hello
+        :hello_from_class
+      end
+    end
+
+    p C.new.hello #=> :hello_from_class
+
+
+_NOTE: don't rely on bindings and closures for instnce_eval, it can do weird things_
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

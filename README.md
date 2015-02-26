@@ -6706,6 +6706,7 @@ regular class keyword:
 - Use existing local variables inside a class definition body
 
 Using local variable inside class definition, but you have to also use define method (flatten scopes)
+_class_eval "flattens scopes" when creating classes_
 
     C = Class.new
 

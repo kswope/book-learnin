@@ -6734,6 +6734,11 @@ of const. Moreover, the behavior of const differs from implementation to
 implementation.
 
 >
+ES5 introduced another versioning consideration with its strict mode.
+
+    "use strict";
+
+>
 - Decide which versions of JavaScript your application supports.
 - Be sure that any JavaScript features you use are supported by all
 environments where your application runs.

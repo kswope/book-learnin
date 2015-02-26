@@ -6749,10 +6749,17 @@ about strict mode.
 
 ### Item 2: Understand Javascripts Floating Point Numbers
 
+>
+... all numbers in JavaScript are double-precision floating-point numbers, that
+is, the 64-bit encoding of numbers specified by the IEEE 754 standard -
+commonly known as "doubles."
 
+    typeof 1 //=> "number"
+    typeof 2 //=> "number"
 
+Ugh
 
-
+    .2 + .1 //=> 0.30000000000000004 
 
 
 

@@ -16,11 +16,11 @@ want to waste a github private slot, so don't look._
 - [Pickaxe Part I Ruby.new](#pickaxe-part-i-rubynew)
 - [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
 - [The Well Grounded Rubyist](#the-well-grounded-rubyist)
+- [Javascript Pocket Reference Third Edition](#javascript-pocket-reference-third-edition)
 
 
 TODO
 
-- Well Grounded Rubyist
 - Exceptional Ruby
 - Algorithms in a Nutshell
 - Practical Vim
@@ -6725,4 +6725,4 @@ Using local variable inside class definition, but you have to also use define me
 
 
 
-
+## Javascript Pocket Reference Third Edition

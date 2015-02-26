@@ -6822,6 +6822,7 @@ Most JavaScript values are truthy, that is, implicitly coerced to true.  There
 are exactly seven falsy values: false, 0, -0, "", NaN, null, and undefined. All
 other values are truthy.
 
+>
 * Type errors can be silently hidden by implicit coercions.
 * The + operator is overloaded to do addition or string concatenation
   depending on its argument types.

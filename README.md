@@ -6759,9 +6759,11 @@ _NOTE: don't rely on bindings and closures for instnce_eval, it can do weird thi
 
 ####  Parallel execution with threads
 
-_Moving on - I'm more of an event guy_
+_Moving on - I'm more of an event-driven guy_
 
 
+
+### Callbacks, hooks, and runtime introspection
 
 
 

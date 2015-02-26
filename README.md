@@ -16,11 +16,11 @@ want to waste a github private slot, so don't look._
 - [Pickaxe Part I Ruby.new](#pickaxe-part-i-rubynew)
 - [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
 - [The Well Grounded Rubyist](#the-well-grounded-rubyist)
-- [Javascript Pocket Reference Third Edition](#javascript-pocket-reference-third-edition)
-
+- [Effective Javascript](#effective-javascript)
 
 TODO
 
+- Javascript Pocket Reference Third Edition
 - Exceptional Ruby
 - Algorithms in a Nutshell
 - Practical Vim
@@ -6723,6 +6723,46 @@ Using local variable inside class definition, but you have to also use define me
 
 
 
+## Effective Javascript
+
+### Item 1: Know Which Javascript You Are Using
+
+>
+...many JavaScript engines support a const keyword for defining variables, yet the
+ECMAScript standard does not provide any definition for the syntax or behavior
+of const. Moreover, the behavior of const differs from implementation to
+implementation.
+
+>
+- Decide which versions of JavaScript your application supports.
+- Be sure that any JavaScript features you use are supported by all
+environments where your application runs.
+- Always test strict code in environments that perform the strictmode
+checks.
+- Beware of concatenating scripts that differ in their expectations
+about strict mode.
+
+### Item 2: Understand Javascripts Floating Point Numbers
 
 
-## Javascript Pocket Reference Third Edition
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

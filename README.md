@@ -6722,11 +6722,14 @@ _class_eval "flattens scopes" when creating classes_
 
     p C.new.return_var #=> :hello
 
+>
+When you open a class with the class keyword, you start a new local-variable
+scope. But the block you use with class_eval can see the variables created in
+the scope surrounding it. 
 
 
-
-
-def inside a instance_eval creates a method on the classes eigenclass, aka, class method
+def inside a instance_eval creates a method on the classes eigenclass, aka, class method, just like
+it would defining a method on an ordinary object with instance_eval
 
     C = Class.new
     C.instance_eval do
@@ -6754,7 +6757,9 @@ _NOTE: don't rely on bindings and closures for instnce_eval, it can do weird thi
 
 
 
+####  Parallel execution with threads
 
+_Moving on - I'm more of an event guy_
 
 
 

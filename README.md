@@ -6768,10 +6768,54 @@ Ugh
 - Bitwise operators treat numbers as if they were 32-bit signed integers.
 - Be aware of limitations of precisions in floating-point arithmetic.
 
+### Item 3: Beware of Implicit Coercions
+
+Ugh
+
+    3 + true //=> 4
+
+>
+Since NaN is the only JavaScript value that is treated as unequal to itself,
+you can always test if a value is NaN by checking it for equality to itself:
+
+    var a = NaN;
+    a !== a; //=> true
+
+>
+Objects can also be coerced to primitives. This is most commonly
+used for converting to strings:
+
+    "the Math object: " + Math; //=> "the Math object: [object Math]"
+    "the JSON object: " + JSON; //=> "the JSON object: [object JSON]"
 
 
+>
+Objects are converted to strings by implicitly calling their toString
+method. You can test this out by calling it yourself:
 
+    Math.toString(); // "[object Math]"
+    JSON.toString(); // "[object JSON]"
 
+>
+Similarly, objects can be converted to numbers via their valueOf
+method. You can control the type conversion of objects by defining
+these methods:
+
+    "J" + { toString: function() { return "S"; } }; //=> "JS"
+    2 * { valueOf: function() { return 3; } }; //=> 6
+
+valueOf overrides toString
+
+    var obj = {
+      toString: function() {
+        return "[object MyObject]";
+      },
+      valueOf: function() {
+        return 17;
+      }
+    };
+
+    "object: " + obj; //=> "object: 17"
 
 
 

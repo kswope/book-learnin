@@ -6761,6 +6761,13 @@ Ugh
 
     .2 + .1 //=> 0.30000000000000004 
 
+>
+- JavaScript numbers are double-precision floating-point numbers.
+- Integers in JavaScript are just a subset of doubles rather than a
+  separate datatype.
+- Bitwise operators treat numbers as if they were 32-bit signed integers.
+- Be aware of limitations of precisions in floating-point arithmetic.
+
 
 
 

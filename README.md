@@ -6767,6 +6767,165 @@ _Moving on - I'm more of an event-driven guy_
 
 
 
+method_missing as a delegate/forwardable
+
+    class Cookbook
+      attr_accessor :title, :author
+      def initialize
+        @recipes = []
+      end
+      def method_missing(m,*args,&block)
+        @recipes.send(m,*args,&block)
+      end
+    end
+
+    c = Cookbook.new
+    c << :rice
+    c.concat [:beer, :flour, :pepper]
+
+    p c.to_a #=> [:rice, :beer, :flour, :pepper]
+
+
+forwardable alternative, limitation is that all delegated methods need to be explicit
+
+    require 'forwardable'
+
+    class Cookbook
+
+      extend Forwardable #<-----
+      def_delegators :@recipes, :<<, :concat, :to_a
+
+      attr_accessor :title, :author
+
+      def initialize
+        @recipes = []
+      end
+
+    end
+
+    c = Cookbook.new
+    c << :rice
+    c.concat [:beer, :flour, :pepper]
+
+    p c.to_a #=> [:rice, :beer, :flour, :pepper]
+
+
+
+Module#included
+
+    module MyModule
+      def self.included(c) #<-- class method
+        p "#{c} included"
+      end
+    end
+
+    MyClass = Class.new
+
+    MyClass.class_eval do
+      include MyModule
+    end
+
+Module#extend works the same way
+
+    module MyModule
+      def self.extended(c)
+        print "#{c} extended "
+      end
+      def hello
+        p :hello
+      end
+    end
+
+    MyClass = Class.new
+
+    MyClass.class_eval do
+      extend MyModule
+    end
+
+MyClass.hello #=> MyClass extended :hello
+
+
+>
+When would it be useful for a module to intercept its own inclusion like this?
+One commonly discussed case revolves around the difference between instance and
+class methods. When you mix a module into a class, you're ensuring that all the
+instance methods defined in the module become available to instances of the
+class. But the class object isn't affected. The following question often
+arises: What if you want to add class methods to the class by mixing in the
+module along with adding the instance methods?
+
+
+    module MyMixedModule
+
+      def self.included(klass)
+        klass.extend(ClassMethods)
+      end
+
+      def instance_method
+        p "hello from instance_method"
+      end
+
+      module ClassMethods
+        def class_method
+          p "hello from class_method"
+        end
+      end
+
+    end
+
+    class MyClass
+      include MyMixedModule
+    end
+
+    MyClass.new.instance_method #=> "hello from instance_method"
+    MyClass.class_method        #=> "hello from class_method"
+
+
+
+In effect, extending an object with a module is the same as including that
+module in the object's singleton class. Whichever way you describe it, the
+upshot is that the module is added to the object's method-lookup path, entering
+the chain right after the object's singleton class. 
+
+    module MyModule
+      def hello
+        p :hello
+      end
+    end
+
+    o1 = Object.new
+    o1.extend(MyModule) # extend includes a module into the eigenclass
+    o1.hello #=> :hello
+
+    o2 = Object.new
+    class << o2 # enter eigenclass
+      include MyModule
+    end
+
+    o2.hello #=> :hello
+
+
+page 448
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

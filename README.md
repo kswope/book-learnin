@@ -6905,13 +6905,52 @@ the chain right after the object's singleton class.
     o2.hello #=> :hello
 
 
-page 448
+#### Class#inherited
+
+    class A
+      def self.inherited(klass)
+        p "#{B} inherited #{A}"
+      end
+    end
+
+    class B < A #=> B inherited A
+    end
+
+#### Module#const_missing and const_set
+
+    class MyClass
+      def self.const_missing(const)
+        const_set(const, :hello)
+        "#{self} #{const}"
+      end
+    end
+
+    p MyClass::A #=> "MyClass A"
+    p MyClass::A #=> :hello
+
+__method_added__ and __singleton_method_added__ methods exist but you probably wont ever use them... Moving on
 
 
 
+#### Interpreting object capability queries ( introspection? )
 
+>
+With method_missing, you can arrange for an object to provide a response when
+sent a message for which it has no corresponding method. But respond_to?
+won't know about such messages and will tell you that the object
+doesn't respond to the message even though you get a useful response
+when you send the message to the object. Some Rubyists like to override
+respond_to? so that it incorporates the same logic as method_missing for a
+given class. That way, the results of respond_to? correspond more closely to
+the specifics of what messages an object can and can't make sense of. 
 
-
+>
+Others prefer to leave respond_to? as it stands, on the grounds that
+it's a way to check whether an object already has the ability to
+respond to a particular message without the intervention of method_missing.
+Given that interpretation, respond_to?  corresponds closely to the results of
+methods. In both cases, the scope of operations is the entirety of all public
+methods of a given object. 
 
 
 

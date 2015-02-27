@@ -1,20 +1,11 @@
 
 
-
-
-module MyModule
-  def hello
-    p :hello
+class MyClass
+  def self.const_missing(const)
+    const_set(const, :hello)
+    "#{self} #{const}"
   end
 end
 
-o1 = Object.new
-o1.extend(MyModule) # extend includes a module into the eigenclass
-o1.hello #=> :hello
-
-o2 = Object.new
-class << o2 # enter eigenclass
-  include MyModule
-end
-
-o2.hello #=> :hello
+p MyClass::A #=> "MyClass A"
+p MyClass::A #=> :hello

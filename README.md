@@ -6952,19 +6952,41 @@ Given that interpretation, respond_to?  corresponds closely to the results of
 methods. In both cases, the scope of operations is the entirety of all public
 methods of a given object. 
 
+>
+If you want to know which of the methods defined in the Enumerable module are
+overridden in Range? You can find out by performing an and (&) operation on the
+two lists of instance methods: those defined in Enumerable and those defined in
+Range:
+
+
+Range.instance_methods(false) & Enumerable.instance_methods(false)
+
+
+Getting object singleton methods
+
+    MyClass = Class.new
+
+    class << MyClass
+      def hello
+        p :hello_from_singleton_method
+      end
+    end
+
+    p MyClass.singleton_methods #=> [:hello]
 
 
 
+Getting methods that are only inherited
+
+    File.singleton_methods - File.singleton_methods(false)
+
+Getting variables
+
+    local_variables
+    global_variables
 
 
-
-
-
-
-
-
-
-
+page 461
 
 
 
@@ -6973,6 +6995,7 @@ methods of a given object.
 
 
 ## Effective Javascript
+
 
 ### Item 1: Know Which Javascript You Are Using
 

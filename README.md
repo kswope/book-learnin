@@ -7132,6 +7132,22 @@ wraps a string value:
 
     var s = new String("hello");
 
+That you can't compare the contents of two distinct String objects using
+built-in operators.
+
+    console.log("hello" === 'hello'); //=> true
+    console.log(new String("hello") === new String('hello')); //=>false
+
+>
+**Since these wrappers don't behave quite right**, they don't serve much of a
+purpose. The main justification for their existence is their utility methods.
+JavaScript makes these convenient to use with another implicit coercion: You
+can extract properties and call methods of a primitive value, and it acts as
+though you had wrapped the value with its corresponding object type. For
+example, the String prototype object has a toUpperCase method, which converts a
+string to uppercase.  You can use this method on a primitive string value:
+
+    "hello".toUpperCase(); // "HELLO"
 
 
 

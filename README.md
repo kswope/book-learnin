@@ -7172,6 +7172,13 @@ as their primitive values when compared for equality.
 * Getting and setting properties on primitives implicitly creates object
 wrappers.
 
+### Item 5: Avoid using == with Mixed Types
+
+
+Ugh
+
+    "1.0e0" == { valueOf: function() { return true; } };
+
 
 
 

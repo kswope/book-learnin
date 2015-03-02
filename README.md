@@ -1,6 +1,6 @@
 # Ruby Book Notes 
 
-_Just my notes from various books/docs on ruby.  This is public only because I don't
+_Just my notes from various books/docs on programming.  This is public only because I don't
 want to waste a github private slot, so don't look._
 
 
@@ -7115,6 +7115,31 @@ The more precise way to check for undefined is to use typeof:
   valueOf.
 * Use typeof or comparison to undefined rather than truthiness to
   test for undefined values.
+
+### Item 4: Prefer Primitives to Object Wrappers
+
+>
+In addition to objects, JavaScript has five types of primitive values:
+booleans, numbers, strings, null, and undefined. (Confusingly, the typeof
+operator reports the type of null as "object", but the ECMAScript standard
+describes it as a distinct type.) 
+
+
+>
+At the same time, the standard library provides constructors for wrapping
+booleans, numbers, and strings as objects. You can create a String object that
+wraps a string value:
+
+    var s = new String("hello");
+
+
+
+
+
+
+
+
+
 
 
 

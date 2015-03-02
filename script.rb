@@ -1,5 +1,7 @@
 
 "use strict";
 
-console.log("hello" === 'hello');
-console.log(new String("hello") === new String('hello'));
+var str = 'hello';
+console.log(typeof str) //=> string
+str.toUpperCase()
+console.log(typeof str) //=> string

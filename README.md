@@ -7136,7 +7136,7 @@ That you can't compare the contents of two distinct String objects using
 built-in operators.
 
     console.log("hello" === 'hello'); //=> true
-    console.log(new String("hello") === new String('hello')); //=>false
+    console.log(new String("hello") === new String('hello')); //=> false
 
 >
 **Since these wrappers don't behave quite right, they don't serve much of a
@@ -7150,7 +7150,27 @@ string to uppercase.  You can use this method on a primitive string value:
     "hello".toUpperCase(); // "HELLO"
 
 
+>
+Ugh... A strange consequence of this implicit wrapping is that you can set
+properties on primitive values with essentially no effect.  Since the implicit
+wrapping produces a new String object each time it occurs, the update to the
+first wrapper object has no lasting effect. 
 
+    "hello".someProperty = 17;
+    "hello".someProperty; // undefined
+
+The wrapping doesn't seem to change the type, is that right?
+
+    var str = 'hello';
+    console.log(typeof str) //=> string
+    str.toUpperCase()
+    console.log(typeof str) //=> string
+
+>
+* Object wrappers for primitive types do not have the same behavior
+as their primitive values when compared for equality.
+* Getting and setting properties on primitives implicitly creates object
+wrappers.
 
 
 

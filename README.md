@@ -7180,6 +7180,10 @@ Ugh
     "1.0e0" == { valueOf: function() { return true; } };
 
 
+>
+**When the two arguments are of the same type, thereâs no difference in
+behavior between == and ===.**
+
 
 
 

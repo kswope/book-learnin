@@ -7139,8 +7139,8 @@ built-in operators.
     console.log(new String("hello") === new String('hello')); //=>false
 
 >
-**Since these wrappers don't behave quite right**, they don't serve much of a
-purpose. The main justification for their existence is their utility methods.
+**Since these wrappers don't behave quite right, they don't serve much of a
+purpose.** The main justification for their existence is their utility methods.
 JavaScript makes these convenient to use with another implicit coercion: You
 can extract properties and call methods of a primitive value, and it acts as
 though you had wrapped the value with its corresponding object type. For

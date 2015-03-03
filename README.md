@@ -7248,6 +7248,15 @@ works on any variable and returns a string indicating the type of data.
     console.log(typeof true); // "boolean"
     console.log(typeof undefined); // "undefined"
 
+Bug:
+
+    console.log(typeof null); //=> "object"
+
+>
+The best way to determine if a value is null is to compare it against
+null directly, like this:
+
+    console.log(value === null); // true or false
 
 
 

@@ -7238,6 +7238,16 @@ variable gets its own copy of the data.
 
 #### Identifying Primitive Types
 
+>
+The best way to identify primitive types is with the typeof operator, which
+works on any variable and returns a string indicating the type of data. 
+
+    console.log(typeof "Nicholas"); // "string"
+    console.log(typeof 10); // "number"
+    console.log(typeof 5.1); // "number"
+    console.log(typeof true); // "boolean"
+    console.log(typeof undefined); // "undefined"
+
 
 
 

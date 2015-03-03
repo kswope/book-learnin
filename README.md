@@ -17,6 +17,7 @@ want to waste a github private slot, so don't look._
 - [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
 - [The Well Grounded Rubyist](#the-well-grounded-rubyist)
 - [Effective Javascript](#effective-javascript)
+- [The Principles of Object-Oriented Javascript](#the_principles_of_object-oriented_javascript)
 
 TODO
 
@@ -7206,10 +7207,10 @@ both you and your readers to understand its subtle coercion rules.
 * Use === to make it clear to your readers that your comparison does
    not involve any implicit coercions.
 * Use your own explicit coercions when comparing values of different
-   types to make your programâs behavior clearer.
+   types to make your program's behavior clearer.
 
 
-
+## The Principles of Object-Oriented Javascript
 
 
 

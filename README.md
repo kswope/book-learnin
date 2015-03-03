@@ -7259,8 +7259,16 @@ null directly, like this:
     console.log(value === null); // true or false
 
 
+#### Primitive Methods
 
+>
+Despite the fact that they're primitive types, strings, numbers, and Booleans
+actually have methods. (The null and undefined types have no methods.) 
 
+>
+Despite the fact that they have methods, primitive values themselves are not
+objects.  JavaScript makes them look like objects to provide a consistent
+experience in the language, as you'll see later in this chapter.
 
 
 

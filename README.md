@@ -7214,7 +7214,7 @@ __skipping to The Principles of OO Javascript for now__
 
 ## The Principles of Object-Oriented Javascript
 
-### Primitive Types
+#### Primitive Types
 
 * Boolean
 * Number 
@@ -7236,6 +7236,7 @@ variable gets its own copy of the data.
     console.log(color1, color2) //=> blue red
 
 
+#### Identifying Primitive Types
 
 
 

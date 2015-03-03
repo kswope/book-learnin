@@ -7222,6 +7222,33 @@ __skipping to The Principles of OO Javascript for now__
 * Null 
 * Undefined
 
+>
+In JavaScript, as in many other languages, a variable holding a primitive
+directly contains the primitive value (rather than a pointer to an object).
+When you assign a primitive value to a variable, the value is copied into that
+variable. This means that if you set one variable equal to another, each
+variable gets its own copy of the data. 
+
+
+    var color1 = 'red';
+    var color2 = color1; //<-- 'red' copied into color2, not a reference
+    var color1 = 'blue'
+    console.log(color1, color2) //=> blue red
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

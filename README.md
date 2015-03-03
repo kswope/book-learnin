@@ -17,8 +17,7 @@ want to waste a github private slot, so don't look._
 - [Pickaxe Part III Ruby Crystalized](#pickaxe-part-iii-ruby-crystalized)
 - [The Well Grounded Rubyist](#the-well-grounded-rubyist)
 - [Effective Javascript](#effective-javascript)
-- [The Principles of Object-Oriented Javascript](#the_principles_of_object-oriented_javascript)
-
+- [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
 
 
 TODO

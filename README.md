@@ -7181,8 +7181,32 @@ Ugh
 
 
 >
-**When the two arguments are of the same type, thereâs no difference in
+**When the two arguments are of the same type, there's no difference in
 behavior between == and ===.**
+
+Looks like good advice.
+>
+So if you know that the arguments are of the same type, they are
+interchangeable. But using strict equality is a good way to make it clear to
+readers that there is no conversion involved in the comparison. Otherwise, you
+require readers to recall the exact coercion rules to decipher your code's
+behavior.
+
+    var date = new Date("1999/12/31");
+    date == "1999/12/31"; //=> false
+
+>
+But the mistake is symptomatic of a more general misunderstanding of coercions.
+The == operator does not infer and unify arbitrary data formats. It requires
+both you and your readers to understand its subtle coercion rules.
+
+>
+* The == operator applies a confusing set of implicit coercions when
+   its arguments are of different types.
+* Use === to make it clear to your readers that your comparison does
+   not involve any implicit coercions.
+* Use your own explicit coercions when comparing values of different
+   types to make your programâs behavior clearer.
 
 
 

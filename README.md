@@ -7214,6 +7214,14 @@ __skipping to The Principles of OO Javascript for now__
 
 ## The Principles of Object-Oriented Javascript
 
+### Primitive Types
+
+* Boolean
+* Number 
+* String 
+* Null 
+* Undefined
+
 
 
 

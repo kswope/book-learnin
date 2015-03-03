@@ -7210,6 +7210,7 @@ both you and your readers to understand its subtle coercion rules.
 * Use your own explicit coercions when comparing values of different
    types to make your program's behavior clearer.
 
+__skipping to The Primitives of OO Javascript for now__
 
 ## The Principles of Object-Oriented Javascript
 

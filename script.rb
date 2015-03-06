@@ -2,8 +2,10 @@
 "use strict";
 
 
+var o1 = new Object();
+var o2 = o1
 
-var color1 = 'red';
-var color2 = color1;
-var color1 = 'blue'
-console.log(color1, color2) //=> blue red
+console.log(o1 == o2)  //=> true
+console.log(o1 === o2) //=> true
+
+

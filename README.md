@@ -22,7 +22,7 @@ want to waste a github private slot, so don't look._
 
 TODO
 
-- Javascript Pocket Reference Third Edition
+- Speaking Javascript
 - Exceptional Ruby
 - Algorithms in a Nutshell
 - Practical Vim
@@ -7269,6 +7269,75 @@ actually have methods. (The null and undefined types have no methods.)
 Despite the fact that they have methods, primitive values themselves are not
 objects.  JavaScript makes them look like objects to provide a consistent
 experience in the language, as you'll see later in this chapter.
+
+
+#### Reference Types
+
+Unlike primitive types, assigning a reference type to a variable assigns its
+pointer (maybe that's why they are called reference types?)
+
+var o1 = new Object();
+var o2 = o1
+
+console.log(o1 == o2)  //=> true
+console.log(o1 === o2) //=> true
+
+
+>
+JavaScript is a garbage-collected language, so you don’t really need to worry
+about memory allocations when you use reference types. However, it’s best to
+dereference objects that you no longer need so that the garbage collector can
+free up that memory. The best way to do this is to set the object variable to
+null.
+
+    var object1 = new Object();
+    // do something
+    object1 = null;
+
+Instantiate built-in reference types
+
+    var items = new Array();
+    var now = new Date();
+    var error = new Error("Something bad happened.");
+    var func = new Function("console.log('Hi');");
+    var object = new Object();
+    var re = new RegExp("\\d+");
+
+Example of object literal syntax
+
+    var book = {
+        "name": "The Principles of Object-Oriented JavaScript",
+        "year": 2014
+    };
+
+Exaple of same with new (object form?)
+
+    var book = new Object();
+    book.name = "The Principles of Object-Oriented JavaScript";
+    book.year = 2014;
+
+>
+Using an object literal doesn’t actually call new Object(). Instead, the
+JavaScript engine follows the same steps it does when using new Object()
+without actually calling the constructor. This is true for all reference
+literals.
+
+Array literal
+
+    var colors = [ "red", "blue", "green" ];
+
+Array new form
+
+    var colors = new Array("red", "blue", "green")
+
+>
+You almost always define functions using their literal form.
+
+Not this
+
+    var reflect = new Function("value", "return value;");
+
+
 
 
 

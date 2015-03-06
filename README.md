@@ -7443,4 +7443,23 @@ primitives only leads to errors.
 You can use typeof to identify primitive types with the exception of null,
 which must be compared directly against the special value null.
 
+#### Function Declarations vs. Expressions
 
+Declaraton
+
+    function add(num1, num2) {
+     return num1 + num2;
+    }
+
+Function Expression
+
+    var add = function(num1, num2) {
+     return num1 + num2;
+    };
+
+
+Although these two forms are quite similar, they __differ in a very important
+way__. Function declarations are hoisted to the top of the context (either the
+function in which the declaration occurs or the global scope) when the code is
+executed. That means you can actually define a function after it is used in
+code without generating an error. 

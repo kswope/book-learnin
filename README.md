@@ -7310,7 +7310,7 @@ Example of object literal syntax
         "year": 2014
     };
 
-Exaple of same with new (object form?)
+Exaple of same with new (constructor form?)
 
     var book = new Object();
     book.name = "The Principles of Object-Oriented JavaScript";
@@ -7322,11 +7322,9 @@ JavaScript engine follows the same steps it does when using new Object()
 without actually calling the constructor. This is true for all reference
 literals.
 
-Array literal
+Array literal and constructor forms
 
     var colors = [ "red", "blue", "green" ];
-
-Array new form
 
     var colors = new Array("red", "blue", "green")
 
@@ -7337,23 +7335,112 @@ Not this
 
     var reflect = new Function("value", "return value;");
 
+Regex literal and constructor forms
+
+    var numbers = /\d+/g;
+    var numbers = new RegExp("\\d+", "g");
+
+>
+The literal form of regular expressions in JavaScript is a bit easier
+to deal with than the constructor form because you don’t need to worry about
+escaping characters within strings.
+
+>
+Regular expression literals are preferred over the construc- tor form in
+JavaScript except when the regular expression is being con- structed
+dynamically from one or more strings.
+
+>
+That said, with the exception of Function, there really isn’t any right or
+wrong way to instantiate built-in types. Many developers prefer literals, while
+some prefer constructors. Choose whichever method you find more comfortable to
+use.
 
 
+#### identifying reference Types
+
+    var func = function(){}
+    console.log(typeof func) //=> function
+
+>
+Other reference types are trickier to identify because, for all reference types
+other than functions, __typeof__ returns "object".
+
+    var a = [];
+    console.log(typeof a) //=> object
 
 
+The instanceof operator takes an object and a constructor as param- eters. When
+the value is an instance of the type that the constructor speci- fies,
+instanceof returns true; otherwise, it returns false
+
+    var a = [];
+    console.log(a instanceof Array) //=> true
+    console.log(a instanceof Object) //=> true
+
+    var b = {};
+    console.log(b instanceof Object) //=> true
 
 
+>
+The instanceof operator can identify inherited types. That means every object
+is actually an instance of Object because every reference type inherits from
+Object.
 
 
+#### Primative Wrapper Types
+
+>
+Perhaps one of the most confusing parts of JavaScript is the concept of
+primitive wrapper types. There are three primitive wrapper types (String,
+Number, and Boolean). These special reference types exist to make working with
+primitive values as easy as working with objects. (It would be very confusing
+if you had to use a different syntax or switch to a procedural style just to
+get a substring of text.)
+
+A temporary wrapper object is automatically created for the primative time so
+it looks like it has methods, but it goes away quickly.
+
+    var name = "Nicholas";
+    var firstChar = name.charAt(0);
+    console.log(firstChar); //=> "N"
+
+instanceof doesn't work of primatives because the primative wrapper isn't
+automatically created because its only created when the value is read (or
+written to?).
+
+    var name = "Nicholas";
+    var count = 10;
+    var found = false;
+    console.log(name instanceof String);    // false
+    console.log(count instanceof Number);   // false
+    console.log(found instanceof Boolean);  // false
+
+Just creates an object
+
+    var name = new String("Nicholas");
+    var count = new Number(10);
+    var found = new Boolean(false);
+    console.log(typeof name); //=> object
+    console.log(typeof count); //=> object
+    console.log(typeof found); //=> object
+
+You can create the wrapper by hand but its garbage
+
+    var found = new Boolean(false);
+    if (found) {
+      console.log("Found"); //=> Found
+    }
 
 
+>
+Manually instantiating primitive wrappers can also be confusing in other ways,
+so unless you find a special case where it makes sense to do so, you should
+avoid it. Most of the time, using primitive wrapper objects instead of
+primitives only leads to errors.
 
-
-
-
-
-
-
-
+>
+You can use typeof to identify primitive types with the exception of null,
+which must be compared directly against the special value null.
 
 

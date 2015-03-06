@@ -7459,7 +7459,7 @@ Function Expression
 
 
 Although these two forms are quite similar, they __differ in a very important
-way__. Function declarations are hoisted to the top of the context (either the
+way__. Function declarations are __hoisted__ to the top of the context (either the
 function in which the declaration occurs or the global scope) when the code is
 executed. That means you can actually define a function after it is used in
 code without generating an error. 

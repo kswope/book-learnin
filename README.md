@@ -7588,16 +7588,66 @@ approach.
 hasOwnProperty(), which is present on all objects and returns true only if the
 given property exists and is an own property.
 
-
-page 34
-
-
+    console.log("toString" in person1); // true
+    console.log(person1.hasOwnProperty("toString")); // false
 
 
+>
+By default, all properties that you add to an object are enumerable, which
+means that you can iterate over them using a for-in loop.
+
+    var property;
+    for (property in object) {
+      console.log("Name: " + property);
+      console.log("Value: " + object[property]);
+    }
 
 
 
+>
+If you just need a list of an object's properties to use later in your program,
+ECMAScript 5 introduced the Object.keys() method to retrieve an array of
+enumerable property names
 
+    var obj = new Object();
+    obj.one = 1;
+    obj.two = 2;
+    obj.three = 3;
+
+    console.log( Object.keys( obj ) ); //=> ['one', 'two', 'three']
+
+
+>
+There is a difference between the enumerable properties returned in a for-in
+loop and the ones returned by Object.keys(). The for-in loop also enumerates
+prototype properties, while Object.keys() returns only own (instance)
+properties.
+
+
+#### Types of Properties
+
+>
+There are two different types of properties: data properties and accessor
+properties. 
+
+Weird accessor property syntax
+
+    var myobj = {
+
+      _data: null,
+
+      get data() {
+        return this._data;
+      },
+
+      set data( data ) {
+        this._data = data;
+      }
+
+    };
+
+    myobj.data = [ 'a', 'b', 'c' ];
+    console.log( myobj.data ) //=> [ 'a', 'b', 'c' ]
 
 
 

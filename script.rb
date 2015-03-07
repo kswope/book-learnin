@@ -2,14 +2,19 @@
 
 
 
+var myobj = {
 
+  _data: null,
 
-var person1 = {
-  name: "Nicholas",
-  sayName: function() {
-    console.log( this.name );
+  get data() {
+    return this._data;
+  },
+
+  set data( data ) {
+    this._data = data;
   }
+
 };
 
-console.log("toString" in person1); //=> true
-console.log(person1.hasOwnProperty("toString")); //=> false
+myobj.data = [ 'a', 'b', 'c' ];
+console.log( myobj.data ) //=> [ 'a', 'b', 'c' ]

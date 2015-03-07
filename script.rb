@@ -1,17 +1,20 @@
-
 "use strict";
 
 
 
-var found = new Boolean(false);
-
-if (found) {
-  console.log("Found"); //=> Found
+var obj = {
+  name: 'kevin'
 }
 
-var found = false;
-if (found) {
-  console.log("Found");
-}else{
-  console.log("Not Found"); //=> Not Found
+var func = function( greeting ) {
+  console.log( greeting + " " + this.name )
 }
+
+
+// bind first argument. like call(), its first argument is 'this'
+var boundFunc = func.bind(obj)
+boundFunc('goodbye') //=> goodbye kevin
+
+// bind two arguments
+var boundFunc = func.bind(obj, 'adios')
+boundFunc() //=> adios kevin

@@ -7458,8 +7458,118 @@ Function Expression
     };
 
 
+>
 Although these two forms are quite similar, they __differ in a very important
 way__. Function declarations are __hoisted__ to the top of the context (either the
 function in which the declaration occurs or the global scope) when the code is
 executed. That means you can actually define a function after it is used in
 code without generating an error. 
+
+>
+The arguments object is automatically available inside any function. This means
+named parameters in a function exist mostly for convenience and don't actually
+limit the number of arguments that a function can accept.
+
+>
+The arguments object is not an instance of Array and therefore doesn't have the
+same methods as an array; Array.isArray(arguments) always returns false.
+
+>
+In practice, checking the named parameter against undefined is more common than
+relying on arguments.length.
+
+    var func = function( a, b, c ) {
+      if ( undefined == a ) {
+        console.log( "a is undefined" )
+      }
+    }
+
+
+
+#### call()
+
+First of three methods that manipulates 'this'
+
+    var obj = {
+      name: 'kevin'
+    }
+
+    var func = function(greeting) {
+      console.log( greeting +" "+ this.name )
+    }
+
+    func.call( obj , "hello") //=> hello kevin
+
+
+#### apply()
+
+Second of three methods that manipulates 'this'
+
+    var obj = {
+      name: 'kevin'
+    }
+
+    var func = function( greeting ) {
+      console.log( greeting + " " + this.name )
+    }
+
+    func.apply( obj, [ "hello" ] ) //=> hello kevin
+
+
+#### bind()
+
+Third of three methods that manipulates 'this' added in ECMAScript5
+
+bind is like a sticky call(), nerds call it currying
+
+    var obj = {
+      name: 'kevin'
+    }
+
+    var func = function( greeting ) {
+      console.log( greeting + " " + this.name )
+    }
+
+
+bind first argument. like call(), its first argument is 'this'
+
+    var boundFunc = func.bind(obj)
+    boundFunc('goodbye') //=> goodbye kevin
+
+bind two arguments
+
+    var boundFunc = func.bind(obj, 'adios')
+    boundFunc() //=> adios kevin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

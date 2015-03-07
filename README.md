@@ -7486,7 +7486,9 @@ relying on arguments.length.
 
 
 
-#### call()
+#### methods that manipulate 'this'
+
+##### call()
 
 First of three methods that manipulates 'this'
 
@@ -7501,7 +7503,7 @@ First of three methods that manipulates 'this'
     func.call( obj , "hello") //=> hello kevin
 
 
-#### apply()
+##### apply()
 
 Second of three methods that manipulates 'this'
 
@@ -7516,7 +7518,7 @@ Second of three methods that manipulates 'this'
     func.apply( obj, [ "hello" ] ) //=> hello kevin
 
 
-#### bind()
+##### bind()
 
 Third of three methods that manipulates 'this' added in ECMAScript5
 

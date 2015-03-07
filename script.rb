@@ -2,19 +2,14 @@
 
 
 
-var obj = {
-  name: 'kevin'
-}
-
-var func = function( greeting ) {
-  console.log( greeting + " " + this.name )
-}
 
 
-// bind first argument. like call(), its first argument is 'this'
-var boundFunc = func.bind(obj)
-boundFunc('goodbye') //=> goodbye kevin
+var person1 = {
+  name: "Nicholas",
+  sayName: function() {
+    console.log( this.name );
+  }
+};
 
-// bind two arguments
-var boundFunc = func.bind(obj, 'adios')
-boundFunc() //=> adios kevin
+console.log("toString" in person1); //=> true
+console.log(person1.hasOwnProperty("toString")); //=> false

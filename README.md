@@ -7545,6 +7545,63 @@ bind two arguments
 
 
 
+#### Understanding Objects
+
+Unreliable check for a property on objects
+
+    if (person1.age) {
+     // do something with age
+    }
+
+>
+The problem with this pattern is how JavaScript's type coercion affects the
+outcome. The if condition evaluates to true if the value is truthy (an object,
+a nonempty string, a nonzero number, or true) and evaluates to false if the
+value is falsy (null, undefined, 0, false, NaN, or an empty string). 
+
+>
+A more reliable way to test for the existence of a property is with the in
+operator.  Like as key?() in ruby.
+
+    var person1 = {
+      name: "Nicholas",
+      sayName: function() {
+        console.log( this.name );
+      }
+    };
+
+    console.log( "sayName" in person1 ); //=> true
+
+>
+In most cases, the in operator is the best way to determine whether the
+property exists in an object. __It has the added benefit of not evaluating the
+value of the property__, which can be important if such an evaluation is likely
+to cause a performance issue or an error.
+
+>
+In some cases, however, you might want to __check for the existence of a
+property only if it is an own property__. The __in operator checks for both own
+properties and prototype properties__, so you'll need to take a different
+approach.
+
+>
+hasOwnProperty(), which is present on all objects and returns true only if the
+given property exists and is an own property.
+
+
+page 34
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

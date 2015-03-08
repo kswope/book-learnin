@@ -7710,11 +7710,77 @@ When JavaScript is running in strict mode, attempting to delete a nonconfigurabl
 property results in an error. In nonstrict mode, the operation silently fails.
 
 
-page 40
+
+>
+The advantage of using accessor property attributes instead of object literal
+notation to define accessor properties is that you can also define those
+properties on existing objects.
 
 
+    var obj = {
+      _data: null
+    };
+
+    Object.defineProperty( obj, 'data', {
+
+      get: function() {
+        return this._data;
+      },
+
+      set: function( val ) {
+        this._data = val;
+      },
+
+    } );
+
+    obj.data = '123';
+    console.log( obj.data );
 
 
+Setters and getters defined with defineProperty seem to confuse enumerable: 
+
+Without defineProperty:
+
+    var obj = {
+      _myData: null,
+
+      get: function() {
+        return this._myData;
+      },
+
+      set: function( val ) {
+        this._myData = val;
+      },
+
+    };
+
+    obj.myData = '123';
+
+    console.log('myData' in obj) //=> true
+    console.log(obj.propertyIsEnumerable('myData')) //=> true
+
+
+With defineProperty:
+
+    var obj2 = {_myData:null};
+
+    Object.defineProperty( obj2, 'myData', {
+
+      get: function() {
+        return this._myData;
+      },
+
+      set: function( val ) {
+        this._myData = val;
+      },
+
+    } );
+
+    obj2.myData = '123';
+    console.log( obj2.myData );
+
+    console.log('myData' in obj2) //=> true
+    console.log(obj2.propertyIsEnumerable('myData')) //=> false
 
 
 

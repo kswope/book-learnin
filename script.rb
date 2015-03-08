@@ -2,22 +2,43 @@
 
 
 
-var myobj = {};
 
-Object.defineProperty( myobj, 'hello', {
-  value: 'there',
-  writable: true
-} )
+var obj = {
+  _myData: null,
 
-console.log(myobj.hello) //=> there
+  get: function() {
+    return this._myData;
+  },
 
-myobj.hello = 'goodbye';
-console.log(myobj.hello) //=> goodbye
+  set: function( val ) {
+    this._myData = val;
+  },
+
+};
+
+obj.myData = '123';
+
+console.log('myData' in obj) //=> true
+console.log(obj.propertyIsEnumerable('myData')) //=> true
 
 
-Object.defineProperty( myobj, 'hello', {
-  value: 'there',
-  writable: false
-} )
 
-myobj.hello = 'adios'; //=> TypeError: Cannot assign to read only property 'hello' of #<Object>
+var obj2 = {_myData:null};
+
+Object.defineProperty( obj2, 'myData', {
+
+  get: function() {
+    return this._myData;
+  },
+
+  set: function( val ) {
+    this._myData = val;
+  },
+
+} );
+
+obj2.myData = '123';
+console.log( obj2.myData );
+
+console.log('myData' in obj2) //=> true
+console.log(obj2.propertyIsEnumerable('myData')) //=> false

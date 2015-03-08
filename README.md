@@ -7757,7 +7757,7 @@ Without defineProperty:
     obj.myData = '123';
 
     console.log('myData' in obj) //=> true
-    console.log(obj.propertyIsEnumerable('myData')) //=> true
+    console.log(obj.propertyIsEnumerable('myData')) //=> TRUE
 
 
 With defineProperty:
@@ -7780,7 +7780,7 @@ With defineProperty:
     console.log( obj2.myData );
 
     console.log('myData' in obj2) //=> true
-    console.log(obj2.propertyIsEnumerable('myData')) //=> false
+    console.log(obj2.propertyIsEnumerable('myData')) //=> FALSE
 
 
 

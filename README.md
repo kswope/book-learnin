@@ -18,11 +18,11 @@ want to waste a github private slot, so don't look._
 - [The Well Grounded Rubyist](#the-well-grounded-rubyist)
 - [Effective Javascript](#effective-javascript)
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
+- [Speaking Javascript](#speaking-javascript)
 
 
 TODO
 
-- Speaking Javascript
 - Exceptional Ruby
 - Algorithms in a Nutshell
 - Practical Vim
@@ -7739,7 +7739,7 @@ properties on existing objects.
 
 Setters and getters defined with defineProperty seem to confuse enumerable: 
 
-Without defineProperty:
+Without Object.defineProperty:
 
     var obj = {
       _myData: null,
@@ -7760,7 +7760,7 @@ Without defineProperty:
     console.log(obj.propertyIsEnumerable('myData')) //=> TRUE
 
 
-With defineProperty:
+With Object.defineProperty:
 
     var obj2 = {_myData:null};
 
@@ -7779,11 +7779,36 @@ With defineProperty:
     obj2.myData = '123';
     console.log( obj2.myData );
 
-    console.log('myData' in obj2) //=> true
+    console.log('myData' in obj2) //=> true <--- shouldn't this be false?
     console.log(obj2.propertyIsEnumerable('myData')) //=> FALSE
 
 
 
+Object.defineProperties
+
+    var obj = {};
+
+    Object.defineProperties( obj, {
+
+      _name: {
+        value: 'kevin',
+        enumerable: true,
+      },
+
+      name: {
+        get: function() {
+          return this._name
+        },
+        enumerable: true
+      }
+
+    } );
+
+
+
+### Constructors and Prototypes
+
+page 49
 
 
 
@@ -7792,11 +7817,7 @@ With defineProperty:
 
 
 
-
-
-
-
-
+## Speaking Javascript
 
 
 

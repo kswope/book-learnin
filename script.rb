@@ -2,19 +2,22 @@
 
 
 
-var myobj = {
+var myobj = {};
 
-  _data: null,
+Object.defineProperty( myobj, 'hello', {
+  value: 'there',
+  writable: true
+} )
 
-  get data() {
-    return this._data;
-  },
+console.log(myobj.hello) //=> there
 
-  set data( data ) {
-    this._data = data;
-  }
+myobj.hello = 'goodbye';
+console.log(myobj.hello) //=> goodbye
 
-};
 
-myobj.data = [ 'a', 'b', 'c' ];
-console.log( myobj.data ) //=> [ 'a', 'b', 'c' ]
+Object.defineProperty( myobj, 'hello', {
+  value: 'there',
+  writable: false
+} )
+
+myobj.hello = 'adios'; //=> TypeError: Cannot assign to read only property 'hello' of #<Object>

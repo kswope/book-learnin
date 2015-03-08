@@ -7630,7 +7630,7 @@ properties.
 There are two different types of properties: data properties and accessor
 properties. 
 
-Weird accessor property syntax
+kludge accessor property syntax (node the 'get' and 'set')
 
     var myobj = {
 
@@ -7650,14 +7650,67 @@ Weird accessor property syntax
     console.log( myobj.data ) //=> [ 'a', 'b', 'c' ]
 
 
+>
+You don't need to define both a getter and a setter; you can choose one or
+both.  If you define only a getter, then the property becomes read-only, and
+attempts to write to it will fail silently in nonstrict mode and throw an error
+in strict mode.  If you define only a setter, then the property becomes
+write-only, and attempts to read the value will fail silently in both strict
+and nonstrict modes.
+
+Note, access to myobj._null is still possible even with getters and setters.
+
+defineProperty() with "enumerable"
+
+    var myobj = {
+      hello: 'there'
+    };
+
+    // change enumerable
+    console.log( 'hello' in myobj ) //=> true
+    console.log( Object.keys( myobj ) ) //=> ['hello']
+    console.log( myobj.propertyIsEnumerable( 'hello' ) ) //=> true
+
+    Object.defineProperty( myobj, 'hello', {
+      enumerable: false
+    } )
+
+    console.log( 'hello' in myobj ) //=> true
+    console.log( Object.keys( myobj ) ) //=> []
+    console.log( myobj.propertyIsEnumerable( 'hello' ) ) //=> false
+
+
+defineProperty() with "configurable" seems to be a solution in search of a problem? 
+
+
+You can defineProperty along with its data
+
+    Object.defineProperty( myobj, 'hello', {
+      value: 'there',
+      writable: true
+    } )
+
+    console.log(myobj.hello) //=> there
+
+    myobj.hello = 'goodbye';
+    console.log(myobj.hello) //=> goodbye
+
+
+    Object.defineProperty( myobj, 'hello', {
+      value: 'there',
+      writable: false
+    } )
+
+    myobj.hello = 'adios'; //=> TypeError: Cannot assign to read only property 'hello' of #<Object>
 
 
 
+>
+When JavaScript is running in strict mode, attempting to delete a nonconfigurable
+property results in an error. In nonstrict mode, the operation silently fails.
 
 
-
-
-
+page 40
 
 
 

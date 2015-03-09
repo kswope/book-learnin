@@ -7905,6 +7905,33 @@ As a prototype property if its the prototype of a particular object
 
     console.log(MyConstructor.prototype.isPrototypeOf(obj)) //=> true
 
+Define prototype before or after?
+
+    // before
+    var MyPrototype = {
+      hello: function() {
+        console.log( 'Goodbye' )
+      }
+    };
+
+    function MyConstructor(){}
+    MyConstructor.prototype = MyPrototype;
+
+    var obj = new MyConstructor();
+    obj.hello(); //=> goodbye
+
+    // after
+    function MyConstructor(){}
+
+    MyConstructor.prototype = {
+      hello: function() {
+        console.log( 'Goodbye' )
+      }
+    };
+
+    var obj = new MyConstructor();
+    obj.hello(); //=> goodbye
+
 
 
 

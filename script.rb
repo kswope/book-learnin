@@ -2,13 +2,14 @@
 
 
 
-var MyPrototype = {
+function MyConstructor(){}
+
+MyConstructor.prototype = {
   hello: function() {
     console.log( 'Goodbye' )
   }
 };
 
-var obj = new Object;
-obj.__proto__ = MyPrototype;
+var obj = new MyConstructor();
+obj.hello(); //=> goodbye
 
-obj.hello();

@@ -7887,7 +7887,7 @@ property, and __proto__ is on the path for standardization in ECMAScript 6.
 
     console.log(obj.__proto__) //=> { hello: [Function] }
 
-__proto__ can be assigned to (why does it have to look like crap?)
+\__proto__ can be assigned to (why does it have to look like crap?)
 
     var MyPrototype = {
       hello: function() {

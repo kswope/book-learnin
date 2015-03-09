@@ -7987,9 +7987,21 @@ might want to put it back.
     console.log(obj.constructor)
 
 
+>
+__Every function has a prototype property__ that defines any properties shared
+by objects created with a particular constructor.
 
+>
+Shared methods and primitive value properties are typically defined on
+prototypes, while all other properties are defined within the constructor.
 
+>
+The constructor property is actually defined on the prototype because it is
+shared among object instances. (wiped out by assignment of object literal)
 
+>
+JavaScript's built-in approach for inheritance is called prototype chaining, or
+prototypal inheritance.
 
 
 

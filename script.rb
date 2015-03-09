@@ -2,13 +2,8 @@
 
 
 
-function MyConstructor() {}
+var obj = {};
 
-MyConstructor.prototype.sayHello = function() {
-  console.log( 'hello' )
-}
+var objProto = Object.getPrototypeOf(obj);
 
-var obj = new MyConstructor;
 
-console.log( obj.constructor )
-console.log( obj instanceof MyConstructor )

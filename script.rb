@@ -2,14 +2,13 @@
 
 
 
-function MyConstructor(){}
+function MyConstructor() {}
 
-MyConstructor.prototype = {
-  hello: function() {
-    console.log( 'Goodbye' )
-  }
-};
+MyConstructor.prototype.sayHello = function() {
+  console.log( 'hello' )
+}
 
-var obj = new MyConstructor();
-obj.hello(); //=> goodbye
+var obj = new MyConstructor;
 
+console.log( obj.constructor )
+console.log( obj instanceof MyConstructor )

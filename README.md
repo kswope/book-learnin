@@ -7932,6 +7932,68 @@ Define prototype before or after?
     var obj = new MyConstructor();
     obj.hello(); //=> goodbye
 
+Use a prototype sort of like a class variable:
+
+    function MyConstructor() {}
+
+    MyConstructor.prototype.myArray = []
+
+    var obj1 = new MyConstructor();
+    var obj2 = new MyConstructor();
+    var obj3 = new MyConstructor();
+
+    obj1.myArray.push( 1 );
+    obj2.myArray.push( 2 );
+    obj3.myArray.push( 3 );
+
+    console.log( obj1.myArray ); //=> [1,2,3]
+
+
+Common pattern of defining a prototype by assigning an object literal
+
+    function MyConstructor() {}
+
+    MyConstructor.prototype = {
+      sayHello: function() {
+        console.log( 'hello' )
+      },
+      sayGoodbye: function() {
+        console.log( 'goodbye' )
+      },
+    };
+
+    var obj = new MyConstructor;
+    obj.sayHello(); //=> hello
+    obj.sayGoodbye(); //=> goodbye
+
+>
+The constructor property is actually defined on the prototype because it is
+shared among object instances.
+
+Assigning object literal to prototype wipes out the constructor property, you
+might want to put it back.
+
+    function MyConstructor() {}
+
+    MyConstructor.prototype = {
+      constructor: 'MyConstructor', //<---- put it back
+      sayHello: function() {
+        console.log( 'hello' )
+      },
+    };
+
+    var obj = new MyConstructor;
+
+    console.log(obj.constructor)
+
+
+
+
+
+
+
+
+
 
 
 

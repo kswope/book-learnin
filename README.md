@@ -7808,7 +7808,63 @@ Object.defineProperties
 
 ### Constructors and Prototypes
 
-page 49
+A constructor is simply a function that is used with new to create an object.
+
+The new operator automatically creates an object of the given type and returns
+it.
+
+    function MyObject() {}
+    var obj = new MyObject;
+
+Every object instance is automatically created with a constructor property that
+contains a reference to the constructor function that created it.
+
+    console.log( obj instanceof MyObject ); //=> true
+    console.log( obj.constructor ); //=> [Function: MyObject]
+    console.log( obj.constructor === MyObject); //=> true
+
+Ugh...
+
+>
+The constructor property can be overwritten and therefore may not be completely
+accurate.
+
+>
+You can also explicitly call return inside of a constructor. If the returned
+value is an object, it will be returned instead of the newly created object
+instance. If the returned value is a primitive, the newly created object is
+used and the returned value is ignored.
+
+This is good...
+>
+An error occurs if you call the a constructor in strict mode without using new.
+This is because strict mode doesn’t assign this to the global object.  Instead,
+__this remains undefined__, and an error occurs whenever you attempt to create
+a property on undefined.
+
+>
+Constructors allow you to configure object instances with the same properties,
+but constructors alone don’t eliminate code redundancy... prototypes
+
+
+>
+You can determine whether a property is on the prototype by using a function
+such as:
+
+    function hasPrototypeProperty(object, name) {
+      return name in object && !object.hasOwnProperty(name);
+    }
+
+page 54
+
+
+
+
+
+
+
+
+
 
 
 

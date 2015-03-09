@@ -1,16 +1,14 @@
 "use strict";
 
 
-function MyConstructor() {}
 
-MyConstructor.prototype = {
+var MyPrototype = {
   hello: function() {
-    console.log( 'hello' )
+    console.log( 'Goodbye' )
   }
-}
+};
 
-var obj = new MyConstructor;
-obj.hello() //=> hello
+var obj = new Object;
+obj.__proto__ = MyPrototype;
 
-console.log(Object.getPrototypeOf(obj)) //=> { hello: [Function] }
-console.log(obj instanceof MyConstructor) //=> true
+obj.hello();

@@ -7880,6 +7880,34 @@ A function called with new is:
 the constructor function.
 
 
+Some JavaScript engines also support a property called __proto__ on all
+objects.  This property allows you to both read from and write to the
+[[Prototype]] property.  Firefox, Safari, Chrome, and Node.js all support this
+property, and __proto__ is on the path for standardization in ECMAScript 6.
+
+    console.log(obj.__proto__) //=> { hello: [Function] }
+
+__proto__ can be assigned to (why does it have to look like crap?)
+
+    var MyPrototype = {
+      hello: function() {
+        console.log( 'Goodbye' )
+      }
+    };
+
+    var obj = new Object;
+    obj.__proto__ = MyPrototype;
+
+    obj.hello();
+
+
+As a prototype property if its the prototype of a particular object
+
+    console.log(MyConstructor.prototype.isPrototypeOf(obj)) //=> true
+
+
+
+
 
 
 

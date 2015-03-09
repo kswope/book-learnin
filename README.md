@@ -7855,10 +7855,29 @@ such as:
       return name in object && !object.hasOwnProperty(name);
     }
 
-page 54
 
+Reflection example using Object.getPrototypeOf(() and instanceof
 
+    function MyConstructor() {}
 
+    MyConstructor.prototype = {
+      hello: function() {
+        console.log( 'hello' )
+      }
+    }
+
+    var obj = new MyConstructor;
+    obj.hello() //=> hello
+
+    console.log(Object.getPrototypeOf(obj)) //=> { hello: [Function] }
+    console.log(obj instanceof MyConstructor) //=> true
+
+A function called with new is:
+
+1. A constructor.
+2. Creates an object, assigns it to this, and returns it implicitly
+3. Sets the prototype of the created object to the 'constructor property' of
+the constructor function.
 
 
 

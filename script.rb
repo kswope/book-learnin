@@ -4,6 +4,12 @@
 
 var obj = {};
 
-var objProto = Object.getPrototypeOf(obj);
+obj.toString = function() {
+  return 'toString()';
+}
 
+obj.valueOf = function(){
+  return 'valueOf()';
+}
 
+console.log("----> " + obj); //=> here <----

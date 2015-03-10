@@ -8003,10 +8003,31 @@ shared among object instances. (wiped out by assignment of object literal)
 JavaScript's built-in approach for inheritance is called prototype chaining, or
 prototypal inheritance.
 
+>
+Any object defined via an object literal has its [[Prototype]] set to
+Object.prototype, meaning that it inherits properties from Object.prototype
+
+>
+The valueOf() method gets called whenever an operator is used on an object.
+You can always define your own valueOf() method if your objects are intended to
+be used with operators.
+
+>
+The toString() method is called as a fallback whenever valueOf() returns a
+reference value instead of a primitive value. 
+
+valueOf() seems to override toString even when concating with + (makes no sense)
 
 
+>
+Douglas Crockford recommends using hasOwnProperty() in for-in loops all
+the time,
 
-
+    for (var property in empty) {
+     if (empty.hasOwnProperty(property)) {
+      console.log(property);
+     }
+    }
 
 
 

@@ -8019,9 +8019,8 @@ reference value instead of a primitive value.
 _valueOf() seems to override toString even when concating with + (makes no sense)_
 
 
->
 Douglas Crockford recommends using hasOwnProperty() in for-in loops all
-the time,
+the time as a defense against monkey patching:
 
     for (var property in empty) {
      if (empty.hasOwnProperty(property)) {

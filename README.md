@@ -8029,16 +8029,105 @@ the time as a defense against monkey patching:
     }
 
 
+Object literals have Object.prototype set as their [[Prototype]] implicitly,
+but you can also explicitly specify [[Prototype]] with the Object.create()
+method.
+
+    var obj = Object.create(Object.prototype)
+
+    // same as
+
+    obj = {}
+
+Second param to Object.create takes arguments as Object.defineProperties
+
+    var obj = Object.create( Object.prototype, {
+      data: {
+        value: '123',
+        enumerable: true
+      }
+    } )
+
+    console.log( obj.data ) //=> 123
+
+
+Object Inheritance: (made possible with Object.create)
+
+    var objA = {
+      hello: function() {
+        console.log( 'hello' )
+      }
+    }
+
+    objA.hello(); //=> hello
+
+    var objB = Object.create(objA);
+
+    objB.hello(); //=> hello
+
+    console.log(objA.isPrototypeOf(objB)) //=> true
+
+
+Constructor Inheritance: (assign an objects prototype to a constructor)
+
+    function ObjA(){} //<-- constructor
+
+    ObjA.prototype.hello = function(){
+      console.log( 'hello' )
+    }
+
+    function ObjB(){} //<-- constructor
+
+    ObjB.prototype = new ObjA; //<--- inheritance
+
+    var objB = new ObjB;
+    objB.hello(); //=> hello
+
+
+>
+Always make sure that you overwrite the prototype before adding properties to
+it, or you will lose the added methods when the overwrite happens.
+
+
+Data hiding with immediate functions (module pattern?)
+
+    var obj = ( function() { // immediate function
+
+      var data = null;
+
+      return { // literal object
+
+        get: function() {
+          return data;
+        },
+        set: function( val ) {
+          data = val;
+        }
+
+      }
+
+    } )();
+
+
+    obj.set('123');
+    console.log(obj.get()); //=> 123
 
 
 
 
+Creating scope safe constructors.  i.e. user forgets to use new
+
+    function Person( name ) {
+      if ( this instanceof Person ) {
+        this.name = name;
+      } else { // whoops!
+        return new Person( name );
+      }
+    }
 
 
 
-
-
-
+__done!__
 
 
 ## Speaking Javascript

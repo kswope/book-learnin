@@ -1,15 +1,10 @@
 "use strict";
 
 
-
-var obj = {};
-
-obj.toString = function() {
-  return 'toString()';
+function Person( name ) {
+  if ( this instanceof Person ) {
+    this.name = name;
+  } else {
+    return new Person( name );
+  }
 }
-
-obj.valueOf = function(){
-  return 'valueOf()';
-}
-
-console.log("----> " + obj); //=> here <----

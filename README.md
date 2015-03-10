@@ -8016,7 +8016,7 @@ be used with operators.
 The toString() method is called as a fallback whenever valueOf() returns a
 reference value instead of a primitive value. 
 
-valueOf() seems to override toString even when concating with + (makes no sense)
+_valueOf() seems to override toString even when concating with + (makes no sense)_
 
 
 >

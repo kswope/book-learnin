@@ -8198,9 +8198,9 @@ Javascript has two 'nonvalue' objects, undefined and null
 
 >
 - undefined means 'no value'.  
--- Uninitialized vars are undefined.
--- Missing parameters are undefined.
--- If you read an nonexistent property
+- - Uninitialized vars are undefined.
+- - Missing parameters are undefined.
+- - If you read an nonexistent property
 - null means "no object"
 
 

@@ -8150,3 +8150,9 @@ be any Unicode digit.
     console.log(あ + び); //=> 3
 
 
+>
+All values in JavaScript have properties.
+
+>
+• The primitive values are booleans, numbers, strings, null, and undefined.
+• All other values are objects.

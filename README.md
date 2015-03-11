@@ -8154,5 +8154,5 @@ be any Unicode digit.
 All values in JavaScript have properties.
 
 >
-  - The primitive values are booleans, numbers, strings, null, and undefined.
-  - All other values are objects.
+- The primitive values are booleans, numbers, strings, null, and undefined.
+- All other values are objects.

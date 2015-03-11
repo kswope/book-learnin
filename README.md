@@ -8133,5 +8133,20 @@ __done!__
 ## Speaking Javascript
 
 
+>
+Semicolons terminate statements, but not blocks. There is one case where you
+will see a semicolon after a block: a function expression is an expression that
+ends with a block. If such an expression comes last in a statement, it is
+followed by a semicolon
+
+
+>
+Roughly, the first character of an identifier can be any Unicode letter, a
+dollar sign ($), or an underscore (_). Subsequent characters can additionally
+be any Unicode digit. 
+
+    var あ = 1;
+    var び = 2;
+    console.log(あ + び); //=> 3
 
 

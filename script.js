@@ -1,11 +1,11 @@
 "use strict";
 
 
-function MyObject(data) {
-  this.data = data
-}
+var あ = 1;
+var び = 2;
+console.log(あ + び); //=> 3
 
-var obj = new MyObject('123');
 
-console.log(obj)
+
+
 

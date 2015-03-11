@@ -8139,6 +8139,7 @@ will see a semicolon after a block: a function expression is an expression that
 ends with a block. If such an expression comes last in a statement, it is
 followed by a semicolon
 
+    var myfunc = function(){};
 
 >
 Roughly, the first character of an identifier can be any Unicode letter, a
@@ -8156,3 +8157,49 @@ All values in JavaScript have properties.
 >
 - The primitive values are booleans, numbers, strings, null, and undefined.
 - All other values are objects.
+
+>
+Each object has a unique identity and is only (strictly) equal to itself.
+
+    var obj1 = {};
+    var obj2 = {};
+
+    console.log(obj1 === obj1) //=> true
+    console.log(obj1 === obj2) //=> false
+
+
+>
+All primitive values encoding the same value are considered the same
+
+    var a = 1;
+    var b = 1;
+
+    console.log(a == b) //=> true
+    console.log(a === b) //=> true
+
+
+>
+Primitives have the following characteristics:
+- Compared by value
+- Always immutable
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

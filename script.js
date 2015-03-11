@@ -1,9 +1,12 @@
 "use strict";
 
 
-var あ = 1;
-var び = 2;
-console.log(あ + び); //=> 3
+
+var a = 1;
+var b = 1;
+
+console.log(a == b) //=> true
+console.log(a === b) //=> true
 
 
 

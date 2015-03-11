@@ -8184,6 +8184,21 @@ Primitives have the following characteristics:
 - Always immutable
 
 
+>
+All nonprimitive values are objects
+- Plain objects, which can be created by object literals 
+- Arrays, which can be created by array literals 
+- Regular expressions, which can be created by regular expression literals 
+- Compared by reference
+- Mutable by default
+
+
+>
+Javascript has two 'nonvalue' objects, undefined and null
+undefined means 'no value'.  
+- Uninitialized vars are undefined.
+- Missing parameters are undefined.
+- If you read an nonexistent property
 
 
 

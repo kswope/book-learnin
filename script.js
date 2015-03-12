@@ -2,11 +2,12 @@
 
 
 
-var a = 1;
-var b = 1;
 
-console.log(a == b) //=> true
-console.log(a === b) //=> true
+console.log(/b/.test('abc')) // true
+console.log(/z/.test('abc')) // false
+
+
+
 
 
 

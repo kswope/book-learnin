@@ -8224,6 +8224,194 @@ Loops
 
 
 
+Optional function parameters:
+
+    function myFunc(x,y){
+
+      x = x || 0;
+      y = y || 0;
+
+    }
+
+
+throw and catch
+
+    function myFunc( x, y ) {
+      if ( arguments.length < 2 ) {
+        throw new Error( "not enough args" );
+      }
+    }
+
+    try {
+      myFunc();
+    } catch ( exception ) {
+      console.log( exception )
+    }
+
+
+The scope of a variable is always the complete function (as opposed to the current
+block).
+
+
+Each variable declaration is hoisted: the declaration is moved to the beginning
+of the function, but assignments that it makes stay put.
+
+
+Counter using closure:
+
+    function counter( start ) {
+      return function() {
+        return start++;
+      }
+    }
+
+    var c = counter( 1 );
+    console.log( c() ); //=> 1
+    console.log( c() ); //=> 2
+    console.log( c() ); //=> 3
+
+Something I dind't notice before, 'in' works differently in differnt contexts:
+
+    var obj = {};
+    obj.one = 1;
+    obj.two = 2;
+
+    console.log(obj); //=> { one: 1, two: 2 }
+
+    console.log('one' in obj); //=> returns true in this context
+
+    for (var p in obj){ //=> for context
+      console.log(p);
+    }
+
+
+nothing happens in this context
+
+    var p;
+    while (p in obj){
+      console.log(p);
+    }
+
+
+undefined or in, your choice
+
+    console.log( 'one' in obj ); //=> true
+    console.log( obj.one !== undefined ); //=> true
+
+
+
+
+Stealing methods
+
+    var objA = {
+      name: 'objA',
+      hello: function(){ console.log("hello I'm " + this.name) }
+    };
+
+    var objB ={name: 'objB'};
+
+    objB.hello = objA.hello;
+    objB.hello(); //=> "hello I'm objB"
+
+
+Need to bind if not calling on a similar object
+
+    var objA = {
+      name: 'objA',
+      hello: function() {
+        console.log( "hello I'm " + this.name )
+      }
+    };
+
+    var extracted_func = objA.hello;
+    extracted_func(); //=> TypeError, cannot read property 'name'
+
+    // bind it with 'this'
+    extracted_func = extracted_func.bind(objA)
+    extracted_func(); //=> hello I'm objA
+
+
+"for in" works with arrays, not sure if its the best choice:
+
+    var a = [1,2,3,4,5];
+
+    for(var p in a){
+      console.log(p)
+    }
+
+Array length can trucate arrays
+
+    var a = [1,2,3,4,5];
+    console.log(a); //=> [1,2,3,4,5]
+    a.length = 3
+    console.log(a); //=> [1,2,3]
+
+
+Iterating over arrays
+
+forEach()
+
+    var a = [ 1, 2, 3, 4, 5 ];
+
+    a.forEach( function( e, i ) {
+      console.log( e, i )
+    } );
+
+
+map() exact same thing
+
+    var a = [ 1, 2, 3, 4, 5 ];
+
+    a.map( function( e, i ) {
+      console.log( e, i )
+    } );
+
+
+regex
+
+    console.log( /b/.test( 'abc' ) ) // true
+    console.log( /z/.test( 'abc' ) ) // false
+
+page 31
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

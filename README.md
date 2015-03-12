@@ -8202,9 +8202,58 @@ Javascript has two 'nonvalue' objects, undefined and null
   - Missing parameters are undefined.
   - If you read an nonexistent property
 - null means "no object"
+  - used as a 'nonvalue' whenever an object is expected
 
 
+> 
+There are two operators for categorizing values: typeof is mainly used for
+primitive values, while instanceof is used for objects.
 
+    console.log( typeof 1 ) //=> number
+    console.log( typeof true ) //=> boolean
+    console.log( typeof 'string' ) //=> string
+    console.log( typeof {} ) //=> object
+    console.log( typeof [] ) //=> object
+    console.log( typeof undefined ) //=> undefined
+    console.log( typeof null) //=> object <--- bug!
+
+typeof null returning 'object' is a bug that can’t be fixed, because it would
+break existing code. It does not mean that null is an object.
+
+    console.log( [] instanceof Array ); //=> true
+    console.log( [] instanceof Object ); //=> true
+    console.log( {} instanceof Object ); //=> true
+    console.log( undefined instanceof Object ); //=> false
+    console.log( null instanceof Object ); //=> false
+
+
+Falsy
+- undefined
+- null
+- false
+- 0
+- NaN
+- ''
+
+Truthy
+- everything else
+
+>
+Boolean(), called as a function, converts its parameter to a boolean. You can use it to test how a value is interpreted
+
+    console.log( Boolean(-0) ); //=> false
+
+All numbers in JS are floats
+
+    console.log( 1 === 1.00 ); //=> true
+
+String += same as in ruby
+
+    var str = 'a';
+    str += 'b';
+    str += 'c';
+
+    console.log(str) //=> 'abc'
 
 
 

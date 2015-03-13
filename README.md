@@ -7251,7 +7251,7 @@ Watch out for accidental globals
 Using "use strict" wouln't let the above pass.
 
 
-Item 10: Avoid with
+### Item 10: Avoid with
 
 _No problem - didn't even know about it until you mentioned it__
 

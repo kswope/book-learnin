@@ -7214,6 +7214,55 @@ both you and your readers to understand its subtle coercion rules.
 
 ### Item 6: Learn the Limits of Semicolon Insertion
 
+__Um, I'll just use semis so I don't have to know these rules.__
+
+
+### Item 7: Think of Strings As Sequences of 16-Bit Code Units
+
+>
+* JavaScript strings consist of 16-bit code units, not Unicode code
+points.
+* Unicode code points 216 and above are represented in JavaScript by
+two code units, known as a surrogate pair.
+* Surrogate pairs throw off string element counts, affecting length,
+charAt, charCodeAt, and regular expression patterns such as ".".
+* Use third-party libraries for writing code point-aware string
+manipulation.
+* Whenever you are using a library that works with strings, consult
+the documentation to see how it handles the full range of code
+points.
+
+
+### Item 8: Minimize Use of the Global Object
+
+_duh_
+
+### Item 9: Always Declare Local Variables
+
+
+Watch out for accidental globals
+
+    function swap(a, i, j) {
+     temp = a[i]; // global
+     a[i] = a[j];
+     a[j] = temp;
+    }
+
+Using "use strict" wouln't let the above pass.
+
+
+Item 10: Avoid with
+
+_No problem - didn't even know about it until you mentioned it__
+
+
+
+
+
+
+
+
+
 
 
 

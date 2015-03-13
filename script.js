@@ -1,15 +1,12 @@
 "use strict";
 
 
-var func2 = function() {
 
-  var var1 = 'hello';
 
-  return function() {
-    console.log( var1 )
-  }
-
+function swap( a, i, j ) {
+  temp = a[ i ]; // global
+  a[ i ] = a[ j ];
+  a[ j ] = temp;
 }
 
-func2()()
-func2()();
+swap(1,2,3)

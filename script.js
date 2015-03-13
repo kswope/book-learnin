@@ -1,15 +1,14 @@
 "use strict";
 
 
+var func2 = function() {
 
+  var var1 = 'hello';
 
-console.log(/b/.test('abc')) // true
-console.log(/z/.test('abc')) // false
+  return function() {
+    console.log( var1 )
+  };
 
+};
 
-
-
-
-
-
-
+func2()();

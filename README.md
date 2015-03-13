@@ -8372,7 +8372,20 @@ regex
     console.log( /b/.test( 'abc' ) ) // true
     console.log( /z/.test( 'abc' ) ) // false
 
-page 31
+    var rematch = /(a.*c).*(g.*i)/.exec('abcdefghi')
+    console.log(rematch[0]) //=> 'abcdefghi'
+    console.log(rematch[1]) //=> 'abc'
+    console.log(rematch[2]) //=> 'ghi'
+
+    str = '<tag>Content</tag>';
+
+    str = str.replace(/<(.*?)>/, '[$1]');
+    console.log(str); //> "[tag]Content</tag>" <--- only first
+
+    str = str.replace(/<(.*?)>/g, '[$1]'); // <--- global
+    console.log(str); //> "[tag]Content[/tag]" <--- only first
+      
+
 
 
 

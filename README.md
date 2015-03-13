@@ -7253,22 +7253,129 @@ Using "use strict" wouln't let the above pass.
 
 ### Item 10: Avoid with
 
-_No problem - didn't even know about it until you mentioned it__
+_No problem - didn't even know about it until you mentioned it_
+
+
+### Item 11: Get Comfortable with Closures
+
+_OK done_
 
 
 
+### Item 12: Understand Variable Hoisting
+
+>
+JavaScript does not support block scoping: Variable definitions are not scoped
+to their nearest enclosing statement or block, but rather to their containing
+function.
+
+... the variable is in scope for the entire function, but it is only assigned
+at the point where the var statement appears. 
+
+Hoisting can also lead to confusion about variable redeclaration. It is legal
+to declare the same variable multiple times within the same function.
+
+Strict doesn't help this runaway loop
+
+    "use strict";
+
+    for ( var i = 0; i < 10; i++ ) {
+      var i = 0;
+      console.log( i );
+    }
+
+The one exception to JavaScript's lack of block scoping is, appropriately
+enough, exceptions. That is, try..catch binds a caught exception to a variable
+that is scoped just to the catch block:
+
+>
+* Variable declarations within a block are implicitly hoisted to the top
+of their enclosing function.
+* Redeclarations of a variable are treated as a single variable.
+* Consider manually hoisting local variable declarations to avoid
+confusion.
 
 
 
+### Item 13: Use Immediately Invoked Function Expressions to Create Local Scopes
 
 
 
+>
+* Closures capture their outer variables by reference, not by value.
+* Use immediately invoked function expressions (IIFEs) to create local
+scopes.
 
 
 
+### Item 14: Beware of Unportable Scoping of Named Function Expressions
+
+Use named function for recursion
+
+    var cd = function count_down( start ) { //<--- count_down
+
+      if ( start == 0 ) {
+        return;
+      }
+      console.log( start );
+      count_down( start - 1 ); //<--- count_down
+
+    }
+
+    cd(10);
+
+    // scoped to function only
+    console.log(typeof count_down) //=> 'undefined'
+    console.log(typeof count_down === 'undefined') //=> true
+
+NOTE: you can use the 'cd' var in place of count_down, so we didn't get much for naming the function
+
+Javascript is a mess;
+
+    var a;
+    console.log(a) //=> undefined
+    console.log(typeof a) //=> undefined (might be 'undefined' depending on how console.log works
+    console.log(a === undefined) //=> true
+    console.log(typeof a === undefined) //=> false
+    console.log(typeof a === 'undefined') //=> true
+
+
+>
+The real usefulness of named function expressions, though, is for debugging.
+Most modern JavaScript environments produce stack traces for Error objects, and
+the name of a function expression is typically used for its entry in a stack
+trace.
 
 
 
+>
+* Use named function expressions to improve stack traces in Error
+objects and debuggers.
+* Consider avoiding named function expressions or removing them
+before shipping.
+* If you are shipping in properly implemented ES5 environments,
+you've got nothing to worry about.
+
+### Item 15: Beware of Unportable Scoping of Block-Local Function Declarations
+
+>
+*  Always keep function declarations at the outermost level of a program
+or a containing function to avoid unportable behavior.
+* Use var declarations with conditional assignment instead of conditional
+function declarations.
+
+
+### Item 19: Get Comfortable Using Higher-Order Functions
+
+>
+* Higher-order functions are functions that take other functions as
+arguments or return functions as their result.
+* Familiarize yourself with higher-order functions in existing
+libraries.
+* Learn to detect common coding patterns that can be replaced by
+higher-order functions.
+
+page 63
 
 
 

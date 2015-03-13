@@ -7,8 +7,9 @@ var func2 = function() {
 
   return function() {
     console.log( var1 )
-  };
+  }
 
-};
+}
 
+func2()()
 func2()();

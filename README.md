@@ -7210,7 +7210,217 @@ both you and your readers to understand its subtle coercion rules.
 * Use your own explicit coercions when comparing values of different
    types to make your program's behavior clearer.
 
-__skipping to The Principles of OO Javascript for now__
+
+
+### Item 6: Learn the Limits of Semicolon Insertion
+
+__Um, I'll just use semis so I don't have to know these rules.__
+
+
+### Item 7: Think of Strings As Sequences of 16-Bit Code Units
+
+>
+* JavaScript strings consist of 16-bit code units, not Unicode code
+points.
+* Unicode code points 216 and above are represented in JavaScript by
+two code units, known as a surrogate pair.
+* Surrogate pairs throw off string element counts, affecting length,
+charAt, charCodeAt, and regular expression patterns such as ".".
+* Use third-party libraries for writing code point-aware string
+manipulation.
+* Whenever you are using a library that works with strings, consult
+the documentation to see how it handles the full range of code
+points.
+
+
+### Item 8: Minimize Use of the Global Object
+
+_duh_
+
+### Item 9: Always Declare Local Variables
+
+
+Watch out for accidental globals
+
+    function swap(a, i, j) {
+     temp = a[i]; // global
+     a[i] = a[j];
+     a[j] = temp;
+    }
+
+Using "use strict" wouln't let the above pass.
+
+
+### Item 10: Avoid with
+
+_No problem - didn't even know about it until you mentioned it_
+
+
+### Item 11: Get Comfortable with Closures
+
+_OK done_
+
+
+
+### Item 12: Understand Variable Hoisting
+
+>
+JavaScript does not support block scoping: Variable definitions are not scoped
+to their nearest enclosing statement or block, but rather to their containing
+function.
+
+... the variable is in scope for the entire function, but it is only assigned
+at the point where the var statement appears. 
+
+Hoisting can also lead to confusion about variable redeclaration. It is legal
+to declare the same variable multiple times within the same function.
+
+Strict doesn't help this runaway loop
+
+    "use strict";
+
+    for ( var i = 0; i < 10; i++ ) {
+      var i = 0;
+      console.log( i );
+    }
+
+The one exception to JavaScript's lack of block scoping is, appropriately
+enough, exceptions. That is, try..catch binds a caught exception to a variable
+that is scoped just to the catch block:
+
+>
+* Variable declarations within a block are implicitly hoisted to the top
+of their enclosing function.
+* Redeclarations of a variable are treated as a single variable.
+* Consider manually hoisting local variable declarations to avoid
+confusion.
+
+
+
+### Item 13: Use Immediately Invoked Function Expressions to Create Local Scopes
+
+
+
+>
+* Closures capture their outer variables by reference, not by value.
+* Use immediately invoked function expressions (IIFEs) to create local
+scopes.
+
+
+
+### Item 14: Beware of Unportable Scoping of Named Function Expressions
+
+Use named function for recursion
+
+    var cd = function count_down( start ) { //<--- count_down
+
+      if ( start == 0 ) {
+        return;
+      }
+      console.log( start );
+      count_down( start - 1 ); //<--- count_down
+
+    }
+
+    cd(10);
+
+    // scoped to function only
+    console.log(typeof count_down) //=> 'undefined'
+    console.log(typeof count_down === 'undefined') //=> true
+
+NOTE: you can use the 'cd' var in place of count_down, so we didn't get much for naming the function
+
+Javascript is a mess;
+
+    var a;
+    console.log(a) //=> undefined
+    console.log(typeof a) //=> undefined (might be 'undefined' depending on how console.log works
+    console.log(a === undefined) //=> true
+    console.log(typeof a === undefined) //=> false
+    console.log(typeof a === 'undefined') //=> true
+
+
+>
+The real usefulness of named function expressions, though, is for debugging.
+Most modern JavaScript environments produce stack traces for Error objects, and
+the name of a function expression is typically used for its entry in a stack
+trace.
+
+
+
+>
+* Use named function expressions to improve stack traces in Error
+objects and debuggers.
+* Consider avoiding named function expressions or removing them
+before shipping.
+* If you are shipping in properly implemented ES5 environments,
+you've got nothing to worry about.
+
+### Item 15: Beware of Unportable Scoping of Block-Local Function Declarations
+
+>
+*  Always keep function declarations at the outermost level of a program
+or a containing function to avoid unportable behavior.
+* Use var declarations with conditional assignment instead of conditional
+function declarations.
+
+
+### Item 19: Get Comfortable Using Higher-Order Functions
+
+>
+* Higher-order functions are functions that take other functions as
+arguments or return functions as their result.
+* Familiarize yourself with higher-order functions in existing
+libraries.
+* Learn to detect common coding patterns that can be replaced by
+higher-order functions.
+
+page 63
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## The Principles of Object-Oriented Javascript
 
@@ -8270,6 +8480,207 @@ Loops
     do {
      // ...
     } while (condition);
+
+
+
+
+Optional function parameters:
+
+    function myFunc(x,y){
+
+      x = x || 0;
+      y = y || 0;
+
+    }
+
+
+throw and catch
+
+    function myFunc( x, y ) {
+      if ( arguments.length < 2 ) {
+        throw new Error( "not enough args" );
+      }
+    }
+
+    try {
+      myFunc();
+    } catch ( exception ) {
+      console.log( exception )
+    }
+
+
+The scope of a variable is always the complete function (as opposed to the current
+block).
+
+
+Each variable declaration is hoisted: the declaration is moved to the beginning
+of the function, but assignments that it makes stay put.
+
+
+Counter using closure:
+
+    function counter( start ) {
+      return function() {
+        return start++;
+      }
+    }
+
+    var c = counter( 1 );
+    console.log( c() ); //=> 1
+    console.log( c() ); //=> 2
+    console.log( c() ); //=> 3
+
+Something I dind't notice before, 'in' works differently in differnt contexts:
+
+    var obj = {};
+    obj.one = 1;
+    obj.two = 2;
+
+    console.log(obj); //=> { one: 1, two: 2 }
+
+    console.log('one' in obj); //=> returns true in this context
+
+    for (var p in obj){ //=> for context
+      console.log(p);
+    }
+
+
+nothing happens in this context
+
+    var p;
+    while (p in obj){
+      console.log(p);
+    }
+
+
+undefined or in, your choice
+
+    console.log( 'one' in obj ); //=> true
+    console.log( obj.one !== undefined ); //=> true
+
+
+
+
+Stealing methods
+
+    var objA = {
+      name: 'objA',
+      hello: function(){ console.log("hello I'm " + this.name) }
+    };
+
+    var objB ={name: 'objB'};
+
+    objB.hello = objA.hello;
+    objB.hello(); //=> "hello I'm objB"
+
+
+Need to bind if not calling on a similar object
+
+    var objA = {
+      name: 'objA',
+      hello: function() {
+        console.log( "hello I'm " + this.name )
+      }
+    };
+
+    var extracted_func = objA.hello;
+    extracted_func(); //=> TypeError, cannot read property 'name'
+
+    // bind it with 'this'
+    extracted_func = extracted_func.bind(objA)
+    extracted_func(); //=> hello I'm objA
+
+
+"for in" works with arrays, not sure if its the best choice:
+
+    var a = [1,2,3,4,5];
+
+    for(var p in a){
+      console.log(p)
+    }
+
+Array length can trucate arrays
+
+    var a = [1,2,3,4,5];
+    console.log(a); //=> [1,2,3,4,5]
+    a.length = 3
+    console.log(a); //=> [1,2,3]
+
+
+Iterating over arrays
+
+forEach()
+
+    var a = [ 1, 2, 3, 4, 5 ];
+
+    a.forEach( function( e, i ) {
+      console.log( e, i )
+    } );
+
+
+map() exact same thing
+
+    var a = [ 1, 2, 3, 4, 5 ];
+
+    a.map( function( e, i ) {
+      console.log( e, i )
+    } );
+
+
+regex
+
+    console.log( /b/.test( 'abc' ) ) // true
+    console.log( /z/.test( 'abc' ) ) // false
+
+    var rematch = /(a.*c).*(g.*i)/.exec('abcdefghi')
+    console.log(rematch[0]) //=> 'abcdefghi'
+    console.log(rematch[1]) //=> 'abc'
+    console.log(rematch[2]) //=> 'ghi'
+
+    str = '<tag>Content</tag>';
+
+    str = str.replace(/<(.*?)>/, '[$1]');
+    console.log(str); //> "[tag]Content</tag>" <--- only first
+
+    str = str.replace(/<(.*?)>/g, '[$1]'); // <--- global
+    console.log(str); //> "[tag]Content[/tag]" <--- only first
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

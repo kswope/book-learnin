@@ -7375,10 +7375,11 @@ libraries.
 * Learn to detect common coding patterns that can be replaced by
 higher-order functions.
 
-page 63
+
+### Item 20: Use call to Call Methods with a Custom Receiver
 
 
-
+_Note: call() is a method property of functions, not ordinary objects_
 
 
 

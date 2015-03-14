@@ -7436,11 +7436,70 @@ Make real arguments array from existing one;
 before modifying it.
 
 
+### Item 24: Use a Variable to Save a Reference to arguments
+
+>
+* Be aware of the function nesting level when referring to arguments.
+* Bind an explicitly scoped reference to arguments in order to refer to
+  it from nested functions.
 
 
+### Item 25: Use bind to Extract Methods with a Fixed Receiver
+
+    var a = [ 1, 2, 3, 4, 5 ];
+    var s = a.slice;
+    console.log( s() ) //=> []
+
+    var s = a.slice.bind( a );
+    console.log( s() ) //=> [1,2,3,4,5]
+
+Another example, replacing a callback function definition with a function
 
 
+var buffer = {
+  data: [],
+  add: function( s ) {
+    this.data.push( s )
+  },
+}
 
+buffer.add( 1 );
+buffer.add( 2 );
+buffer.add( 3 );
+console.log( buffer.data );
+
+var a = ['a', 'b', 'c']
+
+// using a wrapper function for calling buffer.add
+a.forEach(function(x){
+  buffer.add(x)
+})
+
+var a = ['x', 'y', 'z']
+
+// directly calling buffer add, but we need a bind
+a.forEach(buffer.add.bind(buffer))
+
+console.log( buffer.data ); //=> [ 1, 2, 3, 'a', 'b', 'c', 'x', 'y', 'z' ]
+
+
+>
+* Beware that extracting a method does not bind the method's
+receiver to its object.
+* When passing an object's method to a higher-order function, use an
+anonymous function to call the method on the appropriate receiver.
+* Use bind as a shorthand for creating a function bound to the appropriate
+receiver.
+
+
+### Item 26: Use bind to Curry Functions
+
+Eventhough the first arg to bind is 'this', you don't have to use it.
+
+* Use bind to curry a function, that is, to create a delegating function
+with a fixed subset of the required arguments.
+* Pass null or undefined as the receiver argument to curry a function
+that ignores its receiver.
 
 
 

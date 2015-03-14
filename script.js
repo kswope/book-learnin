@@ -2,6 +2,10 @@
 
 
 
-var a = [ 1, 2, 3, 4, 5 ];
+var highlighter = function(pointer, value){
+  console.log(pointer + value);
+}
 
-console.log( [].slice.call( a ) );
+
+highlighter('***', 1)
+

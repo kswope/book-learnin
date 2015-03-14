@@ -8255,8 +8255,21 @@ String += same as in ruby
 
     console.log(str) //=> 'abc'
 
+Loops
 
+    for (var i=0; i < arr.length; i++) {
+     console.log(arr[i]);
+    }
 
+    var i = 0;
+    while (i < arr.length) {
+     console.log(arr[i]);
+     i++;
+    }
+
+    do {
+     // ...
+    } while (condition);
 
 
 

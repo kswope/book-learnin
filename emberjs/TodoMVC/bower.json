@@ -1,0 +1,23 @@
+{
+  "name": "TodoMVC",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kswope/ruby-study",
+  "authors": [
+    "kswope <github-kevdev@snkmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ember": "~1.10.0",
+    "ember-data": "~0.0.14"
+  },
+  "resolutions": {
+    "ember": "~1.10.0"
+  }
+}

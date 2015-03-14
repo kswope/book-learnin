@@ -1,10 +1,16 @@
 "use strict";
 
 
-var obj = {
-  name:'obj1',
-  hello: function() {
-    console.log( 'hello ' + this.name )
-  }
+var obj1 = {
+  name: 'obj1'
 };
 
+var obj2 = {
+  name: 'obj2'
+};
+
+var obj3 = {
+  name: 'obj3'
+};
+
+[obj1, obj2, obj3]

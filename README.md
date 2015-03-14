@@ -7381,12 +7381,59 @@ higher-order functions.
 
 _Note: call() is a method property of functions, not ordinary objects_
 
+>
+* Use the call method to call a function with a custom receiver
+* Use the call method for calling methods that may not exist on a
+given object.
+* Use the call method for defining higher-order functions that allow
+clients to provide a receiver for the callback.
+
+### Item 21: Use apply to Call Functions with Different Numbers of Arguments
+
+
+javascripts version of splat
+
+    function average(){
+      var count = 0;
+      for(var i = 0; i<arguments.length; i++){
+        count = count + arguments[i];
+      }
+      return count/arguments.length;
+    }
+
+    var a = [1,2,3,4,5];
+    console.log(average.apply(null, a)) //=> 3
+
+>
+* Use the apply method to call variadic functions with a computed
+array of arguments.
+* Use the first argument of apply to provide a receiver for variadic
+methods.
+
+
+### Item 22: Use arguments to Create Variadic Functions
+
+* Use the implicit arguments object to implement variable-arity
+functions.
+* Consider providing additional fixed-arity versions of the variadic
+functions you provide so that your consumers don't need to use the
+apply method.
 
 
 
+### Item 23: Never Modify the arguments Object
 
 
 
+Make real arguments array from existing one;
+
+    var args = [].slice.call(arguments);
+
+
+>
+* Never modify the arguments object.
+* Copy the arguments object to a real array using [].slice.call(arguments)
+before modifying it.
 
 
 

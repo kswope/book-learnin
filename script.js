@@ -1,16 +1,7 @@
 "use strict";
 
 
-var obj1 = {
-  name: 'obj1'
-};
 
-var obj2 = {
-  name: 'obj2'
-};
+var a = [ 1, 2, 3, 4, 5 ];
 
-var obj3 = {
-  name: 'obj3'
-};
-
-[obj1, obj2, obj3]
+console.log( [].slice.call( a ) );

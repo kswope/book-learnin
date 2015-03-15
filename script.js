@@ -2,15 +2,16 @@
 
 
 
-var highlighter = function(pointer, value){
-  console.log(pointer + value);
-};
+function Data( data, splitter ) {
+  this._data = data;
+  this._splitter = splitter;
+}
 
+Data.prototype.split = function() {
+  return this._data.map( function( x ) {
+    return x.split( this._splitter ) //<-- that
+  }.bind(this) )
+}
 
-// pass wrapper to map
-[1,2,3,4,5].map(function(x){
-  highlighter('*** ', x);
-});
-
-// use bind to convert highlighter into one argument method
-[1,2,3,4,5].map(highlighter.bind(null, '--> '));
+var data = new Data( ['abc','def'], new RegExp( '' ) )
+console.log( data.split() );

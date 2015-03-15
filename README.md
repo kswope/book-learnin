@@ -7516,25 +7516,232 @@ with a fixed subset of the required arguments.
 that ignores its receiver.
 
 
+### Item 28: Avoid Relying on the toString Method of Function
+
+>
+* JavaScript engines are not required to produce accurate reflections
+of function source code via toString.
+* Never rely on precise details of function source, since different
+engines may produce different results from toString.
+* The results of toString do not expose the values of local variables
+stored in a closure.
+* In general, avoid using toString on functions
 
 
+### Item 29: Avoid Nonstandard Stack Inspection Properties
+
+>
+* Avoid the nonstandard arguments.caller and arguments.callee,
+because they are not reliably portable.
+* Avoid the nonstandard caller property of functions, because it does
+not reliably contain complete information about the stack.
 
 
+### Item 30: Understand the Difference between prototype, getPrototypeOf, and __proto__
+
+>
+Prototypes involve three separate but related accessors, all of which are named
+with some variation on the word prototype. This unfortunate overlap naturally
+leads to quite a bit of confusion.
+
+>
+Classes in JavaScript are essentially the combination of a constructor function
+(User) and a prototype object used to share methods between instances of the
+class (User.prototype).
+
+>
+* C.prototype determines the prototype of objects created by new C().
+* Object.getPrototypeOf(obj) is the standard ES5 function for retrieving
+the prototype of an object.
+* obj.__proto__ is a nonstandard mechanism for retrieving the prototype
+of an object.
+* A class is a design pattern consisting of a constructor function and
+an associated prototype.
+
+### Item 31: Prefer Object.getPrototypeOf to __proto__
+
+>
+ES5 introduced Object.getPrototypeOf as the standard API for
+retrieving an object's prototype, but only after a number of JavaScript
+engines had long provided the special __proto__ property for the same
+purpose. 
+
+Unreliable in some envs
+
+    var empty = Object.create(null); // object with no prototype
+    "__proto__" in empty; // false (in some environments)
+    "__proto__" in empty; // true (in some environments)
 
 
+>
+* Prefer the standards-compliant Object.getPrototypeOf to the nonstandard
+__proto__ property.
+* Implement Object.getPrototypeOf in non-ES5 environments that
+support __proto__.
 
 
+### Item 32: Never Modify __proto__
+
+* Never modify an object's __proto__ property.
+* Use Object.create to provide a custom prototype for new objects.
 
 
+### Item 33: Make Your Constructors new-Agnostic
+
+    function User( name, passwordHash ) {
+      if ( !( this instanceof User ) ) {
+        return new User( name, passwordHash );
+      }
+      this.name = name;
+      this.passwordHash = passwordHash;
+    }
+
+Version using Object.create()
+
+    function User( name, passwordHash ) {
+      var self = this instanceof User ? this : Object.create( User.prototype );
+      self.name = name;
+      self.passwordHash = passwordHash;
+      return self;
+    }
+
+>
+Protecting a constructor against misuse may not always be worth the trouble,
+especially when you are only using a constructor locally.
+
+>
+* Make a constructor agnostic to its caller's syntax by reinvoking
+itself with new or with Object.create.
+* Document clearly when a function expects to be called with new
 
 
+### Item 34: Store Methods on Prototypes
+
+>
+* Storing methods on instance objects creates multiple copies of the
+functions, one per instance object.
+* Prefer storing methods on prototypes over storing them on instance
+objects.
 
 
+### Item 35: Use Closures to Store Private Data
+
+_no good example provided by good_
+
+My attempt at an example:
+
+    function MyConstructor(){
+      var data = data;
+      return {
+        get_data: function(){ return data},
+        set_data: function(value){ data = value }
+      }
+    }
+
+   var obj = new MyConstructor;
+    obj.set_data(123);
+    console.log(obj.get_data());
+
+_Downside to the above is that the methods need to be defined within the
+constructor and not on the prototype.
+
+>
+* Closure variables are private, accessible only to local references.
+* Use local variables as private data to enforce information hiding
+within methods.
 
 
+### Item 36: Store Instance State Only on Instance Objects
+
+    function Tree(x) {
+      this.value = x;
+    }
+
+    Tree.prototype = {
+      children: [], //<---- should be instance state!!!!
+      addChild: function( x ) {
+        this.children.push( x );
+      }
+    };
 
 
+>
+* Mutable data can be problematic when shared, and prototypes are
+shared between all their instances.
+* Store mutable per-instance state on instance objects.
 
+
+### Item 37: Recognize the Implicit Binding of this
+
+>
+Every function has an implicit binding of this, whose value is determined when
+the function is called.
+
+__remember that everytime we enter a function, this is assigned to something else, and
+if we are using 'use strict' its probably being set to undefined.__
+
+Bug version, wrong this
+
+    function Data( data, splitter ) {
+      this._data = data;
+      this._splitter = splitter;
+    }
+
+    Data.prototype.split = function() {
+      return this._data.map( function( x ) {
+        console.log(this) //<-- either global this or undefined because of 'use strict'
+        return x.split( this._splitter ) //<-- cannot read property of this
+      } )
+    }
+
+    var data = new Data( ['abc','def'], new RegExp( '' ) )
+    console.log( data.split() );
+
+
+that this technique
+
+    function Data( data, splitter ) {
+      this._data = data;
+      this._splitter = splitter;
+    }
+
+    Data.prototype.split = function() {
+      var that = this //<-- that trick
+      return this._data.map( function( x ) {
+        return x.split( that._splitter ) //<-- that
+      } )
+    }
+
+    var data = new Data( ['abc','def'], new RegExp( '' ) )
+    console.log( data.split() );
+
+
+bind technique ( more elegant but difficult to read? )
+
+    function Data( data, splitter ) {
+      this._data = data;
+      this._splitter = splitter;
+    }
+
+    Data.prototype.split = function() {
+      return this._data.map( function( x ) {
+        return x.split( this._splitter ) //<-- that
+      }.bind(this) ) //<-- bind()
+    }
+
+    var data = new Data( ['abc','def'], new RegExp( '' ) )
+    console.log( data.split() );
+
+>
+* The scope of this is always determined by its nearest enclosing
+function.
+* Use a local variable, usually called self, me, or that, to make a
+this-binding available to inner functions.
+
+
+### Item 38: Call Superclass Constructors from Subclass Constructors
+
+page 101
 
 
 

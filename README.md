@@ -18,6 +18,8 @@ want to waste a github private slot, so don't look._
 - [The Well Grounded Rubyist](#the-well-grounded-rubyist)
 - [Effective Javascript](#effective-javascript)
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
+- [JavaScript Cookbook](#javascript-cookbook)
+- [JavaScript Patterns](#javascript-patterns)
 - [Speaking Javascript](#speaking-javascript)
 
 
@@ -8026,28 +8028,27 @@ values from options objects.
 each operation depends on.
 
 
+### Item 58: Distinguish between Array and Array-Like
 
 
+>
+* Never overload structural types with other overlapping types.
+* When overloading a structural type with other types, test for the
+other types first.
+* Accept true arrays instead of array-like objects when overloading
+with other object types.
+* Document whether your API accepts true arrays or array-like
+values.
+* Use ES5's Array.isArray to test for true arrays.
 
 
+### Item 60: Support Method Chaining
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+>
+* Use method chaining to combine stateless operations.
+* Support method chaining by designing stateless methods that produce
+new objects.
+* Support method chaining in stateful methods by returning this.
 
 
 
@@ -9275,7 +9276,12 @@ regex
     console.log(str); //> "[tag]Content[/tag]" <--- only first
       
 
+_to be continued..._
 
+
+## JavaScript Cookbook
+
+## JavaScript Patterns
 
 
 

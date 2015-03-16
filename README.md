@@ -8008,6 +8008,24 @@ parameter default values.
 allow 0, NaN, or the empty string as valid arguments.__
 
 
+### Item 55: Accept Options Objects for Keyword Arguments
+
+>
+* Use options objects to make APIs more readable and memorable.
+* The arguments provided by an options object should all be treated
+as optional.
+* Use an extend utility function to abstract out the logic of extracting
+values from options objects.
+
+
+### Item 56: Avoid Unnecessary State
+
+>
+* Prefer stateless APIs where possible. _(not sure about this one)_
+* When providing stateful APIs, document the relevant state that
+each operation depends on.
+
+
 
 
 

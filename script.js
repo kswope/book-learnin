@@ -2,16 +2,16 @@
 
 
 
-function Data( data, splitter ) {
-  this._data = data;
-  this._splitter = splitter;
+function MyArray(data){
+  this._data = data
 }
 
-Data.prototype.split = function() {
-  return this._data.map( function( x ) {
-    return x.split( this._splitter ) //<-- that
-  }.bind(this) )
+MyArray.prototype.forEach = function(f){
+  this._data.forEach(f);
 }
 
-var data = new Data( ['abc','def'], new RegExp( '' ) )
-console.log( data.split() );
+var a = new MyArray([1,2,3]);
+
+a.forEach(function(x){
+  console.log(x);
+})

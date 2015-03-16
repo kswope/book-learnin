@@ -7741,7 +7741,64 @@ this-binding available to inner functions.
 
 ### Item 38: Call Superclass Constructors from Subclass Constructors
 
-page 101
+_revisit this one, but I don't favor class inheritance in javascript_
+
+### Item 40: Avoid Inheriting from Standard Classes
+
+>
+The ECMAScript standard library is small, but it comes with a hand- ful of
+important classes such as Array, Function, and Date. It can be tempting to
+extend these with subclasses, but unfortunately their definitions have enough
+special behavior that well-behaved sub- classes are impossible to write.
+
+My limited example of delegation
+
+    function MyArray(data){
+      this._data = data
+    }
+
+    MyArray.prototype.forEach = function(f){
+      this._data.forEach(f);
+    }
+
+    var a = new MyArray([1,2,3]);
+
+    a.forEach(function(x){
+      console.log(x);
+    })
+
+
+>
+* Inheriting from standard classes tends to break due to special internal
+  properties such as [[Class]].
+* Prefer delegating to properties instead of inheriting from standard classes.
+
+
+### Item 41: Treat Prototypes As an Implementation Detail
+
+>
+* Objects are interfaces; prototypes are implementations.
+* Avoid inspecting the prototype structure of objects you don’t control.
+* Avoid inspecting properties that implement the internals of objects you don’t
+control.
+
+### Item 42: Avoid Reckless Monkey-Patching
+
+>
+* Avoid reckless monkey-patching.
+* Document any monkey-patching performed by a library.
+* Consider making monkey-patching optional by performing the modifications in
+  an exported function.
+* Use monkey-patching to provide polyfills for missing standard APIs.
+
+
+
+
+
+
+
+
+
 
 
 

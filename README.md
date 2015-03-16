@@ -7791,6 +7791,232 @@ control.
   an exported function.
 * Use monkey-patching to provide polyfills for missing standard APIs.
 
+### Item 43: Build Lightweight Dictionaries from Direct Instances of Object
+
+>
+At its heart, a JavaScript object is a table mapping string property
+names to values. 
+
+>
+prototype pollution, where properties on a prototype object can cause
+unexpected properties to appear when enumerating dictionary entries.
+
+
+>
+* Use object literals to construct lightweight dictionaries.
+* Lightweight dictionaries should be direct descendants of
+Object.prototype to protect against prototype pollution in for...in
+loops.
+
+### Item 44: Use null Prototypes to Prevent Prototype Pollution
+
+
+>
+ES5 offers the first standard way to create an object with no prototype.
+
+    var x = Object.create(null);
+    Object.getPrototypeOf(o) === null; // true
+
+>
+No amount of prototype pollution can affect the behavior of such an object.
+
+
+>
+* In ES5, use Object.create(null) to create prototype-free empty
+objects that are less susceptible to pollution.
+* In older environments, consider using { __proto__: null }.
+* But beware that __proto__ is neither standard nor entirely portable
+and may be removed in future JavaScript environments.
+* Never use the name "__proto__" as a dictionary key since some
+environments treat this property specially. 
+
+
+### Item 45: Use hasOwnProperty to Protect Against Prototype Pollution
+
+This doesn't seem to be a problem. for..in seems to be skipping everything
+except properties I define on object.  Maybe just in chrome and node, which is
+v8 right?  Respecting enumerable properties with for..in loops but still showing
+with 'in' operator?
+
+    var dict = {data:null};
+    console.log("toString" in dict); // true
+    console.log("data" in dict); // true
+
+    for(var p in dict){ console.log(p) }
+
+    //=> 'data' nothing else
+
+>
+* Use hasOwnProperty to protect against prototype pollution.
+* Use lexical scope and call to protect against overriding of the
+hasOwnProperty method.
+*Consider implementing dictionary operations in a class that encapsulates
+the boilerplate hasOwnProperty tests.
+* Use a dictionary class to protect against the use of "__proto__" as
+a key.
+
+
+### Item 46: Prefer Arrays to Dictionaries for Ordered Collections
+
+>
+The ECMAScript standard does not specify any particular order of property
+storage and is even largely mum on the subject of enumeration.
+
+* Avoid relying on the order in which for...in loops enumerate object
+properties.
+* If you aggregate data in a dictionary, make sure the aggregate operations
+are order-insensitive.
+* Use arrays instead of dictionary objects for ordered collections.
+
+
+### Item 47: Never Add Enumerable Properties to Object.prototype
+
+
+* Avoid adding properties to Object.prototype.
+* Consider writing a function instead of an Object.prototype method.
+* If you do add properties to Object.prototype, use ES5's
+Object.defineProperty to define them as nonenumerable properties.
+
+
+### Item 48: Avoid Modifying an Object during Enumeration
+
+ECMA standard states:
+
+>
+If new properties are added to the object being enumerated during enumeration,
+the newly added properties are not guaranteed to be visited in the active
+enumeration.
+
+
+>
+* Make sure not to modify an object while enumerating its properties
+with a for...in loop. 
+* Use a while loop or classic for loop instead of a for...in loop when
+iterating over an object whose contents might change during the
+loop.
+* For predictable enumeration over a changing data structure, consider
+using a sequential data structure such as an array instead of
+a dictionary object.
+
+### Item 49: Prefer for Loops to for...in Loops for Array Iteration
+
+>
+* Always use a for loop rather than a for...in loop for iterating over
+the indexed properties of an array.
+* Consider storing the length property of an array in a local variable
+before a loop to avoid recomputing the property lookup.
+
+
+### Item 50: Prefer Iteration Methods to Loops
+
+
+>
+* Use iteration methods such as Array.prototype.forEach and
+Array.prototype.map in place of for loops to make code more readable
+and avoid duplicating loop control logic.
+* Use custom iteration functions to abstract common loop patterns
+that are not provided by the standard library.
+* Traditional loops can still be appropriate in cases where early exit
+is necessary; alternatively, the some and every methods can be used
+for early exit.
+
+
+### Item 51: Reuse Generic Array Methods on Array-Like Objects
+
+>
+The standard methods of Array.prototype were designed to be reusable
+as methods of other objects - even objects that do not inherit
+from Array. As it turns out, a number of such array-like objects crop
+up in various places in JavaScript.
+
+    function my_array() {
+      [].forEach.call( arguments, function( x ) {
+        console.log( x );
+      } )
+    }
+
+So what exactly makes an object "array-like"? The basic contract of
+an array object amounts to two simple rules.
+* It has an integer length property in the range 0...232-1.
+* The length property is greater than the largest index of the object.
+An index is an integer in the range 0...232-2 whose string representation
+is the key of a property of the object.
+
+Good enough to be array like:
+
+    var arrayLike = { 0: "a", 1: "b", 2: "c", length: 3 };
+
+Strings act like immutable arrays, too, since they can be indexed
+and their length can be accessed as a length property.
+
+    var str = 'this is a string';
+
+    [].forEach.call(str, function(x){
+      console.log(x)
+    })
+
+>
+* Reuse generic Array methods on array-like objects by extracting
+method objects and using their call method.
+* Any object can be used with generic Array methods if it has indexed
+properties and an appropriate length property.
+
+
+### Item 52: Prefer Array Literals to the Array Constructor
+
+>
+* The Array constructor behaves differently if its first argument is a
+number.
+* Use array literals instead of the Array constructor.
+
+
+### Item 54: Treat undefined As "No Value"
+
+>
+The undefined value is special: Whenever JavaScript has no specific value to
+provide it just produces undefined. Unassigned variables start out with the
+value undefined
+
+    var x;
+    x; // undefined
+
+    var obj = {};
+    obj.x; // undefined
+
+    function f() {
+      return;
+    }
+    f(); // undefined
+
+    function g() {}
+    g(); // undefined
+
+    function f(x) {
+      return x;
+    }
+    f(); // undefined
+
+>
+* Avoid using undefined to represent anything other than the absence
+of a specific value.
+* Use descriptive string values or objects with named boolean properties,
+rather than undefined or null, to represent application- specific
+flags.
+* Test for undefined instead of checking arguments.length to provide
+parameter default values.
+* __Never use truthiness tests for parameter default values that should
+allow 0, NaN, or the empty string as valid arguments.__
+
+
+
+
+
+
+
+
+
+
+
 
 
 

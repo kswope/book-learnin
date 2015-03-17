@@ -9308,10 +9308,45 @@ object called window that (usually) points to the global object itself.
 ...the most important pattern for having fewer globals is to always use var to
 declare variables. _(seems to be the only choice when using 'use strict')_
 
+problem with hoisting
+
+    var myname = "global"; // global variable
+    function func() {
+      log( myname ); // "undefined" //<--- hoisted up from below, not the global
+      var myname = "local";
+      log( myname ); // "local"
+    }
+    func();
 
 
 
-page 14
+
+>
+"single var pattern" _(not sure if I like this)_
+  
+    var i = 0,
+      max = 10,
+      array = [];
+
+
+>
+...substitute i++ with either one of these expressions: JSLint prompts you to
+do it; the reason being that ++ and -- promote "excessive trickiness." 
+
+    i = i + 1
+    i += 1
+
+
+>
+for-in loops should be used to iterate over nonarray objects.  Looping with
+for-in is also called __enumeration__.
+
+
+
+
+
+
+
 
 
 

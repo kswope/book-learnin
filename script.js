@@ -7,15 +7,9 @@ var log = function() {
 }
 
 
-var obj = {};
-obj.one = 1;
-log(obj); // { one: 1 }
-delete obj.one;
-log(obj); // {}
+var a = [1,2,3,4,5,6,7,8,9];
+var length = a.length;
 
-
-var myglobal = 'hello';
-log(myglobal); //=> hello
-delete myglobal;
-log(this.myglobal); //=> hello
-
+while(length--){
+  log(a[length])
+}

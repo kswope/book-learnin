@@ -18,9 +18,9 @@ want to waste a github private slot, so don't look._
 - [The Well Grounded Rubyist](#the-well-grounded-rubyist)
 - [Effective Javascript](#effective-javascript)
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
-- [JavaScript Cookbook](#javascript-cookbook)
-- [JavaScript Patterns](#javascript-patterns)
 - [Speaking Javascript](#speaking-javascript)
+- [Underscore.js Docs](#underscore.js-docs)
+- [JavaScript Patterns](#javascript-patterns)
 
 
 TODO
@@ -9280,6 +9280,19 @@ _to be continued..._
 
 
 ## JavaScript Cookbook
+
+
+
+## Underscore.js Docs
+
+
+
+
+
+
+
+
+
 
 ## JavaScript Patterns
 

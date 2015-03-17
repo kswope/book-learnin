@@ -19,7 +19,7 @@ want to waste a github private slot, so don't look._
 - [Effective Javascript](#effective-javascript)
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
 - [Speaking Javascript](#speaking-javascript)
-- [Underscore.js Docs](#underscore.js-docs)
+- [Underscore.js Docs](#underscorejs-docs)
 - [JavaScript Patterns](#javascript-patterns)
 
 

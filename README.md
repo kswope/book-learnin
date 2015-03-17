@@ -9282,6 +9282,50 @@ _to be continued..._
 ## JavaScript Patterns
 
 
+>
+JavaScript uses functions to manage scope.
+
+>
+Every JavaScript environment has a global object accessible when you use this
+outside of any function.
+
+>
+Every global variable you create becomes a property of the global object.
+
+>
+In browsers, for convenience, there is an additional property of the global
+object called window that (usually) points to the global object itself. 
+
+    // in browser console
+    > myglobal = 'hello';
+    > "hello"
+    > window.myglobal
+    > "hello"
+    > this.myglobal
+    > "hello"
+
+>
+...the most important pattern for having fewer globals is to always use var to
+declare variables. _(seems to be the only choice when using 'use strict')_
+
+
+
+
+page 14
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Underscore.js Docs
 
 

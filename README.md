@@ -19,8 +19,8 @@ want to waste a github private slot, so don't look._
 - [Effective Javascript](#effective-javascript)
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
 - [Speaking Javascript](#speaking-javascript)
-- [Underscore.js Docs](#underscorejs-docs)
 - [JavaScript Patterns](#javascript-patterns)
+- [Underscore.js Docs](#underscorejs-docs)
 
 
 TODO
@@ -9279,26 +9279,10 @@ regex
 _to be continued..._
 
 
-## JavaScript Cookbook
-
-
-
-## Underscore.js Docs
-
-
-
-
-
-
-
-
-
-
 ## JavaScript Patterns
 
 
-
-
+## Underscore.js Docs
 
 
 

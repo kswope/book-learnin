@@ -9419,8 +9419,166 @@ Example
     (new MyConstructorImposter).hello(); //=> hello
 
 
-page 43
 
+Example guards to prevent calling constructor as function
+
+    // check this (this variant only works with ES5) (handles prototype assignment correctly)
+    // No danger of checking a mispelled Constructor
+    function Constructor() {
+      if ( !this ) throw "forgot consturctor with new"
+    }
+
+    // ignore this (handles prototype assignment correctly)
+    function Constructor() {
+      var that = Object.create( Constructor.prototype );
+      return that;
+    }
+
+    // return object literal, no prototype assignment possible
+    function Constructor() {
+      return {
+        hello: function() {
+          log( 'hello' )
+        }
+      }
+    }
+
+    // self correcting
+    function Constructor() {
+
+      // ES3
+      if ( !( this instanceof Constructor ) ) {
+        return new Constructor;
+      }
+
+      // ES5
+      if ( ! this  ) {
+        return new Constructor;
+      }
+
+    }
+
+
+
+Only reliable way to check for arrayness
+
+    Array.isArray([]); // true
+
+
+
+Two ways to create a regex
+
+    var re = /.*/gmi
+    var re = RegExp(".*");
+
+>
+As you can see, the regular expression literal notation is shorter and doesn't
+force you to think in terms of class-like constructors.  Therefore it's
+preferable to use the literal...  when using the RegExp() constructor, you also
+need to escape quotes and often you need to double-escape backslashes
+
+>
+The reason to use new RegExp() is that the pattern is not known in advance but
+is created as a string at runtime.
+
+>
+Calling RegExp() without new (as a function, not as a constructor)
+behaves the same as with new.
+
+
+Function that redefines itself;
+
+    var changing = function() {
+
+      log( 'do something' );
+
+      changing = function() {
+        log( 'do something else' )
+      }
+
+    }
+
+    changing(); //=> do something
+    changing(); //=> do something else
+
+
+Variations of immediate functions
+
+    var result = ( function() {
+      return 2 + 2;
+    }() );
+
+    // remove outer () because when assignment not needed
+    var result = function() {
+      return 2 + 2;
+    }();
+
+    var result = ( function() {
+      return 2 + 2;
+    } )();
+
+
+    // outer () required when there is no outer assignment
+    ( function() {
+      log( 'here' )
+    } )()
+
+
+Immediate object initialization pattern
+
+
+both of these work:
+
+    ({...}).init();
+    ({...}.init());
+
+
+Example from book (couldn't you do this with a constructor?)
+
+    ( {
+      // here you can define setting values
+      // a.k.a. configuration constants
+      maxwidth: 600,
+      maxheight: 400,
+      // you can also define utility methods
+      gimmeMax: function() {
+        return this.maxwidth + "x" + this.maxheight;
+      },
+      // initialize
+      init: function() {
+        console.log( this.gimmeMax() );
+        // more init tasks...
+      }
+    } ).init();
+
+
+Memoization using a functions property as a cache
+
+    function my_add( a, b ) {
+
+      if(my_add.cache === undefined){
+        my_add.cache = [];
+      }
+
+      var cache_key = a.toString() + ',' + b.toString();
+      if ( my_add.cache[ cache_key ] ) {
+        return my_add.cache[cache_key]
+      }
+
+      var result = a + b;
+      my_add.cache[cache_key] = result;
+
+      return result;
+
+    }
+
+The above could have used the json string of arguments as a cache key
+
+     var cachekey = JSON.stringify(Array.prototype.slice.call(arguments)),
+
+
+
+page 77 configuration objects
 
 
 

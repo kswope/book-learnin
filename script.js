@@ -4,18 +4,31 @@ var us = require( 'underscore' );
 
 var log = function() {
   console.log.apply( null, arguments )
-}
+};
+
+//~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
 
 
-var obj = {
-  hello: function() {
-    log( 'hello' )
+function my_add( a, b ) {
+
+  if(my_add.cache === undefined){
+    my_add.cache = [];
   }
+
+  var cache_key = JSON.stringify(Array.prototype.slice.apply(arguments));
+
+  if ( my_add.cache[ cache_key ] ) {
+    return my_add.cache[cache_key]
+  }
+
+  var result = a + b;
+  my_add.cache[cache_key] = result;
+
+  return result;
+
 }
 
-obj.hello();
 
-var obj2 = Object.create(obj);
-
-obj2.hello();
+console.log( my_add( 1, 2 ) )
+console.log( my_add( 1, 2 ) )

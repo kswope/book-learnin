@@ -9336,14 +9336,90 @@ do it; the reason being that ++ and -- promote "excessive trickiness."
     i = i + 1
     i += 1
 
-
 >
 for-in loops should be used to iterate over nonarray objects.  Looping with
 for-in is also called __enumeration__.
 
+>
+It's important to use the method hasOwnProperty() when iterating over object
+properties to filter out properties that come down the prototype chain.
+
+
+hasOwnProperty filter on enumeration
+
+    for ( var i in obj ) {
+      if ( obj.hasOwnProperty( i ) ) { // filter
+        console.log( i, ":", obj[ i ] );
+      }
+    }
+
+
+>
+Another pattern for using hasOwnProperty() is to call that method off of the
+Object.prototype, in case that hasOwnProperty has been redefined (paranoid?,
+not sure if this is still important with ES5 (maybe for legacy libraries))
+
+    for (var i in man) {
+      if (Object.prototype.hasOwnProperty.call(man, i)) { // filter
+        console.log(i, ":", man[i]);
+      }
+    }
+
+
+>
+Using __parseInt()__ you can get a numeric value from a string. The function
+accepts a second radix parameter, which is often omitted but shouldn't be.
+The problems occur when the string to parse starts with 0: for example, a part
+of a date entered into a form field. Strings that start with 0 are treated as
+octal numbers (base 8) in ECMAScript 3;
 
 
 
+>
+You have no reason to use the new Object() constructor when you can use an object
+literal
+
+I don't even comprehend the parameter to new Object(): delegates the constructor?
+
+    var o = new Object();
+    log(o.constructor) //=> [Function: Object]
+
+    var o = new Object(1);
+    log(o.constructor) //=> [Function: Number]
+
+    var o = new Object('hi');
+    log(o.constructor) //=> [Function: String]
+
+
+Use literal or Object.create (first param is either null or a prototype)
+
+    var o = Object.create(null);
+    log(o.constructor) //=> [Function: Object]
+
+
+When a constructor is called with new, something like this happens behind the scenes:
+
+    
+    // var this = Object.create(Person.prototype);
+
+Example
+
+    function MyConstructor(){}
+
+    MyConstructor.prototype.hello = function(){
+      log('hello');
+    }
+
+    function MyConstructorImposter(){
+      var obj = Object.create(MyConstructor.prototype);
+      return obj;
+    }
+
+    (new MyConstructor).hello(); //=> hello
+    (new MyConstructorImposter).hello(); //=> hello
+
+
+page 43
 
 
 

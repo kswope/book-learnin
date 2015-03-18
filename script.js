@@ -8,27 +8,22 @@ var log = function() {
 
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
+var MYAPP = {};
+MYAPP.utilities = {};
 
+MYAPP.utilities.Array = ( function() {
 
-function my_add( a, b ) {
+  function Constructor() {};
 
-  if(my_add.cache === undefined){
-    my_add.cache = [];
+  Constructor.prototype = {
+    inArray: function( needle, haystack ) {},
+    isArray: function( a ) {},
   }
 
-  var cache_key = JSON.stringify(Array.prototype.slice.apply(arguments));
+  return Constructor;
 
-  if ( my_add.cache[ cache_key ] ) {
-    return my_add.cache[cache_key]
-  }
-
-  var result = a + b;
-  my_add.cache[cache_key] = result;
-
-  return result;
-
-}
+}() );
 
 
-console.log( my_add( 1, 2 ) )
-console.log( my_add( 1, 2 ) )
+var obj = new MYAPP.utilities.Array
+

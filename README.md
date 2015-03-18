@@ -9578,7 +9578,215 @@ The above could have used the json string of arguments as a cache key
 
 
 
-page 77 configuration objects
+##### Configuration Objects (umm.. hash passed as argument?)
+
+    var conf = {
+     username: "batman",
+     first: "Bruce",
+     last: "Wayne"
+    };
+    addPerson(conf);
+
+>
+The pros of the configuration objects are:
+* No need to remember the parameters and their order
+* You can safely skip optional parameters
+* Easier to read and maintain
+* Easier to add and remove parameters
+The cons of the configuration objects are:
+* You need to remember the names of the parameters
+* Property names cannot be minified
+
+
+
+##### Namespace Pattern
+
+    var MYAPP = {};
+    MYAPP.Parent = function () {};
+    MYAPP.some_var = 1;
+    MYAPP.modules = {};
+    MYAPP.modules.module1 = {};
+
+Checking if namespace exists (maybe at time of library file)
+
+    var MYAPP = MYAPP || {};
+
+Build a namespace function that will autovivify, or maybe one exists already
+
+##### Declaring Dependencies
+
+>
+It's a good idea to declare the modules your code relies on at the top of your
+function or module. The declaration involves creating only a local variable and
+pointing to the desired module: _(I don't know about doing this at function
+level)
+
+    var myFunction = function () {
+      var event = YAHOO.util.Event,
+      dom = YAHOO.util.Dom;
+      //... 
+    };
+
+
+Private Members are easy, use closure
+
+    function MyConstructor( data ) {
+
+      var data = data;
+
+      this.get_data = function() {
+        return data
+      }
+
+    }
+
+    var obj = new MyConstructor(123);
+    log(obj.get_data()); //=> 123
+
+Warning:  if you return a reference (like an array, object) then that can be
+modified outside the object - instead return a clone.
+
+
+To create private data with an object literal you need to wrap with immediate function.
+
+    var obj = ( function() {
+
+      var data = 123;
+
+      return {
+        get_data: function(){ return data }
+      }
+
+    } )();
+
+    log(obj.get_data()); //=> 123
+
+
+My example of implementing class variable
+
+
+    function MyConstructor() {}
+
+    MyConstructor.prototype = ( function() {
+
+      var count = 0;
+
+      return {
+        increment: function() {
+          log("incrementing " + count);
+          count++
+        },
+        get_count: function() {
+          return count
+        }
+      }
+
+    } )()
+
+
+    for ( var i = 0, a = []; i < 5; i++ ) {
+      ( new MyConstructor ).increment();
+    }
+
+    log( ( new MyConstructor ).get_count() )
+
+
+
+##### Revelation Pattern (paranoid much?)
+
+
+    var myParanoidObj = ( function() {
+
+      function func1() { log( 'in func1' ) }
+
+      function func2() { func1() } // calls func1
+
+      return {
+        func1: func1,
+        func2: func2,
+      }
+
+    } )()
+
+    myParanoidObj.func1(); //=> in func1
+    myParanoidObj.func2(); //=> in func1
+
+    myParanoidObj.func1 = null
+    myParanoidObj.func1(); //=> TypeError not a function
+    myParanoidObj.func2(); //=> in func1 (still works!)
+
+
+##### Module Pattern
+
+>
+* Namespaces
+* Immediate functions
+* Private and privileged members
+* Declaring dependencies
+
+
+Create namespace
+
+    MYAPP = {};
+    MYAPP.utilities = {}
+    MYAPP.utilities.array = {}
+
+Define module and public methods
+
+    MYAPP.utilities.array = ( function() {
+
+      // methods
+      inArray: function( needle, haystack ) { };
+      isArray: function( a ) { };
+
+      // reveal public methods
+      return {
+        inArray: inArray,
+        isArray: isArray,
+      };
+
+    }() );
+
+
+Constructor version:
+
+    var MYAPP = {};
+    MYAPP.utilities = {};
+
+    MYAPP.utilities.Array = ( function() {
+
+      // ... private methods and data
+
+      function Constructor() {};
+
+      Constructor.prototype = {
+        inArray: function( needle, haystack ) {},
+        isArray: function( a ) {},
+      }
+
+      return Constructor;
+
+    }() );
+
+
+    var obj = new MYAPP.utilities.Array
+
+
+page 103
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

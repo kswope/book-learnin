@@ -9775,16 +9775,143 @@ Constructor version:
 
 ##### Public Static Method
 
+    var MyConstructor = function(){}
+    MyConstructor.static = function(){ log("I'm static") }
+    MyConstructor.static()
+
+
+##### Private static data
+
+
+    var MyConstructor = ( function() {
+
+      var counter = 0;
+
+      return function(){ // this is what gets 'new'
+        log(counter++)
+      }
+
+    } )()
+
+    new MyConstructor; //=> 1
+    new MyConstructor; //=> 2
+    new MyConstructor; //=> 3
+
+
+##### Private static method
+
+
+    var MyConstructor = ( function() {
+
+      var counter = 0;
+      var InternalConstructor = function(){
+        counter = counter + 1;
+        log(counter) 
+      };
+
+      InternalConstructor.prototype.getCount = function() {
+        return counter
+      };
+
+      return InternalConstructor;
+
+    } )()
+
+    new MyConstructor; //=> 1
+    new MyConstructor; //=> 2
+    new MyConstructor; //=> 3
+
+    var obj = new MyConstructor; //=> 4
+    log( obj.getCount() ) //=> 4
+
+
+##### Chaining methods pattern
+
+>
+When you create __methods that have no meaningful return value__, you can have
+them return this, the instance of the object they are working with. This will
+enable consumers of that object to call the next method chained to the
+previous:
+
+    var Constructor = function() {
+
+      this.count = 0;
+
+      this.add = function( x ) {
+        this.count = this.count + x;
+        return this;
+      };
+
+      this.get = function() {
+        return this.count
+      }
+
+    }
+
+    var o = new Constructor;
+    log( o.add( 1 ).add( 5 ).get() ) //=> 6
 
 
 
 
+In ECMAScript 5, the prototypal inheritance pattern becomes officially a part
+of the language. This pattern is implemented through the method
+Object.create(). 
+
+    var child = Object.create(parent);
+
+#### Design Patterns
 
 
+##### Singleton
 
 
+My attempt at a singleton:
+
+    var Universe = ( function() {
+
+      var cache;
+
+      return function() { // actual constructor
+
+        if ( cache ) {
+          return cache;
+        } else {
+          cache = this;
+        }
+
+      }
+
+    } )()
+
+    log( new Universe === new Universe ) //=> true
 
 
+##### Factory
+
+_too easy_
+
+
+##### Built in object factor
+
+
+    var o = new Object(),
+        n = new Object(1),
+        s = Object('1'),
+        b = Object(true);
+
+    o.constructor === Object; // true
+    n.constructor === Number; // true
+    s.constructor === String; // true
+    b.constructor === Boolean; // true
+
+>
+The fact that Object() is also a factory is of _little practical use_, just
+something worth mentioning as an example that the factory pattern is all around
+us
+
+
+page 151
 
 
 

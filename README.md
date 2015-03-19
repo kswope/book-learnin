@@ -9772,8 +9772,8 @@ Constructor version:
     var obj = new MYAPP.utilities.Array
 
 
-page 103
 
+##### Public Static Method
 
 
 

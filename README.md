@@ -9471,8 +9471,25 @@ Two techniques for overcoming 'this' shadowing
 
 
 
+>
+__proto__ is not part of the ECMAScript 5 standard. Therefore, you must not use
+it if you want your code to conform to that standard and run reliably across current
+JavaScript engines.
 
 
+>
+However, more and more engines are adding support for __proto__ and it will be
+part of ECMAScript 6.
+
+>
+Only getting a property considers the complete prototype chain of an object.
+Setting and deleting ignores inheritance and affects only own properties.
+_(should this be obvious?)_
+
+
+>
+Setting a property creates an own property, even if there is an inherited
+property with that key.
 
 
 

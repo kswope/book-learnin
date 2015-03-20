@@ -8,25 +8,11 @@ var log = function() {
 
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
-var parent = {
-  prop1:'here',
-}
+var accum = [];
 
+var pusher = Array.prototype.push.bind(accum);
+pusher(1);
+pusher(2);
 
-var obj = Object.create( parent, {
-  v1: {
-    value: 'one',
-    enumerable: true
-  },
-  v2: {
-    value: 'two'
-  },
-} );
+log(accum);
 
-log( obj );
-
-for ( var p in obj ) {
-  if ( obj.hasOwnProperty( p ) ) {
-    log( p )
-  }
-}

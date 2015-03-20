@@ -20,6 +20,8 @@ want to waste a github private slot, so don't look._
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
 - [Speaking Javascript](#speaking-javascript)
 - [JavaScript Patterns](#javascript-patterns)
+- [Learning jQuery](#learning-jquery)
+- [Building Web Apps with Ember.js](#building-web-apps-with-ember.js)
 - [Underscore.js Docs](#underscorejs-docs)
 
 
@@ -10117,8 +10119,8 @@ _Skipping Dom Stuff, better left for other books_
 
 
 
-
-
+## Learning jQuery
+## Building Web Apps with Ember.js
 ## Underscore.js Docs
 
 

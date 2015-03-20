@@ -9433,10 +9433,41 @@ Handling specific errors (from stackexchange)
 
 
 
-page 197
+>
+Use the delete operator sparingly. Most modern JavaScript engines optimize the
+performance of instances created by constructors if their "shape" doesn't
+change (roughly: no properties are removed or added). Deleting a property
+prevents that optimization.
 
 
+Two techniques for overcoming 'this' shadowing
 
+    // that = this
+    var obj = {
+      myvar: 'hello',
+      func: function() {
+        var that = this; // that = this
+        var inner = function() {
+          log( that.myvar ); //<--- that
+        }
+        inner()
+      }
+    }
+
+    obj.func(); //=> hello
+
+    // bind(this)
+    var obj = {
+      myvar: 'hello',
+      func: function() {
+        var inner = function() {
+          log( this.myvar );
+        }.bind(this) //<--- secret sauce
+        inner()
+      }
+    }
+
+    obj.func(); //=> hello
 
 
 

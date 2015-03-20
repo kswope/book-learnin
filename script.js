@@ -9,10 +9,10 @@ var log = function() {
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
 
-if(0){
-  log('this is true?')
-}
 
+! function(){
+  log('here')
+}
 
 
 

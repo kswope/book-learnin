@@ -9276,7 +9276,183 @@ regex
     console.log(str); //> "[tag]Content[/tag]" <--- only first
       
 
-_to be continued..._
+
+>
+Strict Mode: Recommended, with Caveats
+* Enabling strict mode for existing code may break it
+* Package with care: When you concatenate and/or minify files, you have to be
+careful that strict mode isn't switched off where it should be switched on or
+vice versa. Both can break code.
+
+
+>
+undefined and null are the only values for which any kind of property access results
+in an exception
+
+    var i;
+    i.myval; //=> TypeError: Cannot read property 'myval' of undefined
+
+    var i = undefined;
+    i.myval //=> TypeError: Cannot read property 'myval' of undefined
+
+    var i = null;
+    i.myval; //=> TypeError: Cannot read property 'myval' of null
+
+    var i = {};
+    i.myval; //=> no error
+
+always undefined (useful in ES3)
+
+    if(x === void 0){
+      //...
+    }
+
+Use wrapper objects
+     
+    var str = new String('abc') // NOT LIKE THIS
+    var str = String(123)       // like this
+
+    var w = Number(formData.width); // like this
+
+
+The following functions are the preferred way of converting a value to a
+boolean, number, string, or object (Don't use these as constructors):
+
+    Boolean()
+    Number()
+    String()
+
+The + operator for arrays is useless, it converts them to strings first:
+
+ [1, 2] + [3] //=> '1,23'
+
+
+There Are No Valid Use Cases for ==
+
+    if(x != null) // dont
+    if(x)         // do
+
+    // not sure if x is number or string
+    if (x == 123) // dont
+    if (Number(x) === 123) // do
+
+
+
+void
+
+    void 0 // as a synonym for undefined
+
+    // discarding the result of an expression
+    javascript:void window.open("http://example.com/")
+
+>
+I added the void operator to JS before Netscape 2 shipped to make it easy to discard any
+non-undefined value in a javascript: URL
+
+
+>
+Categorizing Values via typeof and instanceof
+* The typeof operator distinguishes primitives from objects and determines the
+types of primitives.
+* The instanceof operator determines whether an object is an instance of a given
+constructor
+
+
+NaN is ridiculous
+
+    NaN === NaN // false
+    typeof NaN // 'number'
+
+String.prototype.slice(start, end?)
+
+    'abc'.slice(2) //=> 'c'
+    'abc'.slice(1, 2) //=> 'b' (2 is end, which is exclusive)
+
+
+String.prototype.substring(start, end?) Should be avoided in favor of slice(),
+
+
+String.prototype.trim()
+
+    '\r\nabc \t'.trim() //=> 'abc'
+
+
+String.prototype.concat(str1?, str2?, ...)
+
+String.prototype.toLowerCase()
+
+String.prototype.toUpperCase()
+
+String.prototype.indexOf(searchString, position?)
+
+String.prototype.lastIndexOf(searchString, position?)
+
+String.prototype.search(regexp)  //<--- regex
+
+String.prototype.match(regexp) //<--- regex
+String.prototype.replace(regexp|string, replacement) //<--- regex
+
+
+Use Error constructor for throwing
+
+    if (somethingBadHappened) {
+     throw new Error('Something bad happened');
+    }
+
+
+Don't forget finally
+
+  try{
+
+  }catch(e){
+
+    console.log(e.stack)
+
+  }finally{ // always executed
+
+  }
+
+
+Handling specific errors (from stackexchange)
+
+    function SpecificError () { }
+    SpecificError.prototype = new Error();
+
+    // ...
+
+    try {
+      throw new SpecificError;
+    } catch (e) {
+      if (e instanceof SpecificError) { //<--- instanceof
+       // specific error
+      } else {
+        throw e; // let others bubble up
+      }
+    }
+
+
+
+page 165
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## JavaScript Patterns
@@ -9911,7 +10087,20 @@ something worth mentioning as an example that the factory pattern is all around
 us
 
 
-page 151
+##### Revisit the following patterns
+
+Figure out simplier implementations then the tedious ones offered in this book.
+
+Decorator
+Strategy
+Facade
+Proxy
+Mediator
+Observer
+
+_Skipping Dom Stuff, better left for other books_
+
+
 
 
 

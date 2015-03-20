@@ -21,7 +21,7 @@ want to waste a github private slot, so don't look._
 - [Speaking Javascript](#speaking-javascript)
 - [JavaScript Patterns](#javascript-patterns)
 - [Learning jQuery](#learning-jquery)
-- [Building Web Apps with Ember.js](#building-web-apps-with-ember.js)
+- [Building Web Apps with Ember.js](#building-web-apps-with-emberjs)
 - [Underscore.js Docs](#underscorejs-docs)
 
 

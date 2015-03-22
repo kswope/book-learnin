@@ -10162,6 +10162,34 @@ _Skipping Dom Stuff, better left for other books_
 
 ## Ember Guids and Tutorials
 
+install node
+npm install ember-cli
+
+
+>
+ You should use this.resource for URLs that represent a noun, and this.route
+for URLs that represent adjectives or verbs modifying those nouns. For example,
+in the code sample below, when specifying URLs for posts (a noun), the route
+was defined with this.resource('posts'). However, when defining the new action
+(a verb), the route was defined with this.route('new').
+
+    App.Router.map(function() {
+      this.resource('posts', function() {
+        this.route('new');
+      });
+    });
+
+
+Nested resources
+
+    App.Router.map(function() {
+      this.resource('post', { path: '/post/:post_id' }, function() {
+        this.route('edit');
+        this.resource('comments', function() {
+          this.route('new');
+        });
+      });
+    });
 
 
 

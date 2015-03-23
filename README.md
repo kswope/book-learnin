@@ -21,7 +21,7 @@ want to waste a github private slot, so don't look._
 - [Speaking Javascript](#speaking-javascript)
 - [JavaScript Patterns](#javascript-patterns)
 - [Ember Guids and Tutorials](#ember-guides-and-tutorials)
-- [Handlebars guides](#handlebars-guides-and-tutorials)
+- [Handlebars guides and tutorials](#handlebars-guides-and-tutorials)
 - [Underscore.js Docs](#underscorejs-docs)
 
 

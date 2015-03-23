@@ -20,7 +20,7 @@ want to waste a github private slot, so don't look._
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
 - [Speaking Javascript](#speaking-javascript)
 - [JavaScript Patterns](#javascript-patterns)
-- [Ember Guids and Tutorials](#ember-guides-and-tutorials)
+- [Ember Guides and Tutorials](#ember-guides-and-tutorials)
 - [Handlebars guides and tutorials](#handlebars-guides-and-tutorials)
 - [Underscore.js Docs](#underscorejs-docs)
 

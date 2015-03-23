@@ -10172,6 +10172,7 @@ http://thetechcofounder.com/getting-started-with-ember-js-using-ember-cli/
 
     sudo npm install ember-cli -g
 
+    ember -v
       version: 0.2.0
       node: 0.12.0
       npm: 2.7.0

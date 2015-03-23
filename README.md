@@ -10162,8 +10162,17 @@ _Skipping Dom Stuff, better left for other books_
 
 ## Ember Guids and Tutorials
 
-install node
-npm install ember-cli
+__Ember's switch to ember-cli has broken pretty much all documentation and tutorials
+on the entire internet, trying to slog through this mess__
+
+    install node
+    npm install ember-cli
+
+
+
+When obsolete docs refer to App you can access it like this:
+
+    var App = window.App;
 
 
 >
@@ -10192,13 +10201,16 @@ Nested resources
     });
 
 
+Getting fixures to work
+
+    import DS from 'ember-data';
+    App.ApplicationAdapter = DS.FixtureAdapter;
 
 
 
 
 
 
-## Underscore.js Docs
 
 
 

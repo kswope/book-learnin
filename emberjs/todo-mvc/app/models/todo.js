@@ -23,6 +23,11 @@ default DS.Model.extend( {
       id: 3,
       title: "Solve world hunger (with Ember)",
       isCompleted: false
+    },
+    {
+      id: 4,
+      title: "My Own Todo",
+      isCompleted: false
     }
   ]
 

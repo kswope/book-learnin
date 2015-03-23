@@ -20,7 +20,8 @@ want to waste a github private slot, so don't look._
 - [The Principles of Object-Oriented Javascript](#the-principles-of-object-oriented-javascript)
 - [Speaking Javascript](#speaking-javascript)
 - [JavaScript Patterns](#javascript-patterns)
-- [Ember Guids and Tutorials](#ember-guids-and-tutorials)
+- [Ember Guids and Tutorials](#ember-guides-and-tutorials)
+- [Handlebars guides](#handlebars-guides-and-tutorials)
 - [Underscore.js Docs](#underscorejs-docs)
 
 
@@ -10160,7 +10161,7 @@ _Skipping Dom Stuff, better left for other books_
 
 
 
-## Ember Guids and Tutorials
+## Ember Guides and Tutorials
 
 __Ember's switch to ember-cli has broken pretty much all documentation and tutorials
 on the entire internet, trying to slog through this mess__
@@ -10244,12 +10245,17 @@ app/templates/todos.hbs
     ember generate route todos
 
 
+app/controllers/todos.js
+
+    ember generate controller todos
 
 
 
 
 
 
+
+## Handlebars Guides and Tutorials
 
 
 

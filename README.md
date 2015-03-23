@@ -10165,49 +10165,17 @@ _Skipping Dom Stuff, better left for other books_
 __Ember's switch to ember-cli has broken pretty much all documentation and tutorials
 on the entire internet, trying to slog through this mess__
 
-    install node
-    npm install ember-cli
+This blog posting actually worked:
+
+http://thetechcofounder.com/getting-started-with-ember-js-using-ember-cli/
 
 
-
-When obsolete docs refer to App you can access it like this:
-
-    var App = window.App;
-
+    sudo npm install ember-cli -g
 
 >
- You should use this.resource for URLs that represent a noun, and this.route
-for URLs that represent adjectives or verbs modifying those nouns. For example,
-in the code sample below, when specifying URLs for posts (a noun), the route
-was defined with this.resource('posts'). However, when defining the new action
-(a verb), the route was defined with this.route('new').
-
-    App.Router.map(function() {
-      this.resource('posts', function() {
-        this.route('new');
-      });
-    });
-
-
-Nested resources
-
-    App.Router.map(function() {
-      this.resource('post', { path: '/post/:post_id' }, function() {
-        this.route('edit');
-        this.resource('comments', function() {
-          this.route('new');
-        });
-      });
-    });
-
-
-Getting fixures to work
-
-    import DS from 'ember-data';
-    App.ApplicationAdapter = DS.FixtureAdapter;
-
-
-
+version: 0.2.0
+node: 0.12.0
+npm: 2.7.0
 
 
 

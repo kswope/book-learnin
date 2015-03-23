@@ -10201,22 +10201,22 @@ app/router.js
 
 Comparing with and without
 
-  Router.map(function() {
-    this.resource('todos', { path: '/' });
-  });
+    Router.map(function() {
+      this.resource('todos', { path: '/' });
+    });
 
-  Route:      todos
-  Controller: todos
-  Template:   todos
-  URL:        /
+    Route:      todos
+    Controller: todos
+    Template:   todos
+    URL:        /
 
-  Router.map(function() {
-  });
+    Router.map(function() {
+    });
 
-  Route:      index
-  Controller: index
-  Template:   index
-  URL:        /
+    Route:      index
+    Controller: index
+    Template:   index
+    URL:        /
 
 
 app/templates/todos.hbs

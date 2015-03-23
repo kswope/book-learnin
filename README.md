@@ -10177,12 +10177,51 @@ http://thetechcofounder.com/getting-started-with-ember-js-using-ember-cli/
       node: 0.12.0
       npm: 2.7.0
 
+    ember new todo-mvc --skip-git
+    cd todo-mvc
+    ember s
+
+>
+A route tells our app how to respond with code.
+
+>
+A resource is a group of routes. A resource tends to be a noun, like 'users' or
+'todos', and nested under it you have a few routes, which tend to be adjectives
+or verbs, like 'new'. At your 'new' route under your 'todos' resource you'll
+write some code to create a new todo, similarly there might be an 'edit' and
+'delete' route.
 
 
+app/router.js
+
+    Router.map(function() {
+      this.resource('todos', { path: '/' });
+    });
 
 
+Comparing with and without
+
+  Router.map(function() {
+    this.resource('todos', { path: '/' });
+  });
+
+  Route:      todos
+  Controller: todos
+  Template:   todos
+  URL:        /
+
+  Router.map(function() {
+  });
+
+  Route:      index
+  Controller: index
+  Template:   index
+  URL:        /
 
 
+app/templates/todos.hbs
+
+    ember generate template todos
 
 
 

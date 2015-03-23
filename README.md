@@ -10224,6 +10224,29 @@ app/templates/todos.hbs
     ember generate template todos
 
 
+app/models/todo.js
+
+    ember generate model todo
+
+
+app/adapters/application.js
+
+    ember generate adapter application
+
+    // change 
+    export default DS.RESTAdapter.extend({});
+    // to
+    export default DS.FixtureAdapter.extend({});
+
+
+app/templates/todos.hbs
+
+    ember generate route todos
+
+
+
+
+
 
 
 

@@ -10249,7 +10249,18 @@ app/controllers/todos.js
 
     ember generate controller todos
 
+lots of stuff happening here
 
+    {{#each item in this itemController="todo"}}
+      <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+        {{#if isEditing}}
+          <input class="edit">
+        {{else}}
+          {{input type="checkbox" checked=isCompleted class="toggle"}}
+          <label {{action "editTodo" on="doubleClick"}}>{{item.title}}</label><button class="destroy"></button>
+        {{/if}}
+      </li>
+    {{/each}}
 
 
 

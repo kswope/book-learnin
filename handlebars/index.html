@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+        <!-- Add your site or application content here -->
+        <p>Hello world! This is HTML6 Boilerplate.</p>
+
+        <div id="content">
+          <script id="entry-template" type="text/x-handlebars-template">
+  
+          {{#each title in titles}}
+            <div class="entry">
+              <h3>{{title.title}}</h3>
+              <div class="body">
+                {{title.body}}
+              </div>
+            </div>
+          {{/each}}
+
+          </script>
+        </div>
+
+        <script src="js/vendor/jquery-1.11.2.js"></script>
+        <script src="js/vendor/handlebars-v3.0.0.js"></script>
+        <script src="js/main.js"></script></script>
+
+        <script>
+
+          var template = $( "#entry-template" )
+          var source = template.html();
+          var context = {
+            titles: [
+              { title: "this is the first title" },
+              { title: "this is the second title" },
+              { title: "this is the third title" },
+            ]
+          };
+
+          var output = Handlebars.compile( source )(context);
+
+          template.after(output);
+
+        </script>
+
+
+    </body>
+</html>

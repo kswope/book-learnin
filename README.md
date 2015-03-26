@@ -10250,6 +10250,16 @@ app/controllers/todos.js
     ember generate controller todos
 
 
+Create an ember 'class'
+
+  var class = Ember.Object.extend();
+
+Instantiate ember class
+
+  var obj = class.create();
+
+
+
 
 
 

@@ -10276,14 +10276,14 @@ wires up functin to be dynamic when properties it depends on change.
 Ember will call the computed property for both setters and getters, __so if you
 want to use a computed property as a setter, you'll need to check the number of
 arguments to determine whether it is being called as a getter or a setter.__
-Note that if a value is returned from the setter, it will be cached as the
-property's value.
+Note that __if a value is returned from the setter, it will be cached as the
+property's value.__
 
     App.Person = Ember.Object.extend({
       firstName: null,
       lastName: null,
 
-      fullName: function(key, value, previousValue) {
+      fullName: function(key, value) {
         // setter
         if (arguments.length > 1) { //<--- HERE
           var nameParts = value.split(/\s+/);

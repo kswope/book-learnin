@@ -10172,3 +10172,84 @@ use create()
     } );
 
     app_person.create().say( 'something' ); //=> box 'something'
+
+You can create a subclass of an existing class with extend
+
+    var myClass = Ember.Object.extend( {
+      say: function( thing ) {
+        alert( thing );
+      }
+    } );
+
+    var mySubClass = myClass.extend();
+    mySubClass.create().say('something else'); //=> box 'something else'
+
+Can access the superclass with this._super
+
+    var myClass = Ember.Object.extend( {
+      say: function( thing ) {
+        alert( 'myClass' );
+      }
+    } );
+
+    var mySubClass = myClass.extend({
+      say: function( thing ) {
+        this._super(); //<---- HERE
+        alert( 'mySubClass' );
+      }
+    });
+
+    mySubClass.create().say('something else'); //=> boxs 'myClass'...'mySubClass'
+
+
+
+Initialize new object by passing in a 'hash'
+
+    var myClass = Ember.Object.extend( {
+      name: '',
+      say: function( thing ) {
+        alert( this.get('name') );
+      }
+    } );
+
+    var myObj = myClass.create({name:'kevin'}); 
+    myObj.say();
+
+>
+For performance reasons, note that you cannot redefine an instance's computed
+properties or methods when calling create(), nor can you define new ones. You
+should only set simple properties when calling create(). If you need to define
+or redefine methods or computed properties, create a new subclass and
+instantiate that.
+
+>
+If you are subclassing a framework class, like Ember.View or
+Ember.ArrayController, and you override the init method, make sure you call
+this._super()! If you don't, the system may not have an opportunity to do
+important setup work, and you'll see strange behavior in your application.
+
+    var myClass = Ember.Object.extend( {
+      init: function(){
+        alert('init');
+      },
+      say: function( thing ) {
+        alert( this.get('name') );
+      }
+    } );
+
+    var myObj = myClass.create({name:'kevin'}); 
+    myObj.say();
+
+>
+When accessing the properties of an object, use the get and set accessor
+methods. Make sure to use these accessor methods; otherwise, __computed
+properties won't recalculate, observers won't fire, and templates won't
+update.__
+
+
+
+
+
+
+
+

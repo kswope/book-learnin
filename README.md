@@ -10162,6 +10162,13 @@ on the entire internet, trying to slog through this mess__
 ##### Classes and Instances
 
 >
-To define a new Ember __class__
+To define a new Ember __class__, use extend(), to create object from that class
+use create()
 
-    Ember.Object.extend({});
+    var app_person = Ember.Object.extend( {
+      say: function( thing ) {
+        alert( thing );
+      }
+    } );
+
+    app_person.create().say( 'something' ); //=> box 'something'

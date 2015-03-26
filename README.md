@@ -10248,8 +10248,57 @@ update.__
 
 
 
+#### Computed Properties
+
+This example isn't that great because it doesn't show templates and other computed
+properties being updated.  This example also shows chaining.  Note that .property()
+method on function prototype makes function accessible with get('myfunction') and also
+wires up functin to be dynamic when properties it depends on change.
+
+    var myClass = Ember.Object.extend( {
+      firstName: 'bob',
+      lastName: 'smith',
+      age: 45,
+      fullName: function() {
+        return this.get( 'firstName' ) + ' ' + this.get( 'lastName' );
+      }.property( 'firstName', 'lastName' ),
+      description: function() {
+        return [ this.get( 'fullName' ), this.get( 'age' ) ].join( ' ' );
+      }.property( 'firstName', 'lastName', 'age' ),
+    } );
+
+    var obj = myClass.create();
+    log( obj.get( 'description' ) ); //=> bob smith 45
 
 
 
+>
+Ember will call the computed property for both setters and getters, __so if you
+want to use a computed property as a setter, you'll need to check the number of
+arguments to determine whether it is being called as a getter or a setter.__
+Note that if a value is returned from the setter, it will be cached as the
+property's value.
 
+    App.Person = Ember.Object.extend({
+      firstName: null,
+      lastName: null,
+
+      fullName: function(key, value, previousValue) {
+        // setter
+        if (arguments.length > 1) {
+          var nameParts = value.split(/\s+/);
+          this.set('firstName', nameParts[0]);
+          this.set('lastName',  nameParts[1]);
+        }
+
+        // getter
+        return this.get('firstName') + ' ' + this.get('lastName');
+      }.property('firstName', 'lastName')
+    });
+
+
+    var captainAmerica = App.Person.create();
+    captainAmerica.set('fullName', "William Burnside");
+    captainAmerica.get('firstName'); // William
+    captainAmerica.get('lastName'); // Burnside
 

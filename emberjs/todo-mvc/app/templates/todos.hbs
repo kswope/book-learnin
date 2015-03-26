@@ -7,14 +7,16 @@
 <ul id="todo-list">
 
   {{#each itemController="todo"}}
-  <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
-  {{#if isEditing}}
-  <input class="edit">
-  {{else}}
-  {{input type="checkbox" checked=isCompleted class="toggle"}}
-  <label {{action "editTodo" on="doubleClick"}}>{{model.title}}</label><button class="destroy"></button>
-  {{/if}}
-  </li>
+    <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
+    {{#if isEditing}}
+      {{input type="text" class="edit" value=title focus-out="acceptChanges"
+      insert-newline="acceptChanges"}}
+    {{else}}
+      {{input type="checkbox" checked=isCompleted class="toggle"}}
+      <label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
+      <button class="destroy"></button>
+    {{/if}}
+    </li>
   {{/each}}
 
 </ul>

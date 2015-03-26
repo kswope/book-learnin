@@ -10265,9 +10265,6 @@ Instantiate ember class
 
 
 
-## Handlebars Guides and Tutorials
-
-
 
 
 

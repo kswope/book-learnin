@@ -10160,3 +10160,8 @@ on the entire internet, trying to slog through this mess__
 ### The Object Model
 
 ##### Classes and Instances
+
+>
+To define a new Ember __class__
+
+    Ember.Object.extend({});

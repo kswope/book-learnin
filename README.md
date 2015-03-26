@@ -10285,7 +10285,7 @@ property's value.
 
       fullName: function(key, value, previousValue) {
         // setter
-        if (arguments.length > 1) {
+        if (arguments.length > 1) { //<--- HERE
           var nameParts = value.split(/\s+/);
           this.set('firstName', nameParts[0]);
           this.set('lastName',  nameParts[1]);

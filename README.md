@@ -10302,3 +10302,14 @@ property's value.__
     captainAmerica.get('firstName'); // William
     captainAmerica.get('lastName'); // Burnside
 
+
+
+#### Observers
+
+
+
+
+
+
+
+

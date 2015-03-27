@@ -1,0 +1,16 @@
+
+header
+  article
+    .logo
+      h1
+        a href="#" Ember CRM!
+
+p this is text
+  this is text
+  this is text
+
+
+section#main
+  = outlet
+
+footer

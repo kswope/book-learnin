@@ -10163,8 +10163,11 @@ Emblem
 
     ember install:addon ember-cli-emblem-hbs-printer
 
+Rails backend
 
+much of the configs comes from here
 
+    http://ember.vicramon.com/creating-the-rails-api
 
 
 

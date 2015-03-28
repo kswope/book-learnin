@@ -10157,21 +10157,11 @@ _Skipping Dom Stuff, better left for other books_
 __Ember's switch to ember-cli has broken pretty much all documentation and tutorials
 on the entire internet, trying to slog through this mess__
 
-### Rails setup
+### Setup
 
-shell
+Emblem
 
-    rails new crm --skip-turbolinks -d mysql
-
-in Gemfile
-
-    gem 'ember-cli-rails'
-
-shell
-
-    rails g ember-cli:init create  config/initializers/ember.rb
-
-
+    ember install:addon ember-cli-emblem-hbs-printer
 
 
 

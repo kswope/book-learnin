@@ -10183,6 +10183,11 @@ much of the configs comes from here
 
 
 #### Ember Frontend Steps
+ 
+    npm update -g
+
+
+
 
 
     # in Gemfile

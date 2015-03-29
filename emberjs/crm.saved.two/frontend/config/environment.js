@@ -6,7 +6,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self' 'unsafe-eval' 192.168.56.102:35729",
       'font-src': "'self' http://fonts.gstatic.com http://fonts.googleapis.com",
-      'connect-src': "'self' ws://192.168.56.102:35729",
+      'connect-src': "'self' ws://192.168.56.102:35729 http://localhost:3000",
       'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline' http://fonts.gstatic.com http://fonts.googleapis.com",
       'media-src': "'self'"

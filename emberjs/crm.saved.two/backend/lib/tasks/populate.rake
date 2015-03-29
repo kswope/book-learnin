@@ -16,7 +16,7 @@ namespace :db do
         email: FFaker::Internet.email,
         phone: FFaker::PhoneNumber.phone_number,
         status: random_status,
-        notes: FFaker::HipsterIpsum.words(10).join(' ')
+        :erIpsum.words(10).join(' ')
       )
     end
 

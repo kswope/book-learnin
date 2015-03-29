@@ -1,0 +1,7 @@
+
+
+article#leads
+  h1 Leads
+  ul
+    each lead in controller
+      li= lead.firstName

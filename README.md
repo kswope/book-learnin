@@ -10159,11 +10159,6 @@ on the entire internet, trying to slog through this mess__
 
 ### Setup
 
-Emblem
-
-    ember install:addon ember-cli-emblem-hbs-printer
-
-Rails backend
 
 much of the configs comes from here
 
@@ -10173,9 +10168,13 @@ but use
 
     https://github.com/rwz/ember-cli-rails
 
-#### Steps
+#### Rails Backend Steps
 
-    rails new crm --database=mysql --skip-turbolinks 
+    rails new backend --database=mysql --skip-turbolinks 
+
+
+#### Ember Frontend Steps
+
 
     # in Gemfile
     gem "ember-cli-rails"

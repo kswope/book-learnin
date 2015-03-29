@@ -10164,13 +10164,22 @@ much of the configs comes from here
 
     http://ember.vicramon.com/creating-the-rails-api
 
-but use
-
-    https://github.com/rwz/ember-cli-rails
 
 #### Rails Backend Steps
 
+    gem update
     rails new backend --database=mysql --skip-turbolinks 
+    cd backend
+
+    # in Gemfile
+    gem 'active_model_serializers'
+    gem 'ffaker' # in development group
+    bundle update
+
+    rails g model lead
+    rails g serializer lead
+    rails g controller api/v1/leads
+
 
 
 #### Ember Frontend Steps

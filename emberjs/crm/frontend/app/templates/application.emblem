@@ -1,0 +1,10 @@
+header
+  article
+    .logo
+      h3
+        a href="#" Ember CRM!!!
+
+section#main
+  = outlet
+
+footer

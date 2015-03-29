@@ -10169,7 +10169,35 @@ much of the configs comes from here
 
     http://ember.vicramon.com/creating-the-rails-api
 
+but use
 
+    https://github.com/rwz/ember-cli-rails
+
+#### Steps
+
+    rails new crm --database=mysql --skip-turbolinks 
+
+    # in Gemfile
+    gem "ember-cli-rails"
+
+    bundle install
+    rails generate ember-cli:init
+    ember new frontend --skip-git
+    cd frontend && npm install --save-dev ember-cli-rails-addon
+
+    # in routes.rb
+    root 'application#index'
+
+    # in application_controller.rb
+    def index
+    end
+
+    # in /app/views/application/index.html.erb
+    <%= include_ember_script_tags :frontend %>
+    <%= include_ember_stylesheet_tags :frontend %>
+
+    # in /frontend
+    ember install:addon ember-cli-emblem-hbs-printer
 
 
 ### The Object Model

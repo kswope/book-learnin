@@ -10185,32 +10185,13 @@ much of the configs comes from here
 #### Ember Frontend Steps
  
     npm update -g
-
-
-
-
-
-    # in Gemfile
-    gem "ember-cli-rails"
-
-    bundle install
-    rails generate ember-cli:init
     ember new frontend --skip-git
-    cd frontend && npm install --save-dev ember-cli-rails-addon
-
-    # in routes.rb
-    root 'application#index'
-
-    # in application_controller.rb
-    def index
-    end
-
-    # in /app/views/application/index.html.erb
-    <%= include_ember_script_tags :frontend %>
-    <%= include_ember_stylesheet_tags :frontend %>
-
-    # in /frontend
+    cd frontend
     ember install:addon ember-cli-emblem-hbs-printer
+
+    # in .ember-cli (I don't know why this wasn't here this last time)
+    "liveReload": true,
+    "watcher": "polling"
 
 
 ### The Object Model

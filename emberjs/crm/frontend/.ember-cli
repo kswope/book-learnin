@@ -1,0 +1,13 @@
+{
+
+  "liveReload": true,
+  "watcher": "polling",
+
+  "port": 4200,
+  "host": "0.0.0.0",
+
+  "proxy": "http://localhost:3000",
+
+  "environment": "development"
+
+}

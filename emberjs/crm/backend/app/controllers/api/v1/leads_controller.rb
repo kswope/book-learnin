@@ -1,6 +1,7 @@
 class Api::V1::LeadsController < ApplicationController
 
   def index
+    puts Lead.all
     render json: Lead.all
   end
 

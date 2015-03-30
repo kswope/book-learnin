@@ -122,9 +122,11 @@ header article nav a, header article nav a:hover, header article nav a:visited, 
 }
 
 section {
+  border: solid 1px yellow;
   margin: 0 auto;
   width: 88%;
 }
+
 
 form dl {
   padding: 0 0 12px 0;
@@ -149,10 +151,11 @@ form fieldset.actions .cancel {
 }
 
 article#leads {
+  height: 400px;
   margin: 30px 35px 0 0;
   width: 25%;
   background: #f6f6f6;
-  float: left;
+  /* float: left; */
   padding: 15px 20px 20px;
 }
 
@@ -164,7 +167,7 @@ article#leads h1 {
 
 article#leads h1 a {
   font-size: 15px;
-  float: right;
+  /* float: right; */
   font-weight: normal;
   margin: 3px 0 0 0;
 }
@@ -188,7 +191,7 @@ article#leads ul li:hover, article#leads ul li.active {
 article#lead {
   margin: 30px;
   width: 60%;
-  float: left;
+  /* float: left; */
 }
 
 article#lead a.edit {

@@ -122,11 +122,9 @@ header article nav a, header article nav a:hover, header article nav a:visited, 
 }
 
 section {
-  border: solid 1px yellow;
   margin: 0 auto;
   width: 88%;
 }
-
 
 form dl {
   padding: 0 0 12px 0;
@@ -150,48 +148,47 @@ form fieldset.actions .cancel {
   padding-left: 15px;
 }
 
-article#leads {
-  height: 400px;
+article#leeds {
   margin: 30px 35px 0 0;
   width: 25%;
   background: #f6f6f6;
-  /* float: left; */
+  float: left;
   padding: 15px 20px 20px;
 }
 
-article#leads h1 {
+article#leeds h1 {
   font-size: 20px;
   padding-left: 6px;
   padding-bottom: 14px;
 }
 
-article#leads h1 a {
+article#leeds h1 a {
   font-size: 15px;
-  /* float: right; */
+  float: right;
   font-weight: normal;
   margin: 3px 0 0 0;
 }
 
-article#leads input.search {
+article#leeds input.search {
   width: 96%;
   margin: 0 0 12px 5px;
   padding: 2px 0 3px 3px;
 }
 
-article#leads ul li {
+article#leeds ul li {
   border-bottom: 1px solid #dddddd;
   padding: 8px 6px 10px;
   cursor: pointer;
 }
 
-article#leads ul li:hover, article#leads ul li.active {
+article#leeds ul li:hover, article#leeds ul li.active {
   background: #f8e5ce;
 }
 
 article#lead {
   margin: 30px;
   width: 60%;
-  /* float: left; */
+  float: left;
 }
 
 article#lead a.edit {

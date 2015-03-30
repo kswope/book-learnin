@@ -10189,7 +10189,7 @@ much of the configs comes from here
     cd frontend
     ember install:addon ember-cli-emblem-hbs-printer
 
-    # in .ember-cli (I don't know why this wasn't here this last time)
+    # in .ember-cli (I don't know why this wasn't necessary this last time)
     "liveReload": true,
     "watcher": "polling"
 

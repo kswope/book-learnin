@@ -1,0 +1,14 @@
+<article id='leeds'>
+  <h1>Leads</h1>
+  <ul>
+    {{#each lead in controller}} 
+      {{#link-to 'lead' lead}}
+        <li>
+          {{lead.fullName}}
+        </li>
+      {{/link-to}} 
+    {{/each}}
+  </ul>
+</article>
+
+{{outlet}}

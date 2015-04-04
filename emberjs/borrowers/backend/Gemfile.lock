@@ -52,7 +52,6 @@ GEM
     mime-types (1.25.1)
     minitest (5.4.0)
     multi_json (1.10.1)
-    pg (0.17.1)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-cors (0.2.9)
@@ -112,7 +111,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.8.1)
   counter_culture (~> 0.1.29)
-  pg (~> 0.17.1)
   rack-cors (~> 0.2.9)
   rails (= 4.1.5)
   rails-api

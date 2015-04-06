@@ -6,5 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 export default Router.map(function() {
-  this.resource('friends', function() {});
+  this.resource('friends', function() {
+    this.route('new');
+    this.route('show', { path: ':friend_id' });
+  });
 });

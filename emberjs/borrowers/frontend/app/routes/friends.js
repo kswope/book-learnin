@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend( {
+export
+default Ember.Route.extend( {
 
   actions: {
     save: function() {
@@ -10,6 +11,12 @@ export default Ember.Route.extend( {
     cancel: function() {
       console.log( '+--- cancel action bubbled up to friends route' );
       return true;
+    },
+    delete: function( friend ) {
+      var _this = this;
+      friend.destroyRecord().then( function() {
+        _this.transitionTo( 'friends.index' );
+      } );
     }
   }
 

@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  articles: DS.hasMany('article'),
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),
   email: DS.attr('string'),
@@ -8,7 +9,7 @@ export default DS.Model.extend({
   totalArticles: DS.attr('number'),
 
   fullName: function(){
-    return [this.get('firstName'), this.get('lastName')].join(' ')
+    return [this.get('firstName'), this.get('lastName')].join(' ');
   }.property('firstName', 'lastName')
 
 });

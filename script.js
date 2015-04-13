@@ -10,6 +10,7 @@ var log = function() {
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
 var a = [1,2,3];
-log( 2 in a ) //=> true
-log( 3 in a ) //=> false
+log( a ) //=> [1,2,3]
+  a.delete(0);
+log( a ) //=> false
 

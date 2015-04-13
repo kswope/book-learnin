@@ -9503,12 +9503,13 @@ Avoid invoking hasOwnProperty on an object because it may have been overridden.
 
 
 
-'in' works for array indices
+__in__ works for array indices
 
     var a = [1,2,3];
     log( 2 in a ) //=> true
     log( 3 in a ) //=> false
 
+__delete__ works for arrays
 
 
 

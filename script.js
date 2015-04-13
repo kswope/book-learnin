@@ -12,3 +12,6 @@ var log = function() {
 var a = [ 1, ,, 2, ,, 3 ];
 
 log(a);
+
+
+log( a.map( function(x){return true} ) )

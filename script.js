@@ -1,6 +1,6 @@
 "use strict";
 
-var us = require( 'underscore' );
+// var us = require( 'underscore' );
 // var Ember = require( 'ember' );
 
 var log = function() {
@@ -8,4 +8,8 @@ var log = function() {
 };
 
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
+
+var a = [1,2,3];
+log( 2 in a ) //=> true
+log( 3 in a ) //=> false
 

@@ -9494,6 +9494,7 @@ property with that key.
 
 
 
+
 >
 Avoid invoking hasOwnProperty on an object because it may have been overridden.
 
@@ -9501,6 +9502,12 @@ Avoid invoking hasOwnProperty on an object because it may have been overridden.
     {}.hasOwnProperty.call(obj, 'foo') // shorter true
 
 
+
+'in' works for array indices
+
+    var a = [1,2,3];
+    log( 2 in a ) //=> true
+    log( 3 in a ) //=> false
 
 
 

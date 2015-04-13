@@ -9509,8 +9509,19 @@ __in__ works for array indices
     log( 2 in a ) //=> true
     log( 3 in a ) //=> false
 
-__delete__ works for arrays
+__delete__ works for arrays (but not so great)
 
+    var a = [ 1, 2, 3 ];
+    log( a ); //=> [1,2,3]
+    delete a[ 0 ]
+    log( a ) //=> [ , 2, 3 ] //<-- what?
+
+use __splice__ to delete array elements 
+
+    // array.splice(start, count)
+    var a = [ 1, 2, 3 ];
+    a.splice(0,1);
+    log(a); //=> [2,3]
 
 
 

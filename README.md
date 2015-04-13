@@ -9494,8 +9494,11 @@ property with that key.
 
 
 
-page 218
+>
+Avoid invoking hasOwnProperty on an object because it may have been overridden.
 
+    Object.prototype.hasOwnProperty.call(obj, 'foo') // safe
+    {}.hasOwnProperty.call(obj, 'foo') // shorter true
 
 
 

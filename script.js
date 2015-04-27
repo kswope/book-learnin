@@ -9,9 +9,5 @@ var log = function() {
 
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
-var a = [ 1, ,, 2, ,, 3 ];
-
-log(a);
-
-
-log( a.map( function(x){return true} ) )
+var map = new Map([[1,'one'],[2,'two']]);
+log(map.get(1));

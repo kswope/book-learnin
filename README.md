@@ -9526,6 +9526,48 @@ use __splice__ to delete array elements
 
 
 
+clearing a shared reference to an array danger
+
+    var a = [1,2,3];
+    var b = a;
+
+    a = []
+    log(b); //=> [1,2,3] didn't work
+
+    var a = [1,2,3];
+    var b = a;
+
+    a.length = 0
+    log(b); //=> []
+
+
+use filter to remove holes from array
+
+    var a = [ 0, , , 1, , , 2, , , 3 ]
+    a = a.filter(function(x){ return true });
+    log(a); //=> [ 0, 1, 2, 3 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## JavaScript Patterns

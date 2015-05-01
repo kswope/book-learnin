@@ -9,5 +9,20 @@ var log = function() {
 
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
-var map = new Map([[1,'one'],[2,'two']]);
-log(map.get(1));
+
+var a = 1;
+
+function pa(){
+
+  function ca(){
+    return a+1;  
+  }
+
+  a = ca();
+  console.log(a);
+
+
+}
+
+ca();
+pa();

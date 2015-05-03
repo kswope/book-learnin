@@ -1,9 +1,0 @@
-{
-  "id": "modal",
-  "name": "Modal",
-  "description": "Fancy modal for the new web",
-  "install": "+modal",
-  "dependencies": [
-    "card/v2"
-    ]
-}

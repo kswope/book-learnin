@@ -1,6 +1,0 @@
-{
-  "id": "button",
-  "name": "Buttons",
-  "install": "[included]",
-  "test": "test.html"
-}

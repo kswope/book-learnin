@@ -22,3 +22,19 @@ if( !filename ) {
 fs.watch( filename, function() {
   throw Error( "A file to watch must be specified!" )
 } )
+var a = 1;
+
+function pa(){
+
+  function ca(){
+    return a+1;  
+  }
+
+  a = ca();
+  console.log(a);
+
+
+}
+
+ca();
+pa();

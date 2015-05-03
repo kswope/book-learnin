@@ -1,0 +1,65 @@
+* {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  color: $picnic-black;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  background: $picnic-white;
+}
+
+// Hide the default focus effect
+:focus {
+  outline: none;
+  }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: $picnic-separation 0;
+  }
+
+li {
+  margin: 0 0 $picnic-separation / 2;
+  }
+
+a {
+  color: $picnic-primary;
+  text-decoration: none;
+  }
+
+
+// The <pre> doesn't have a nice style from Normalize.css
+pre {
+  text-align: left;
+  padding: .3em;
+  background: #eee;
+  }
+
+code {
+  padding: 3px 5px;
+  font-size: .8em;
+  background: #eee;
+  }
+
+blockquote {
+  padding: 0 0 0 1em;
+  margin: 0 0 0 .1em;
+  box-shadow: inset 5px 0 rgba($picnic-black, .3);
+  }
+
+label {
+  cursor: pointer;
+  }

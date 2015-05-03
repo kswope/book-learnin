@@ -1,7 +1,0 @@
-
-
-export default Ember.Route.extend({
-  beforeModel: function(){
-    console.log(this.router.get('currentPath'));
-  }
-});

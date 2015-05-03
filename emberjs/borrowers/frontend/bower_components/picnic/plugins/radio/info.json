@@ -1,0 +1,8 @@
+{
+  "id": "radio",
+  "name": "Radiobutton",
+  "install": "[included]",
+  "dependencies": [
+    "radiocheckbox/v2"
+    ]
+}

@@ -21,7 +21,7 @@ want to waste a github private slot, so don't look._
 - [Speaking Javascript](#speaking-javascript)
 - [JavaScript Patterns](#javascript-patterns)
 - [Ember Guides and Tutorials](#ember-guides-and-tutorials)
-- [You Don't Know JS](#)
+- [You Don't Know JS](#you-dont-know-js)
 
 TODO
 

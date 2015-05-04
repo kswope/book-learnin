@@ -10455,6 +10455,7 @@ function call will automatically return the newly constructed object.
 
 #### Create DMZ object for passing 'null' to call, apply, bind
 
+This can prevent libraries from accidentally messing with global this.
 ø is typed with opt-o on mac
 
     var ø = Object.create( null );

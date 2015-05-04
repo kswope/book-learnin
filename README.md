@@ -10420,4 +10420,9 @@ called.
 * Called with a context object owning the call? Use that context object.
 * Default: undefined in strict mode, global object otherwise.
 
+>
+With respect to this binding, call(..) and apply(..) are identical. They do
+behave differently with their additional pa‐ rameters, but that’s not something
+we care about presently.
+
 

@@ -10461,3 +10461,10 @@ This can prevent libraries from accidentally messing with global this.
     var ø = Object.create( null );
     var bar = foo.bind( ø, 2 );
 
+#### get and set
+
+
+    var obj = {
+      get x() { return this._x },
+      set x( x ) { this._x = x }
+    }

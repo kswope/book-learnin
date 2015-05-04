@@ -10432,6 +10432,26 @@ we care about presently.
 
     var bar = foo.bind( obj );
 
+>
+Many libraries’ functions, and indeed many new built-in functions in the
+JavaScript language and host environment, provide an optional parameter,
+usually called “context,” which is designed as a work- around for you not
+having to use bind(..) to ensure your callback function uses a particular this.
+
+    [1, 2, 3].forEach( foo, obj );
+
+
+#### <i>new</i> binding
+
+>
+When a function is invoked with new in front of it, otherwise known as a
+constructor call, the following things are done automatically:
+1. A brand new object is created (aka constructed) out of thin air.
+2. The newly constructed object is [[Prototype]]-linked.
+3. The newly constructed object is set as the this binding for that function call.
+4. Unless the function returns its own alternate object, the new invoked
+function call will automatically return the newly constructed object.
+
 
 
 

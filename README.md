@@ -10453,5 +10453,10 @@ constructor call, the following things are done automatically:
 function call will automatically return the newly constructed object.
 
 
+#### Create DMZ object for passing 'null' to call, apply, bind
 
+ø is typed with opt-o on mac
+
+    var ø = Object.create( null );
+    var bar = foo.bind( ø, 2 );
 

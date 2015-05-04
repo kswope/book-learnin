@@ -10428,7 +10428,9 @@ With respect to this binding, call(..) and apply(..) are identical. They do
 behave differently with their additional parameters, but that’s not something
 we care about presently.
 
-#### Hard this binding
+#### Hard <i>this</i> binding in ES5
+
+    var bar = foo.bind( obj );
 
 
 

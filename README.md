@@ -10422,7 +10422,7 @@ called.
 
 ----
 
-#### Explicit <strong>this</strong> binding
+#### Explicit <i>this</i> binding
 >
 With respect to this binding, call(..) and apply(..) are identical. They do
 behave differently with their additional parameters, but that’s not something

@@ -10441,7 +10441,7 @@ having to use bind(..) to ensure your callback function uses a particular this.
     [1, 2, 3].forEach( foo, obj );
 
 
-#### <i>new</i> binding
+#### New <i>this</i> binding
 
 >
 When a function is invoked with new in front of it, otherwise known as a

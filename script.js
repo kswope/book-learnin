@@ -10,31 +10,12 @@ var log = function() {
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
 
-const fs = require('fs');
-const spawn = require('child_process').spawn;
-const filename = process.argv[2];
+log( Array.prototype.join.call( [ 1, 2, 3 ], '-' ) ); //=> '1-2-3'
+log( Array.prototype.join.call( '123', '-' ) ); //=> '1-2-3'
 
+// doesn't work with strings because strings don't mutate in place
+log( Array.prototype.reverse.call( [ 1, 2, 3 ], '-' ) ); //=> [ 3, 2, 1 ]
+log( Array.prototype.reverse.call( '123', '-' ) ); //=> [String: '123']
 
-if( !filename ) {
-  throw Error('A file to watch must be specified!');
-}
-
-fs.watch( filename, function() {
-  throw Error( "A file to watch must be specified!" )
-} )
-var a = 1;
-
-function pa(){
-
-  function ca(){
-    return a+1;  
-  }
-
-  a = ca();
-  console.log(a);
-
-
-}
-
-ca();
-pa();
+log( [1,2,3].reverse() )
+  'abc',reverse();

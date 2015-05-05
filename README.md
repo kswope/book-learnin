@@ -10463,7 +10463,6 @@ This can prevent libraries from accidentally messing with global this.
 
 #### get and set
 
-
     var obj = {
       get x() { return this._x },
       set x( x ) { this._x = x }

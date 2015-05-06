@@ -10,12 +10,13 @@ var log = function() {
 //~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*~~~*
 
 
-log( Array.prototype.join.call( [ 1, 2, 3 ], '-' ) ); //=> '1-2-3'
-log( Array.prototype.join.call( '123', '-' ) ); //=> '1-2-3'
+var a = 'abcdef';
 
-// doesn't work with strings because strings don't mutate in place
-log( Array.prototype.reverse.call( [ 1, 2, 3 ], '-' ) ); //=> [ 3, 2, 1 ]
-log( Array.prototype.reverse.call( '123', '-' ) ); //=> [String: '123']
+a = a
+  .split( '' )
+  .reverse()
+  .map( function( x ) {
+    return x.toUpperCase()
+  } )
 
-log( [1,2,3].reverse() )
-  'abc',reverse();
+log( a );
